@@ -89,10 +89,10 @@ $p4-line-height: 1.25rem !default;
 
 @font-face {
   font-family: 'cerebri-sans';
-  src: url('../fonts/cerebri/OTF/CerebriSansPro-Regular.otf') format("opentype"),
-       url('../fonts/cerebri/ttf/CerebriSansPro-Regular.ttf') format('truetype'),
-       url('../fonts/__MACOSX/cerebri/OTF/._CerebriSansPro-Regular.otf') format("opentype"),
-       url('../fonts/__MACOSX/cerebri/TTF/._CerebriSansPro-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/cerebri/OTF/CerebriSansPro-Regular.otf') format("opentype"),
+    url('/assets/fonts/cerebri/ttf/CerebriSansPro-Regular.ttf') format('truetype'),
+    url('/assets/fonts/__MACOSX/cerebri/OTF/._CerebriSansPro-Regular.otf') format("opentype"),
+    url('assets/fonts/__MACOSX/cerebri/TTF/._CerebriSansPro-Regular.ttf') format('truetype');
 }
 
 
