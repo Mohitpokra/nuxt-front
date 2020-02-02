@@ -1,0 +1,279 @@
+$btn-primary: #44a1bf;
+$btn-secondary: #ffffff;
+$btn-tertiary: #f5f5f5;
+$btn-danger: #d93934;
+$btn-success: #2bb76d;
+$btn-warning: #f5a64a;
+
+$primary: $btn-primary !default;
+$secondary: $btn-secondary !default;
+$success: $btn-success !default;
+$warning: $btn-warning !default;
+$danger: $btn-danger !default;
+
+
+$input-btn-font-family: 'CerebriSans';
+$input-disabled-bg:#f5f5f5 !default;
+$input-color: #1f1f1f !default;
+// $input-btn-padding-x: 1rem; 
+// $input-btn-padding-y: .75rem;
+$border-radius: .125rem;
+$input-border-color: #b8b8b8 !default;
+$input-border-radius: $border-radius !default;
+$input-focus-border-color: #1f1f1f !default;
+$input-focus-box-shadow: none !default;
+$input-placeholder-color: #bfbfbf !default;
+
+
+$custom-control-indicator-size: 1.5rem !default;
+$custom-control-indicator-border-color: #bfbfbf !default;
+$custom-control-indicator-border-width: 2px !default;
+$custom-control-indicator-disabled-bg: $input-disabled-bg !default;
+
+$custom-control-indicator-checked-bg: $input-focus-border-color !default;
+$custom-control-indicator-checked-disabled-bg: $input-disabled-bg !default;
+$custom-control-indicator-checked-border-color: $input-focus-border-color !default;
+
+$custom-control-indicator-active-color: $input-focus-border-color !default;
+$custom-control-indicator-active-bg: $input-focus-border-color !default;
+$custom-control-indicator-active-border-color: $input-focus-border-color !default;
+
+$custom-checkbox-indicator-indeterminate-bg: $input-focus-border-color !default;
+$custom-checkbox-indicator-indeterminate-color: $input-focus-border-color !default;
+$font-family-base: 'cerebri-sans';
+
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
+
+$headings-font-family: 'Cerebri Sans';
+$font-size-base: 1rem;
+
+$headings-color: #1f1f1f;
+
+$h1-font-size: 3.75rem !default; // 60px
+$h2-font-size: 2.625rem !default; // 42px
+$h3-font-size: 1.625rem !default; // 26px
+$h4-font-size: 1.125rem !default; // 18px
+$h5-font-size: .75rem !default; //20px
+
+$h1-font-weight: 400 !default;
+$h2-font-weight: 600 !default;
+$h3-font-weight: 600 !default;
+$h4-font-weight: 600 !default;
+$h5-font-weight: 600 !default;
+
+$h1-line-height: 4rem !default;
+$h2-line-height: 3rem !default;
+$h3-line-height: 2rem !default;
+$h4-line-height: 1.5rem !default;
+$h5-line-height: 1.25rem !default;
+
+
+$paragraphs-color: #3d3d3d;
+
+$p1-font-size: 1.25rem !default; // 20px
+$p2-font-size: 1rem !default; // 16px
+$p3-font-size: .875rem !default; // 14px
+$p4-font-size: .75rem !default; // 12px
+
+$p1-font-weight: 400 !default;
+$p2-font-weight: 400 !default;
+$p3-font-weight: 400 !default;
+$p4-font-weight: 400 !default;
+
+$p1-line-height: 1.75rem !default;
+$p2-line-height: 1.5rem !default;
+$p3-line-height: 1.25rem !default;
+$p4-line-height: 1.25rem !default;
+
+@font-face {
+  font-family: 'cerebri-sans';
+  src: url('../fonts/cerebri/OTF/CerebriSansPro-Regular.otf') format("opentype"),
+       url('../fonts/cerebri/ttf/CerebriSansPro-Regular.ttf') format('truetype'),
+       url('../fonts/__MACOSX/cerebri/OTF/._CerebriSansPro-Regular.otf') format("opentype"),
+       url('../fonts/__MACOSX/cerebri/TTF/._CerebriSansPro-Regular.ttf') format('truetype');
+}
+
+
+h1 {
+  font-size: $h1-font-size;
+  font-weight: $h1-font-weight;
+  line-height: $h1-line-height;
+  color: $headings-color;
+  // font-family: $headings-font-family;
+  letter-spacing: -1.2px;
+}
+
+h2 {
+  font-size: $h2-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $h2-font-weight;
+  line-height: $h2-line-height;
+  color: $headings-color;
+  letter-spacing: -.63px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 26px;
+  }
+}
+
+h3 {
+  font-size: $h3-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $h3-font-weight;
+  line-height: $h3-line-height;
+  color: $headings-color;
+  letter-spacing: .26px;
+
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+}
+
+h4 {
+  font-size: $h4-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $h4-font-weight;
+  line-height: $h4-line-height;
+  color: $headings-color;
+}
+
+h5 {
+  font-size: $h5-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $h5-font-weight;
+  line-height: $h5-line-height;
+  color: $headings-color;
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+.h5 {
+  font-size: $h5-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $h5-font-weight;
+  line-height: $h5-line-height;
+  color: $headings-color;
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+
+.p1 {
+  font-size: $p1-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $p1-font-weight;
+  line-height: $p1-line-height;
+  color: $paragraphs-color;
+}
+
+.p2 {
+  font-size: $p2-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $p2-font-weight;
+  line-height: $p2-line-height;
+  color: $paragraphs-color;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+}
+
+.p3 {
+  font-size: $p3-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $p3-font-weight;
+  line-height: $p3-line-height;
+  color: $paragraphs-color;
+}
+
+.p4 {
+  font-size: $p4-font-size;
+  // font-family: $headings-font-family;
+  font-weight: $p4-font-weight;
+  line-height: $p4-line-height;
+  color: $paragraphs-color;
+}
+
+::-webkit-input-placeholder {
+  font-size: 16px;
+  color: #bfbfbf;
+
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 16px;
+  color: #bfbfbf;
+
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 16px;
+  color: #bfbfbf;
+
+}
+
+.bm-overlay {
+  background: none !important;
+}
+
+
+.form-control:focus {
+  border-width: 2px;
+}
+
+.form_fill {
+  @extend .form-control:focus;
+}
+
+.form-control:invalid:focus,
+.form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+.custom-select:focus {
+  color: white;
+  background: $input-focus-border-color;
+  box-shadow: none;
+}
+
+html,
+body {
+  height: 100% !important;
+}
+
+#main-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh;
+}
+
+.content {
+  flex: 1 0 auto !important;
+}
+
+.footer {
+  flex-shrink: 0 !important;
+}
+
+.box-shadow-low {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+}
+
+.box-shadow-mid {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+}
+
+.box-shadow-high {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+}
