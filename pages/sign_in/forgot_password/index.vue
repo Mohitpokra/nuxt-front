@@ -7,7 +7,7 @@
                 <b-col lg="10" cols="12">
                     <b-form>
                         <label class="mt-5" for="login-email">Email</label>
-                        <b-input v-model="user.email" :state="error_state.email" size="lg" id="login-email"></b-input>
+                        <b-input :class="{form_fill: user.email}" v-model="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         <b-form-invalid-feedback :state="error_state.email">
                             {{error.email}}
                         </b-form-invalid-feedback>

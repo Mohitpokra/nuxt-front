@@ -36,6 +36,10 @@
 
 <script>
 export default {
+     transition: {
+        name: "custom-classes-transition",
+        enterActiveClass: "animated bounceInDown"
+    },
     data() {
         return {
             user: {

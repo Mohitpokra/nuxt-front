@@ -20,7 +20,7 @@
                         <div class="mt-5">
                             <b-button block variant="primary" :disabled="isDisable" size="lg">Sign In</b-button>
                             <div class="mt-2 p2">
-                                <b-link class="mt-4 text-dark">Forgot Password</b-link>
+                                <b-link class="mt-4 text-dark" to="sign_in/forgot_password">Forgot Password</b-link>
                             </div>
                         </div>
                     </b-form>
