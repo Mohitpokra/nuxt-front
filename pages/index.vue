@@ -2,6 +2,7 @@
   <div class="container mt-5">
     <b-form-select v-model="selected" :options="options"></b-form-select>
     <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+    <h1>Go to /signup</h1>
   </div>
 </template>
 
