@@ -5,41 +5,41 @@ $btn-danger: #d93934;
 $btn-success: #2bb76d;
 $btn-warning: #f5a64a;
 
-$primary: $btn-primary !default;
-$secondary: $btn-secondary !default;
-$success: $btn-success !default;
-$warning: $btn-warning !default;
-$danger: $btn-danger !default;
+$primary: $btn-primary;
+$secondary: $btn-secondary;
+$success: $btn-success;
+$warning: $btn-warning;
+$danger: $btn-danger;
 
 
 $input-btn-font-family: 'CerebriSans';
-$input-disabled-bg:#f5f5f5 !default;
-$input-color: #1f1f1f !default;
+$input-disabled-bg:#f5f5f5;
+$input-color: #1f1f1f;
 // $input-btn-padding-x: 1rem; 
 // $input-btn-padding-y: .75rem;
 $border-radius: .125rem;
-$input-border-color: #b8b8b8 !default;
-$input-border-radius: $border-radius !default;
-$input-focus-border-color: #1f1f1f !default;
-$input-focus-box-shadow: none !default;
-$input-placeholder-color: #bfbfbf !default;
+$input-border-color: #b8b8b8;
+$input-border-radius: $border-radius;
+$input-focus-border-color: #1f1f1f;
+$input-focus-box-shadow: none;
+$input-placeholder-color: #bfbfbf;
 
 
-$custom-control-indicator-size: 1.5rem !default;
-$custom-control-indicator-border-color: #bfbfbf !default;
-$custom-control-indicator-border-width: 2px !default;
-$custom-control-indicator-disabled-bg: $input-disabled-bg !default;
+$custom-control-indicator-size: 1.5rem;
+$custom-control-indicator-border-color: #bfbfbf;
+$custom-control-indicator-border-width: 2px;
+$custom-control-indicator-disabled-bg: $input-disabled-bg;
 
-$custom-control-indicator-checked-bg: $input-focus-border-color !default;
-$custom-control-indicator-checked-disabled-bg: $input-disabled-bg !default;
-$custom-control-indicator-checked-border-color: $input-focus-border-color !default;
+$custom-control-indicator-checked-bg: $input-focus-border-color;
+$custom-control-indicator-checked-disabled-bg: $input-disabled-bg;
+$custom-control-indicator-checked-border-color: $input-focus-border-color;
 
-$custom-control-indicator-active-color: $input-focus-border-color !default;
-$custom-control-indicator-active-bg: $input-focus-border-color !default;
-$custom-control-indicator-active-border-color: $input-focus-border-color !default;
+$custom-control-indicator-active-color: $input-focus-border-color;
+$custom-control-indicator-active-bg: $input-focus-border-color;
+$custom-control-indicator-active-border-color: $input-focus-border-color;
 
-$custom-checkbox-indicator-indeterminate-bg: $input-focus-border-color !default;
-$custom-checkbox-indicator-indeterminate-color: $input-focus-border-color !default;
+$custom-checkbox-indicator-indeterminate-bg: $input-focus-border-color;
+$custom-checkbox-indicator-indeterminate-color: $input-focus-border-color;
 $font-family-base: 'cerebri-sans';
 
 
@@ -50,41 +50,41 @@ $font-size-base: 1rem;
 
 $headings-color: #1f1f1f;
 
-$h1-font-size: 3.75rem !default; // 60px
-$h2-font-size: 2.625rem !default; // 42px
-$h3-font-size: 1.625rem !default; // 26px
-$h4-font-size: 1.125rem !default; // 18px
-$h5-font-size: .75rem !default; //20px
+$h1-font-size: 3.75rem; // 60px
+$h2-font-size: 2.625rem; // 42px
+$h3-font-size: 1.625rem; // 26px
+$h4-font-size: 1.125rem; // 18px
+$h5-font-size: .75rem; //20px
 
-$h1-font-weight: 400 !default;
-$h2-font-weight: 600 !default;
-$h3-font-weight: 600 !default;
-$h4-font-weight: 600 !default;
-$h5-font-weight: 600 !default;
+$h1-font-weight: 400;
+$h2-font-weight: 600;
+$h3-font-weight: 600;
+$h4-font-weight: 600;
+$h5-font-weight: 600;
 
-$h1-line-height: 4rem !default;
-$h2-line-height: 3rem !default;
-$h3-line-height: 2rem !default;
-$h4-line-height: 1.5rem !default;
-$h5-line-height: 1.25rem !default;
+$h1-line-height: 4rem;
+$h2-line-height: 3rem;
+$h3-line-height: 2rem;
+$h4-line-height: 1.5rem;
+$h5-line-height: 1.25rem;
 
 
 $paragraphs-color: #3d3d3d;
 
-$p1-font-size: 1.25rem !default; // 20px
-$p2-font-size: 1rem !default; // 16px
-$p3-font-size: .875rem !default; // 14px
-$p4-font-size: .75rem !default; // 12px
+$p1-font-size: 1.25rem; // 20px
+$p2-font-size: 1rem; // 16px
+$p3-font-size: .875rem; // 14px
+$p4-font-size: .75rem; // 12px
 
-$p1-font-weight: 400 !default;
-$p2-font-weight: 400 !default;
-$p3-font-weight: 400 !default;
-$p4-font-weight: 400 !default;
+$p1-font-weight: 400;
+$p2-font-weight: 400;
+$p3-font-weight: 400;
+$p4-font-weight: 400;
 
-$p1-line-height: 1.75rem !default;
-$p2-line-height: 1.5rem !default;
-$p3-line-height: 1.25rem !default;
-$p4-line-height: 1.25rem !default;
+$p1-line-height: 1.75rem;
+$p2-line-height: 1.5rem;
+$p3-line-height: 1.25rem;
+$p4-line-height: 1.25rem;
 
 @font-face {
   font-family: 'cerebri-sans';
@@ -95,25 +95,33 @@ $p4-line-height: 1.25rem !default;
 }
 
 body {
-  font-family:'cerebri-sans';
+  font-family: 'cerebri-sans';
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
-button, input,optgroup,select,textarea  {
-  font-family:'cerebri-sans' !important;
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'cerebri-sans' !important;
 }
 
 .container {
   @media screen and (max-width: 992px) {
     padding-right: 24px;
     padding-left: 24px;
-   }
+  }
+}
+
+a {
+  color: #3d3d3d !important;
 }
 
 
@@ -182,6 +190,30 @@ h5 {
   @media screen and (max-width: 992px) {
     font-size: 16px;
   }
+}
+
+label {
+  font-family: CerebriSans;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #3d3d3d;
+}
+
+.btn-lg {
+  font-family: CerebriSans;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  padding: 0.7rem 1rem;
 }
 
 

@@ -24,7 +24,7 @@
                         </b-form-invalid-feedback>
                         <div>
                             <b-button class="m-singUp-btn" block variant="primary" :disabled="isDisable" size="lg">Sign Up</b-button>
-                            <p class="m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
+                            <p class="p2 m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
                         </div>
                     </b-form>
                 </b-col>

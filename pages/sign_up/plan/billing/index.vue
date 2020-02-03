@@ -10,10 +10,10 @@
         <b-col class="d-none d-lg-block pr-4" lg="3" offset-lg="1">
             <p class="p1 m-search-text ">Search by Mortgage <br> Payment Pro Plan</p>
             <h3 class="m-money-symbol">$15<span class="">/ month</span></h3>
-            <hr class="m-line">
-            <p class=""><span><img  class="m-img-text text-primary" src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited searches</p>
-            <p class=""><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited search history</p>
-            <p class=""><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Cancel anytime</p>
+            <hr class="m-line mr-5">
+            <p class="p2 p2-new"><span><img  class="m-img-text text-primary" src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited searches</p>
+            <p class="p2 p2-new"><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited search history</p>
+            <p class="p2 p2-new"><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Cancel anytime</p>
         </b-col>
         <b-col class="ml-lg-3" lg="7">
             <b-form>
@@ -131,5 +131,9 @@ export default {
    @media screen and (max-width: 992px) {
         margin-bottom: 76px;
     }   
+}
+
+.p2-new {
+    color: #1f1f1f;
 }
 </style>
