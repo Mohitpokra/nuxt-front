@@ -109,6 +109,13 @@ button, input,optgroup,select,textarea  {
   font-family:'cerebri-sans' !important;
 }
 
+.container {
+  @media screen and (max-width: 992px) {
+    padding-right: 24px;
+    padding-left: 24px;
+   }
+}
+
 
 h1 {
   font-size: $h1-font-size;
@@ -127,7 +134,7 @@ h2 {
   color: $headings-color;
   letter-spacing: -.63px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 992px) {
     font-size: 26px;
   }
 }
@@ -140,7 +147,7 @@ h3 {
   color: $headings-color;
   letter-spacing: .26px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 992px) {
     font-size: 18px;
   }
 }
@@ -160,7 +167,7 @@ h5 {
   line-height: $h5-line-height;
   color: $headings-color;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 992px) {
     font-size: 16px;
   }
 }
@@ -172,7 +179,7 @@ h5 {
   line-height: $h5-line-height;
   color: $headings-color;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 992px) {
     font-size: 16px;
   }
 }
@@ -193,7 +200,7 @@ h5 {
   line-height: $p2-line-height;
   color: $paragraphs-color;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 992px) {
     font-size: 14px;
   }
 }

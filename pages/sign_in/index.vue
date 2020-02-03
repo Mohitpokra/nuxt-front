@@ -1,26 +1,26 @@
 <template>
-<b-container class="my-5 pb-2">
-    <b-row class="pt-2 my-5" align-h="center">
+<b-container>
+    <b-row align-h="center">
         <b-col lg="6" cols="12">
-            <h3 class="text-center">Sign into your account.</h3>
-            <b-row class="mt-5" align-h="center">
+            <h3 class="text-center m-sign">Sign into your account.</h3>
+            <b-row align-h="center">
                 <b-col></b-col>
                 <b-col lg="9" cols="12">
                     <b-form>
-                        <label class="mt-2 p3" for="login-email">Email</label>
+                        <label for="login-email">Email</label>
                         <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         <b-form-invalid-feedback :state="error_state.email">
                             {{error.email}}
                         </b-form-invalid-feedback>
-                        <label class="mt-2 p3" for="login-password">Password</label>
+                        <label class="m-password" for="login-password">Password</label>
                         <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
                         <b-form-invalid-feedback :state="error_state.password">
                             {{error.email}}
                         </b-form-invalid-feedback>
-                        <div class="mt-5">
-                            <b-button block variant="primary" :disabled="isDisable" size="lg">Sign In</b-button>
-                            <div class="mt-2 p2">
-                                <b-link class="mt-4 text-dark" to="sign_in/forgot_password">Forgot Password</b-link>
+                        <div>
+                            <b-button class="m-signIn-btn" block variant="primary" :disabled="isDisable" size="lg">Sign In</b-button>
+                            <div class="m-forgot-password">
+                                <b-link class="text-dark" to="sign_in/forgot_password">Forgot Password</b-link>
                             </div>
                         </div>
                     </b-form>
@@ -67,5 +67,31 @@ export default {
 </script>
 
 <style>
+.m-sign {
+    margin-top: 94px;
+    margin-bottom: 80px;
 
+    
+    @media screen and (max-width: 992px) {
+        margin-top: 77px;
+        margin-bottom: 89px;
+    }
+}
+
+.m-password {
+    margin-top: 24px;
+}
+
+.m-signIn-btn {
+    margin-top: 48px;
+}
+
+.m-forgot-password {
+    margin-top: 24px;
+    margin-bottom: 268px;
+
+    @media screen and (max-width: 992px) {
+        margin-bottom: 211px;
+    }
+}
 </style>

@@ -4,7 +4,7 @@
           <b-col class="text-center" cols="auto">
               <div>
               <img src="~/assets/icons/icon-decorative-send-email.svg" />
-              <h3 class="my-4">Check your inbox.</h3>
+              <h3 class="m-heading">Check your inbox.</h3>
               <p class="p1">We’ve sent a link with the instructions to reset your <br class="d-none d-lg-block" > password.</p>
               </div>
           </b-col>
@@ -19,5 +19,10 @@ export default {
 </script>
 
 <style>
+
+.m-heading {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
 
 </style>

@@ -3,7 +3,7 @@
     <b-container>
         <b-row>
             <b-col cols="12" md="4">
-                <p class="mobile-center mb-0">© 2019 Search By Mortgage Payment</p>
+                <p class="mobile-center mb-0 p4">© 2019 Search By Mortgage Payment</p>
             </b-col>
             <b-col cols="12" md="4" class="my-2 my-md-0">
                 <div class="d-flex justify-content-center">
@@ -15,8 +15,8 @@
             </b-col>
             <b-col cols="12" md="4">
                 <div class="d-flex justify-content-end mobile-flex-center">
-                    <p>Privacy Policy</p>
-                    <p class="ml-4">Terms of Service</p>
+                    <p class="p4">Privacy Policy</p>
+                    <p class="ml-4 p4">Terms of Service</p>
                 </div>
             </b-col>
         </b-row>
@@ -27,9 +27,14 @@
 <script>
 export default {
 
+
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+img {
+    height: 18px;
+    width:  18px
+}
 
 </style>
