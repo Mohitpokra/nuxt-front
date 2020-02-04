@@ -38,7 +38,7 @@ export default {};
 
 <style lang="scss" scoped>
 .m-plan-text {
-    margin-top: 94px;
+    margin-top: 88px;
     margin-bottom: 48px;
 
     @media screen and (max-width: 992px) {

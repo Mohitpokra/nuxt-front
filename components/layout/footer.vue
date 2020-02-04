@@ -1,22 +1,21 @@
 <template>
 <div class="footer">
     <b-container>
-        <b-row>
+        <b-row align-v="center">
             <b-col cols="12" md="4">
                 <p class="mobile-center mb-0 p4">© 2019 Search By Mortgage Payment</p>
             </b-col>
-            <b-col cols="12" md="4" class="my-2 my-md-0">
+            <b-col cols="12" md="4" class="">
                 <div class="d-flex justify-content-center">
-                    <b-link href="#"><img src="~/assets/icons/icon-social-facebook.svg" /></b-link>
-                    <b-link href="#"><img class="ml-4" src="~/assets/icons/icon-social-instagram.svg" /></b-link>
-                    <b-link href="#"><img class="mx-4" src="~/assets/icons/icon-social-linkedin.svg" /></b-link>
-                    <b-link href="#"><img src="~/assets/icons/icon-social-twitter.svg" /></b-link>
+                    <b-link href="#" class="img_container"><img class="fb" src="~/assets/icons/icon-social-facebook.svg" /></b-link>
+                    <b-link href="#" class="img_container_1"><img class="insta" src="~/assets/icons/icon-social-instagram.svg" /></b-link>
+                    <b-link href="#" class="img_container_2"><img class="linkedin" src="~/assets/icons/icon-social-linkedin.svg" /></b-link>
+                    <b-link href="#" class="img_container_3"><img class="twitter" src="~/assets/icons/icon-social-twitter.svg" /></b-link>
                 </div>
             </b-col>
-            <b-col cols="12" md="4">
+            <b-col class="pr-lg-0" cols="12" md="4">
                 <div class="d-flex justify-content-end mobile-flex-center">
-                    <p class="p4">Privacy Policy</p>
-                    <p class="ml-4 p4">Terms of Service</p>
+                    <p class="p4 mb-0">Privacy Policy <span class="m-left-text p4 mb-0">Terms of Service</span></p>
                 </div>
             </b-col>
         </b-row>
@@ -27,14 +26,46 @@
 <script>
 export default {
 
-
 }
 </script>
 
 <style lang="scss" scoped>
-img {
-    height: 18px;
-    width:  18px
+.fb {
+    width: 8px;
+    height: 17px;
 }
 
+.insta {
+    width: 18px;
+    height: 18px;
+}
+
+.linkedin {
+    width: 17px;
+    height: 17px;
+}
+
+.twitter {
+    width: 19px;
+    height: 15px;
+}
+
+.img_container {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+}
+
+@for $i from 1 through 3 {
+    .img_container_#{$i} {
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        margin-left: 8px;
+    }
+}
+
+.m-left-text {
+    margin-left: 24px;
+}
 </style>

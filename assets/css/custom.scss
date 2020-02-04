@@ -155,7 +155,7 @@ h3 {
   font-weight: $h3-font-weight;
   line-height: $h3-line-height;
   color: $headings-color;
-  letter-spacing: .26px;
+  letter-spacing: -.26px;
 
   @media screen and (max-width: 992px) {
     font-size: 18px;
@@ -195,7 +195,7 @@ h5 {
 }
 
 label {
-  font-family: CerebriSans;
+  font-family:'cerebri-sans'  !important;
   font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
@@ -206,7 +206,7 @@ label {
 }
 
 .btn-lg {
-  font-family: CerebriSans;
+  font-family:'cerebri-sans' ;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
@@ -216,6 +216,10 @@ label {
   text-align: center;
   color: #ffffff;
   padding: 0.7rem 1rem;
+}
+
+.btn:focus {
+  box-shadow: none !important;
 }
 
 
@@ -321,6 +325,7 @@ body {
 .box-shadow-low {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
+  border-radius: 2px;
 }
 
 .box-shadow-mid {

@@ -68,7 +68,7 @@ export default {
 
 <style>
 .m-sign {
-    margin-top: 94px;
+    margin-top: 88px;
     margin-bottom: 80px;
 
     

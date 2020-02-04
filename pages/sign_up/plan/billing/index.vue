@@ -92,7 +92,7 @@ export default {
 <style lang="scss" scoped>
 
 .m-heading-text {
-    margin-top: 94px;
+    margin-top: 88px;
     margin-bottom: 8px;
     
     @media screen and (max-width: 992px) {

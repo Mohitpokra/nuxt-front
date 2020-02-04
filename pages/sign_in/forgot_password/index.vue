@@ -4,7 +4,7 @@
         <b-col lg="6" cols="12">
             <h3 class="m-heading text-center">Enter your email you used to sign up and we’ll send a link to reset your <br class="d-lg-none"> password.</h3>
             <b-row align-h="center">
-                <b-col lg="10" cols="12">
+                <b-col lg="9" cols="12">
                     <b-form>
                         <label class="" for="login-email">Email</label>
                         <b-input :class="{form_fill: user.email}" v-model="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 
 .m-heading {
-    margin-top: 94px;
+    margin-top: 88px;
     margin-bottom: 48px;
 
     
