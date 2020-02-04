@@ -18,11 +18,13 @@ $input-color: #1f1f1f;
 // $input-btn-padding-x: 1rem; 
 // $input-btn-padding-y: .75rem;
 $border-radius: .125rem;
+$border-radius-lg: 2px;
 $input-border-color: #b8b8b8;
 $input-border-radius: $border-radius;
 $input-focus-border-color: #1f1f1f;
 $input-focus-box-shadow: none;
 $input-placeholder-color: #bfbfbf;
+$input-border-radius-lg: $border-radius-lg;
 
 
 $custom-control-indicator-size: 1.5rem;
@@ -329,4 +331,12 @@ body {
 .box-shadow-high {
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
+}
+
+.form-control-lg {
+  border-radius: 2px !important;
+}
+
+.btn {
+  border-radius: 2px !important;
 }
