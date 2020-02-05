@@ -6,14 +6,17 @@
             <p class="m-subheading-text">Review your plan and enter your payment details</p>
         </b-col>
     </b-row>
-    <b-row class=""  :no-gutters="true">
+    <b-row class="" :no-gutters="true">
         <b-col class="d-none d-lg-block pr-4" lg="3" offset-lg="1">
             <p class="p1 m-search-text ">Search by Mortgage <br> Payment Pro Plan</p>
-            <h3 class="m-money-symbol">$15<span class="">/ month</span></h3>
+            <div class="d-flex">
+                <h3 class="m-money-symbol">$15</h3>
+                <h3 class="month">/ month</h3>
+            </div>
             <hr class="m-line mr-5">
-            <p class="p2 p2-new"><span><img  class="m-img-text text-primary" src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited searches</p>
-            <p class="p2 p2-new"><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited search history</p>
-            <p class="p2 p2-new"><span><img  class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Cancel anytime</p>
+            <p class="p2 p2-new"><span><img class="m-img-text text-primary" src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited searches</p>
+            <p class="p2 p2-new"><span><img class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited search history</p>
+            <p class="p2 p2-new"><span><img class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Cancel anytime</p>
         </b-col>
         <b-col class="ml-lg-3" lg="7">
             <b-form>
@@ -76,9 +79,9 @@ export default {
             }
         }
     },
-     computed: {
+    computed: {
         isDisable() {
-            if (this.billing.name && this.billing.cardNo  && this.billing.expiryDate && this.billing.cvc) {
+            if (this.billing.name && this.billing.cardNo && this.billing.expiryDate && this.billing.cvc) {
                 return false;
             } else {
                 return true;
@@ -90,11 +93,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .m-heading-text {
     margin-top: 88px;
     margin-bottom: 8px;
-    
+
     @media screen and (max-width: 992px) {
         margin-top: 77px;
     }
@@ -117,7 +119,7 @@ export default {
 }
 
 .m-img-text {
-    margin-right: 14px;
+    margin-right: 8px;
 }
 
 .m-field {
@@ -128,9 +130,9 @@ export default {
     margin-top: 48px;
     margin-bottom: 220px;
 
-   @media screen and (max-width: 992px) {
+    @media screen and (max-width: 992px) {
         margin-bottom: 76px;
-    }   
+    }
 }
 
 p {
@@ -139,5 +141,15 @@ p {
 
 .p2-new {
     color: #1f1f1f;
+}
+
+.month {
+    font-family: CerebriSans;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 8px;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #3d3d3d;
 }
 </style>
