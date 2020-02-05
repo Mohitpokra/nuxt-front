@@ -12,7 +12,7 @@
                             {{error.email}}
                         </b-form-invalid-feedback>
                         <div class="">
-                            <b-button class="m-btn" block variant="primary" size="lg">Send reset intructions</b-button>
+                            <b-button class="m-btn" block variant="primary" size="lg" :disabled="isDisable">Send reset intructions</b-button>
                             <div class="">
                                 <b-link class="text-dark m-forgot">Cancel</b-link>
                             </div>
@@ -39,18 +39,25 @@ export default {
                 email: null
             }
         }
+    },
+    computed: {
+        isDisable() {
+            if (this.user.email) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
-
 .m-heading {
     margin-top: 88px;
     margin-bottom: 48px;
 
-    
     @media screen and (max-width: 992px) {
         margin-top: 77px;
         margin-bottom: 40px;
@@ -65,9 +72,8 @@ export default {
 .m-forgot {
     margin-bottom: 370px;
 
-      @media screen and (max-width: 992px) {
+    @media screen and (max-width: 992px) {
         margin-bottom: 308px;
     }
 }
-
 </style>

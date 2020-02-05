@@ -9,10 +9,12 @@
         <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5" offset-lg="1">
             <h3>Free</h3>
             <p class="p-box-subheading p2">Limited to 5 searches per month</p>
-            <h2 class="text-primary p-box-money">
-                $0
-                <span class="month">/ month</span>
-            </h2>
+            <div class="p-box-money d-flex align-items-center">
+                <h2 class="text-primary">
+                    $0
+                </h2>
+                <h2 class="month">/ month</h2>
+            </div>
             <div>
                 <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
             </div>
@@ -20,10 +22,12 @@
         <b-col class="box-shadow-low p-box m-box-left" cols="12" lg="5">
             <h3>Pro</h3>
             <p class="p-box-subheading p2">Unlimited searches</p>
-            <h2 class="text-primary p-box-money">
-                $15
-                <span class="month">/ month</span>
-            </h2>
+            <div class="p-box-money d-flex align-items-center">
+                <h2 class="text-primary">
+                    $15
+                </h2>
+                <h2 class="month">/ month</h2>
+            </div>
             <div>
                 <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
             </div>
@@ -38,7 +42,7 @@ export default {};
 
 <style lang="scss" scoped>
 .m-plan-text {
-    margin-top: 88px;
+    margin-top: 90px;
     margin-bottom: 48px;
 
     @media screen and (max-width: 992px) {
@@ -112,6 +116,7 @@ export default {};
     font-style: normal;
     line-height: 1.4;
     letter-spacing: normal;
-    color: #44a1bf
+    color: #44a1bf;
+    margin-left: 8px;
 }
 </style>

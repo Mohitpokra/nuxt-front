@@ -105,11 +105,11 @@ export default {
 }
 
 .m-search-text {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 .m-money-symbol {
-    margin-bottom: 24px;
+    margin-bottom: 27px;
 }
 
 .m-line {
@@ -131,6 +131,10 @@ export default {
    @media screen and (max-width: 992px) {
         margin-bottom: 76px;
     }   
+}
+
+p {
+    margin-bottom: 8px;
 }
 
 .p2-new {
