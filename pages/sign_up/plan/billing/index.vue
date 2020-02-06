@@ -115,6 +115,7 @@ export default {
 }
 
 .m-line {
+    margin-top: 0px;
     margin-bottom: 26px;
 }
 
