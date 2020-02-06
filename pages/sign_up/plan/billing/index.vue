@@ -111,7 +111,7 @@ export default {
 }
 
 .m-money-symbol {
-    margin-bottom: 27px;
+    margin-bottom: 23px;
 }
 
 .m-line {
