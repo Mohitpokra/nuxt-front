@@ -1,7 +1,9 @@
 <template>
   <b-container>
-      <h1>What are you looking to do today?</h1>
-      <b-row  align-h="center">
+      <b-row>
+          <b-col cols="12"  lg="11" offset-lg="1">
+            <h2>What are you looking to do today?</h2>
+         </b-col>
           <b-col class="col-container" cols="12" lg="auto" offset-lg="1">
               <div class="img-container">
                   <img class="icon-option-new-search" src="~/assets/icons/icon-option-new-search.svg" />
