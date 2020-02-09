@@ -14,13 +14,15 @@
     </b-row>
     <b-row align-h="start">
         <b-col cols="12" lg="5" offset-lg="1">
-            <div class="box-shadow-container" @click="showPreApproved">
-                <h4 class="container-text">Already Pre-approved</h4>
+            <div  class="box-shadow-container" :class="{'bg-heading': preApproved}" @click="showPreApproved">
+                <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
+                <h4 :class="{'text-white': preApproved}" class="container-text">Pre-approved</h4>
             </div>
         </b-col>
-        <b-col cols="12" lg="5">
-            <div class="box-shadow-container" @click="showAffordability">
-                <h4 class="container-text">Estimated Affordability</h4>
+        <b-col  cols="12" lg="5">
+            <div class="box-shadow-container" :class="{'bg-heading': affordability}" @click="showAffordability">
+                <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
+                <h4  :class="{'text-white': affordability}" class="container-text">Estimated Affordability</h4>
             </div>
         </b-col>
     </b-row>
@@ -224,7 +226,21 @@ export default {
     background-color: #ffffff;
     padding-top: 24px;
     padding-bottom: 24px;
-    padding-left: 48px;
+    display: flex;
+
+    .right-icon-container {
+        text-align: center;
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+        margin-left: 8px;
+
+        .icon-interface-check {
+            width: 16px;
+            height: 11px;
+            object-fit: contain;
+        }
+    }
 
     @media screen and (max-width: 992px) {
         padding-top: 12px;
