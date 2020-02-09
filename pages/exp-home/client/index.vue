@@ -82,7 +82,7 @@
 export default {
     data() {
         return {
-            show: 0,
+            show: 1,
             user: {
                 name: null
             },
