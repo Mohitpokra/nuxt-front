@@ -308,8 +308,11 @@ label {
   box-shadow: none;
 }
 
+select {
+  background: url('../icons/icon-interface-circle-arrow-up.svg') no-repeat right 0.75rem center/8px 10px !important;
+}
+
 .custom-select:focus {
-  color: white;
   background: $input-focus-border-color;
   box-shadow: none;
 }
@@ -360,4 +363,16 @@ body {
 
 .btn-primary.disabled {
   opacity: 0.4;
+}
+
+.bg-heading {
+  background-color: #1f1f1f !important;
+}
+
+.dropdown-menu {
+  margin-top: 5px;
+}
+
+.select-items {
+  margin-top: 20px;
 }
