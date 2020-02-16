@@ -23,7 +23,7 @@
                             {{error.password}}
                         </b-form-invalid-feedback>
                         <div>
-                            <b-button class="m-singUp-btn" block variant="primary" :disabled="isDisable" size="lg">Sign Up</b-button>
+                            <b-button class="m-singUp-btn" block variant="primary" :disabled="isDisable" size="lg" @click="register">Sign Up</b-button>
                             <p class="p2 m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
                         </div>
                     </b-form>
@@ -36,9 +36,18 @@
 
 <script>
 export default {
+    auth: false,
     transition: {
         name: "custom-classes-transition",
         enterActiveClass: "animated bounceInDown"
+    },
+    async asyncData({
+        $axios
+    }) {
+        const ip = await $axios.$post('http://icanhazip.com')
+        return {
+            ip
+        }
     },
     data() {
         return {
@@ -65,6 +74,27 @@ export default {
                 return false;
             } else {
                 return true;
+            }
+        },
+        password_confirmation() {
+            return this.user.password;
+        }
+    },
+    methods: {
+        async register() {
+            try {
+                await this.$axios.post('register', this.user);
+
+                await this.$auth.loginWith('local', {
+                    data: {
+                        email: this.user.email,
+                        password: this.user.password
+                    },
+                })
+
+                this.$router.push('/')
+            } catch (e) {
+                this.error = e.response.data.message
             }
         }
     }
@@ -97,7 +127,8 @@ export default {
 
 .m-singup-text {
     margin-bottom: 148px;
-     @media screen and (max-width: 992px) {
+
+    @media screen and (max-width: 992px) {
         margin-bottom: 96px;
     }
 }
