@@ -319,7 +319,8 @@ export default {
 }
 
 .form-body-2{
-   margin-bottom: 34px; 
+    margin-top: -20px;
+    margin-bottom: 34px; 
 }
 
 .form-body-1{
