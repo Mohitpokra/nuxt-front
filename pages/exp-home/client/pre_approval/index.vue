@@ -2,17 +2,17 @@
 <b-container>
     <b-row align-h="start">
         <b-col offset-lg="1">
-            <b-link>Home</b-link>
-            <b-link>/Client</b-link>
-            <b-link>/Pre-approval</b-link>
+            <b-link class="link-1" >Home</b-link>
+            <b-link class="link-1">/Client</b-link>
+            <b-link class="link-2">/Pre-approval</b-link>
         </b-col>
     </b-row>
-    <b-row>
+    <b-row class="top-title">
         <b-col cols="12" lg="11" offset-lg="1">
             <h2>Pre-Approval Details</h2>
         </b-col>
     </b-row>
-    <b-row align-h="start">
+    <b-row align-h="start" class="body-content">
         <b-col cols="12" lg="5" offset-lg="1">
             <div class="box-shadow-container" @click="showPreApproved">
                 <h4 class="container-text">Already Pre-approved</h4>
@@ -24,24 +24,24 @@
             </div>
         </b-col>
     </b-row>
-    <b-row v-if="preApproved || affordability">
+    <b-row v-if="preApproved || affordability" class="divider">
         <b-col cols="12" lg="10" offset-lg="1">
             <hr>
         </b-col>
     </b-row>
-    <b-row>
-        <b-col v-if="preApproved" cols="10" lg="5" offset-lg="1">
+    <b-row class="body-banner">
+        <b-col v-if="preApproved" cols="10" lg="5" offset-lg="1" class="form-body-1">
             <div>
                 <h3 class="text-primary">Search by Pre-approval</h3>
-                <h4>What was the purchase pre-approval amount?</h4>
-                <b-form>
+                <h4 class="body-content">What was the purchase pre-approval amount?</h4>
+                <b-form class="form-1">
                     <label class="" for="login-name">Name</label>
                     <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
                 </b-form>
-                <h4>Which type of loan program?</h4>
+                <h4 class="form-1">Which type of loan program?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">FHA</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">VA</b-form-radio>
@@ -62,18 +62,18 @@
                 </b-form-group>
             </div>
         </b-col>
-        <b-col v-if="affordability" cols="10" lg="5" offset-lg="1">
+        <b-col v-if="affordability" cols="10" lg="5" offset-lg="1" class="form-body-2">
             <div>
                 <h3 class="text-primary">Search by Estimated Affordability</h3>
-                <h4>What is the maximum monthly payment your client can afford?</h4>
-                <b-form>
+                <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
+                <b-form class="divider">
                     <label class="" for="login-name">Max Total Monthly Payment</label>
                     <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
                 </b-form>
-                <h4>What funds does you client have available to purchase?</h4>
+                <h4 class="body-banner">What funds does you client have available to purchase?</h4>
                 <div class="d-flex align-items-center">
                     <b-form-radio class="" size="lg" v-model="selected" name="some-radios" value="VA">
                     </b-form-radio>
@@ -82,7 +82,7 @@
                         {{error.percentage}}
                     </b-form-invalid-feedback>
                 </div>
-                <h4>What’s your client’s estimated credit score?</h4>
+                <h4 class="body-banner">What’s your client’s estimated credit score?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Excellent (720+)</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">Average (680-719)</b-form-radio>
@@ -91,7 +91,7 @@
                 <h4>Is your client a first time homebuyer?</h4>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">No</b-form-radio>
-                <h4>Is your client a veteran?</h4>
+                <h4 class="divider" >Is your client a veteran?</h4>
                 <div class="d-flex justify-content-between">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
                     <b-form-checkbox size="lg">Disabled veteran - no property tax</b-form-checkbox>
@@ -257,5 +257,60 @@ export default {
 
 .btn-custom_2 {
     width: 312px;
+}
+
+.link-1{
+  text-decoration: none;
+  width: 33px;
+  height: 24px;
+  font-family: CerebriSans;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  color: #b8b8b8 !important;
+}
+
+.link-2 {
+  text-decoration: none;
+  width: 33px;
+  height: 24px;
+  font-family: CerebriSans;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  color: #1f1f1f;
+}
+
+.top-title{
+    margin-top: 38px;
+}
+
+.body-content{
+    margin-top: 46px;
+}
+
+.body-banner{
+    margin-top: 48px;
+}
+.divider{
+    margin-top: 35px;
+}
+
+.form-body-2{
+   margin-bottom: 34px; 
+}
+
+.form-body-1{
+    margin-bottom: 34px;
+    margin-top: -20px;
+}
+.form-1{
+    margin-top: 37px;
 }
 </style>
