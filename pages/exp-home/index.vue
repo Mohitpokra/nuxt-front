@@ -140,6 +140,7 @@ export default {
         margin-left: 0px;
         margin-top: 48px;
         margin-bottom: 16px;
+           margin-right: 24px;
     }
 }
 
@@ -176,10 +177,12 @@ export default {
 
 .right-icon-mobile-container {
     display: none;
+    text-align: right;
 
     @media screen and (max-width: 992px) {
         display: block;
         margin-bottom: 16px;
+        margin-right: 24px;
     }
 }
 .m-btn {
