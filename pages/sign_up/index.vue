@@ -36,7 +36,7 @@
 
 <script>
 export default {
-    auth: false,
+    // auth: false,
     transition: {
         name: "custom-classes-transition",
         enterActiveClass: "animated bounceInDown"

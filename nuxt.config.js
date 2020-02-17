@@ -59,8 +59,12 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // '@nuxtjs/auth'
   ],
+  // router: {
+  //   middleware: ['auth']
+  // },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
@@ -68,6 +72,20 @@ export default {
   axios: {
     baseURL: 'http://ec2-18-212-38-13.compute-1.amazonaws.com/backend/public/api'
   },
+  // auth: {
+  //   // Options
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: '/token', method: 'post', propertyName: 'data.user.api_token' },
+  //         logout: false,
+  //         // user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+  //       },
+  //       // tokenRequired: true,
+  //       // tokenType: 'bearer'
+  //     }
+  //   }
+  // },
   /*
    ** Build configuration
    */

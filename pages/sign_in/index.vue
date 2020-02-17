@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .m-sign {
     margin-top: 88px;
     margin-bottom: 80px;
