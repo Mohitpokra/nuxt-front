@@ -332,7 +332,7 @@ export default {
 }
 
 .modal-body-1{
-    margin-top: 25px;
+    margin: 25px 25px 25px 25px;
 }
 
 .modal-form-1{
