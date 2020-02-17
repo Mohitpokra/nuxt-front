@@ -86,7 +86,7 @@
 export default {
     data() {
         return {
-            show: 1,
+            show: 0,
             user: {
                 name: null
             },
@@ -126,8 +126,9 @@ export default {
 }
 .modal-temp-body {
     margin-top: 40px;
+    margin-bottom: 36px;
     margin-left: 33px;
-    max-width: 360px;
+    max-width: 398px;
     @media screen and (max-width: 992px) {
         margin-left: 24px;
         max-with: 315px;
