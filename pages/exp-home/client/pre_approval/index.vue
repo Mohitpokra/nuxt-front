@@ -115,11 +115,11 @@
     </b-row>
     <div>
         <b-modal id="bv-modal-example" centered hide-footer hide-header>
-            <div v-if="!request_sent">
+            <div v-if="!request_sent" class="modal-body-1">
                 <div class="header">
                     <h3 class="text-primary">Request pre-appoval</h3>
                 </div>
-                <b-row align-h="between">
+                <b-row align-h="between" class="modal-form-1">
                     <b-col lg="6">
                         <label for="login-email">Email</label>
                         <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
@@ -136,14 +136,14 @@
                     </b-col>
                 </b-row>
                 <b-row align-h="between">
-                    <b-col lg="6">
+                    <b-col lg="6" class="modal-input-field">
                         <label for="login-email">Email</label>
                         <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         <b-form-invalid-feedback :state="error_state.email">
                             {{error.email}}
                         </b-form-invalid-feedback>
                     </b-col>
-                    <b-col lg="6">
+                    <b-col lg="6" class="modal-input-field">
                         <label for="login-email">Email</label>
                         <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         <b-form-invalid-feedback :state="error_state.email">
@@ -151,12 +151,12 @@
                         </b-form-invalid-feedback>
                     </b-col>
                 </b-row>
-                <b-row>
+                <b-row class="body-banner">
                     <b-col>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </b-col>
                 </b-row>
-                <b-row align-h="between">
+                <b-row align-h="between" class="divider">
                     <b-col cols="6">
                         <b-button class="mt-3" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
                     </b-col>
@@ -319,7 +319,8 @@ export default {
 }
 
 .form-body-2{
-   margin-bottom: 34px; 
+    margin-top: -20px;
+    margin-bottom: 34px; 
 }
 
 .form-body-1{
@@ -328,5 +329,17 @@ export default {
 }
 .form-1{
     margin-top: 37px;
+}
+
+.modal-body-1{
+    margin-top: 25px;
+}
+
+.modal-form-1{
+    margin-top: 36px;
+}
+
+.modal-input-field{
+    margin-top: 18px;
 }
 </style>
