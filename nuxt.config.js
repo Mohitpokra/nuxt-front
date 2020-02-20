@@ -26,6 +26,10 @@ export default {
       {
         rel: "stylesheet",
         href: "https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+      },
+      {
+        rel: "stylesheet",
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css'
       }
     ]
   },
