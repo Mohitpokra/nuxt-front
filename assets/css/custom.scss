@@ -13,6 +13,11 @@ $danger: $btn-danger;
 
 $modal-backdrop-bg: rgba(0, 0, 0, 0.8);
 $modal-backdrop-opacity: 1;
+$modal-xl: 1140px !default;
+$modal-lg: 840px !default;
+$modal-md: 500px !default;
+$modal-sm: 300px !default;
+
 
 
 $input-btn-font-family: 'CerebriSans';
@@ -704,4 +709,8 @@ select.selectpicker {
   margin-bottom: 0;
   width: 100%;
   float: none;
+}
+
+.text-end {
+  text-align: end !important;
 }

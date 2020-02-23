@@ -116,7 +116,7 @@ export default {
     margin-top: 24px;
 }
 
-.m-passsword {
+.m-password {
     margin-top: 24px;
 }
 
