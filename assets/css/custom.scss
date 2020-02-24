@@ -99,13 +99,14 @@ $p4-line-height: 1.25rem;
 @font-face {
   font-family: 'cerebri-sans';
   src: url('/fonts/cerebri/OTF/CerebriSansPro-Regular.otf') format("opentype"),
-    url('/fonts/cerebri/ttf/CerebriSansPro-Regular.ttf') format('truetype'),
-    url('/fonts/__MACOSX/cerebri/OTF/._CerebriSansPro-Regular.otf') format("opentype"),
-    url('/fonts/__MACOSX/cerebri/TTF/._CerebriSansPro-Regular.ttf') format('truetype');
+    url('/fonts/cerebri/ttf/CerebriSansPro-Regular.ttf') format('truetype');
 }
 
 body {
-  font-family: 'cerebri-sans';
+  font-family: 'cerebri-sans', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 input:-webkit-autofill,
@@ -136,6 +137,28 @@ a {
 
 .text-heading {
   color: #1f1f1f !important;
+}
+
+.flex {
+  display: flex;
+  &.flex-row {
+    flex-direction: row;
+  }
+  &.flex-col {
+    flex-direction: column;
+  }
+  &.justify-between {
+    justify-content: space-between;
+  }
+  &.center {
+    justify-content: center;
+  }
+  &.justify-around {
+    justify-content: space-around;
+  }
+  &.align-center {
+    align-items: center;
+  }
 }
 
 
@@ -322,15 +345,10 @@ select {
   box-shadow: none;
 }
 
-html,
-body {
-  height: 100% !important;
-}
-
 #main-wrapper {
   display: flex !important;
   flex-direction: column !important;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .content {
