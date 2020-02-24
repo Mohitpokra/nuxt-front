@@ -3,8 +3,10 @@
     <div>
         <b-row align-h="start" class="location" >
             <b-col offset-lg="1">
-                <b-link class="link-1" >Home</b-link>
-                <b-link class="link-2">/Client</b-link>
+                <b-breadcrumb>
+                    <b-breadcrumb-item>Home</b-breadcrumb-item>
+                    <b-breadcrumb-item active>Client</b-breadcrumb-item>
+                </b-breadcrumb>
             </b-col>
         </b-row>
         <b-row class="add-client">
@@ -215,34 +217,6 @@ export default {
 
 .location {
     margin-top: 24px;
-}
-
-.link-1{
-  text-decoration: none;
-  width: 33px;
-  height: 24px;
-  font-family: CerebriSans;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: normal;
-  color: #b8b8b8 !important;
-}
-
-.link-2 {
-  text-decoration: none;
-  width: 33px;
-  height: 24px;
-  font-family: CerebriSans;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: normal;
-  color: #1f1f1f;
 }
 
 .add-client{

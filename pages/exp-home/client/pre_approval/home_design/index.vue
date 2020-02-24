@@ -2,10 +2,12 @@
 <b-container>
     <b-row align-h="start">
         <b-col offset-lg="1">
-            <b-link>Home</b-link>
-            <b-link>/Client</b-link>
-            <b-link>/Pre-approval</b-link>
-            <b-link>/Home Design</b-link>
+            <b-breadcrumb>
+                <b-breadcrumb-item>Home</b-breadcrumb-item>
+                <b-breadcrumb-item>Client</b-breadcrumb-item>
+                <b-breadcrumb-item>Pre-approval</b-breadcrumb-item>
+                <b-breadcrumb-item active>Home Design</b-breadcrumb-item>
+            </b-breadcrumb>
         </b-col>
     </b-row>
     <b-row>

@@ -657,3 +657,23 @@ select.selectpicker {
     }
   }
 }
+
+/*********** breadcrums *************/
+.breadcrumb{
+  background-color: #fff;
+  padding: 0.28rem 1rem;
+  margin-bottom: 0;
+  padding-left: 0px;
+  &-item{
+    a{
+      font-size: 12px;
+      text-decoration: none;
+      color: #b8b8b8;
+    }
+    &.active{
+      a{
+        color: #1f1f1f;
+      }
+    }
+  }
+}

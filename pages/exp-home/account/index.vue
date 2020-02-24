@@ -2,8 +2,10 @@
 <b-container>
     <b-row align-h="start">
         <b-col offset-lg="1">
-            <b-link class="link-1">Home</b-link>
-            <b-link class="link-1">/Account</b-link>
+            <b-breadcrumb>
+                <b-breadcrumb-item>Home</b-breadcrumb-item>
+                <b-breadcrumb-item active>Account</b-breadcrumb-item>
+            </b-breadcrumb>
         </b-col>
     </b-row>
     <b-row>

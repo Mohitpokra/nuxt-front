@@ -19,6 +19,6 @@ export default Vue.extend({
 	name: 'TextInput',
 })
 </script>
-<style lang="postcss">
+<style lang="scss">
 
 </style>
