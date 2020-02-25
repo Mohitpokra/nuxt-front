@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import {isRequired, isEmail } from './../../utils/validations.js'
+
 export default {
     // auth: false,
     transition: {
@@ -78,7 +80,13 @@ export default {
     },
     computed: {
         isDisable() {
-            if (this.user.name && this.user.email && this.user.password && this.user.confirm_password && (this.user.password === this.user.confirm_password)) {
+            const isValidEmail = isEmail(this.user.email)
+            const isValidName = isRequired(this.user.name)
+            const isValidPassword = isRequired(this.user.password)
+            const isValidConfirmPassword = isRequired(this.user.confirm_password)
+            const isValid = isValidEmail && isValidName && isValidPassword && isValidConfirmPassword
+
+            if (isValid && (this.user.password === this.user.confirm_password)) {
                 return false;
             } else {
                 return true;
