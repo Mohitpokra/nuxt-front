@@ -14,7 +14,7 @@
                         <div class="">
                             <b-button class="m-btn" block variant="primary" size="lg" :disabled="isDisable">Send reset intructions</b-button>
                             <div class="">
-                                <b-link class="text-dark m-forgot">Cancel</b-link>
+                                <b-link class="text-dark m-forgot" href="/sign_in">Cancel</b-link>
                             </div>
                         </div>
                     </b-form>
