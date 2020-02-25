@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {isRequired, isEmail } from './../../../utils/validations.js'
+import {isRequired, isEmail } from './../../utils/validations.js'
 export default {
     transition: {
         name: "custom-classes-transition",
