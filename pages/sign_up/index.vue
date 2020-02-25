@@ -22,6 +22,11 @@
                         <b-form-invalid-feedback :state="error_state.password">
                             {{error.password}}
                         </b-form-invalid-feedback>
+                        <label class="m-password" for="confirm-password">Confirm Password</label>
+                        <b-input :class="{form_fill: user.confirm_password}" v-model="user.confirm_password" :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="••••••••"></b-input>
+                        <b-form-invalid-feedback :state="error_state.confirm_password">
+                            {{error.confirm_password}}
+                        </b-form-invalid-feedback>
                         <div>
                             <b-button class="m-singUp-btn" block variant="primary" :disabled="isDisable" size="lg" @click="register">Sign Up</b-button>
                             <p class="p2 m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
@@ -35,6 +40,8 @@
 </template>
 
 <script>
+import {isRequired, isEmail } from './../../utils/validations.js'
+
 export default {
     // auth: false,
     transition: {
@@ -55,22 +62,31 @@ export default {
                 name: null,
                 email: null,
                 password: null,
+                confirm_password: null
             },
             error: {
                 name: '',
                 email: '',
                 password: '',
+                confirm_password:''
             },
             error_state: {
                 name: null,
                 email: null,
-                password: null
+                password: null,
+                confirm_password: null
             }
         }
     },
     computed: {
         isDisable() {
-            if (this.user.name && this.user.email && this.user.password) {
+            const isValidEmail = isEmail(this.user.email)
+            const isValidName = isRequired(this.user.name)
+            const isValidPassword = isRequired(this.user.password)
+            const isValidConfirmPassword = isRequired(this.user.confirm_password)
+            const isValid = isValidEmail && isValidName && isValidPassword && isValidConfirmPassword
+
+            if (isValid && (this.user.password === this.user.confirm_password)) {
                 return false;
             } else {
                 return true;
@@ -83,16 +99,19 @@ export default {
     methods: {
         async register() {
             try {
-                await this.$axios.post('register', this.user);
+                const registered = await this.$axios.post('register', this.user);
 
-                await this.$auth.loginWith('local', {
+                const loginSuccessfull = await this.$auth.loginWith('local', {
                     data: {
                         email: this.user.email,
                         password: this.user.password
                     },
                 })
-
-                this.$router.push('/')
+                if(registered && loginSuccessfull){
+                    this.$router.push('/')
+                }else{
+                    // show error will sign up
+                }
             } catch (e) {
                 this.error = e.response.data.message
             }
