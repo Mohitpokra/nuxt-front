@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import {isEmail } from './../../../utils/validations.js'
 export default {
     data() {
         return {
@@ -42,7 +43,8 @@ export default {
     },
     computed: {
         isDisable() {
-            if (this.user.email) {
+            const isValidEmail = isEmail(this.user.email)
+            if (isValidEmail) {
                 return false;
             } else {
                 return true;

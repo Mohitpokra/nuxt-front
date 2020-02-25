@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import {isRequired, isEmail } from './../../../utils/validations.js'
 export default {
     transition: {
         name: "custom-classes-transition",
@@ -63,7 +64,10 @@ export default {
     },
     computed: {
         isDisable() {
-            if (this.user.email && this.user.password) {
+            const isValidEmail = isEmail(this.user.email)
+            const isValidPassword = isRequired(this.user.password)
+
+            if (isValidEmail && isValidPassword) {
                 return false;
             } else {
                 return true;
