@@ -68,9 +68,10 @@ ul {
         padding: 30px 72px;
         width: 468px;
         z-index: 1;
-        box-shadow: -8px 0 24px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: -8px 0 24px 0 transparent;
         &.reveal{
             transform: translateX(0px);
+            box-shadow: -8px 0 24px 0 rgba(0, 0, 0, 0.08);
         }
         .cross{
             float: right;
@@ -91,6 +92,20 @@ ul {
                 color: #44a1bf;
                 margin-bottom: 24px;
                 cursor: pointer;
+            }
+        }
+        @media screen and (max-width: 720px) {
+            width: 100%;
+            padding: 30px 25px;
+            padding-right: 0px;
+            transform: translateX(100%);
+            ul{
+                li{
+                    font-size: 14px;
+                }
+            }
+            .cross{
+                margin-right: 14px;
             }
         }
     }
