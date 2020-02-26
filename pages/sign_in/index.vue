@@ -7,16 +7,23 @@
                 <b-col></b-col>
                 <b-col lg="9" cols="12">
                     <b-form>
-                        <label for="login-email">Email</label>
-                        <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                        <b-form-invalid-feedback :state="error_state.email">
-                            {{error.email}}
-                        </b-form-invalid-feedback>
-                        <label class="m-password" for="login-password">Password</label>
-                        <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                        <b-form-invalid-feedback :state="error_state.password">
-                            {{error.email}}
-                        </b-form-invalid-feedback>
+                        <div class="inp-wrapper">
+                            <div class="flex justify-content-between">
+                                <label for="login-email">Email</label>
+                                <span class="inp-error">Invalid</span>
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                        <div class="inp-wrapper">
+                            <label class="m-password" for="login-password">Password</label>
+                            <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                            <b-form-invalid-feedback :state="error_state.password">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
                         <div>
                             <b-button class="m-signIn-btn" block variant="primary" :disabled="isDisable" size="lg">Sign In</b-button>
                             <div class="m-forgot-password">
@@ -33,6 +40,7 @@
 </template>
 
 <script>
+import {isRequired, isEmail } from './../../utils/validations.js'
 export default {
     transition: {
         name: "custom-classes-transition",
@@ -56,7 +64,10 @@ export default {
     },
     computed: {
         isDisable() {
-            if (this.user.email && this.user.password) {
+            const isValidEmail = isEmail(this.user.email)
+            const isValidPassword = isRequired(this.user.password)
+
+            if (isValidEmail && isValidPassword) {
                 return false;
             } else {
                 return true;

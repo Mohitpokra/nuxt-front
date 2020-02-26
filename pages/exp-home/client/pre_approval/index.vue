@@ -2,9 +2,11 @@
 <b-container>
     <b-row align-h="start">
         <b-col offset-lg="1">
-            <b-link class="link-1" >Home</b-link>
-            <b-link class="link-1">/Client</b-link>
-            <b-link class="link-2">/Pre-approval</b-link>
+            <b-breadcrumb>
+                <b-breadcrumb-item>Home</b-breadcrumb-item>
+                <b-breadcrumb-item>Client</b-breadcrumb-item>
+                <b-breadcrumb-item active>Pre-approval</b-breadcrumb-item>
+            </b-breadcrumb>
         </b-col>
     </b-row>
     <b-row class="top-title">
@@ -275,33 +277,6 @@ export default {
     width: 312px;
 }
 
-.link-1{
-  text-decoration: none;
-  width: 33px;
-  height: 24px;
-  font-family: CerebriSans;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: normal;
-  color: #b8b8b8 !important;
-}
-
-.link-2 {
-  text-decoration: none;
-  width: 33px;
-  height: 24px;
-  font-family: CerebriSans;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 2;
-  letter-spacing: normal;
-  color: #1f1f1f;
-}
 
 .top-title{
     margin-top: 38px;

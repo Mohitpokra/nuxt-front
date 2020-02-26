@@ -2,8 +2,10 @@
 <b-container>
     <b-row align-h="start" class="location">
         <b-col offset-lg="1">
-            <b-link class="link-1">Home</b-link>
-            <b-link class="link-2">/Search History</b-link>
+            <b-breadcrumb>
+                <b-breadcrumb-item>Home</b-breadcrumb-item>
+                <b-breadcrumb-item active>Search History</b-breadcrumb-item>
+            </b-breadcrumb>
         </b-col>
     </b-row>
     <div v-if="!search_count">
