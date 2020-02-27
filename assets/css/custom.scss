@@ -668,11 +668,15 @@ select.selectpicker {
     a{
       font-size: 12px;
       text-decoration: none;
-      color: #b8b8b8;
+      color: #b8b8b8 !important;
+    }
+    &:before{
+      color: #b8b8b8 !important;
     }
     &.active{
-      a{
+      span{
         color: #1f1f1f;
+        font-size: 12px;
       }
     }
   }
