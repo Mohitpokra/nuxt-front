@@ -189,6 +189,7 @@ export default {
     auth: false,
     data() {
         return {
+            isDisable: true,
             user: {
                 name: null,
                 percentage: null

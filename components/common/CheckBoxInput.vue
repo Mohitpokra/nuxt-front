@@ -50,7 +50,6 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss" scoped>
-@import '@css/_settings.css';
 /* The container */
 .check-container {
 	display: block;
@@ -89,7 +88,7 @@ export default Vue.extend({
 
 /* When the checkbox is checked, add a blue background */
 .check-container input:checked ~ .checkmark {
-	background-color: $purple;
+	background-color: blue;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

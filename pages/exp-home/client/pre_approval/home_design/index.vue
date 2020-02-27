@@ -114,6 +114,7 @@
 export default {
     data() {
         return {
+            text: '',
             selected: null,
             options: [{
                     value: null,

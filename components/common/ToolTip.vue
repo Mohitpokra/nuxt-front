@@ -29,10 +29,8 @@ export default Vue.extend({
 })
 </script>
 <style lang="postcss">
-@import '@css/_settings.css';
-@import '@css/_mixins.css';
 
-.tooltip-wrapper {
+/* .tooltip-wrapper {
 	position: relative;
 	margin-left: 8px;
 	@mixin centerFlex;
@@ -70,5 +68,5 @@ export default Vue.extend({
 		top: 6px;
 		content: '';
 	}
-}
+} */
 </style>

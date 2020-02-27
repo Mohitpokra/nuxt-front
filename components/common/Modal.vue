@@ -18,9 +18,9 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { onEscPress } from '@/utils/KeyboardUtils'
+// import { onEscPress } from '@/utils/KeyboardUtils'
 
 @Component({
 	props: {
@@ -71,7 +71,7 @@ export default class Modal extends Vue {
 	// }
 	created() {
 		const { show, isNestedModal } = this.$props
-		onEscPress(() => show && this.close())
+		// onEscPress(() => show && this.close())
 		!isNestedModal && show && document.body.classList.add('modal-open')
 	}
 	destroyed() {
@@ -89,7 +89,7 @@ export default class Modal extends Vue {
 </script>
 
 <style lang="postcss">
-@import '@css/_settings.css';
+/* @import '@css/_settings.css';
 @import '@css/_mixins.css';
 @import '@css/_keyframes.css';
 
@@ -179,5 +179,5 @@ export default class Modal extends Vue {
 		opacity: 0;
 		@mixin AnimateContent 0.45s, slidedown, 0.35s;
 	}
-}
+} */
 </style>

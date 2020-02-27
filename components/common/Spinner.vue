@@ -6,7 +6,7 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
@@ -16,14 +16,14 @@ import { Component, Vue } from 'vue-property-decorator'
 	},
 })
 export default class Spinner extends Vue {
-	name: string = 'Spinner'
+	name = 'Spinner'
 }
 </script>
 
 <style lang="postcss">
-@import '@css/_settings.css';
+/* @import '@css/_settings.css'; */
 /* spinner widget component */
-.w--spinner {
+/* .w--spinner {
 	width: 70px;
 	text-align: center;
 	margin: 0 auto;
@@ -78,5 +78,5 @@ export default class Spinner extends Vue {
 		transform: scale(1);
 		-webkit-transform: scale(1);
 	}
-}
+} */
 </style>
