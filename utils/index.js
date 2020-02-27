@@ -1,2 +1,2 @@
-export const isNotNull = (data: any): boolean =>
+export const isNotNull = (data) =>
 	data !== undefined && data !== null && data !== ''
