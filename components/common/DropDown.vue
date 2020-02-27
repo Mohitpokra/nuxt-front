@@ -134,12 +134,12 @@ interface IOption {
 	},
 })
 export default class DropDown extends Vue {
-	name: string = 'DropDown'
-	selected?: ILVItem = null
-	searchKey: string = ''
-	isOpen: boolean = false
-	cursor: number = -1
-	errorMessage: string = ''
+	name = 'DropDown'
+	selected? = null
+	searchKey = ''
+	isOpen = false
+	cursor = -1
+	errorMessage = ''
 
 	close() {
 		this.isOpen && (this.isOpen = false)
@@ -150,7 +150,7 @@ export default class DropDown extends Vue {
 		this.isOpen ? this.$emit('onOpen') : this.$emit('onClose')
 	}
 
-	select(option: IOption) {
+	select(option) {
 		this.selected = option
 		this.$emit('input', option.value)
 		this.toggle()
@@ -236,7 +236,7 @@ export default class DropDown extends Vue {
 </script>
 
 <style lang="postcss">
-@import '@css/_settings.css';
+/* @import '@css/_settings.css';
 @import '@css/_mixins.css';
 
 .drop-down {
@@ -366,7 +366,7 @@ export default class DropDown extends Vue {
 		width: 16px;
 		height: 9px;
 		&::before {
-			/* TODO: Use font-icon */
+			
 			content: '\e906';
 			color: inherit;
 			font-size: 16px;
@@ -388,5 +388,5 @@ export default class DropDown extends Vue {
 			box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.12);
 		}
 	}
-}
+} */
 </style>

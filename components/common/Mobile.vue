@@ -27,7 +27,7 @@
 
 <script>
 import Vue from 'vue'
-import { validationHandler } from '@/Validations'
+import { validationHandler } from './../../utils/validations.js'
 
 export default Vue.extend({
 	name: 'Mobile',

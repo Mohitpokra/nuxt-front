@@ -14,10 +14,10 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { isNotNull } from '@/utils/NullCheckUtils'
-import { validationHandler } from '@/Validations'
+import { isNotNull } from './../../utils/index.js'
+import { validationHandler } from './../../utils/validations.js'
 
 @Component({
 	props: {
@@ -39,9 +39,9 @@ import { validationHandler } from '@/Validations'
 	},
 })
 export default class Radio extends Vue {
-	name: string = 'Radio'
-	selectedValue: any = null
-	errorMessage: string = ''
+	name = 'Radio'
+	selectedValue = null
+	errorMessage = ''
 
 	created() {
 		const { value } = this.$props
