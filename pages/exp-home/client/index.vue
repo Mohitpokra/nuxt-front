@@ -139,10 +139,6 @@ export default {
     margin-top: 38px;
 }
 
-#bv-modal-example{
-    max-width: 456px !important;    
-}
-
 .btn-back {
     border-radius: 2px;
     background-color: #f5f5f5;

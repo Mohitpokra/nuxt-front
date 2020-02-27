@@ -6,34 +6,31 @@
             <h2 class="m-header">What are you looking to do today?</h2>
         </b-col>
         <b-col class="box-container" :class="{'bg-heading': selected_1}" cols="12" lg="auto" offset-lg="1" @click="turnBg(1)">
-            <div class="flex">
+            <div class="flex looking-box">
                 <div class="img-container">
                     <img class="icon-option-new-search" src="~/assets/icons/icon-option-new-search.svg" />
                 </div>
                 <h3 class="m-text" :class="{'text-white': selected_1}">Start a new home search</h3>
                 <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
             </div>
-            <div class="right-icon-mobile-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
         </b-col>
         <b-col class="box-container container-middle" :class="{'bg-heading': selected_2}" cols="12" lg="auto" @click="turnBg(2)">
-            <div class="flex">
+            <div class="flex looking-box">
                 <div class="img-container">
                     <img class="icon-option-new-search" src="~/assets/icons/icon-option-previous-search.svg" />
                 </div>
                 <h3 class="m-text" :class="{'text-white': selected_2}">Start a new home search</h3>
                 <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
             </div>
-            <div class="right-icon-mobile-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
         </b-col>
         <b-col class="box-container" :class="{'bg-heading': selected_3}" cols="12" lg="auto" @click="turnBg(3)">
-            <div class="flex">
+            <div class="flex looking-box">
                 <div class="img-container">
                     <img class="icon-option-new-search" src="~/assets/icons/icon-option-preapproval.svg" />
                 </div>
                 <h3 class="m-text" :class="{'text-white': selected_3}">Start a new home search</h3>
                 <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
             </div>
-            <div class="right-icon-mobile-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
         </b-col>
         <b-col cols="12" lg="1"></b-col>
     </b-row>
@@ -79,6 +76,9 @@ export default {
     margin-top: 96px;
     margin-bottom: 48px;
 }
+.looking-box{
+    flex-direction: column;
+}
 
 .container-middle {
     margin-left: 24px;
@@ -105,24 +105,30 @@ export default {
 .box-container {
     border-radius: 2px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-    background-color: #ffffff;
     width: 296px;
+    position: relative;
     height: 392px;
-
+    transition: 0.45s;
     @media screen and (max-width: 992px) {
         height: 100%;
         width: 100%;
+    }
+    &:hover{
+        box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+    }
+    &.bg-heading{
+        .right-icon-container {
+            transform: scale(1);
+        }
     }
 }
 
 .img-container {
     margin-top: 40px;
     margin-bottom: 24px;
-    width: 200px;
-    height: 184px;
-    margin-right: 48px;
-    margin-left: 48px;
-
+    width: 100%;
+    text-align: center;
+    height: 192px;
     @media screen and (max-width: 992px) {
         width: 100px;
         height: 92px;
@@ -145,13 +151,12 @@ export default {
 }
 
 .right-icon-container {
-    text-align: right;
-    margin-right: 48px;
-    margin-bottom: 34px;
-
-    @media screen and (max-width: 992px) {
-        display: none;
-    }
+    position: absolute;
+    bottom: 18px;
+    right: 34px;
+    transition: 0.45s;
+    transform: scale(0);
+    transition-delay: 0.25s;
 }
 
 .flex {
@@ -172,17 +177,6 @@ export default {
 .row {
     @media screen and (max-width: 992px) {
         margin: 0px;
-    }
-}
-
-.right-icon-mobile-container {
-    display: none;
-    text-align: right;
-
-    @media screen and (max-width: 992px) {
-        display: block;
-        margin-bottom: 16px;
-        margin-right: 24px;
     }
 }
 .m-btn {
