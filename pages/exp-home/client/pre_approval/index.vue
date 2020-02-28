@@ -34,25 +34,25 @@
         </b-col>
     </b-row>
     <b-row class="body-banner">
-        <b-col v-if="preApproved" cols="10" lg="5" offset-lg="1" class="form-body-1">
+        <b-col v-if="preApproved" cols="10" lg="5" offset-lg="1" class="form-body-1 searchby-approval">
             <div>
                 <h3 class="text-primary">Search by Pre-approval</h3>
-                <h4 class="body-content">What was the purchase pre-approval amount?</h4>
-                <b-form class="form-1">
+                <h4 class="body-content title-head">What was the purchase pre-approval amount?</h4>
+                <b-form class="form-1 name-text">
                     <label class="" for="login-name">Name</label>
                     <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
                 </b-form>
-                <h4 class="form-1">Which type of loan program?</h4>
+                <h4 class="form-1 title-head">Which type of loan program?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">FHA</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">VA</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="USDA">USDA</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="Coventional">Coventional</b-form-radio>
                 </b-form-group>
-                <h4>What’s the qualified total housing payment?</h4>
+                <h4 class=" title-head">What’s the qualified total housing payment?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Minimum Down Payment</b-form-radio>
                     <div class="d-flex align-items-center">
@@ -66,18 +66,18 @@
                 </b-form-group>
             </div>
         </b-col>
-        <b-col v-if="affordability" cols="10" lg="5" offset-lg="1" class="form-body-2">
+        <b-col v-if="affordability" cols="10" lg="5" offset-lg="1" class="form-body-2 estimated-affordability">
             <div>
-                <h3 class="text-primary">Search by Estimated Affordability</h3>
+                <h3 class="text-primary title-head">Search by Estimated Affordability</h3>
                 <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
-                <b-form class="divider">
+                <b-form class="divider name-text">
                     <label class="" for="login-name">Max Total Monthly Payment</label>
                     <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
                 </b-form>
-                <h4 class="body-banner">What funds does you client have available to purchase?</h4>
+                <h4 class="body-banner title-head">What funds does you client have available to purchase?</h4>
                 <div class="d-flex align-items-center">
                     <b-form-radio class="" size="lg" v-model="selected" name="some-radios" value="VA">
                     </b-form-radio>
@@ -86,16 +86,16 @@
                         {{error.percentage}}
                     </b-form-invalid-feedback>
                 </div>
-                <h4 class="body-banner">What’s your client’s estimated credit score?</h4>
+                <h4 class="body-banner title-head">What’s your client’s estimated credit score?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Excellent (720+)</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">Average (680-719)</b-form-radio>
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="USDA">Below Average (620-679)</b-form-radio>
                 </b-form-group>
-                <h4>Is your client a first time homebuyer?</h4>
+                <h4 class=" title-head">Is your client a first time homebuyer?</h4>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">No</b-form-radio>
-                <h4 class="divider" >Is your client a veteran?</h4>
+                <h4 class="divider title-head" >Is your client a veteran?</h4>
                 <div class="d-flex justify-content-between">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
                     <b-form-checkbox size="lg">Disabled veteran - no property tax</b-form-checkbox>
@@ -227,14 +227,14 @@ export default {
     border-radius: 2px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
     background-color: #ffffff;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 23px;
+    padding-bottom: 23px;
     display: flex;
 
     .right-icon-container {
         text-align: center;
         width: 32px;
-        height: 32px;
+        height: 26px;
         margin-right: 8px;
         margin-left: 8px;
 
@@ -244,12 +244,22 @@ export default {
             object-fit: contain;
         }
     }
+    h4{
+        margin: 0px;
+        display: flex;
+        align-items: center;
+    }
 
     @media screen and (max-width: 992px) {
-        padding-top: 12px;
-        padding-bottom: 25px;
-        padding-left: 24px;
-
+        padding-top: 11px;
+        padding-bottom: 11px;
+        padding-left: 5px;
+        &:first-child{
+            margin-bottom: 10px;
+        }
+        .container-text{
+            font-size: 15px;
+        }
     }
 
 }
@@ -267,6 +277,14 @@ export default {
 
     @media screen and (max-width: 992px) {
         padding: 24px;
+        .text-center{
+            width: 80%;
+            margin: auto;
+        }
+        .p2.text-center{
+            margin-top: 10px;
+            margin-bottom: 24px;
+        }
     }
 }
 
@@ -317,5 +335,13 @@ export default {
 
 .modal-input-field{
     margin-top: 18px;
+}
+.searchby-approval, .estimated-affordability{
+    .name-text{
+        margin-top: 10px;
+    }
+    .title-head{
+        margin-bottom: 12px;
+    }
 }
 </style>

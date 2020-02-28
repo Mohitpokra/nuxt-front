@@ -255,6 +255,7 @@ select {
 
 .footer {
   flex-shrink: 0 !important;
+  margin-top: 20px;
 }
 
 .box-shadow-low {
@@ -630,6 +631,18 @@ select.selectpicker {
 .text-end {
   text-align: end !important;
 }
+.top-20 {
+	margin-top: 20px;
+}
+.bottom-20 {
+	margin-bottom: 20px;
+}
+.top-40 {
+	margin-top: 40px;
+}
+.bottom-40 {
+	margin-bottom: 40px;
+}
 
 /*************** Updated Code ***************/
 
@@ -680,4 +693,7 @@ select.selectpicker {
       }
     }
   }
+}
+#add-new-client .modal-dialog{
+  max-width: 456px;
 }

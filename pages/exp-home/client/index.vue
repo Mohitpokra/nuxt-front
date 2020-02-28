@@ -14,7 +14,7 @@
                 <h2>Select or add a new client</h2>
             </b-col>
             <b-col class="text-right" cols="4" lg="4">
-                <b-btn variant="primary" size="sm" @click="$bvModal.show('bv-modal-example')">New Client</b-btn>
+                <b-btn variant="primary" size="sm" @click="$bvModal.show('add-new-client')">New Client</b-btn>
             </b-col>
         </b-row>
         <b-row v-if="show" align-h="center">
@@ -61,7 +61,7 @@
     </div>
 
     <div>
-        <b-modal id="bv-modal-example"  class="modal-full-body" centered hide-footer hide-header>
+        <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
             <div class="modal-temp-body ">
                 <div class="header">
                     <h3 class="text-primary">New Client</h3>
@@ -77,7 +77,7 @@
                     </b-form-invalid-feedback>
                 </b-form>
                 <b-button class="mt-3 btn-1" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
-                <b-button class="mt-3 btn-2" block variant="secondary btn-custom_1" @click="$bvModal.hide('bv-modal-example')" size="lg">Cancel</b-button>
+                <b-button class="mt-3 btn-2 bottom-20" block variant="secondary btn-custom_1" @click="$bvModal.hide('add-new-client')" size="lg">Cancel</b-button>
             </div>
         </b-modal>
     </div>
