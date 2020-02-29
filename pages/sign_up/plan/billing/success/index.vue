@@ -5,7 +5,7 @@
             <div>
                 <img src="~/assets/icons/icon-decorative-setup-complete.svg" />
                 <h3 class="m-heading">Account setup complete!</h3>
-                <p class="p1 m-bottom">We’ve sent a link to verfiy the account, just click on the link <br class="d-none d-lg-block"> in the email to get started.</p>
+                <p class="p1 m-bottom sub-head-msg">We’ve sent a link to verfiy the account, just click on the link <br class="d-none d-lg-block"> in the email to get started.</p>
             </div>
         </b-col>
     </b-row>
@@ -32,9 +32,9 @@ img {
 
 .m-bottom {
     margin-bottom: 338px;
-
-    @media screen and (max-width: 992p) {
+    @media screen and (max-width: 720px) {
         margin-bottom: 280px;
+        font-size: 16px;
     }
 }
 </style>

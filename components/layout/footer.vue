@@ -70,7 +70,7 @@ export default {
 }
 @media screen and (max-width: 720px) {
     .social-link{
-        margin: 15px 0px;
+        margin-top: 10px;
     }
 }
 </style>
