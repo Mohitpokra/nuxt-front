@@ -147,7 +147,7 @@ export default {
 }
 
 .box-shadow-container {
-    transition: box-shadow .3s;
+    transition: box-shadow 0.45s;
     border-radius: 2px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
     background-color: #ffffff;
@@ -170,7 +170,7 @@ export default {
 }
 
 .box-shadow-container:hover {
-  cursor: pointer; 
+  cursor: pointer;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
   background-color: #ffffff;
 }

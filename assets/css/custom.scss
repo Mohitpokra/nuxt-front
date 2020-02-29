@@ -21,6 +21,18 @@ select,
 textarea {
   font-family: 'cerebri-sans' !important;
 }
+.visible-lg{
+  display: inline-block;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
+}
+.visible-xs{
+  display: inline-block;
+  @media screen and (min-width: 992px) {
+    display: none;
+  }
+}
 
 .container {
   @media screen and (max-width: 992px) {

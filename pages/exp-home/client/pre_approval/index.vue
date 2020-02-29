@@ -34,7 +34,7 @@
         </b-col>
     </b-row>
     <b-row class="body-banner">
-        <b-col v-if="preApproved" cols="10" lg="5" offset-lg="1" class="form-body-1 searchby-approval">
+        <b-col v-if="preApproved" cols="12" lg="12" offset-lg="1" class="form-body-1 searchby-approval">
             <div>
                 <h3 class="text-primary">Search by Pre-approval</h3>
                 <h4 class="body-content title-head">What was the purchase pre-approval amount?</h4>
@@ -55,7 +55,7 @@
                 <h4 class=" title-head">What’s the qualified total housing payment?</h4>
                 <b-form-group class="custom-radio">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Minimum Down Payment</b-form-radio>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center house-payment">
                         <b-form-radio class="" size="lg" v-model="selected" name="some-radios" value="VA">
                         </b-form-radio>
                         <b-input :class="{form_fill: user.percentage}" v-model="user.percentage" :state="error_state.percentage" size="lg" type="text" placeholder="Percentage Down"></b-input>
@@ -66,7 +66,7 @@
                 </b-form-group>
             </div>
         </b-col>
-        <b-col v-if="affordability" cols="10" lg="5" offset-lg="1" class="form-body-2 estimated-affordability">
+        <b-col v-if="affordability" cols="12" lg="12" offset-lg="1" class="form-body-2 estimated-affordability">
             <div>
                 <h3 class="text-primary title-head">Search by Estimated Affordability</h3>
                 <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
@@ -78,7 +78,7 @@
                     </b-form-invalid-feedback>
                 </b-form>
                 <h4 class="body-banner title-head">What funds does you client have available to purchase?</h4>
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center purchase-text">
                     <b-form-radio class="" size="lg" v-model="selected" name="some-radios" value="VA">
                     </b-form-radio>
                     <b-input :class="{form_fill: user.percentage}" v-model="user.percentage" :state="error_state.percentage" size="lg" type="text" placeholder="Percentage Down"></b-input>
@@ -96,11 +96,12 @@
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">No</b-form-radio>
                 <h4 class="divider title-head" >Is your client a veteran?</h4>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between text-check">
                     <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="FHA">Yes</b-form-radio>
-                    <b-form-checkbox size="lg">Disabled veteran - no property tax</b-form-checkbox>
+                    <b-form-checkbox class="visible-lg" size="lg">Disabled veteran - no property tax</b-form-checkbox>
                 </div>
                 <b-form-radio class="m-radio" size="lg" v-model="selected" name="some-radios" value="VA">No</b-form-radio>
+                <b-form-checkbox class="visible-xs" size="lg">Disabled veteran - no property tax</b-form-checkbox>
             </div>
         </b-col>
     </b-row>
@@ -113,6 +114,14 @@
                     <b-btn class="btn-custom" size="sm" @click="$bvModal.show('bv-modal-example')">Request Pre-approval</b-btn>
                 </div>
             </div>
+        </b-col>
+    </b-row>
+    <b-row align-h="between" class="steps-btn">
+        <b-col cols="6">
+            <b-button class="mt-3 back" variant="" size="lg">Back</b-button>
+        </b-col>
+        <b-col cols="6 text-right">
+            <b-button class="mt-3 next" variant="primary" size="lg">Next</b-button>
         </b-col>
     </b-row>
     <div>
@@ -230,7 +239,11 @@ export default {
     padding-top: 23px;
     padding-bottom: 23px;
     display: flex;
-
+    cursor: pointer;
+    transition: box-shadow 0.45s;
+    &:hover{
+        box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+    }
     .right-icon-container {
         text-align: center;
         width: 32px;
@@ -255,7 +268,7 @@ export default {
         padding-bottom: 11px;
         padding-left: 5px;
         &:first-child{
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .container-text{
             font-size: 15px;
@@ -302,7 +315,7 @@ export default {
 }
 
 .body-content{
-    margin-top: 46px;
+    margin-top: 36px;
 }
 
 .body-banner{
@@ -339,9 +352,31 @@ export default {
 .searchby-approval, .estimated-affordability{
     .name-text{
         margin-top: 10px;
+        max-width: 456px;
     }
     .title-head{
         margin-bottom: 12px;
+    }
+    .house-payment, .purchase-text{
+        max-width: 200px;
+    }
+    .text-check{
+        max-width: 456px;
+    }
+}
+.steps-btn{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    button{
+        min-width: 154px;
+        border: none;
+        &:hover{
+            border: none;
+        }
+    }
+    .back{
+        background-color: #f5f5f5;
+        color: black;
     }
 }
 </style>
