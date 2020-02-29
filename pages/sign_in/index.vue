@@ -12,20 +12,20 @@
                                 <label for="login-email">Email</label>
                                 <span class="inp-error">Invalid</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur"  @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                             <b-form-invalid-feedback :state="error_state.email">
                                 {{error.email}}
                             </b-form-invalid-feedback>
                         </div>
                         <div class="inp-wrapper">
                             <label class="m-password" for="login-password">Password</label>
-                            <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                            <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur"  @focus="handleFocus('password')"  v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
                             <b-form-invalid-feedback :state="error_state.password">
-                                {{error.email}}
+                                {{error.password}}
                             </b-form-invalid-feedback>
                         </div>
                         <div>
-                            <b-button class="m-signIn-btn" block variant="primary" :disabled="isDisable" size="lg">Sign In</b-button>
+                            <b-button class="m-signIn-btn" block variant="primary" size="lg" @click="login">Sign In</b-button>
                             <div class="m-forgot-password">
                                 <b-link class="text-dark p2" to="sign_in/forgot_password">Forgot Password?</b-link>
                             </div>
@@ -49,8 +49,8 @@ export default {
     data() {
         return {
             user: {
-                email: null,
-                password: null,
+                email: '',
+                password:'',
             },
             error: {
                 email: '',
@@ -62,17 +62,41 @@ export default {
             }
         }
     },
-    computed: {
-        isDisable() {
-            const isValidEmail = isEmail(this.user.email)
-            const isValidPassword = isRequired(this.user.password)
-
-            if (isValidEmail && isValidPassword) {
-                return false;
-            } else {
-                return true;
+    methods: {
+        login(){
+            this.handleEmailBlur();
+            this.handlePasswordBlur();
+            const isValid = this.error_state.email || this.error_state.password
+            if(isValid){
+                console.log('proceed to SignIn')
+                // proceed to login Api
             }
-        }
+        },
+        handleFocus(fieldName){
+            this.error[fieldName] = ''
+            this.error_state[fieldName] = null
+        },
+        handleEmailBlur(){
+            const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            if(!isValidEmail){
+                this.error.email = ' Email is Required. '
+                this.error_state.email = false
+            }else{
+                this.error.email = ''
+                this.error_state.email = true
+            }
+
+        },
+        handlePasswordBlur(){
+            const isValidPassword = isRequired(this.user.password)
+            if(!isValidPassword){
+                this.error.password = ' Password is Required. '
+                this.error_state.password = false
+            }else{
+                this.error.password = ''
+                this.error_state.password = true
+            }
+        },
     }
 }
 </script>

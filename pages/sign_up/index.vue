@@ -101,7 +101,6 @@ export default {
         },
         handleEmailBlur(){
             const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
-            debugger
             if(!isValidEmail){
                 this.error.email = ' Email is Required. '
                 this.error_state.email = false
@@ -140,6 +139,7 @@ export default {
             this.handleCPasswordBlur()
             const isValid = this.error_state.name || this.error_state.email || this.error_state.password || this.error_state.confirm_password
             if(isValid){
+                console.log('proceed to Register');
                 //  try{
                 //         const registered = await this.$axios.post('register', this.user);
 
