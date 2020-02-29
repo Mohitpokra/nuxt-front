@@ -5,7 +5,7 @@
             <div>
                 <img class="img" src="~/assets/icons/icon-decorative-send-email.svg" />
                 <h3 class="m-heading">Check your inbox.</h3>
-                <p class="p1 m-bottom">We’ve sent a link with the instructions to reset your <br class="d-none d-lg-block"> password.</p>
+                <p class="p1 m-bottom sub-head-msg">We’ve sent a link with the instructions to reset your <br class="d-none d-lg-block"> password.</p>
             </div>
         </b-col>
     </b-row>
@@ -32,10 +32,9 @@ img {
 }
 
 .m-bottom {
-    margin-bottom: 338px;
-
+    margin-bottom: 300px;
     @media screen and (max-width: 992p) {
-           margin-bottom: 280px;
+           margin-bottom: 200px;
     }
 }
 </style>
