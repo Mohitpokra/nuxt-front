@@ -111,7 +111,7 @@
                 <h4 class="text-center">Would you like to obtain a competitive loan offer?</h4>
                 <p class="p2 text-center">We give you the option to request a loan offer and it’s a simple as filing out some basic information for us to get in contact with your client.</p>
                 <div class="text-center">
-                    <b-btn class="btn-custom" size="sm" @click="$bvModal.show('bv-modal-example')">Request Pre-approval</b-btn>
+                    <b-btn class="btn-custom" size="sm" @click="$bvModal.show('req-apv')">Request Pre-approval</b-btn>
                 </div>
             </div>
         </b-col>
@@ -125,7 +125,7 @@
         </b-col>
     </b-row>
     <div>
-        <b-modal id="bv-modal-example" centered hide-footer hide-header>
+        <b-modal id="req-apv" class="req-approval" centered hide-footer hide-header>
             <div v-if="!request_sent" class="modal-body-1">
                 <div class="header">
                     <h3 class="text-primary">Request pre-appoval</h3>
@@ -172,7 +172,7 @@
                         <b-button class="mt-3" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
                     </b-col>
                     <b-col cols="3">
-                        <b-button class="mt-3" block variant="secondary btn-custom_1" @click="$bvModal.hide('bv-modal-example')" size="lg">Cancel</b-button>
+                        <b-button class="mt-3" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
                     </b-col>
                 </b-row>
             </div>
@@ -379,4 +379,5 @@ export default {
         color: black;
     }
 }
+
 </style>
