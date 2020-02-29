@@ -7,12 +7,12 @@
                 <b-col lg="9" cols="12">
                     <b-form>
                         <label class="" for="login-email">Email</label>
-                        <b-input :class="{form_fill: user.email}" v-model="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                        <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         <b-form-invalid-feedback :state="error_state.email">
                             {{error.email}}
                         </b-form-invalid-feedback>
                         <div class="">
-                            <b-button class="m-btn" block variant="primary" size="lg" :disabled="isDisable">Send reset intructions</b-button>
+                            <b-button class="m-btn" block variant="primary" size="lg" @click="submit">Send reset intructions</b-button>
                             <div class="">
                                 <b-link class="text-dark m-forgot" href="/sign_in">Cancel</b-link>
                             </div>
@@ -42,14 +42,32 @@ export default {
         }
     },
     computed: {
-        isDisable() {
-            const isValidEmail = isEmail(this.user.email)
-            if (isValidEmail) {
-                return false;
-            } else {
-                return true;
+    },
+    methods:{
+        submit(){
+            this.handleEmailBlur();
+            const isValid =  this.error_state.email
+            if(isValid){
+                console.log('proceed to Forgot Password')
+                // proceed to forgot password Api
             }
-        }
+        },
+        handleFocus(fieldName){
+            this.error[fieldName] = ''
+            this.error_state[fieldName] = null
+        },
+        handleEmailBlur(){
+            const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            if(!isValidEmail){
+                this.error.email = ' Email is Required. '
+                this.error_state.email = false
+            }else{
+                this.error.email = ''
+                this.error_state.email = true
+            }
+
+        },
+
     }
 
 }
