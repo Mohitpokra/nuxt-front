@@ -127,12 +127,13 @@ export default {
    background-color: red !important;
 }
 .modal-temp-body {
-    margin-top: 40px;
-    margin-left: 33px;
     max-width: 360px;
+    margin: 0 auto;
+    margin-top: 40px;
     @media screen and (max-width: 992px) {
-        margin-left: 24px;
-        max-with: 315px;
+        max-width: 315px;
+        margin: 0 auto;
+        margin-top: 40px;
     }
 }
 .modal-form{
@@ -225,8 +226,8 @@ export default {
     margin-top: 28px;
 }
 .buttons{
-    margin-top: 148px;
-    margin-bottom: 72px;
+    margin-top: 100px;
+    margin-bottom: 40px;
 }
 .check{
   margin-right: 8px;

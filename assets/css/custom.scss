@@ -650,6 +650,17 @@ select.selectpicker {
   }
 }
 
+.modal-backdrop{
+  background-color: transparent;
+}
+.modal-content{
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+  border: none;
+}
+.modal-open .modal{
+      background-color: #fff;
+}
+
 /*************** Updated Code ***************/
 
 .inp{
