@@ -5,28 +5,36 @@
             <h3 class="text-center m-header-text">Create your account to start<br class="d-lg-none"> searching
                 homes by mortgage <br class="d-lg-none"> payment.</h3>
             <b-row class="" align-h="center">
-                <b-col lg="9" cols="12">
-                    <b-form>
-                        <label class="" for="login-name">Name</label>
-                        <b-input :class="{form_fill: user.name}" @blur="handleNameBlur"  @focus="handleFocus('name')" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
-                        <b-form-invalid-feedback :state="error_state.name">
-                            {{error.name}}
-                        </b-form-invalid-feedback>
-                        <label class="m-email" for="login-email">Email</label>
-                        <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur" @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                        <b-form-invalid-feedback :state="error_state.email">
-                            {{error.email}}
-                        </b-form-invalid-feedback>
-                        <label class="m-password" for="login-password">Password</label>
-                        <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur" @focus="handleFocus('password')" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                        <b-form-invalid-feedback :state="error_state.password">
-                            {{error.password}}
-                        </b-form-invalid-feedback>
-                        <label class="m-password" for="confirm-password">Confirm Password</label>
-                        <b-input :class="{form_fill: user.confirm_password}" @blur="handleCPasswordBlur" @focus="handleFocus('confirm_password')" v-model="user.confirm_password" :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="••••••••"></b-input>
-                        <b-form-invalid-feedback :state="error_state.confirm_password">
-                            {{error.confirm_password}}
-                        </b-form-invalid-feedback>
+                <b-col lg="10" cols="12">
+                    <b-form class="signup-box">
+                        <div class="inp-wrapper">
+                            <label class="" for="login-name">Name</label>
+                            <b-input :class="{form_fill: user.name}" @blur="handleNameBlur"  @focus="handleFocus('name')" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
+                            <b-form-invalid-feedback :state="error_state.name">
+                                {{error.name}}
+                            </b-form-invalid-feedback>
+                        </div>
+                        <div class="inp-wrapper">
+                            <label class="m-email" for="login-email">Email</label>
+                            <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur" @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                        <div class="inp-wrapper">
+                            <label class="m-password" for="login-password">Password</label>
+                            <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur" @focus="handleFocus('password')" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                            <b-form-invalid-feedback :state="error_state.password">
+                                {{error.password}}
+                            </b-form-invalid-feedback>
+                        </div>
+                        <div class="inp-wrapper">
+                            <label class="m-password" for="confirm-password">Confirm Password</label>
+                            <b-input :class="{form_fill: user.confirm_password}" @blur="handleCPasswordBlur" @focus="handleFocus('confirm_password')" v-model="user.confirm_password" :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="••••••••"></b-input>
+                            <b-form-invalid-feedback :state="error_state.confirm_password">
+                                {{error.confirm_password}}
+                            </b-form-invalid-feedback>
+                        </div>
                         <div>
                             <b-button class="m-singUp-btn" block variant="primary" size="lg" @click="register">Sign Up</b-button>
                             <p class="p2 m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
@@ -193,5 +201,9 @@ export default {
     @media screen and (max-width: 992px) {
         margin-bottom: 96px;
     }
+}
+.signup-box{
+    max-width: 360px;
+    margin: auto;
 }
 </style>
