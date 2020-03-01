@@ -5,8 +5,8 @@
             <h3 class="text-center m-sign">Sign into your account.</h3>
             <b-row align-h="center">
                 <b-col></b-col>
-                <b-col lg="9" cols="12">
-                    <b-form>
+                <b-col lg="10" cols="12">
+                    <b-form class="login-box">
                         <div class="inp-wrapper">
                             <div class="flex justify-content-between">
                                 <label for="login-email">Email</label>
@@ -105,12 +105,14 @@ export default {
 .m-sign {
     margin-top: 88px;
     margin-bottom: 80px;
-
-    
     @media screen and (max-width: 992px) {
         margin-top: 77px;
         margin-bottom: 89px;
     }
+}
+.login-box{
+    max-width: 360px;
+    margin: auto;
 }
 
 .m-password {

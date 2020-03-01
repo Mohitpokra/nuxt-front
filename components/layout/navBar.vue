@@ -41,7 +41,7 @@ export default {
 
 .logo {
     width: 24px;
-    height: 21px;
+    height: 28px;
 }
 
 ul {
