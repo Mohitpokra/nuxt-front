@@ -2,8 +2,8 @@
 <b-container class="">
     <b-row class="" align-h="center">
         <b-col lg="6" cols="12">
-            <h3 class="text-center m-header-text">Create your account to start<br class="d-lg-none"> searching
-                homes by mortgage <br class="d-lg-none"> payment.</h3>
+            <h3 class="text-center m-header-text">Create your account to start searching
+                homes by mortgage payment.</h3>
             <b-row class="" align-h="center">
                 <b-col lg="10" cols="12">
                     <b-form class="signup-box">
@@ -173,9 +173,10 @@ export default {
 
 <style lang="scss" scoped>
 .m-header-text {
+    margin: auto;
     margin-top: 88px;
     margin-bottom: 48px;
-
+    max-width: 502px;
     @media screen and (max-width: 992px) {
         margin-top: 77px;
         margin-bottom: 48px;

@@ -1,16 +1,19 @@
 <template>
 <b-container>
     <b-row align-h="center">
-        <b-col lg="6" cols="12">
-            <h3 class="m-heading text-center">Enter your email you used to sign up and we’ll send a link to reset your <br class="d-lg-none"> password.</h3>
+        <b-col lg="5" cols="12">
+            <h3 class="m-heading text-center">Enter your email you used to sign up and we’ll send a link to reset your password.</h3>
             <b-row align-h="center">
-                <b-col lg="9" cols="12">
-                    <b-form>
-                        <label class="" for="login-email">Email</label>
-                        <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                        <b-form-invalid-feedback :state="error_state.email">
-                            {{error.email}}
-                        </b-form-invalid-feedback>
+                <b-col></b-col>
+                <b-col lg="10" cols="12">
+                    <b-form class="forgor-form">
+                        <div class="inp-wrapper">
+                            <label class="" for="login-email">Email</label>
+                            <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
                         <div class="">
                             <b-button class="m-btn" block variant="primary" size="lg" @click="submit">Send reset intructions</b-button>
                             <div class="">
@@ -19,6 +22,7 @@
                         </div>
                     </b-form>
                 </b-col>
+                <b-col></b-col>
             </b-row>
         </b-col>
     </b-row>
@@ -75,9 +79,10 @@ export default {
 
 <style lang="scss" scoped>
 .m-heading {
+    margin: auto;
     margin-top: 88px;
     margin-bottom: 48px;
-
+    max-width: 502px;
     @media screen and (max-width: 992px) {
         margin-top: 77px;
         margin-bottom: 40px;
@@ -95,5 +100,9 @@ export default {
     @media screen and (max-width: 992px) {
         margin-bottom: 308px;
     }
+}
+.forgor-form{
+    margin: auto;
+    max-width: 360px;
 }
 </style>
