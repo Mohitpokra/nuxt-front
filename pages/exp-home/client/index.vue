@@ -1,6 +1,6 @@
 <template>
 <b-container>
-    <div>
+    <div class="inner-container">
         <b-row align-h="start" class="location" >
             <b-col offset-lg="1">
                 <b-breadcrumb>
@@ -50,15 +50,15 @@
                 </div>
             </b-col>
         </b-row>
-        <b-row align-h="end" class="buttons">
-            <b-col cols="6" align-self="start">
-                <b-btn class="btn-custom btn-back" variant="secondary" size="lg">Back</b-btn>
-            </b-col>
-            <b-col cols="6" class="text-right" align-self="end">
-                <b-btn class="btn-custom" variant="primary" size="lg">Next</b-btn>
-            </b-col>
-        </b-row>
     </div>
+    <b-row align-h="end" class="buttons">
+        <b-col cols="6" align-self="start">
+            <b-btn class="btn-custom btn-back" variant="secondary" size="lg">Back</b-btn>
+        </b-col>
+        <b-col cols="6" class="text-right" align-self="end">
+            <b-btn class="btn-custom" variant="primary" size="lg">Next</b-btn>
+        </b-col>
+    </b-row>
 
     <div>
         <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>

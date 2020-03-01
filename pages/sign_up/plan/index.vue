@@ -1,38 +1,40 @@
 <template>
 <b-container class="">
-    <b-row>
-        <b-col lg="10" offset-lg="1" cols="12">
-            <h2 class="m-plan-text">Choose the plan for you</h2>
-        </b-col>
-    </b-row>
-    <b-row class="m-bottom">
-        <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5" offset-lg="1">
-            <h3>Free</h3>
-            <p class="p-box-subheading p2">Limited to 5 searches per month</p>
-            <div class="p-box-money d-flex align-items-center">
-                <h2 class="text-primary">
-                    $0
-                </h2>
-                <h2 class="month">/ month</h2>
-            </div>
-            <div>
-                <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
-            </div>
-        </b-col>
-        <b-col class="box-shadow-low p-box m-box-left" cols="12" lg="5">
-            <h3>Pro</h3>
-            <p class="p-box-subheading p2">Unlimited searches</p>
-            <div class="p-box-money d-flex align-items-center">
-                <h2 class="text-primary">
-                    $15
-                </h2>
-                <h2 class="month">/ month</h2>
-            </div>
-            <div>
-                <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
-            </div>
-        </b-col>
-    </b-row>
+    <div class="inner-container">
+        <b-row>
+            <b-col lg="10" offset-lg="1" cols="12">
+                <h2 class="m-plan-text">Choose the plan for you</h2>
+            </b-col>
+        </b-row>
+        <b-row class="m-bottom">
+            <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5" offset-lg="1">
+                <h3>Free</h3>
+                <p class="p-box-subheading p2">Limited to 5 searches per month</p>
+                <div class="p-box-money d-flex align-items-center">
+                    <h2 class="text-primary">
+                        $0
+                    </h2>
+                    <h2 class="month">/ month</h2>
+                </div>
+                <div>
+                    <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
+                </div>
+            </b-col>
+            <b-col class="box-shadow-low p-box m-box-left" cols="12" lg="5">
+                <h3>Pro</h3>
+                <p class="p-box-subheading p2">Unlimited searches</p>
+                <div class="p-box-money d-flex align-items-center">
+                    <h2 class="text-primary">
+                        $15
+                    </h2>
+                    <h2 class="month">/ month</h2>
+                </div>
+                <div>
+                    <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
+                </div>
+            </b-col>
+        </b-row>
+    </div>
 </b-container>
 </template>
 
