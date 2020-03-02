@@ -4,6 +4,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = {
+	state: {
+
+	},
 	actions: {
     },
 	getters: {
