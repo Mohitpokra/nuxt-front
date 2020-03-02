@@ -140,31 +140,38 @@ export default {
                 this.error_state.confirm_password = true
             }
         },
-        register() {
+        async register() {
             this.handleNameBlur();
             this.handleEmailBlur();
             this.handlePasswordBlur();
             this.handleCPasswordBlur()
             const isValid = this.error_state.name || this.error_state.email || this.error_state.password || this.error_state.confirm_password
             if(isValid){
-                console.log('proceed to Register');
-                //  try{
-                //         const registered = await this.$axios.post('register', this.user);
+                const obj = {
+                    "name": this.user.name,
+                    "email": this.user.email,
+                    "password": this.user.password,
+                    "password_confirmation": this.user.confirm_password,
+                    "type" : "agent"
+                }
+                 try{
+                        const registered = await this.$axios.post('register', obj);
 
-                //         const loginSuccessfull = await this.$auth.loginWith('local', {
-                //             data: {
-                //                 email: this.user.email,
-                //                 password: this.user.password
-                //             },
-                //         })
-                //         if(registered && loginSuccessfull){
-                //             this.$router.push('/')
-                //         }else{
-                //             // show error will sign up
-                //         }
-                //     } catch (e) {
-                //         this.error = e.response.data.message
-                //     }
+                        await this.$auth.loginWith('local', {
+                            data: {
+                                email: this.user.email,
+                                password: this.user.password
+                            },
+                        })
+                        if(registered){
+                            this.$toast.success('Successfully LoggedIn')
+                            this.$router.push('/')
+                        }else{
+                            // show error will sign up
+                        }
+                    } catch (e) {
+                        this.error = e.response.data.message
+                    }
             }
         }
     }

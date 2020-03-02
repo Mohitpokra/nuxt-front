@@ -63,13 +63,24 @@ export default {
         }
     },
     methods: {
-        login(){
+        async login(){
             this.handleEmailBlur();
             this.handlePasswordBlur();
             const isValid = this.error_state.email || this.error_state.password
             if(isValid){
-                console.log('proceed to SignIn')
-                // proceed to login Api
+                try {
+                    await this.$auth.loginWith('local',{
+                        data: {
+                            email: this.user.email,
+                            password: this.user.password
+                        }
+                    })
+                    this.$toast.success('Successfully LoggedIn')
+                    this.$router.push('/')
+                }
+                catch(e){
+
+                }
             }
         },
         handleFocus(fieldName){
