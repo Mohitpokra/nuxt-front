@@ -9,13 +9,13 @@
         <b-navbar-nav class="ml-auto" v-else>
             <b-nav-text v-if="!$auth.loggedIn" class="p3">Already have an account?</b-nav-text>
             <b-nav-item v-if="!$auth.loggedIn" class="p3 text-primary" to="/sign_in"><span class="text-primary">Sign In</span></b-nav-item>
-            <div class="sidebar-icon">
+            <div class="sidebar-icon" @click="toggleSideBar">
                 <img class="logo" src="~/assets/icons/icon-interface-menu.svg" />
             </div>
         </b-navbar-nav>
     </b-navbar>
-    <div class="sidebar-menu">
-        <img class="cross" src="~/assets/icons/icon-interface-x.svg" />
+    <div :class="['sidebar-menu',{'reveal': open}]">
+        <img @click="toggleSideBar" class="cross" src="~/assets/icons/icon-interface-x.svg" />
         <ul>
             <li>Home</li>
             <li>Start a new home search</li>
@@ -29,7 +29,16 @@
 
 <script>
 export default {
-
+    data(){
+        return {
+            open: false
+        }
+    },
+    methods:{
+        toggleSideBar(){
+            this.open = !this.open
+        }
+    }
 }
 </script>
 
@@ -55,7 +64,7 @@ ul {
     &-icon{
         display: flex;
         align-items: center;
-        display: none;
+        // display: none;
     }
     &-menu{
         position: fixed;
