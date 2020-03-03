@@ -71,12 +71,12 @@
                 </div>
                 <b-form class="modal-form">
                     <label class="" for="login-name">Client Name</label>
-                    <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
+                    <b-input :class="{form_fill: user.name}" @blur="handleEmailBlur"  @focus="handleFocus('name')"  v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
                 </b-form>
-                <b-button class="mt-3 btn-1" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
+                <b-button class="mt-3 btn-1" block variant="primary" size="lg" @click="createUser()">Create</b-button>
                 <b-button class="mt-3 btn-2 bottom-20" block variant="secondary btn-custom_1" @click="$bvModal.hide('add-new-client')" size="lg">Cancel</b-button>
             </div>
         </b-modal>
@@ -101,15 +101,55 @@ export default {
         }
     },
     computed: {
-        isDisable() {
-            if (this.user.name) {
-                return false;
-            } else {
-                return true;
-            }
-        }
     },
     methods: {
+        errorHandling(responseObj){
+            let {message, errors = {}} = responseObj.response && responseObj.response.data
+            if(Object.keys(errors).length){
+                Object.keys(errors).map((error)=>{
+                    this.$toast.error(errors[error], toastDuration)
+                });
+            }else{
+                    this.$toast.error(message, toastDuration)
+            }
+        },
+        createUser(){
+            this.handleEmailBlur();
+            const isValid = this.error_state.name 
+            if(isValid){
+                try {
+                    // const data = await this.$auth.loginWith('local',{
+                    //     data: {
+                    //         name: this.user.name,
+                    //     }
+                    // }).catch((responseObj)=>{
+                    //     this.errorHandling(responseObj);
+                    //     return
+                    // })
+                    // if(data){
+                    //     this.$toast.success('User created successfully')
+                    // }
+                }
+                catch(e){
+
+                }
+            }
+        },
+        handleFocus(fieldName){
+            this.error[fieldName] = ''
+            this.error_state[fieldName] = null
+        },
+        handleEmailBlur(){
+            const isValidName = isRequired(this.user.name)
+            if(!isValidName){
+                this.error.name = ' Name is Required. '
+                this.error_state.name = false
+            }else{
+                this.error.name = ''
+                this.error_state.name = true
+            }
+
+        },
         moveToNext(){
             this.$router.push('/exp-home/client/pre_approval')
         },
