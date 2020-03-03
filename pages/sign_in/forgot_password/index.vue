@@ -10,7 +10,7 @@
                         <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                             <div class="flex justify-content-between" >
                                 <label class="" for="login-email">Email</label>
-                                <span class="inp-error">{{error.email}}</span>
+                                <span class="inp-error">Email address not found</span>
                             </div>
                             <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         </div>
