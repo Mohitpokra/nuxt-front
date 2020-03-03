@@ -144,10 +144,6 @@ export default {
     margin: auto;
 }
 
-.m-password {
-    margin-top: 24px;
-}
-
 .m-signIn-btn {
     margin-top: 48px;
 }

@@ -254,7 +254,17 @@ label {
 
 .form-control:invalid:focus,
 .form-control.is-invalid:focus {
-  box-shadow: none;
+  box-shadow: none !important;
+}
+
+.form-control{
+  &.is-valid{
+    border: 1px solid #b8b8b8;
+    box-shadow: none !important;
+    &.form_fill{
+      border: 1px solid #b8b8b8;
+    }
+  }
 }
 
 select {
@@ -700,18 +710,13 @@ select.selectpicker {
   }
   &-wrapper{
     position: relative;
-    margin-top: 24px;
     .justify-content-between{
-      label{
-        margin-top: 0px;
-      }
-    }
-    &:first-child{
-      margin-top: 0px;
+      padding-top: 24px;
     }
     .form-control{
       min-height: 48px;
       font-size: 16px;
+      background-image: none;
     }
     .form-control.is-invalid{
       border: 2px solid $btn-danger;

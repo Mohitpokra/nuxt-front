@@ -23,7 +23,7 @@
                 <b-form>
                     <div class="inp-wrapper">
                         <div class="flex justify-content-between">
-                            <label for="billing-name">Name on Credit Card</label>
+                            <label class="inp-title" for="billing-name">Name on Credit Card</label>
                             <span class="inp-error">Invalid</span>
                         </div>
                         <b-input :class="{form_fill: billing.name}" v-model.trim="billing.name" :state="error_state.name" size="lg" id="billing-name" placeholder="Charlie Exampleton"></b-input>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="inp-wrapper">
                         <div class="flex justify-content-between">
-                            <label for="billing-cardNo">Credit Card Number</label>
+                            <label class="inp-title" for="billing-cardNo">Credit Card Number</label>
                             <span class="inp-error">Invalid</span>
                         </div>
                         <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input>
@@ -45,7 +45,7 @@
                         <b-col cols="12" lg="6">
                             <div class="inp-wrapper">
                                 <div class="flex justify-content-between">
-                                    <label for="billing-expiryDate">Expiration Date</label>
+                                    <label class="inp-title" for="billing-expiryDate">Expiration Date</label>
                                     <span class="inp-error">Invalid</span>
                                 </div>
                                 <b-input :class="{form_fill: billing.expiryDate}" v-model="billing.expiryDate" :state="error_state.expiryDate" size="lg" id="billing-expiryDate" placeholder="MM/YY"></b-input>
@@ -57,7 +57,7 @@
                         <b-col cols="12" lg="6">
                             <div class="inp-wrapper">
                                 <div class="flex justify-content-between">
-                                    <label for="billing-cvc">CVC</label>
+                                    <label class="inp-title" for="billing-cvc">CVC</label>
                                     <span class="inp-error">Invalid</span>
                                 </div>
                                 <b-input :class="{form_fill: billing.cvc}" v-model="billing.cvc" :state="error_state.cvc" size="lg" id="billing-cvc" placeholder="CVC"></b-input>

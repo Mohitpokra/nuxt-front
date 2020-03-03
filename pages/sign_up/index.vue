@@ -203,14 +203,6 @@ export default {
     }
 }
 
-.m-email {
-    margin-top: 24px;
-}
-
-.m-password {
-    margin-top: 24px;
-}
-
 .m-singUp-btn {
     margin-top: 48px;
     margin-bottom: 24px;
