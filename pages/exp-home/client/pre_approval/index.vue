@@ -3,11 +3,7 @@
     <div class="inner-container">
         <b-row align-h="start">
             <b-col offset-lg="1">
-                <b-breadcrumb>
-                    <b-breadcrumb-item>Home</b-breadcrumb-item>
-                    <b-breadcrumb-item>Client</b-breadcrumb-item>
-                    <b-breadcrumb-item active>Pre-approval</b-breadcrumb-item>
-                </b-breadcrumb>
+                <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row class="top-title">
@@ -216,7 +212,21 @@ export default {
             selected: 0,
             preApproved: 0,
             affordability: 0,
-            request_sent: 0
+            request_sent: 0,
+            items: [
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'Client',
+                    href: '/exp-home/client/'
+                },
+                {
+                    text: 'Pre-approval',
+                    href: '#'
+                },
+            ]
         }
     },
     methods: {

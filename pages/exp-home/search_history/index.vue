@@ -3,10 +3,7 @@
     <div class="inner-container">
         <b-row align-h="start" class="location">
             <b-col offset-lg="1">
-                <b-breadcrumb>
-                    <b-breadcrumb-item>Home</b-breadcrumb-item>
-                    <b-breadcrumb-item active>Search History</b-breadcrumb-item>
-                </b-breadcrumb>
+                <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <div v-if="!search_count">
@@ -85,7 +82,17 @@ export default {
         return {
             search_count: 0,
             rows: 100,
-            currentPage: 1
+            currentPage: 1,
+            items: [
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'Search History',
+                    href: '#'
+                },
+            ]
         }
     }
 

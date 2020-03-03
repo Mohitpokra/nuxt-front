@@ -3,12 +3,7 @@
     <div class="inner-container">
         <b-row align-h="start">
             <b-col offset-lg="1">
-                <b-breadcrumb>
-                    <b-breadcrumb-item>Home</b-breadcrumb-item>
-                    <b-breadcrumb-item>Client</b-breadcrumb-item>
-                    <b-breadcrumb-item>Pre-approval</b-breadcrumb-item>
-                    <b-breadcrumb-item active>Home Design</b-breadcrumb-item>
-                </b-breadcrumb>
+                <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row>
@@ -139,7 +134,25 @@ export default {
             search: null,
             error_state: {
                 search: null
-            }
+            },
+            items: [
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'Client',
+                    href: '/exp-home/client/'
+                },
+                {
+                    text: 'Pre-approval',
+                    href: '/exp-home/client/pre_approval/'
+                },
+                {
+                    text: 'Home Design',
+                    href: '#'
+                },
+            ]
         }
     },
     methods:{

@@ -3,10 +3,7 @@
     <div class="inner-container">
         <b-row align-h="start">
             <b-col offset-lg="1">
-                <b-breadcrumb>
-                    <b-breadcrumb-item>Home</b-breadcrumb-item>
-                    <b-breadcrumb-item active>Account</b-breadcrumb-item>
-                </b-breadcrumb>
+                <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row>
@@ -227,7 +224,17 @@ export default {
                 cardNo: null,
                 expiryDate: null,
                 cvc: null
-            }
+            },
+            items: [
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'My Account',
+                    href: '#'
+                },
+            ]
         }
     },
     methods: {

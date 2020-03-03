@@ -3,10 +3,7 @@
     <div class="inner-container">
         <b-row align-h="start" class="location" >
             <b-col offset-lg="1">
-                <b-breadcrumb>
-                    <b-breadcrumb-item>Home</b-breadcrumb-item>
-                    <b-breadcrumb-item active>Client</b-breadcrumb-item>
-                </b-breadcrumb>
+                <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row class="add-client">
@@ -97,7 +94,17 @@ export default {
             },
             error_state: {
                 name: null,
-            }
+            },
+            items: [
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'Client',
+                    href: '#'
+                },
+            ]
         }
     },
     computed: {
