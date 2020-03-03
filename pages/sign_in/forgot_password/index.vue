@@ -7,12 +7,12 @@
                 <b-col></b-col>
                 <b-col lg="10" cols="12">
                     <b-form class="forgor-form">
-                        <div class="inp-wrapper">
-                            <label class="" for="login-email">Email</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="login-email">Email</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
                         </div>
                         <div class="">
                             <b-button class="m-btn" block variant="primary" size="lg" @click="submit">Send reset intructions</b-button>

@@ -7,22 +7,22 @@
                 <b-col></b-col>
                 <b-col lg="10" cols="12">
                     <b-form class="login-box">
-                        <div class="inp-wrapper">
-                            <div class="flex justify-content-between">
+                        <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                            <div class="flex justify-content-between" >
                                 <label for="login-email">Email</label>
-                                <span class="inp-error">Invalid</span>
+                                <span class="inp-error">{{error.email}}</span>
                             </div>
                             <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur"  @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
                         </div>
-                        <div class="inp-wrapper">
-                            <label class="m-password" for="login-password">Password</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
+                            <div class="flex justify-content-between" >
+                                <label  class="m-password" for="login-password">Password</label>
+                                <span class="inp-error">{{error.password}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur"  @focus="handleFocus('password')"  v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                            <b-form-invalid-feedback :state="error_state.password">
+                            <!-- <b-form-invalid-feedback :state="error_state.password">
                                 {{error.password}}
-                            </b-form-invalid-feedback>
+                            </b-form-invalid-feedback> -->
                         </div>
                         <div>
                             <b-button class="m-signIn-btn" block variant="primary" size="lg" @click="login">Sign In</b-button>
