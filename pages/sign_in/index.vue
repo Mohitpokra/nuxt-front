@@ -67,7 +67,6 @@ export default {
     methods: {
         errorHandling(responseObj){
             let {message, errors = {}} = responseObj.response && responseObj.response.data
-            debugger
             if(Object.keys(errors).length){
                 Object.keys(errors).map((error)=>{
                     this.$toast.error(errors[error], toastDuration)
