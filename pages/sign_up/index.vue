@@ -7,33 +7,33 @@
             <b-row class="" align-h="center">
                 <b-col lg="10" cols="12">
                     <b-form class="signup-box">
-                        <div class="inp-wrapper">
-                            <label class="" for="login-name">Name</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.name == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="login-name">Name</label>
+                                <span class="inp-error">{{error.name}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.name}" @blur="handleNameBlur"  @focus="handleFocus('name')" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
-                            <b-form-invalid-feedback :state="error_state.name">
-                                {{error.name}}
-                            </b-form-invalid-feedback>
                         </div>
-                        <div class="inp-wrapper">
-                            <label class="m-email" for="login-email">Email</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="login-email">Email</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur" @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
                         </div>
-                        <div class="inp-wrapper">
-                            <label class="m-password" for="login-password">Password</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="login-password">Password</label>
+                                <span class="inp-error">{{error.password}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur" @focus="handleFocus('password')" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                            <b-form-invalid-feedback :state="error_state.password">
-                                {{error.password}}
-                            </b-form-invalid-feedback>
                         </div>
-                        <div class="inp-wrapper">
-                            <label class="m-password" for="confirm-password">Confirm Password</label>
+                        <div :class="['inp-wrapper',{'has-error':error_state.confirm_password == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="confirm-password">Confirm Password</label>
+                                <span class="inp-error">{{error.confirm_password}}</span>
+                            </div>
                             <b-input :class="{form_fill: user.confirm_password}" @blur="handleCPasswordBlur" @focus="handleFocus('confirm_password')" v-model="user.confirm_password" :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="••••••••"></b-input>
-                            <b-form-invalid-feedback :state="error_state.confirm_password">
-                                {{error.confirm_password}}
-                            </b-form-invalid-feedback>
                         </div>
                         <div>
                             <b-button class="m-singUp-btn" block variant="primary" size="lg" @click="register">Sign Up</b-button>
