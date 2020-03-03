@@ -17,11 +17,11 @@
     <div :class="['sidebar-menu',{'reveal': open}]">
         <img @click="toggleSideBar" class="cross" src="~/assets/icons/icon-interface-x.svg" />
         <ul>
-            <li>Home</li>
-            <li>Start a new home search</li>
-            <li>Revisit a previous search</li>
-            <li>Request a pre-approval</li>
-            <li>My Account</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="">Start a new home search</a></li>
+            <li><a href="">Revisit a previous search</a></li>
+            <li><a href="/exp-home/client/pre_approval">Request a pre-approval</a></li>
+            <li><a href="/exp-home/account">My Account</a></li>
         </ul>
     </div>
 </b-container>
@@ -64,7 +64,7 @@ ul {
     &-icon{
         display: flex;
         align-items: center;
-        // display: none;
+        cursor: pointer;
     }
     &-menu{
         position: fixed;
@@ -101,6 +101,9 @@ ul {
                 color: #44a1bf;
                 margin-bottom: 24px;
                 cursor: pointer;
+                a{
+                    text-decoration: none;
+                }
             }
         }
         @media screen and (max-width: 720px) {
