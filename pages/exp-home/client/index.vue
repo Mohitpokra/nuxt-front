@@ -53,10 +53,10 @@
     </div>
     <b-row align-h="end" class="buttons">
         <b-col cols="6" align-self="start">
-            <b-btn class="btn-custom btn-back" variant="secondary" size="lg">Back</b-btn>
+            <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="goBack()">Back</b-btn>
         </b-col>
         <b-col cols="6" class="text-right" align-self="end">
-            <b-btn class="btn-custom" variant="primary" size="lg">Next</b-btn>
+            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
         </b-col>
     </b-row>
 
@@ -110,6 +110,12 @@ export default {
         }
     },
     methods: {
+        moveToNext(){
+            this.$router.push('/exp-home/client/pre_approval')
+        },
+        goBack(){
+            this.$router.back()
+        },
         hide() {
             this.show = 0;
         }

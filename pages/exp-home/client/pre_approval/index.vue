@@ -177,7 +177,7 @@
                             </div>
                             <h3>Request sent!</h3>
                             <p class="p3">We’ll be in touch with you and your client to get a competitive rate.</p>
-                            <b-btn variant="primary btn-custom_2">Continue Search</b-btn>
+                            <b-btn variant="primary btn-custom_2" @click="goToNext">Continue Search</b-btn>
                         </b-col>
                     </b-row>
                 </div>
@@ -186,10 +186,10 @@
     </div>
     <b-row align-h="between" class="steps-btn">
         <b-col cols="6">
-            <b-button class="mt-3 back" variant="" size="lg">Back</b-button>
+            <b-button class="mt-3 back" variant="" size="lg" @click="goBack"> Back</b-button>
         </b-col>
         <b-col cols="6 text-right">
-            <b-button class="mt-3 next" variant="primary" size="lg">Next</b-button>
+            <b-button class="mt-3 next" variant="primary" size="lg" @click="$bvModal.show('req-apv')">Next</b-button>
         </b-col>
     </b-row>
 </b-container>
@@ -220,6 +220,12 @@ export default {
         }
     },
     methods: {
+        goToNext(){
+            this.$router.push('/exp-home/client/pre_approval/home_design')
+        },
+        goBack(){
+            this.$router.back()
+        },
         showPreApproved() {
             this.preApproved = 1;
             this.affordability = 0;

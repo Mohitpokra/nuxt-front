@@ -37,14 +37,14 @@
         </b-row>
         <b-row class="d-none d-lg-flex" align-h="end">
         <b-col cols="12" class="text-right p-0" align-self="end">
-                    <b-btn class="btn-custom" variant="primary" size="lg">Next</b-btn>
+                    <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
                 </b-col>
         </b-row>
     </div>
 </b-container>
  <b-row class="d-flex d-lg-none m-btn" align-h="end">
        <b-col cols="12" class="text-right p-0" align-self="end">
-                <b-btn class="btn-custom" variant="primary" size="lg">Next</b-btn>
+                <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
             </b-col>
     </b-row>
 </div>
@@ -62,6 +62,9 @@ export default {
         }
     },
     methods: {
+        moveToNext(){
+            this.$router.push('/exp-home/client')
+        },
         turnBg(elem) {
             this.selected_1 = false;
             this.selected_2 = false;

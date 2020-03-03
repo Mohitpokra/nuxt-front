@@ -11,7 +11,7 @@
     </b-row>
     <b-row class="" align-h="center">
         <b-col align-self="center" cols="auto">
-            <b-btn class="btn-custom btn-back" variant="secondary" size="lg">Back</b-btn>
+            <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="backToHome()">Back to home</b-btn>
         </b-col>
     </b-row>
 </b-container>
@@ -19,7 +19,16 @@
 
 <script>
 export default {
+    data(){
+        return {
 
+        }
+    },
+    methods: {
+        backToHome(){
+            this.$router.push('/')
+        }
+    }
 }
 </script>
 
