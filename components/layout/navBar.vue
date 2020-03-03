@@ -23,6 +23,7 @@
             <li><a href="/exp-home/client/pre_approval">Request a pre-approval</a></li>
             <li><a href="/exp-home/account">My Account</a></li>
         </ul>
+        <div class="logout"><a href="/sign_in">Sign Out</a></div>
     </div>
 </b-container>
 </template>
@@ -82,12 +83,28 @@ ul {
             transform: translateX(0px);
             box-shadow: -8px 0 24px 0 rgba(0, 0, 0, 0.08);
         }
+        .logout{
+            width: 324px;
+            height: 48px;
+            border-radius: 2px;
+            background-color: #f5f5f5;
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            a{
+                text-decoration: none;
+            }
+        }
         .cross{
             float: right;
             width: 35px;
             padding: 10px;
             height: 35px;
             cursor: pointer;
+            margin-right: -25px;
             margin-top: -20px;
         }
         ul{
@@ -109,15 +126,19 @@ ul {
         @media screen and (max-width: 720px) {
             width: 100%;
             padding: 30px 25px;
-            padding-right: 0px;
             transform: translateX(100%);
             ul{
                 li{
                     font-size: 14px;
                 }
             }
+            .logout{
+                left: 25px;
+                right: 0px;
+                width: calc(100% - 50px);
+            }
             .cross{
-                margin-right: 14px;
+                margin-right: -10px;
             }
         }
     }
