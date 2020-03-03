@@ -49,7 +49,7 @@
 
 <script>
 import {isRequired, isEmail } from './../../utils/validations.js'
-
+import {toastDuration} from './../../constants.js'
 export default {
     // auth: false,
     transition: {
@@ -140,6 +140,16 @@ export default {
                 this.error_state.confirm_password = true
             }
         },
+        errorHandling(responseObj){
+            let {message, errors = {}} = responseObj.response && responseObj.response.data
+            if(Object.keys(errors).length){
+                Object.keys(errors).map((error)=>{
+                    this.$toast.error(errors[error], toastDuration)
+                });
+            }else{
+                    this.$toast.error(message, toastDuration)
+            }
+        },
         async register() {
             this.handleNameBlur();
             this.handleEmailBlur();
@@ -155,22 +165,25 @@ export default {
                     "type" : "agent"
                 }
                  try{
-                        const registered = await this.$axios.post('register', obj);
-
-                        await this.$auth.loginWith('local', {
-                            data: {
-                                email: this.user.email,
-                                password: this.user.password
-                            },
-                        })
+                        const registered = await this.$axios.post('register', obj).catch((responseObj)=>{
+                            this.errorHandling(responseObj)
+                            return false
+                        });
                         if(registered){
-                            this.$toast.success('Successfully LoggedIn')
+                            await this.$auth.loginWith('local', {
+                                data: {
+                                    email: this.user.email,
+                                    password: this.user.password
+                                },
+                            }).catch((responseObj)=>{
+                                this.errorHandling(responseObj)
+                                return
+                            })
+                            this.$toast.success('Successfully LoggedIn', toastDuration)
                             this.$router.push('/')
-                        }else{
-                            // show error will sign up
                         }
                     } catch (e) {
-                        this.error = e.response.data.message
+                        this.$toast.error('Please try again later !', toastDuration)
                     }
             }
         }

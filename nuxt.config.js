@@ -80,6 +80,9 @@ export default {
   },
   auth: {
     // Options
+    redirect:{
+      login: '/sign_in',
+    },
     strategies: {
       local: {
         endpoints: {

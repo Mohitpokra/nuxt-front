@@ -41,6 +41,8 @@
 
 <script>
 import {isRequired, isEmail } from './../../utils/validations.js'
+import {toastDuration} from './../../constants.js'
+
 export default {
     transition: {
         name: "custom-classes-transition",
@@ -63,20 +65,36 @@ export default {
         }
     },
     methods: {
+        errorHandling(responseObj){
+            let {message, errors = {}} = responseObj.response && responseObj.response.data
+            debugger
+            if(Object.keys(errors).length){
+                Object.keys(errors).map((error)=>{
+                    this.$toast.error(errors[error], toastDuration)
+                });
+            }else{
+                    this.$toast.error(message, toastDuration)
+            }
+        },
         async login(){
             this.handleEmailBlur();
             this.handlePasswordBlur();
             const isValid = this.error_state.email || this.error_state.password
             if(isValid){
                 try {
-                    await this.$auth.loginWith('local',{
+                    const data = await this.$auth.loginWith('local',{
                         data: {
                             email: this.user.email,
                             password: this.user.password
                         }
+                    }).catch((responseObj)=>{
+                        this.errorHandling(responseObj);
+                        return
                     })
-                    this.$toast.success('Successfully LoggedIn')
-                    this.$router.push('/')
+                    if(data){
+                        this.$toast.success('Successfully LoggedIn')
+                        this.$router.push('/')
+                    }
                 }
                 catch(e){
 

@@ -52,7 +52,7 @@
 
 <script>
 export default {
-    // auth: false,
+    middleware: 'auth',
     data() {
         return {
             selected_1: false,
