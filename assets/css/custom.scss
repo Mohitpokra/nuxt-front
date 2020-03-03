@@ -700,6 +700,15 @@ select.selectpicker {
   }
   &-wrapper{
     position: relative;
+    margin-top: 24px;
+    .justify-content-between{
+      label{
+        margin-top: 0px;
+      }
+    }
+    &:first-child{
+      margin-top: 0px;
+    }
     .form-control{
       min-height: 48px;
       font-size: 16px;
