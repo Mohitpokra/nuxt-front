@@ -7,32 +7,34 @@
             </b-col>
         </b-row>
         <b-row class="m-bottom">
-            <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5" offset-lg="1">
-                <h3>Free</h3>
-                <p class="p-box-subheading p2">Limited to 5 searches per month</p>
-                <div class="p-box-money d-flex align-items-center">
-                    <h2 class="text-primary">
-                        $0
-                    </h2>
-                    <h2 class="month">/ month</h2>
-                </div>
-                <div>
-                    <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
-                </div>
-            </b-col>
-            <b-col class="box-shadow-low p-box m-box-left" cols="12" lg="5">
-                <h3>Pro</h3>
-                <p class="p-box-subheading p2">Unlimited searches</p>
-                <div class="p-box-money d-flex align-items-center">
-                    <h2 class="text-primary">
-                        $15
-                    </h2>
-                    <h2 class="month">/ month</h2>
-                </div>
-                <div>
-                    <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
-                </div>
-            </b-col>
+            <div class="plan-wrapper">
+                <b class="box-shadow-low plan-box">
+                    <h3>Free</h3>
+                    <p class="p-box-subheading p2">Limited to 5 searches per month</p>
+                    <div class="p-box-money d-flex align-items-center">
+                        <h2 class="text-primary">
+                            $0
+                        </h2>
+                        <h2 class="month">/ month</h2>
+                    </div>
+                    <div>
+                        <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
+                    </div>
+                </b>
+                <b class="box-shadow-low plan-box">
+                    <h3>Pro</h3>
+                    <p class="p-box-subheading p2">Unlimited searches</p>
+                    <div class="p-box-money d-flex align-items-center">
+                        <h2 class="text-primary">
+                            $15
+                        </h2>
+                        <h2 class="month">/ month</h2>
+                    </div>
+                    <div>
+                        <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
+                    </div>
+                </b>
+            </div>
         </b-row>
     </div>
 </b-container>
@@ -120,5 +122,22 @@ export default {};
     letter-spacing: normal;
     color: #44a1bf;
     margin-left: 8px;
+}
+.plan-wrapper{
+    width: 936px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    .plan-box{
+        width: 456px;
+        padding: 48px;
+    }
+    @media screen and (max-width: 936px) {
+        flex-direction: column;
+        .plan-box{
+            width: 100%;
+            margin-bottom: 24px;
+        }
+    }
 }
 </style>

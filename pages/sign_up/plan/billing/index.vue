@@ -139,7 +139,7 @@ export default {
 
 .m-pay-btn {
     margin-top: 48px;
-    margin-bottom: 220px;
+    margin-bottom: 190px;
 
     @media screen and (max-width: 992px) {
         margin-bottom: 76px;

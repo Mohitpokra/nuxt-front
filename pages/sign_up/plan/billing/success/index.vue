@@ -31,7 +31,7 @@ img {
 }
 
 .m-bottom {
-    margin-bottom: 338px;
+    margin-bottom: 300px;
     @media screen and (max-width: 720px) {
         margin-bottom: 280px;
         font-size: 16px;
