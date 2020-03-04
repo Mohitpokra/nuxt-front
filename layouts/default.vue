@@ -30,4 +30,7 @@ export default {
         justify-content: center !important;
     }
 }
+.container.before-login{
+    max-width: 1059px;
+}
 </style>

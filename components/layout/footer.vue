@@ -1,6 +1,6 @@
 <template>
 <div class="footer">
-    <b-container>
+    <b-container :class="(!$auth.loggedIn)? 'm-container before-login': 'm-container'">
         <b-row align-v="center">
             <b-col cols="12" md="4">
                 <p class="mobile-center mb-0 p4">© 2019 Search By Mortgage Payment</p>

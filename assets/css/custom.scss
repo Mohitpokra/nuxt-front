@@ -259,10 +259,10 @@ label {
 
 .form-control{
   &.is-valid{
-    border: 1px solid #b8b8b8;
+    border: 2px solid #1f1f1f;
     box-shadow: none !important;
     &.form_fill{
-      border: 1px solid #b8b8b8;
+      border: 2px solid #1f1f1f;
     }
   }
 }

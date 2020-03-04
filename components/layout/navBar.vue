@@ -1,5 +1,5 @@
 <template>
-<b-container class="m-container">
+<b-container :class="(!$auth.loggedIn)? 'm-container before-login': 'm-container'">
     <b-navbar type="primary" variant>
         <b-navbar-brand to="/"><img class="logo" src="~/assets/icons/icon-interface-home.svg" /></b-navbar-brand>
         <b-navbar-nav class="ml-auto" v-if="$route.name === 'sign_in' || $route.name === 'sign_in-forgot_password' || $route.name === 'sign_in-forgot_password-success'">
