@@ -165,7 +165,7 @@ export default {
                     "type" : "agent"
                 }
                  try{
-                        const registered = await this.$axios.post('register', obj).catch((responseObj)=>{
+                        const registered = await this.$axios.post('api/register', obj).catch((responseObj)=>{
                             this.errorHandling(responseObj)
                             return false
                         });

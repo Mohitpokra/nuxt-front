@@ -76,7 +76,7 @@ export default {
   },
   axios: {
     // baseURL: 'http://ec2-18-212-38-13.compute-1.amazonaws.com/backend/public/api'
-      baseURL: 'http://ec2-54-172-247-207.compute-1.amazonaws.com/api'
+      baseURL: 'http://ec2-54-172-247-207.compute-1.amazonaws.com/'
   },
   auth: {
     // Options
@@ -86,8 +86,8 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/login', method: 'post', propertyName: 'user.api_token' },
-          logout: false,
+          login: { url: 'api/login', method: 'post', propertyName: 'user.token' },
+          logout: { url: 'api/logout', method: 'post' },
           user: false
         },
         // tokenRequired: true,
