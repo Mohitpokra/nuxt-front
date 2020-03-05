@@ -1,44 +1,51 @@
 <template>
 <div>
 <b-container>
-    <div class="inner-container">
+    <div>
         <b-row>
-            <b-col cols="12" lg="11" offset-lg="1" class="top-title">
+            <div class="top-title">
                 <h2 class="m-header">What are you looking to do today?</h2>
-            </b-col>
-            <b-col class="box-container" :class="{'bg-heading': selected_1}" cols="12" lg="auto" offset-lg="1" @click="turnBg(1)">
-                <div class="flex looking-box">
-                    <div class="img-container">
-                        <img class="icon-option-new-search" src="~/assets/icons/icon-option-new-search.svg" />
+            </div>
+            <div class="looking-for">
+                <div class="looking-for-box">
+                    <div class="box-container" :class="{'bg-heading': selected_1}" @click="turnBg(1)">
+                        <div class="flex looking-box">
+                            <div class="img-container">
+                                <img class="icon-option-new-search" src="~/assets/icons/icon-option-new-search.svg" />
+                            </div>
+                            <h3 class="m-text" :class="{'text-white': selected_1}">Start a new home search</h3>
+                            <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
+                        </div>
                     </div>
-                    <h3 class="m-text" :class="{'text-white': selected_1}">Start a new home search</h3>
-                    <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                 </div>
-            </b-col>
-            <b-col class="box-container container-middle" :class="{'bg-heading': selected_2}" cols="12" lg="auto" @click="turnBg(2)">
-                <div class="flex looking-box">
-                    <div class="img-container">
-                        <img class="icon-option-new-search" src="~/assets/icons/icon-option-previous-search.svg" />
+                <div class="looking-for-box">
+                    <div class="box-container" :class="{'bg-heading': selected_2}" @click="turnBg(2)">
+                        <div class="flex looking-box">
+                            <div class="img-container">
+                                <img class="icon-option-new-search" src="~/assets/icons/icon-option-previous-search.svg" />
+                            </div>
+                            <h3 class="m-text" :class="{'text-white': selected_2}">Start a new home search</h3>
+                            <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
+                        </div>
                     </div>
-                    <h3 class="m-text" :class="{'text-white': selected_2}">Start a new home search</h3>
-                    <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                 </div>
-            </b-col>
-            <b-col class="box-container" :class="{'bg-heading': selected_3}" cols="12" lg="auto" @click="turnBg(3)">
-                <div class="flex looking-box">
-                    <div class="img-container">
-                        <img class="icon-option-new-search" src="~/assets/icons/icon-option-preapproval.svg" />
+                <div class="looking-for-box">
+                    <div class="box-container" :class="{'bg-heading': selected_3}" @click="turnBg(3)">
+                        <div class="flex looking-box">
+                            <div class="img-container">
+                                <img class="icon-option-new-search" src="~/assets/icons/icon-option-preapproval.svg" />
+                            </div>
+                            <h3 class="m-text" :class="{'text-white': selected_3}">Start a new home search</h3>
+                            <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
+                        </div>
                     </div>
-                    <h3 class="m-text" :class="{'text-white': selected_3}">Start a new home search</h3>
-                    <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                 </div>
-            </b-col>
-            <b-col cols="12" lg="1"></b-col>
+            </div>
         </b-row>
         <b-row class="d-none d-lg-flex" align-h="end">
-        <b-col cols="12" class="text-right p-0" align-self="end">
-                    <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
-                </b-col>
+        <b-col cols="12" class="text-right" align-self="end">
+            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
+        </b-col>
         </b-row>
     </div>
 </b-container>
@@ -95,7 +102,23 @@ export default {
     }
 
 }
-
+.top-title{
+    width: 940px;
+    margin: auto;
+}
+.looking-for{
+    display: flex;
+    width: 940px;
+    max-width: 940px;
+    margin: auto;
+    justify-content: space-between;
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+        &-box{
+            margin-bottom: 10px;
+        }
+    }
+}
 
 .btn-custom {
     width: 156px;
