@@ -2,13 +2,13 @@
 <b-container>
     <div class="inner-container billing-wrapper">
         <b-row class="" :no-gutters="true">
-            <b-col offset-lg="1">
+            <b-col>
                 <h3 class="m-heading-text">Enter billing information</h3>
                 <p class="m-subheading-text">Review your plan and enter your payment details</p>
             </b-col>
         </b-row>
-        <b-row class="" :no-gutters="true">
-            <b-col class="d-none d-lg-block pr-4" lg="3" offset-lg="1">
+        <b-row class="billing" :no-gutters="true">
+            <b-col class="d-none d-lg-block billing-left-block">
                 <p class="p1 m-search-text ">Search by Mortgage <br> Payment Pro Plan</p>
                 <div class="d-flex">
                     <h3 class="m-money-symbol">$15</h3>
@@ -19,7 +19,7 @@
                 <p class="p2 p2-new"><span><img class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Unlimited search history</p>
                 <p class="p2 p2-new"><span><img class="m-img-text " src="~/assets/icons/icon-interface-check.svg" /></span>Cancel anytime</p>
             </b-col>
-            <b-col class="ml-lg-3" lg="7">
+            <b-col class="billing-right-block">
                 <b-form>
                     <div class="inp-wrapper">
                         <div class="flex justify-content-between">
@@ -178,6 +178,16 @@ p {
 .billing-wrapper{
     form{
         max-width: 616px;
+    }
+}
+.billing{
+    &-left-block{
+        max-width: 200px;
+        margin-right: 120px;
+    }
+    &-right-block{
+        width: 616px;
+        max-width: 100%;
     }
 }
 </style>
