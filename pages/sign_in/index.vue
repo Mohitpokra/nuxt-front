@@ -87,7 +87,7 @@ export default {
                             password: this.user.password
                         }
                     }).then(()=>{
-                        this.$toast.success('Successfully LoggedIn')
+                        this.$toast.success('Successfully LoggedIn', toastDuration)
                         this.$router.push('/')
                     }).catch((responseObj)=>{
                         this.errorHandling(responseObj);
