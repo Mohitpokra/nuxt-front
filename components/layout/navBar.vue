@@ -23,13 +23,14 @@
             <li><a href="/exp-home/client/pre_approval">Request a pre-approval</a></li>
             <li><a href="/exp-home/account">My Account</a></li>
         </ul>
-        <div class="logout"><a href="/sign_in">Sign Out</a></div>
+        <div class="logout"><a @click="logout()">Sign Out</a></div>
     </div>
 </b-container>
 </template>
 
 <script>
 export default {
+    // middleware: 'auth',
     data(){
         return {
             open: false
@@ -38,6 +39,18 @@ export default {
     methods:{
         toggleSideBar(){
             this.open = !this.open
+        },
+        logout(){
+            try{
+                this.$auth.logout()
+                .then((data)=>{
+                    this.$router.push('/sign_in');
+                    this.toggleSideBar()
+                })
+            }catch(e){
+                this.$toast.error('Something went wrong !!!')
+            }
+            
         }
     }
 }

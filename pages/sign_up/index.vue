@@ -150,7 +150,7 @@ export default {
                     this.$toast.error(message, toastDuration)
             }
         },
-        async register() {
+        register() {
             this.handleNameBlur();
             this.handleEmailBlur();
             this.handlePasswordBlur();
@@ -165,23 +165,27 @@ export default {
                     "type" : "agent"
                 }
                  try{
-                        const registered = await this.$axios.post('api/register', obj).catch((responseObj)=>{
-                            this.errorHandling(responseObj)
-                            return false
-                        });
-                        if(registered){
-                            await this.$auth.loginWith('local', {
+                        this.$axios.post('api/register', obj)
+                        .then((data)=>{
+                           this.$auth.loginWith('local', {
                                 data: {
                                     email: this.user.email,
                                     password: this.user.password
                                 },
-                            }).catch((responseObj)=>{
+                            })
+                            .then((data)=>{
+                                this.$toast.success('Successfully LoggedIn', toastDuration)
+                                this.$router.push('/')
+                            })
+                            .catch((responseObj)=>{
                                 this.errorHandling(responseObj)
                                 return
-                            })
-                            this.$toast.success('Successfully LoggedIn', toastDuration)
-                            this.$router.push('/')
-                        }
+                            })  
+                        })
+                        .catch((responseObj)=>{
+                            this.errorHandling(responseObj)
+                            return false
+                        });
                     } catch (e) {
                         this.$toast.error('Please try again later !', toastDuration)
                     }

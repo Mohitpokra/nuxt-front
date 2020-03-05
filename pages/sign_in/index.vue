@@ -75,25 +75,24 @@ export default {
                     this.$toast.error(message, toastDuration)
             }
         },
-        async login(){
+        login(){
             this.handleEmailBlur();
             this.handlePasswordBlur();
             const isValid = this.error_state.email || this.error_state.password
             if(isValid){
                 try {
-                    const data = await this.$auth.loginWith('local',{
+                    this.$auth.loginWith('local',{
                         data: {
                             email: this.user.email,
                             password: this.user.password
                         }
+                    }).then(()=>{
+                        this.$toast.success('Successfully LoggedIn')
+                        this.$router.push('/')
                     }).catch((responseObj)=>{
                         this.errorHandling(responseObj);
                         return
                     })
-                    if(data){
-                        this.$toast.success('Successfully LoggedIn')
-                        this.$router.push('/')
-                    }
                 }
                 catch(e){
 
