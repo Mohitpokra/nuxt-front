@@ -2,15 +2,15 @@
 <b-container>
     <div class="inner-container">
         <b-row align-h="start" class="location" >
-            <b-col offset-lg="1">
+            <b-col>
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row class="add-client">
-            <b-col cols="8" lg="6" offset-lg="1">
+            <b-col cols="7" lg="6">
                 <h2>Select or add a new client</h2>
             </b-col>
-            <b-col class="text-right" cols="4" lg="4">
+            <b-col class="text-right" cols="5" lg="6">
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('add-new-client')">New Client</b-btn>
             </b-col>
         </b-row>
@@ -48,15 +48,10 @@
             </b-col>
         </b-row>
     </div>
-    <b-row align-h="end" class="buttons">
-        <b-col cols="6" align-self="start">
-            <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="goBack()">Back</b-btn>
-        </b-col>
-        <b-col cols="6" class="text-right" align-self="end">
-            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
-        </b-col>
-    </b-row>
-
+    <div class="flex justify-between buttons">
+        <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="goBack()">Back</b-btn>
+        <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
+    </div>
     <div>
         <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
             <div class="modal-temp-body ">
@@ -271,8 +266,14 @@ export default {
 
 .add-client{
     margin-top: 38px;
+    display: flex;
+    align-items: center;
      @media screen and (max-width: 992px) {
         margin-top: 20px;
+        align-items: flex-start;
+        h2{
+            line-height: 32px;
+        }
     }
 }
 .input-box{
@@ -299,5 +300,11 @@ export default {
 
 .header{
     margin-top: -12px;
+}
+.buttons{
+     @media screen and (max-width: 992px) {
+        margin-left: -15px;
+        margin-right: -15px;
+     }
 }
 </style>
