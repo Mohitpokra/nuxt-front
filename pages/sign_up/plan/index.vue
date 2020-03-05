@@ -2,7 +2,7 @@
 <b-container class="">
     <div class="inner-container">
         <b-row>
-            <b-col lg="10" offset-lg="1" cols="12">
+            <b-col lg="12" cols="12">
                 <h2 class="m-plan-text">Choose the plan for you</h2>
             </b-col>
         </b-row>
