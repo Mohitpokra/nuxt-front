@@ -87,6 +87,9 @@ export default {
 .m-header {
     margin-top: 96px;
     margin-bottom: 48px;
+    @media screen and (max-width: 936px) {
+        margin-top: 48px;
+    }
 }
 .looking-box{
     flex-direction: column;
