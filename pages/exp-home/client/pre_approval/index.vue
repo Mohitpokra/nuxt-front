@@ -2,23 +2,23 @@
 <b-container>
     <div class="inner-container">
         <b-row align-h="start">
-            <b-col offset-lg="1">
+            <b-col>
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row class="top-title">
-            <b-col cols="12" lg="11" offset-lg="1">
+            <b-col cols="12" lg="11">
                 <h2>Pre-Approval Details</h2>
             </b-col>
         </b-row>
         <b-row align-h="start" class="body-content">
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="6">
                 <div  class="box-shadow-container" :class="{'bg-heading': preApproved}" @click="showPreApproved">
                     <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                     <h4 :class="{'text-white': preApproved}" class="container-text">Pre-approved</h4>
                 </div>
             </b-col>
-            <b-col  cols="12" lg="5">
+            <b-col  cols="12" lg="6">
                 <div class="box-shadow-container" :class="{'bg-heading': affordability}" @click="showAffordability">
                     <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                     <h4  :class="{'text-white': affordability}" class="container-text">Estimated Affordability</h4>
@@ -26,12 +26,12 @@
             </b-col>
         </b-row>
         <b-row v-if="preApproved || affordability" class="divider">
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="12">
                 <hr>
             </b-col>
         </b-row>
         <b-row class="body-banner">
-            <b-col v-if="preApproved" cols="12" lg="12" offset-lg="1" class="form-body-1 searchby-approval">
+            <b-col v-if="preApproved" cols="12" lg="12" class="form-body-1 searchby-approval">
                 <div>
                     <h3 class="text-primary">Search by Pre-approval</h3>
                     <h4 class="body-content title-head">What was the purchase pre-approval amount?</h4>
@@ -63,7 +63,7 @@
                     </b-form-group>
                 </div>
             </b-col>
-            <b-col v-if="affordability" cols="12" lg="12" offset-lg="1" class="form-body-2 estimated-affordability">
+            <b-col v-if="affordability" cols="12" lg="12" class="form-body-2 estimated-affordability">
                 <div>
                     <h3 class="text-primary title-head">Search by Estimated Affordability</h3>
                     <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
@@ -103,7 +103,7 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="12">
                 <div class="bg-container">
                     <h4 class="text-center">Would you like to obtain a competitive loan offer?</h4>
                     <p class="p2 text-center">We give you the option to request a loan offer and it’s a simple as filing out some basic information for us to get in contact with your client.</p>
@@ -180,14 +180,10 @@
             </b-modal>
         </div>
     </div>
-    <b-row align-h="between" class="steps-btn">
-        <b-col cols="6">
-            <b-button class="mt-3 back" variant="" size="lg" @click="goBack"> Back</b-button>
-        </b-col>
-        <b-col cols="6 text-right">
-            <b-button class="mt-3 next" variant="primary" size="lg" @click="$bvModal.show('req-apv')">Next</b-button>
-        </b-col>
-    </b-row>
+    <div class="flex justify-between steps-btn">
+        <b-button class="mt-3 back" variant="" size="lg" @click="goBack()">Back</b-button>
+        <b-button class="mt-3 next" variant="primary" size="lg" @click="$bvModal.show('req-apv')">Next</b-button>
+    </div>
 </b-container>
 </template>
 
@@ -396,6 +392,9 @@ export default {
         background-color: #f5f5f5;
         color: black;
     }
+    @media screen and (max-width: 992px) {
+        margin-left: -15px;
+        margin-right: -15px;
+     }
 }
-
 </style>

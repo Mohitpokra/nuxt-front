@@ -738,6 +738,9 @@ select.selectpicker {
   padding: 0.28rem 1rem;
   margin-bottom: 0;
   padding-left: 0px;
+  @media screen and (max-width: 936px) {
+    margin-top: 20px;
+  }
   &-item{
     a{
       font-size: 12px;

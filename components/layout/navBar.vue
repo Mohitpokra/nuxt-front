@@ -60,6 +60,9 @@ export default {
 .navbar-primary {
     padding-left: 0px !important;
     padding-right: 0px !important;
+    @media screen and (max-width: 936px) {
+    padding: 4px;
+  }
 }
 
 .logo {

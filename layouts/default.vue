@@ -33,4 +33,16 @@ export default {
 .container.before-login{
     max-width: 1059px;
 }
+@media screen and (max-width: 720px) {
+    .container.before-login .navbar-brand{
+            position: relative;
+            left: auto;
+            transform: translateX(0px);
+    }
+    .navbar-brand{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
 </style>
