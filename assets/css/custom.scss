@@ -284,11 +284,12 @@ select {
 
 .content {
   flex: 1 0 auto !important;
+  min-height: calc(100vh - (58px + 108px));
 }
 
 .footer {
   flex-shrink: 0 !important;
-  margin: 38px 0px;
+  padding: 38px 0px;
 }
 
 .box-shadow-low {

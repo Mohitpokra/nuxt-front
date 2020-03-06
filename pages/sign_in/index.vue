@@ -148,7 +148,7 @@ export default {
 
 .m-forgot-password {
     margin-top: 24px;
-    margin-bottom: 268px;
+    // margin-bottom: 268px;
 
     @media screen and (max-width: 992px) {
         margin-bottom: 211px;

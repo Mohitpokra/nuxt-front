@@ -9,7 +9,7 @@
         <b-navbar-nav class="ml-auto" v-else>
             <b-nav-text v-if="!$auth.loggedIn" class="p3">Already have an account?</b-nav-text>
             <b-nav-item v-if="!$auth.loggedIn" class="p3 text-primary" to="/sign_in"><span class="text-primary">Sign In</span></b-nav-item>
-            <div class="sidebar-icon" @click="toggleSideBar">
+            <div class="sidebar-icon" @click="toggleSideBar" v-if="$auth.loggedIn">
                 <img class="logo" src="~/assets/icons/icon-interface-menu.svg" />
             </div>
         </b-navbar-nav>
