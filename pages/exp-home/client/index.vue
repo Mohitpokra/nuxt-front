@@ -161,8 +161,10 @@ import {isRequired, isEmail} from './../../../utils/validations.js'
 import { toastDuration } from '../../../constants'
 
 export default {
+    middleware: 'auth',
     data() {
         return {
+            addclients: false,
             show: 1,
             user: {
                 name: null,
@@ -189,6 +191,9 @@ export default {
         }
     },
     computed: {
+        isDisable(){
+            // tbd: 
+        }
     },
     methods: {
         errorHandling(responseObj){
@@ -272,6 +277,9 @@ export default {
         hide() {
             this.show = 0;
         }
+    },
+    mounted(){
+        this.$store.dispatch('clients/getClients')
     }
 
 }

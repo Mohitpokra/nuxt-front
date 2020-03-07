@@ -205,7 +205,7 @@
 
 <script>
 export default {
-    auth: false,
+    middleware: 'auth',
     data() {
         return {
             isDisable: true,
