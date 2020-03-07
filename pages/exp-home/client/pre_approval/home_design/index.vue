@@ -90,6 +90,7 @@
         <div class="poi-block">
             <b-row>
                 <b-col cols="12" lg="12">
+                    <img src="~/assets/icons/icon-interface-trash.svg" class="poi-del pointer" />
                     <h3 class="text-primary">Home Design</h3>
                     <span class="lable-title">Address</span>
                     <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Enter Address"></b-input>
@@ -255,12 +256,19 @@ export default {
     border-radius: 2px;
     margin-top: 48px;
     padding: 32px;
+    position: relative;
     padding-bottom: 48px;
     .lable-title{
         margin-top: 24px;
         display: block;
         margin-bottom: 8px;
         font-size: 14px;
+    }
+    .poi-del{
+        position: absolute;
+        right: 15px;
+        top: 5px;
+        opacity: 0.4;
     }
 }
 </style>
