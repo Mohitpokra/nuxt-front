@@ -2,17 +2,17 @@
 <b-container>
     <div class="inner-container">
         <b-row align-h="start">
-            <b-col offset-lg="1">
+            <b-col>
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row>
-            <b-col offset-lg="1">
+            <b-col>
                 <h2>Home Design</h2>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="5">
                 <h3 class="text-primary">Property Type<span class="p3"> (Select at least one)</span></h3>
                 <b-form-checkbox :state="null" size="lg">Single Family</b-form-checkbox>
                 <b-form-checkbox :state="null" size="lg">Duplex</b-form-checkbox>
@@ -29,12 +29,12 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="5">
                 <h3>Home Design</h3>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="10">
                 <b-row>
                     <b-col cols="12" lg="4">
                         <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
@@ -49,12 +49,12 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="5">
                 <h3 class="text-primary">Must Haves<span class="p3"> (Select all that apply)</span></h3>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="5">
                 <b-form-checkbox :state="null" size="lg">Off Street Parking</b-form-checkbox>
                 <b-form-checkbox :state="null" size="lg">Garage</b-form-checkbox>
                 <b-form-checkbox :state="null" size="lg">Roof Deck</b-form-checkbox>
@@ -70,17 +70,17 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" offset-lg="1" lg="10">
+            <b-col cols="12" lg="10">
                 <hr>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="10">
                 <h2>Location</h2>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="10">
                 <p class="p3">Search Area</p>
                 <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
             </b-col>
@@ -91,7 +91,7 @@
                     <p class="p3 text-primary">Add Point of Interest</p>
                 </div>
             </b-col>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="10">
             </b-col>
         </b-row>
     </div>

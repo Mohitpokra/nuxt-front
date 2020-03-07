@@ -767,8 +767,18 @@ select.selectpicker {
   .modal-dialog{
       max-width: 840px;
   }
+  .modal-body{
+    padding: 0px;
+    textarea{
+      min-height: 120px;
+      resize: none;
+    }
+  }
   .modal-content{
-    padding: 38px;
+    padding: 48px;
+    @media screen and (max-width: 936px) {
+      padding: 20px 24px;
+    }
     .modal-body-1{
       margin-top: 0px;;
     }
