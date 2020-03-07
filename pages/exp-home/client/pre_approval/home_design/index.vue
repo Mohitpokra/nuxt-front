@@ -88,25 +88,25 @@
             </b-col>
         </b-row>
         <div class="poi-block">
-        <b-row>
-            <b-col cols="12" lg="12">
-                <h3 class="text-primary">Home Design</h3>
-                <span class="lable-title">Search Area</span>
-                <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
-            </b-col>
-            <b-col cols="12" lg="12"><span class="lable-title">Search Area</span></b-col>
-            <b-col cols="12" lg="6">
-                <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
-            </b-col>
-            <b-col cols="12" lg="6">
-                <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
-            </b-col>
-        </b-row>
+            <b-row>
+                <b-col cols="12" lg="12">
+                    <h3 class="text-primary">Home Design</h3>
+                    <span class="lable-title">Address</span>
+                    <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Enter Address"></b-input>
+                </b-col>
+                <b-col cols="12" lg="12"><span class="lable-title">Search Area</span></b-col>
+                <b-col cols="12" lg="6">
+                    <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
+                </b-col>
+                <b-col cols="12" lg="6">
+                    <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
+                </b-col>
+            </b-row>
         </div>
         <b-row>
             <b-col cols="12">
-                <div class="text-center">
-                    <p class="p3 text-primary filter">Add Point of Interest</p>
+                <div class="text-center filter">
+                    <span class="pointer p3 text-primary">Add Point of Interest</span>
                 </div>
             </b-col>
             <b-col cols="12" lg="10">
@@ -255,6 +255,7 @@ export default {
     border-radius: 2px;
     margin-top: 48px;
     padding: 32px;
+    padding-bottom: 48px;
     .lable-title{
         margin-top: 24px;
         display: block;
