@@ -218,6 +218,7 @@ export default {
 .top-title{
     margin-top: 48px;
     font-size: 42px;
+    margin-bottom: 0px;
     @media screen and(max-width: 992px) {
         font-size: 26px;
         margin-top: 24px;
@@ -229,6 +230,10 @@ export default {
         margin-bottom: 20px;
         span{
             margin-left: 8px;
+            @media screen and(max-width: 992px) {
+                display: block;
+                margin-left: 0px;
+            }
         }
     }
     .extra-text{
