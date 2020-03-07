@@ -82,24 +82,27 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="12" class="poi-block">
+            <b-col cols="12" lg="12">
                 <p class="p3 filter">Search Area</p>
                 <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
             </b-col>
         </b-row>
+        <div class="poi-block">
         <b-row>
             <b-col cols="12" lg="12">
-                <h3 class="text-primary filter">Home Design</h3>
-                <p class="p3 filter">Search Area</p>
+                <h3 class="text-primary">Home Design</h3>
+                <span class="lable-title">Search Area</span>
                 <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
             </b-col>
+            <b-col cols="12" lg="12"><span class="lable-title">Search Area</span></b-col>
             <b-col cols="12" lg="6">
-                <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+                <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
             </b-col>
             <b-col cols="12" lg="6">
-                <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+                <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
             </b-col>
         </b-row>
+        </div>
         <b-row>
             <b-col cols="12">
                 <div class="text-center">
@@ -247,5 +250,16 @@ export default {
         }
      }
 }
-
+.poi-block{
+    border: 2px solid #44a1bf;
+    border-radius: 2px;
+    margin-top: 48px;
+    padding: 32px;
+    .lable-title{
+        margin-top: 24px;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+}
 </style>
