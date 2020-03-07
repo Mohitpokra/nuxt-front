@@ -2,21 +2,21 @@
 <b-container>
     <div class="inner-container">
         <b-row align-h="start" class="location">
-            <b-col offset-lg="1">
+            <b-col>
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <div v-if="!search_count">
             <b-row align-h="start">
-                <b-col cols="12" lg="11" offset-lg="1">
-                    <h2>Search history</h2>
+                <b-col cols="12" lg="12">
+                    <h2 class="top-title">Search history</h2>
                 </b-col>
             </b-row>
             <b-row align-h="center" align-v="center">
                 <b-col class="text-center" cols="auto">
-                    <div>
+                    <div class="no-found">
                         <img class="img" src="~/assets/icons/illustration-empty-search.svg" />
-                        <h4 class="">None found.</h4>
+                        <h4>None found.</h4>
                         <p class="p2">Your search history will appear here.</p>
                     </div>
                 </b-col>
@@ -24,7 +24,7 @@
         </div>
         <div v-else>
             <b-row>
-                <b-col lg="10" offset-lg="1">
+                <b-col lg="12">
                     <b-row align-h="between">
                         <b-col lg="2">
                             <p class="p3">12/23/2019</p>
@@ -100,5 +100,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.top-title{
+    margin-top: 48px;
+    font-size: 42px;
+    margin-bottom: 0px;
+    @media screen and(max-width: 992px) {
+        font-size: 26px;
+        margin-top: 24px;
+    }
+}
+.no-found{
+    margin-top: 24px;
+    img{
+        max-width: 100%;
+    }
+    h4{
+        margin-top: 24px;
+        margin-bottom: 0px;
+    }
+    @media screen and(max-width: 992px) {
+        margin-top: 48px;
+    }
+}
 </style>
