@@ -410,6 +410,9 @@ export default {
         margin-left: -15px;
         margin-right: -15px;
         margin-top: 184px;
+        button{
+            min-width: 167px;
+        }
      }
 }
 </style>
