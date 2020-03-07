@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import {isEmail } from './../../../utils/validations.js'
+import {isEmail, isRequired} from './../../../utils/validations.js'
+import {toastDuration} from './../../../constants.js'
 export default {
     data() {
         return {
@@ -52,8 +53,16 @@ export default {
             this.handleEmailBlur();
             const isValid =  this.error_state.email
             if(isValid){
-                console.log('proceed to Forgot Password')
-                // proceed to forgot password Api
+                this.$axios.$post('api/forgot-password', {
+                    email: this.user.email
+                })
+                .then(data=>{
+                    debugger
+                    this.$toast.success("Email Sent Successfully", toastDuration)
+                })
+                .catch((e)=>{
+                    this.$toast.error("Try Again Later !!!", toastDuration)
+                })
             }
         },
         handleFocus(fieldName){
