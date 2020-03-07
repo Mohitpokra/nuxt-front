@@ -101,7 +101,12 @@ h2 {
 }
 
 .custom-control-label {
-  padding-top: 7px !important;
+  padding-top: 8px !important;
+  font-size: 16px;;
+  &:before, &:after{
+    width: 24px !important;
+    height: 24px !important;
+  }
 }
 
 h3 {
@@ -258,6 +263,7 @@ label {
 }
 
 .form-control{
+  background-image: none !important;
   &.is-valid{
     border: 2px solid #1f1f1f;
     box-shadow: none !important;
@@ -265,6 +271,10 @@ label {
       border: 2px solid #1f1f1f;
     }
   }
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 select {
@@ -739,6 +749,7 @@ select.selectpicker {
   padding: 0.28rem 1rem;
   margin-bottom: 0;
   padding-left: 0px;
+  margin-top: 24px;
   @media screen and (max-width: 936px) {
     margin-top: 20px;
   }
@@ -767,10 +778,25 @@ select.selectpicker {
   .modal-dialog{
       max-width: 840px;
   }
+  .modal-body{
+    padding: 0px;
+    textarea{
+      min-height: 120px;
+      resize: none;
+    }
+  }
   .modal-content{
-    padding: 38px;
+    padding: 48px;
+    @media screen and (max-width: 936px) {
+      padding: 20px 24px;
+    }
     .modal-body-1{
       margin-top: 0px;;
     }
+  }
+}
+.filter{
+  .custom-checkbox{
+      margin-top: 12px;
   }
 }

@@ -121,49 +121,65 @@
                     </div>
                     <b-row align-h="between" class="modal-form-1">
                         <b-col lg="6">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Client First Name</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                         <b-col lg="6">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Client Last Name</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                     </b-row>
                     <b-row align-h="between">
-                        <b-col lg="6" class="modal-input-field">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                        <b-col lg="6">
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Email</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
-                        <b-col lg="6" class="modal-input-field">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                        <b-col lg="6">
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Phone Number</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                     </b-row>
                     <b-row class="body-banner">
                         <b-col>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
                         </b-col>
                     </b-row>
-                    <b-row align-h="between" class="divider">
-                        <b-col cols="6">
-                            <b-button class="mt-3" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
-                        </b-col>
-                        <b-col cols="3">
-                            <b-button class="mt-3" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
-                        </b-col>
-                    </b-row>
+                    <div class="divider req-apv-btns">
+                        <b-button class="mt-3 req" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
+                        <b-button class="mt-3 can" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
+                    </div>
                 </div>
                 <div v-else>
                     <b-row class="h-100" align-v="center" align-h="center">
@@ -360,9 +376,6 @@ export default {
     margin-top: 36px;
 }
 
-.modal-input-field{
-    margin-top: 18px;
-}
 .searchby-approval, .estimated-affordability{
     .name-text{
         margin-top: 10px;
@@ -378,9 +391,27 @@ export default {
         max-width: 456px;
     }
 }
+.req-apv-btns{
+    display: flex;
+    justify-content: space-between;
+    .req{
+        width: 360px;
+    }
+    .can{
+        width: 136px;
+    }
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+        button{
+           &.req, &.can{
+                width: 100%;
+           }
+        }
+    }
+}
 .steps-btn{
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 188px;
+    margin-bottom: 30px;
     button{
         min-width: 154px;
         border: none;
@@ -395,6 +426,10 @@ export default {
     @media screen and (max-width: 992px) {
         margin-left: -15px;
         margin-right: -15px;
+        margin-top: 184px;
+        button{
+            min-width: 167px;
+        }
      }
 }
 </style>

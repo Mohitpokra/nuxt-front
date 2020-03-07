@@ -20,9 +20,6 @@
                                 <span class="inp-error">{{error.password}}</span>
                             </div>
                             <b-input :class="{form_fill: user.password}" @blur="handlePasswordBlur"  @focus="handleFocus('password')"  v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                            <!-- <b-form-invalid-feedback :state="error_state.password">
-                                {{error.password}}
-                            </b-form-invalid-feedback> -->
                         </div>
                         <div>
                             <b-button class="m-signIn-btn" :disabled="isDisable" block variant="primary" size="lg" @click="login">Sign In</b-button>
@@ -161,7 +158,6 @@ export default {
 
 .m-forgot-password {
     margin-top: 24px;
-    margin-bottom: 268px;
 
     @media screen and (max-width: 992px) {
         margin-bottom: 211px;

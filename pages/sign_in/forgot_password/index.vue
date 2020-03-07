@@ -15,7 +15,7 @@
                             <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         </div>
                         <div class="">
-                            <b-button class="m-btn" block variant="primary" size="lg" @click="submit">Send reset intructions</b-button>
+                            <b-button class="m-btn" :disabled="isDisable" block variant="primary" size="lg" @click="submit">Send reset intructions</b-button>
                             <div class="">
                                 <b-link class="text-dark m-forgot" href="/sign_in">Cancel</b-link>
                             </div>
@@ -47,6 +47,16 @@ export default {
         }
     },
     computed: {
+    },
+    computed:{
+        isDisable() {
+            const ValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            if(ValidEmail){
+                return false
+            }else {
+                return true
+            }
+        }
     },
     methods:{
         submit(){
