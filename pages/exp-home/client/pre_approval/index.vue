@@ -121,39 +121,59 @@
                     </div>
                     <b-row align-h="between" class="modal-form-1">
                         <b-col lg="6">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Client First Name</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                         <b-col lg="6">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Client Last Name</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                     </b-row>
                     <b-row align-h="between">
-                        <b-col lg="6" class="modal-input-field">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                        <b-col lg="6">
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Email</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
-                        <b-col lg="6" class="modal-input-field">
-                            <label for="login-email">Email</label>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
+                        <b-col lg="6">
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Phone Number</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                                <b-form-invalid-feedback :state="error_state.email">
+                                    {{error.email}}
+                                </b-form-invalid-feedback>
+                            </div>
                         </b-col>
                     </b-row>
                     <b-row class="body-banner">
                         <b-col>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
                         </b-col>
                     </b-row>
                     <div class="divider req-apv-btns">
@@ -356,9 +376,6 @@ export default {
     margin-top: 36px;
 }
 
-.modal-input-field{
-    margin-top: 18px;
-}
 .searchby-approval, .estimated-affordability{
     .name-text{
         margin-top: 10px;

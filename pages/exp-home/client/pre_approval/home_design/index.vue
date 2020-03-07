@@ -34,7 +34,7 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10">
+            <b-col cols="12" lg="12">
                 <b-row>
                     <b-col cols="12" lg="4">
                         <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
@@ -82,9 +82,22 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="12">
+            <b-col cols="12" lg="12" class="poi-block">
                 <p class="p3 filter">Search Area</p>
                 <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col cols="12" lg="12">
+                <h3 class="text-primary filter">Home Design</h3>
+                <p class="p3 filter">Search Area</p>
+                <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
+            </b-col>
+            <b-col cols="12" lg="6">
+                <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+            </b-col>
+            <b-col cols="12" lg="6">
+                <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
             </b-col>
         </b-row>
         <b-row>

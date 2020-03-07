@@ -7,10 +7,10 @@
             </b-col>
         </b-row>
         <b-row class="add-client">
-            <b-col cols="7" lg="6">
+            <b-col cols="7" lg="7">
                 <h2>Select or add a new client</h2>
             </b-col>
-            <b-col class="text-right" cols="5" lg="6">
+            <b-col class="text-right" cols="5" lg="5">
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('add-new-client')">New Client</b-btn>
             </b-col>
         </b-row>
