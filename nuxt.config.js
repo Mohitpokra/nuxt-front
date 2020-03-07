@@ -88,7 +88,7 @@ export default {
         endpoints: {
           login: { url: 'api/login', method: 'post', propertyName: 'token' },
           logout: { url: 'api/logout', method: 'post' },
-          user: false
+          user: {url: 'api/full-user-info', method: 'post', propertyName: 'user'}
         },
         // tokenRequired: true,
         tokenType: 'Bearer'
