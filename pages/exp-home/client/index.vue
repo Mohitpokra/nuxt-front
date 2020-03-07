@@ -63,7 +63,7 @@
                 </div>
                 <b-form class="modal-form">
                     <label class="" for="login-name">Client Name</label>
-                    <b-input :class="{form_fill: user.name}" @blur="handleEmailBlur"  @focus="handleFocus('name')"  v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
+                    <b-input :class="{form_fill: user.name}" @blur="handleNameBlur"  @focus="handleFocus('name')"  v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
@@ -77,18 +77,24 @@
 </template>
 
 <script>
+import {isRequired, isEmail} from './../../../utils/validations.js'
+import { toastDuration } from '../../../constants'
+
 export default {
     data() {
         return {
             show: 1,
             user: {
-                name: null
+                name: null,
+                email: null
             },
             error: {
                 name: '',
+                email: ''
             },
             error_state: {
                 name: null,
+                email: null
             },
             items: [
                 {
@@ -115,25 +121,50 @@ export default {
                     this.$toast.error(message, toastDuration)
             }
         },
+        handleFocus(fieldName){
+            this.error[fieldName] = ''
+            this.error_state[fieldName] = null
+        },
+        handleNameBlur(){
+            const isValidName = isRequired(this.user.name)
+            if(!isValidName){
+                this.error.name = ' Name is Required. '
+                this.error_state.name = false
+            }else{
+                this.error.name = ''
+                this.error_state.name = true
+            }
+        },
         createUser(){
+            this.handleNameBlur();
             this.handleEmailBlur();
-            const isValid = this.error_state.name 
+            const isValid = this.error_state.name || this.error_state.email
             if(isValid){
+                const name = this.user.name.split(' ')
+                const firstName = name[0]
+                const lastName = name[1]
                 try {
-                    // const data = await this.$auth.loginWith('local',{
-                    //     data: {
-                    //         name: this.user.name,
-                    //     }
-                    // }).catch((responseObj)=>{
-                    //     this.errorHandling(responseObj);
-                    //     return
-                    // })
-                    // if(data){
-                    //     this.$toast.success('User created successfully')
-                    // }
+                    const obj = {
+                        "firstName": firstName,
+                        "lastName": lastName,
+                        "email": this.user.email,
+                    }
+                 try{
+                        this.$axios.post('api/client/create', obj)
+                        .then((data)=>{
+                            this.$toast.success('Client Created Successfully !', toastDuration)
+                            this.$bvModal.hide('add-new-client')
+                        })
+                        .catch((responseObj)=>{
+                            this.errorHandling(responseObj)
+                            return false
+                        });
+                    } catch (e) {
+                        this.$toast.error('Please try again later !', toastDuration)
+                    }
                 }
                 catch(e){
-
+                    this.$toast.error('Something went wrong, Try Again later', toastDuration)
                 }
             }
         },
@@ -142,13 +173,13 @@ export default {
             this.error_state[fieldName] = null
         },
         handleEmailBlur(){
-            const isValidName = isRequired(this.user.name)
-            if(!isValidName){
-                this.error.name = ' Name is Required. '
-                this.error_state.name = false
+            const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            if(!isValidEmail){
+                this.error.email = ' Email is Required. '
+                this.error_state.email = false
             }else{
-                this.error.name = ''
-                this.error_state.name = true
+                this.error.email = ''
+                this.error_state.email = true
             }
 
         },

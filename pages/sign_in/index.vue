@@ -12,7 +12,7 @@
                                 <label for="login-email">Email</label>
                                 <span class="inp-error">{{error.email}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur"  @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-input :class="{form_fill: user.email}"  @blur="handleEmailBlur"  @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         </div>
                         <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                             <div class="flex justify-content-between" >
@@ -25,7 +25,7 @@
                             </b-form-invalid-feedback> -->
                         </div>
                         <div>
-                            <b-button class="m-signIn-btn" block variant="primary" size="lg" @click="login">Sign In</b-button>
+                            <b-button class="m-signIn-btn" :disabled="isDisable" block variant="primary" size="lg" @click="login">Sign In</b-button>
                             <div class="m-forgot-password">
                                 <b-link class="text-dark p2" to="sign_in/forgot_password">Forgot Password?</b-link>
                             </div>
@@ -61,6 +61,17 @@ export default {
             error_state: {
                 email: null,
                 password: null
+            }
+        }
+    },
+    computed:{
+        isDisable() {
+            const ValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            const ValidPassword = isRequired(this.user.password)
+            if(ValidEmail && ValidPassword){
+                return false
+            }else {
+                return true
             }
         }
     },

@@ -57,7 +57,6 @@ export default {
                     email: this.user.email
                 })
                 .then(data=>{
-                    debugger
                     this.$toast.success("Email Sent Successfully", toastDuration)
                 })
                 .catch((e)=>{

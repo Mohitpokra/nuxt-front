@@ -36,7 +36,7 @@
                             <b-input :class="{form_fill: user.confirm_password}" @blur="handleCPasswordBlur" @focus="handleFocus('confirm_password')" v-model="user.confirm_password" :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="••••••••"></b-input>
                         </div>
                         <div>
-                            <b-button class="m-singUp-btn" block variant="primary" size="lg" @click="register">Sign Up</b-button>
+                            <b-button class="m-singUp-btn" block variant="primary" size="lg" @click="register" :disabled="isDisable">Sign Up</b-button>
                             <p class="p2 m-singup-text">You’ll need to obtain a license key to access but it’s free of charge during our beta.</p>
                         </div>
                     </b-form>
@@ -89,7 +89,22 @@ export default {
     computed: {
         password_confirmation() {
             return this.user.password;
+        },
+        isDisable() {
+            const isValidName = isRequired(this.user.name)
+            const ValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            const ValidPassword = isRequired(this.user.password)
+            const emptyPassword = isRequired(this.user.confirm_password)
+            const passwordMatch = (this.user.password ==  this.user.confirm_password)
+            const confirmPassword = emptyPassword && passwordMatch
+
+            if(isValidName && ValidEmail && ValidPassword && confirmPassword){
+                return false
+            }else {
+                return true
+            }
         }
+
     },
     methods: {
         handleFocus(fieldName){
@@ -105,7 +120,6 @@ export default {
                 this.error.name = ''
                 this.error_state.name = true
             }
-
         },
         handleEmailBlur(){
             const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
@@ -116,7 +130,6 @@ export default {
                 this.error.email = ''
                 this.error_state.email = true
             }
-
         },
         handlePasswordBlur(){
             const isValidPassword = isRequired(this.user.password)

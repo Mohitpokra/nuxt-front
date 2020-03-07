@@ -50,7 +50,7 @@
                 </b-form-invalid-feedback>
             </b-col>
             <b-col cols="12" lg="6" offset-lg="1">
-                <b-button class="btn-save-change" variant="primary" size="lg">Save Changes</b-button>
+                <b-button class="btn-save-change" variant="primary" size="lg" @click="savePassword">Save Changes</b-button>
                 <b-button class="btn-cancel" variant="secondary" size="lg" @click="cancelPass">Cancel</b-button>
             </b-col>
             </b-col>
@@ -184,6 +184,8 @@
 </template>
 
 <script>
+import { toastDuration } from '../../../constants';
+import {isRequired} from './../../../utils/validations.js';
 export default {
     data() {
         return {
@@ -246,6 +248,47 @@ export default {
         },
         chooseProPlan() {
             this.isPropPlan = 1;
+        },
+        handlePasswordBlur(){
+            const isValidPassword = isRequired(this.user.password)
+            if(!isValidPassword){
+                this.error.password = ' Password is Required. '
+                this.error_state.password = false
+            }else{
+                this.error.password = ''
+                this.error_state.password = true
+            }
+        },
+        handleCPasswordBlur(){
+            const emptyPassword = isRequired(this.user.newPassword)
+            const passwordMatch = (this.user.password ==  this.user.newPassword)
+            const confirmPassword = emptyPassword && passwordMatch
+            if(!confirmPassword){
+                this.error.newPassword = !emptyPassword ? 'New Password is Required ' : " Password Didn't Match. "
+                this.error_state.newPassword = false
+            }else{
+                this.error.newPassword = ''
+                this.error_state.newPassword = true
+            }
+        },
+        savePassword(){
+            this.handlePasswordBlur();
+            this.handleCPasswordBlur()
+            const isValid = this.error_state.password || this.error_state.newPassword
+            if(isValid){
+                    this.$axios.$post('/api/reset-password',{
+                    email:this.user.email,
+                    token: '',
+                    password: this.user.password,
+                    password_confirmation: this.user.newPassword,
+                })
+                .then(response => {
+                    this.$toast.success('Password Changed ',toastDuration)
+                })
+                .catch(e => {
+                    this.$toast.error('Try Again Later',toastDuration)
+                })
+            }
         }
     },
     computed: {
