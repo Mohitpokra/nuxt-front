@@ -79,7 +79,10 @@ export default {
             this[`selected_${elem}`] = !this[`selected_${elem}`];
             this.selected = elem;
         }
+    },
+    mounted(){
     }
+
 }
 </script>
 

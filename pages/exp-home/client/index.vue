@@ -150,7 +150,7 @@ export default {
                         "email": this.user.email,
                     }
                  try{
-                        this.$axios.post('api/client/create', obj)
+                    this.$axios.post('api/client/create', obj)
                         .then((data)=>{
                             this.$toast.success('Client Created Successfully !', toastDuration)
                             this.$bvModal.hide('add-new-client')
