@@ -11,7 +11,7 @@
                 <h2>Select or add a new client</h2>
             </b-col>
             <b-col class="text-right" cols="5" lg="5">
-                <b-btn variant="primary" size="sm" @click="$bvModal.show('add-new-client')">New Client</b-btn>
+                <b-btn variant="primary" size="sm" @click="$bvModal.show('req-apv')">New Client</b-btn>
             </b-col>
         </b-row>
         <b-row v-if="show" align-h="center">
@@ -53,7 +53,7 @@
         <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
     </div>
     <div>
-        <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
+        <!-- <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
             <div class="modal-temp-body ">
                 <div class="header">
                     <h3 class="text-primary">New Client</h3>
@@ -70,6 +70,86 @@
                 </b-form>
                 <b-button class="mt-3 btn-1" block variant="primary" size="lg" @click="createUser()">Create</b-button>
                 <b-button class="mt-3 btn-2 bottom-20" block variant="secondary btn-custom_1" @click="$bvModal.hide('add-new-client')" size="lg">Cancel</b-button>
+            </div>
+        </b-modal> -->
+        <b-modal id="req-apv" class="req-approval" centered hide-footer hide-header>
+            <div v-if="!addclients" class="modal-body-1">
+                <div class="header">
+                    <h3 class="text-primary">Request pre-appoval</h3>
+                </div>
+                <b-row align-h="between" class="modal-form-1">
+                    <b-col lg="6">
+                        <div class="inp-wrapper">
+                            <div class="flex justify-content-between" >
+                                <label for="login-email">Client First Name</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                    </b-col>
+                    <b-col lg="6">
+                        <div class="inp-wrapper">
+                            <div class="flex justify-content-between" >
+                                <label for="login-email">Client Last Name</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                    </b-col>
+                </b-row>
+                <b-row align-h="between">
+                    <b-col lg="6">
+                        <div class="inp-wrapper">
+                            <div class="flex justify-content-between" >
+                                <label for="login-email">Email</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                    </b-col>
+                    <b-col lg="6">
+                        <div class="inp-wrapper">
+                            <div class="flex justify-content-between" >
+                                <label for="login-email">Phone Number</label>
+                                <span class="inp-error">{{error.email}}</span>
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-form-invalid-feedback :state="error_state.email">
+                                {{error.email}}
+                            </b-form-invalid-feedback>
+                        </div>
+                    </b-col>
+                </b-row>
+                <b-row class="body-banner">
+                    <b-col>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
+                    </b-col>
+                </b-row>
+                <div class="divider req-apv-btns">
+                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
+                    <b-button class="can" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
+                </div>
+            </div>
+            <div v-else>
+                <b-row class="h-100" align-v="center" align-h="center">
+                    <b-col class="text-center" cols="auto">
+                        <div>
+                            <img src="~/assets/icons/icon-decorative-send-email.svg" />
+                        </div>
+                        <h3>Request sent!</h3>
+                        <p class="p3">We’ll be in touch with you and your client to get a competitive rate.</p>
+                        <b-btn variant="primary btn-custom_2" @click="goToNext">Continue Search</b-btn>
+                    </b-col>
+                </b-row>
             </div>
         </b-modal>
     </div>
@@ -215,6 +295,9 @@ export default {
         margin-top: 40px;
     }
 }
+.body-banner{
+    margin-top: 48px;
+}
 .modal-form{
     margin-top: 38px;
 }
@@ -247,7 +330,48 @@ export default {
     }
 
 }
-
+.req-apv-btns{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    .req{
+        width: 360px;
+    }
+    .can{
+        width: 136px;
+    }
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+        button{
+           &.req, &.can{
+                width: 100%;
+           }
+        }
+    }
+}
+.steps-btn{
+    margin-top: 188px;
+    margin-bottom: 30px;
+    button{
+        min-width: 154px;
+        border: none;
+        &:hover{
+            border: none;
+        }
+    }
+    .back{
+        background-color: #f5f5f5;
+        color: black;
+    }
+    @media screen and (max-width: 992px) {
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-top: 184px;
+        button{
+            min-width: 167px;
+        }
+     }
+}
 .box-shadow-container:hover {
   cursor: pointer;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
