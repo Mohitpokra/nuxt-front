@@ -48,13 +48,37 @@
             <b-col cols="12" lg="12">
                 <b-row>
                     <b-col cols="12" lg="4">
-                        <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+                        <newDropDown
+                            labelKey="id"
+                            labelValue="name"
+                            :showHeaderText="false"
+                            label="Min. Beds"
+                            theme="plain"
+                            :options="getStates"
+                            @input="handleStateSelection"
+                            v-model="selectedState"
+                            customClass="cgt__dropdown"
+                            :useDefaultSearchKey="false"
+                        />
+                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
+                        <!-- <b-dropdown id="dropdown-text" text="Min. Beds" class="m-2">
+                            <b-dropdown-item-button @click="selectBeds('firstItem')">First item</b-dropdown-item-button>
+                            <b-dropdown-item-button @click="selectBeds('secondItem')">Second Item</b-dropdown-item-button>
+                        </b-dropdown> -->
                     </b-col>
                     <b-col cols="12" lg="4">
-                        <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
+                        <!-- <b-dropdown id="dropdown-text" text="Min. Full Baths" class="m-2">
+                            <b-dropdown-item-button @click="selectFullBath">First item</b-dropdown-item-button>
+                            <b-dropdown-item-button @click="selectFullBath">Second Item</b-dropdown-item-button>
+                        </b-dropdown> -->
                     </b-col>
                     <b-col cols="12" lg="4">
-                        <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select>
+                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
+                        <!-- <b-dropdown id="dropdown-text" text="Min. Half Baths" class="m-2">
+                            <b-dropdown-item-button @click="selectHalfBath">First item</b-dropdown-item-button>
+                            <b-dropdown-item-button @click="selectHalfBath">Second Item</b-dropdown-item-button>
+                        </b-dropdown> -->
                     </b-col>
                 </b-row>
             </b-col>
@@ -155,12 +179,17 @@
 
 <script>
 import { mapGetters } from "vuex";
+import newDropDown from './../../../../components/common/newDropdown.vue'
 export default {
     middleware: 'auth',
+    components:{
+        newDropDown,
+    },
     data() {
         return {
             text: '',
             selected: null,
+            selectedState: '',
             selectedPropertyTypes:[],
             selectedPropertyConditions:[],
             selectedMustHaves:[],
@@ -214,6 +243,9 @@ export default {
         },
         goBack(){
             this.$router.back()
+        },
+        handleStateSelection(){
+            
         }
     },
     computed:{
@@ -230,6 +262,15 @@ export default {
             },
             getPropertyMustHavesArray(){
                 return this.$store.getters['searchHome/getMustHaves']|| []
+            },
+            getStates(){
+                return [{
+                    label:1,
+                    value:'1'
+                },{
+                    label:2,
+                    value:'2'
+                }]
             }
     },
     mounted(){
