@@ -292,10 +292,6 @@ export default {
                 }
             }
         },
-        handleFocus(fieldName){
-            this.error[fieldName] = ''
-            this.error_state[fieldName] = null
-        },
         handleEmailBlur(){
             const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
             if(!isValidEmail){
