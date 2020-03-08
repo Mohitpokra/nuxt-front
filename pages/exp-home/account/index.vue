@@ -59,13 +59,14 @@
                         {{error.password}}
                     </b-form-invalid-feedback>
                 </div>
-                <b-col cols="12" lg="6" v-if="!isChangePass">
-                    <b-button class="btn-custom" variant="secondary" size="lg" @click="showNewPass">Change Password</b-button>
-                </b-col>
+                <div class="sub-btn" v-if="!isChangePass">
+                    <b-button class="mt-4 save-btn" variant="primary" size="lg" @click="showNewPass">Save Changes</b-button>
+                    <b-button class="btn-custom mt-4 cancel-btn" variant="secondary" size="lg">Cancel</b-button>
+                </div>
             </b-col>
 
             <b-col cols="12" lg="12" v-if="!isChangePass">
-                <hr>
+                <hr class="divider">
             </b-col>
         </b-row>
         <b-row v-if="isChangePass">
@@ -333,11 +334,11 @@ export default {
 .top-title{
     margin-top: 48px;
     font-size: 42px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     @media screen and(max-width: 992px) {
         font-size: 26px;
         margin-top: 24px;
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 }
 .btn-custom {
@@ -385,6 +386,9 @@ export default {
     background-color: #f5f5f5;
 }
 
+.divider{
+    margin: 48px 0px;
+}
 .m-plan-text {
     margin-top: 90px;
     margin-bottom: 48px;
@@ -443,7 +447,13 @@ export default {
         margin-left: -0px;
     }
 }
-
+.save-btn{
+    width: 152px;
+}
+.cancel-btn{
+    width: 99px;
+    margin-left: 24px;
+}
 .month {
     font-family: CerebriSans;
     font-size: 20px;
