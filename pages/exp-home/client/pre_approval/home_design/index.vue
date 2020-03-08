@@ -118,6 +118,23 @@
         <b-button class="mt-3 back" variant="secondary" size="lg" @click="goBack()">Back</b-button>
         <b-button class="mt-3 next" variant="primary" size="lg" @click="moveToNext()">Next</b-button>
     </div>
+    <!-- Delete popup -->
+    <b-modal id="sure-delete"  class="modal-full-body" centered hide-footer hide-header>
+        <div class="modal-temp-body ">
+            <div class="header">
+                <h3 class="text-primary">New Client</h3>
+            </div>
+            <div>
+                <p class="p2">It can be whatever you fits your needs — full name, first name, etc but enter a name you’ll recognize since you’ll need to find it in the search history.</p>
+            </div>
+            <b-form class="modal-form">
+                <label class="" for="login-name">Client Name</label>
+            </b-form>
+            <b-button class="mt-3 btn-1" block variant="primary" size="lg">Create</b-button>
+            <b-button class="mt-3 btn-2 bottom-20" block variant="secondary btn-custom_1" size="lg">Cancel</b-button>
+        </div>
+    </b-modal>
+    <!-- Delete popup -->
 </b-container>
 </template>
 
@@ -201,6 +218,7 @@ export default {
 .top-title{
     margin-top: 48px;
     font-size: 42px;
+    margin-bottom: 0px;
     @media screen and(max-width: 992px) {
         font-size: 26px;
         margin-top: 24px;
@@ -212,6 +230,10 @@ export default {
         margin-bottom: 20px;
         span{
             margin-left: 8px;
+            @media screen and(max-width: 992px) {
+                display: block;
+                margin-left: 0px;
+            }
         }
     }
     .extra-text{
