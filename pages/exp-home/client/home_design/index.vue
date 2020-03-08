@@ -246,7 +246,6 @@ export default {
     },
     methods:{
         moveToNext(){
-            debugger
             const obj = {
                 "clientId" : this.$store.getters['clients/getSelectedClient'].id,
                 "agentId" : this.$store.$auth.user.id,

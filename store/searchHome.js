@@ -18,9 +18,16 @@ export const mutations = {
 };
 
 export const actions = {
-    preApproval({commit , $axios }) {
-    },
-    estimatedAffordability({commit , $axios }) {
+    financialInputs({commit , $axios }, payload) {
+        this.$axios.post('/api/financial-inputs', payload)
+            .then((data)=>{
+                console.log(data)
+                // tbd : where to redirect on success
+                this.$toast.success('Added Financial Inputs', toastDuration)
+            })
+            .catch(() =>{
+                this.$toast.error('Error Adding Financial Inputs', toastDuration)
+            })
     },
     propertyTypes({commit}){
         this.$axios.get('/api/util/property-types')
