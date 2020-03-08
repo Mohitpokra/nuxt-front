@@ -92,27 +92,41 @@
         </b-row>
         <b-row align-v="center">
             <b-col cols="12" lg="12">
-                <b-row class="bg-custom" align-v="center">
-                    <b-col cols="12" lg="6">
-                        <p class="p1 mb-lg-0 prop-plan">Search by Mortgage Payment — <strong>Pro Plan</strong></p>
-                    </b-col>
-                    <b-col cols="12" lg="6" style="text-align:end">
+                <b-row class="bg-custom plan-head">
+                    <div class="prop-plan">
+                        <p class="pr-title">Search by Mortgage Payment — <strong>Pro Plan</strong></p>
                         <b-button class="btn-chng-plan" variant="primary" size="lg" @click="$bvModal.show('bv-modal-example')">Change Plan</b-button>
-                    </b-col>
+                    </div>
                 </b-row>
             </b-col>
         </b-row>
-        <b-row>
-            <b-col cols="12" lg="4">
-                <p class="p3"><span class="text-heading">$15</span>per month</p>
-            </b-col>
-            <b-col cols="12" lg="4">
-                <p class="p3">Renews <span class="text-heading">January 23, 2020</span></p>
-            </b-col>
-            <b-col cols="12" lg="10">
-                <hr>
-            </b-col>
-        </b-row>
+        <div class="info-list">
+            <b-row class="il-list">
+                <b-col cols="12" lg="3">
+                    <span><strong>$15</strong> per month</span>
+                </b-col>
+                <b-col cols="12" lg="4">
+                    <span>Renews <strong>January 23, 2020</strong></span>
+                </b-col>
+                <b-col cols="12" lg="12">
+                    <hr>
+                </b-col>
+            </b-row>
+            <b-row class="il-list">
+                <b-col cols="12" lg="3">
+                    <span><strong>$15</strong> per month</span>
+                </b-col>
+                <b-col cols="12" lg="4">
+                    <span>Renews <strong>January 23, 2020</strong></span>
+                </b-col>
+                <b-col cols="12" lg="5">
+                    Update Card
+                </b-col>
+                <b-col cols="12" lg="12">
+                    <hr>
+                </b-col>
+            </b-row>
+        </div>
 
         <div>
             <b-modal size="lg" id="bv-modal-example" class="modal-full-body" centered hide-footer hide-header>
@@ -367,6 +381,16 @@ export default {
 }
 
 .prop-plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    width: 100%;
+    p{
+        margin: 0px;
+        font-size: 20px;
+        font-weight: 400;
+    }
     @media screen and (max-width: 992px) {
         font-size: 16px;
     }
@@ -465,11 +489,24 @@ export default {
     color: #44a1bf;
     margin-left: 8px;
 }
-
+.plan-head{
+    margin-top: 48px;
+}
 .prl-0 {
     @media screen and (max-width: 992px) {
         padding-left: 0px;
         padding-right: 0px;
+    }
+}
+.info-list{
+    margin-top: 24px;
+}
+.il-list{
+    hr{
+        margin: 24px 0px;
+    }
+    p{
+        margin: 0px;
     }
 }
 </style>
