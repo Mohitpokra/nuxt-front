@@ -6,7 +6,7 @@
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
-        <div v-if="!search_count">
+        <div v-if="!search_count" style="display: none">
             <b-row align-h="start">
                 <b-col cols="12" lg="12">
                     <h2 class="top-title">Search history</h2>
@@ -22,8 +22,13 @@
                 </b-col>
             </b-row>
         </div>
-        <div v-else>
-            <b-row>
+        <div >
+            <b-row align-h="start">
+                <b-col cols="12" lg="12">
+                    <h2 class="top-title">Search history</h2>
+                </b-col>
+            </b-row>
+            <b-row class="search-table">
                 <b-col lg="12">
                     <b-row align-h="between">
                         <b-col lg="2">
@@ -40,7 +45,7 @@
                             <b-badge pill variant="success" class="p3">Pre-approval Requested</b-badge>
                         </b-col>
                         <b-col cols="12">
-                            <hr>
+                            <hr class="hr-divider">
                         </b-col>
                     </b-row>
                     <b-row align-h="between">
@@ -58,7 +63,7 @@
                             <b-badge pill variant="success" class="p3">Pre-approval Requested</b-badge>
                         </b-col>
                         <b-col cols="12">
-                            <hr>
+                            <hr class="hr-divider">
                         </b-col>
                     </b-row>
 
@@ -66,7 +71,7 @@
             </b-row>
             <b-row align-h="center">
                 <b-col cols="auto" lg="auto">
-                    <div>
+                    <div class="sh-page">
                         <b-pagination v-model="currentPage" pills :total-rows="rows" size="sm"></b-pagination>
                     </div>
                 </b-col>
@@ -122,4 +127,16 @@ export default {
         margin-top: 48px;
     }
 }
+.search-table{
+    margin-top: 48px;
+}
+.badge-success{
+    background-color: #f1faf5;
+    font-size: 12px;
+    padding: 0px 10px;
+}
+.hr-divider{
+    margin-top: 0px;
+}
+
 </style>
