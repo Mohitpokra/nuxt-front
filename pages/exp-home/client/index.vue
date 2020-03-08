@@ -14,7 +14,7 @@
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('req-apv')">New Client</b-btn>
             </b-col>
         </b-row>
-        <b-row v-if="show" align-h="center">
+        <b-row v-if="!getClientsList.length" align-h="center">
             <b-col class="text-center">
                 <div>
                     <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
@@ -26,24 +26,9 @@
             </b-col>
         </b-row>
         <b-row v-else class="input-box">
-            <b-col cols="10" offset-lg="1">
+            <b-col cols="10" offset-lg="1" v-for="client in getClientsList" :key="client.id">
                 <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> Stephen Shaw</h4>
-                </div>
-            </b-col>
-            <b-col cols="10" offset-lg="1">
-                <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> Stephen Shaw</h4>
-                </div>
-            </b-col>
-            <b-col cols="10" offset-lg="1">
-                <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> Stephen Shaw</h4>
-                </div>
-            </b-col>
-            <b-col cols="10" offset-lg="1">
-                <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> Stephen Shaw</h4>
+                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
                 </div>
             </b-col>
         </b-row>
@@ -81,24 +66,24 @@
                     <b-col lg="6">
                         <div class="inp-wrapper">
                             <div class="flex justify-content-between" >
-                                <label for="login-email">Client First Name</label>
-                                <span class="inp-error">{{error.email}}</span>
+                                <label for="login-firstName">Client First Name</label>
+                                <span class="inp-error">{{error.firstName}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
+                            <b-input :class="{form_fill: user.firstName}" @focus="handleFocus('firstName')" @blur="handleFirstNameBlur" v-model.trim="user.firstName" :state="error_state.firstName" size="lg" id="login-firstName" placeholder="charlie"></b-input>
+                            <b-form-invalid-feedback :state="error_state.firstName">
+                                {{error.firstName}}
                             </b-form-invalid-feedback>
                         </div>
                     </b-col>
                     <b-col lg="6">
                         <div class="inp-wrapper">
                             <div class="flex justify-content-between" >
-                                <label for="login-email">Client Last Name</label>
-                                <span class="inp-error">{{error.email}}</span>
+                                <label for="login-lastName">Client Last Name</label>
+                                <span class="inp-error">{{error.lastName}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
+                            <b-input :class="{form_fill: user.lastName}" @focus="handleFocus('lastName')" @blur="handleLastNameBlur" v-model.trim="user.lastName" :state="error_state.lastName" size="lg" id="login-lastName" placeholder="puth"></b-input>
+                            <b-form-invalid-feedback :state="error_state.lastName">
+                                {{error.lastName}}
                             </b-form-invalid-feedback>
                         </div>
                     </b-col>
@@ -110,7 +95,7 @@
                                 <label for="login-email">Email</label>
                                 <span class="inp-error">{{error.email}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            <b-input :class="{form_fill: user.email}" @focus="handleFocus('email')" @blur="handleEmailBlur" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                             <b-form-invalid-feedback :state="error_state.email">
                                 {{error.email}}
                             </b-form-invalid-feedback>
@@ -119,23 +104,23 @@
                     <b-col lg="6">
                         <div class="inp-wrapper">
                             <div class="flex justify-content-between" >
-                                <label for="login-email">Phone Number</label>
-                                <span class="inp-error">{{error.email}}</span>
+                                <label for="login-mobile">Phone Number</label>
+                                <span class="inp-error">{{error.mobile}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
+                            <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="9876543219" maxLength="10"></b-input>
+                            <b-form-invalid-feedback :state="error_state.mobile">
+                                {{error.mobile}}
                             </b-form-invalid-feedback>
                         </div>
                     </b-col>
                 </b-row>
-                <b-row class="body-banner">
+                <!-- <b-row class="body-banner">
                     <b-col>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
                     </b-col>
-                </b-row>
+                </b-row> -->
                 <div class="divider req-apv-btns">
-                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg">Create</b-button>
+                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg" @click="createUser()">Create</b-button>
                     <b-button class="can" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
                 </div>
             </div>
@@ -157,8 +142,10 @@
 </template>
 
 <script>
-import {isRequired, isEmail} from './../../../utils/validations.js'
+import {isRequired, isEmail, isMobileNumber} from './../../../utils/validations.js'
 import { toastDuration } from '../../../constants'
+import { mapGetters } from "vuex";
+
 
 export default {
     middleware: 'auth',
@@ -167,15 +154,21 @@ export default {
             addclients: false,
             show: 1,
             user: {
-                name: null,
+                firstName: null,
+                lastName: null,
+                mobile: null,
                 email: null
             },
             error: {
-                name: '',
+                firstName: '',
+                lastName: '',
+                mobile: '',
                 email: ''
             },
             error_state: {
-                name: null,
+                firstName: null,
+                lastName: null,
+                mobile: null,
                 email: null
             },
             items: [
@@ -191,8 +184,19 @@ export default {
         }
     },
     computed: {
+         ...mapGetters("clients", [
+                "getClientsList",
+            ]),
         isDisable(){
-            // tbd: 
+            const isValidFirstName = isRequired(this.user.firstName)
+            const isValidLastName = isRequired(this.user.lastName)
+            const ValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
+            const ValidMobile = isRequired(this.user.mobile) && isMobileNumber(this.user.mobile)
+            if(isValidFirstName && isValidLastName && ValidEmail && ValidMobile){
+                return false
+            }else {
+                return true
+            }
         }
     },
     methods: {
@@ -210,35 +214,58 @@ export default {
             this.error[fieldName] = ''
             this.error_state[fieldName] = null
         },
-        handleNameBlur(){
-            const isValidName = isRequired(this.user.name)
-            if(!isValidName){
-                this.error.name = ' Name is Required. '
-                this.error_state.name = false
+        handleFirstNameBlur(){
+            const isValidFirstName = isRequired(this.user.firstName)
+            if(!isValidFirstName){
+                this.error.firstName = ' First Name is Required. '
+                this.error_state.firstName = false
             }else{
-                this.error.name = ''
-                this.error_state.name = true
+                this.error.firstName = ''
+                this.error_state.firstName = true
+            }
+        },
+        handleLastNameBlur(){
+            const isValidLastName = isRequired(this.user.lastName)
+            if(!isValidLastName){
+                this.error.lastName = ' Last Name is Required. '
+                this.error_state.lastName = false
+            }else{
+                this.error.lastName = ''
+                this.error_state.lastName = true
+            }
+        },
+        handleMobileBlur(){
+            const isValidMobile = isRequired(this.user.mobile) && isMobileNumber(this.user.mobile)
+            if(!isValidMobile){
+                this.error.mobile = (this.user.mobile == '') ? ' Mobile is Required. ' : 'Invalid Mobile Number'
+                this.error_state.mobile = false
+            }else{
+                this.error.mobile = ''
+                this.error_state.mobile = true
             }
         },
         createUser(){
-            this.handleNameBlur();
+            this.handleFirstNameBlur();
+            this.handleLastNameBlur();
             this.handleEmailBlur();
-            const isValid = this.error_state.name || this.error_state.email
+            this.handleMobileBlur();
+            const isValid = this.error_state.firstName || this.error_state.email || this.error_state.lastName || this.error_state.mobile
             if(isValid){
-                const name = this.user.name.split(' ')
-                const firstName = name[0]
-                const lastName = name[1]
                 try {
                     const obj = {
-                        "firstName": firstName,
-                        "lastName": lastName,
+                        "firstName": this.user.firstName,
+                        "lastName": this.user.lastName,
                         "email": this.user.email,
+                        "mobile": this.user.mobile,
                     }
                  try{
                     this.$axios.post('api/client/create', obj)
                         .then((data)=>{
                             this.$toast.success('Client Created Successfully !', toastDuration)
-                            this.$bvModal.hide('add-new-client')
+                            this.$store.dispatch('clients/getClients')
+                                .then(()=>{
+                                    this.$bvModal.hide('req-apv')
+                                })
                         })
                         .catch((responseObj)=>{
                             this.errorHandling(responseObj)
