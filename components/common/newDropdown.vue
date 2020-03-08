@@ -219,9 +219,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="postcss">
-/* @import '@css/_settings.css';
-@import '@css/_mixins.css';
+<style lang="scss" scoped>
 
 .drop-down {
 	position: relative;
@@ -233,7 +231,7 @@ export default Vue.extend({
 
 .dd {
 	&__handle {
-		border: 1px solid $black-60;
+		border: 1px solid black;
 		border-radius: 4px;
 		display: flex;
 		justify-content: space-between;
@@ -245,8 +243,8 @@ export default Vue.extend({
 	&__placeholder {
 		font-size: 16px;
 		text-align: left;
-		color: $black-60;
-		font-weight: $medium;
+		color: black;
+		font-weight: 500;
 		&--minimized {
 			font-size: 10px;
 			text-transform: uppercase;
@@ -260,19 +258,19 @@ export default Vue.extend({
 		&--inline {
 			display: flex;
 			align-items: flex-end;
-			font-weight: $bold;
+			font-weight: 600;
 			font-size: 16px;
 			.dd__placeholder--minimized {
 				font-size: 12px;
-				color: $purple;
+				color: balck;
 				margin-right: 8px;
 				line-height: 20px;
-				font-weight: $medium;
+				font-weight: 500;
 			}
 		}
 		&-selected {
 			font-size: 18px;
-			font-weight: $bold;
+			font-weight: 600;
 		}
 	}
 
@@ -283,9 +281,9 @@ export default Vue.extend({
 		position: absolute;
 		top: 0;
 		background-color: #fff;
-		transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+		transition: 0.45s;
 		width: 100%;
-		border: 1px solid $purple;
+		border: 1px solid black;
 		border-radius: 4px;
 		box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.12);
 		&.reveal {
@@ -303,15 +301,15 @@ export default Vue.extend({
 	&__option {
 		padding: 10px 14px;
 		cursor: pointer;
-		font-weight: $medium;
-		@mixin transition;
+		font-weight: 500;
+		transition: 0.45s;
 		&.selected {
-			background: url('../../assets/img/checkmark.svg') no-repeat;
+			background-color: red;
 			background-position: top 15px right 10px;
 		}
 		&.highlighted,
 		&:hover {
-			background-color: $listhover;
+			background-color: gray;
 		}
 	}
 
@@ -328,7 +326,7 @@ export default Vue.extend({
 		input {
 			width: 100%;
 			border-radius: 4px;
-			border: 1px solid $purple;
+			border: 1px solid black;
 			padding: 8px;
 			&:focus {
 				outline: none;
@@ -340,7 +338,7 @@ export default Vue.extend({
 		font-family: 'iconfont' !important;
 		speak: none;
 		font-style: normal;
-		font-weight: $bold;
+		font-weight: 600;
 		font-variant: normal;
 		text-transform: none;
 		line-height: 1;
@@ -350,7 +348,6 @@ export default Vue.extend({
 		width: 16px;
 		height: 9px;
 		&::before {
-			
 			content: '\e906';
 			color: inherit;
 			font-size: 16px;
@@ -361,16 +358,16 @@ export default Vue.extend({
 	.dd {
 		&__option {
 			&:hover {
-				background-color: $listhover;
+				background-color: red;
 			}
 		}
 	}
 	&:hover {
 		.dd__handle {
-			@mixin transition;
-			border-color: $purple;
+			transition: 0.45s;
+			border-color: black;
 			box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.12);
 		}
 	}
-} */
+}
 </style>
