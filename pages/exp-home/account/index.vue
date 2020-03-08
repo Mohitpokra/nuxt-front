@@ -119,8 +119,8 @@
                 <b-col cols="12" lg="4">
                     <span>Renews <strong>January 23, 2020</strong></span>
                 </b-col>
-                <b-col cols="12" lg="5">
-                    Update Card
+                <b-col cols="12" lg="5" class="text-right">
+                    <span class="pointer link">Update Card</span>
                 </b-col>
                 <b-col cols="12" lg="12">
                     <hr>
@@ -507,6 +507,9 @@ export default {
     }
     p{
         margin: 0px;
+    }
+    .link{
+        color: #44a1bf;
     }
 }
 </style>
