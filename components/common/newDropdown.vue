@@ -231,27 +231,20 @@ export default Vue.extend({
 
 .dd {
 	&__handle {
-		border: 1px solid black;
-		border-radius: 4px;
+		border: 2px solid #1f1f1f;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 12px 16px;
-		height: 60px;
+		height: 48px;
 		cursor: pointer;
 	}
 	&__placeholder {
 		font-size: 16px;
 		text-align: left;
-		color: black;
-		font-weight: 500;
-		&--minimized {
-			font-size: 10px;
-			text-transform: uppercase;
-			text-align: left;
-		}
+		color: #1f1f1f;
+		font-weight: 600;
 	}
-
 	&__value {
 		width: 100%;
 		text-align: left;
@@ -279,13 +272,11 @@ export default Vue.extend({
 		transform: scaleY(0);
 		transform-origin: 1% 1%;
 		position: absolute;
-		top: 0;
+		top: 56px;
 		background-color: #fff;
-		transition: 0.45s;
+		transition: 0.25s;
 		width: 100%;
-		border: 1px solid black;
-		border-radius: 4px;
-		box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.12);
+		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
 		&.reveal {
 			opacity: 1;
 			transform: scaleY(1);
@@ -296,20 +287,20 @@ export default Vue.extend({
 		max-height: 350px;
 		overflow: auto;
 		text-align: left;
-		margin-top: 8px;
 	}
 	&__option {
-		padding: 10px 14px;
+		padding: 12px 32px;
 		cursor: pointer;
 		font-weight: 500;
 		transition: 0.45s;
+		margin-top: 1px;
 		&.selected {
-			background-color: red;
-			background-position: top 15px right 10px;
+			background-color: #1f1f1f;
+			color: #fff;
 		}
 		&.highlighted,
 		&:hover {
-			background-color: gray;
+			background-color: #1f1f1f;
 		}
 	}
 
@@ -326,7 +317,7 @@ export default Vue.extend({
 		input {
 			width: 100%;
 			border-radius: 4px;
-			border: 1px solid black;
+			border: 1px solid #1f1f1f;
 			padding: 8px;
 			&:focus {
 				outline: none;
@@ -334,23 +325,21 @@ export default Vue.extend({
 		}
 	}
 	&__arrow {
-		display: inline-block;
-		font-family: 'iconfont' !important;
-		speak: none;
-		font-style: normal;
-		font-weight: 600;
-		font-variant: normal;
-		text-transform: none;
-		line-height: 1;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		line-height: 9px;
+		position: relative;
 		width: 16px;
-		height: 9px;
+		height: 16px;
+		display: flex;
+		transform: rotate(-45deg);
+		align-items: center;
 		&::before {
-			content: '\e906';
-			color: inherit;
-			font-size: 16px;
+			position: absolute;
+			content: '';
+			border: 2px solid #1f1f1f;
+			border-right: none;
+			border-top: none;
+			top: -4px;
+			width: 12px;
+			height: 12px;
 		}
 	}
 }
@@ -358,14 +347,15 @@ export default Vue.extend({
 	.dd {
 		&__option {
 			&:hover {
-				background-color: red;
+				background-color: #1f1f1f;
+				color:#fff;
 			}
 		}
 	}
 	&:hover {
 		.dd__handle {
 			transition: 0.45s;
-			border-color: black;
+			border-color: #1f1f1f;
 			box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.12);
 		}
 	}
