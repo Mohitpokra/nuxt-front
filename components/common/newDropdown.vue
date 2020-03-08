@@ -118,7 +118,11 @@ export default Vue.extend({
 		},
 		validations: {
 			type: Array,
-		},
+        },
+        passLabelAsValue: {
+            type: Boolean,
+            default: false
+        }
     },
     data(){
         return {
@@ -144,7 +148,7 @@ export default Vue.extend({
 	},
 	select(option) {
         this.selected = option
-		this.$emit('input', option.value)
+		this.$emit('input', this.passLabelAsValue ? option.label : option.value)
 		this.toggle()
 		this.searchKey = ''
 	},
