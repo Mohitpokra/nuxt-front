@@ -54,31 +54,37 @@
                             :showHeaderText="false"
                             label="Min. Beds"
                             theme="plain"
-                            :options="getStates"
-                            @input="handleStateSelection"
-                            v-model="selectedState"
-                            customClass="cgt__dropdown"
-                            :useDefaultSearchKey="false"
+                            :options="getMinBeds"
+                            @input="handleMinBedSelection"
+                            v-model="selectedMinBed"
+                            :passLabelAsValue="true"
                         />
-                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
-                        <!-- <b-dropdown id="dropdown-text" text="Min. Beds" class="m-2">
-                            <b-dropdown-item-button @click="selectBeds('firstItem')">First item</b-dropdown-item-button>
-                            <b-dropdown-item-button @click="selectBeds('secondItem')">Second Item</b-dropdown-item-button>
-                        </b-dropdown> -->
                     </b-col>
                     <b-col cols="12" lg="4">
-                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
-                        <!-- <b-dropdown id="dropdown-text" text="Min. Full Baths" class="m-2">
-                            <b-dropdown-item-button @click="selectFullBath">First item</b-dropdown-item-button>
-                            <b-dropdown-item-button @click="selectFullBath">Second Item</b-dropdown-item-button>
-                        </b-dropdown> -->
+                        <newDropDown
+                            labelKey="id"
+                            labelValue="name"
+                            :showHeaderText="false"
+                            label="Min. Full Baths"
+                            theme="plain"
+                            :options="getFullBaths"
+                            @input="handleFullBathSelection"
+                            v-model="selectedFullBath"
+                            :passLabelAsValue="true"
+                        />
                     </b-col>
                     <b-col cols="12" lg="4">
-                        <!-- <b-form-select v-model="selected" :options="options" size="lg" class="mt-3"></b-form-select> -->
-                        <!-- <b-dropdown id="dropdown-text" text="Min. Half Baths" class="m-2">
-                            <b-dropdown-item-button @click="selectHalfBath">First item</b-dropdown-item-button>
-                            <b-dropdown-item-button @click="selectHalfBath">Second Item</b-dropdown-item-button>
-                        </b-dropdown> -->
+                        <newDropDown
+                            labelKey="id"
+                            labelValue="name"
+                            :showHeaderText="false"
+                            label="Min. Half Bath"
+                            theme="plain"
+                            :options="getHalfBaths"
+                            @input="handleHalfBathSelection"
+                            v-model="selectedHalfBath"
+                            :passLabelAsValue="true"
+                        />
                     </b-col>
                 </b-row>
             </b-col>
@@ -189,7 +195,9 @@ export default {
         return {
             text: '',
             selected: null,
-            selectedState: '',
+            selectedFullBath: '',
+            selectedMinBed: '',
+            selectedHalfBath: '',
             selectedPropertyTypes:[],
             selectedPropertyConditions:[],
             selectedMustHaves:[],
@@ -238,14 +246,41 @@ export default {
     },
     methods:{
         moveToNext(){
-            // validate and move to next page
-            // this.$router.push('/exp-home/client/home_design/pre_approval/')
+            debugger
+            const obj = {
+                "clientId" : this.$store.getters['clients/getSelectedClient'].id,
+                "agentId" : this.$store.$auth.user.id,
+                "propertyType" : this.selectedPropertyTypes,
+                "propertyCondition" : this.selectedPropertyConditions,
+                "minBeds" : this.selectedMinBed,
+                "minFullBath" : this.selectedHalfBath,
+                "minHalfBath" : this.selectedHalfBath,
+                "mustHaves" : this.selectedMustHaves,
+                "other" : this.text,
+                "location" : "Islamabad",
+                "pointOfInterests": [
+                    {
+                        "address": "address 1",
+                        "DistanceInMiles": "20",
+                        "DriveTimeInMutes": "30"
+                    },
+                    {
+                        "address": "address 2",
+                        "DistanceInMiles": "20",
+                        "DriveTimeInMutes": "50"
+                    }
+                ]
+            }
+            this.$store.dispatch('searchHome/homeDesign', obj)
         },
         goBack(){
             this.$router.back()
         },
-        handleStateSelection(){
-            
+        handleMinBedSelection(){
+        },
+        handleFullBathSelection(){
+        },
+        handleHalfBathSelection(){
         }
     },
     computed:{
@@ -263,13 +298,58 @@ export default {
             getPropertyMustHavesArray(){
                 return this.$store.getters['searchHome/getMustHaves']|| []
             },
-            getStates(){
+            getMinBeds(){
                 return [{
-                    label:1,
+                    label:'Any',
+                    value:'any'
+                },{
+                    label:'1+ Beds',
                     value:'1'
                 },{
-                    label:2,
+                    label:'2+ Beds',
                     value:'2'
+                },{
+                    label:'3+ Beds',
+                    value:'3'
+                },{
+                    label:'4+ Beds',
+                    value:'4'
+                }]
+            },
+            getFullBaths(){
+                return [{
+                    label:'1+ Full Baths',
+                    value:'1'
+                },{
+                    label:'2+  Full Baths',
+                    value:'2'
+                },{
+                    label:'3+  Full Baths',
+                    value:'3'
+                },{
+                    label:'4+  Full Baths',
+                    value:'4'
+                },{
+                    label:'Any Full Baths',
+                    value:'any'
+                }]
+            },
+            getHalfBaths(){
+                return [{
+                    label:'1+ Half Baths',
+                    value:'1'
+                },{
+                    label:'2+ Half Baths',
+                    value:'2'
+                },{
+                    label:'3+ Half Baths',
+                    value:'3'
+                },{
+                    label:'4+ Half Baths',
+                    value:'4'
+                },{
+                    label:'Any Half Baths',
+                    value:'any'
                 }]
             }
     },

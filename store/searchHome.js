@@ -72,6 +72,17 @@ export const actions = {
             .catch(() =>{
                 this.$toast.error('Error fetching mustHaves', toastDuration)
             })
+    },
+    homeDesign({commit}, payload){
+        this.$axios.post('/api/home-design', payload)
+            .then((data)=>{
+                console.log(data)
+                this.$router.push('/exp-home/client/home_design/pre_approval/');
+                this.$toast.success('Added HomeDesign', toastDuration) 
+            })
+            .catch(() =>{
+                this.$toast.error('Error Adding HomeDesign', toastDuration)
+            })
     }
 };
 

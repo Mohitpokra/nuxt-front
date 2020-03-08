@@ -118,7 +118,11 @@ export default Vue.extend({
 		},
 		validations: {
 			type: Array,
-		},
+        },
+        passLabelAsValue: {
+            type: Boolean,
+            default: false
+        }
     },
     data(){
         return {
@@ -136,15 +140,15 @@ export default Vue.extend({
     },
     methods:{
     close() {
-		this.isOpen && (this.isOpen = false)
+        this.isOpen && (this.isOpen = false)
 	},
 	toggle() {
-		this.isOpen = !this.isOpen
+        this.isOpen = !this.isOpen
 		this.isOpen ? this.$emit('onOpen') : this.$emit('onClose')
 	},
 	select(option) {
-		this.selected = option
-		this.$emit('input', option.value)
+        this.selected = option
+		this.$emit('input', this.passLabelAsValue ? option.label : option.value)
 		this.toggle()
 		this.searchKey = ''
 	},
@@ -208,8 +212,7 @@ export default Vue.extend({
     },
     created(){
         const { value, options } = this.$props
-        debugger
-		value && options && (this.selected = options.find((o) => o.value === value))
+        value && options && (this.selected = options.find((o) => o.value === value))
     },
     watch:{
         isOpen(flag) {
