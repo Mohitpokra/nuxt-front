@@ -2,69 +2,95 @@
 <b-container>
     <div class="inner-container">
         <b-row align-h="start">
-            <b-col offset-lg="1">
+            <b-col>
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
-                <h3>My Account</h3>
+            <b-col cols="12" lg="12">
+                <h3 class="top-title">My Account</h3>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
-                <label class="" for="login-name">Name</label>
-                <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
-                <b-form-invalid-feedback :state="error_state.name">
-                    {{error.name}}
-                </b-form-invalid-feedback>
+            <b-col cols="12" lg="6">
+                <div class="inp-wrapper">
+                    <div class="flex justify-content-between" >
+                        <label for="login-email">Name</label>
+                        <span class="inp-error">{{error.email}}</span>
+                    </div>
+                    <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
+                    <b-form-invalid-feedback :state="error_state.name">
+                        {{error.name}}
+                    </b-form-invalid-feedback>
+                </div>
             </b-col>
-            <b-col cols="12" lg="5">
-                <label class="m-email" for="login-email">Email</label>
-                <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                <b-form-invalid-feedback :state="error_state.email">
-                    {{error.email}}
-                </b-form-invalid-feedback>
+            <b-col cols="12" lg="6">
+                <div class="inp-wrapper">
+                    <div class="flex justify-content-between" >
+                        <label for="login-email">Email</label>
+                        <span class="inp-error">{{error.email}}</span>
+                    </div>
+                    <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                    <b-form-invalid-feedback :state="error_state.email">
+                        {{error.email}}
+                    </b-form-invalid-feedback>
+                </div>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="5" offset-lg="1">
-                <label class="m-password" for="login-password">Password</label>
-                <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                <b-form-invalid-feedback :state="error_state.password">
-                    {{error.password}}
-                </b-form-invalid-feedback>
+            <b-col cols="12" lg="6">
+                <div class="inp-wrapper">
+                    <div class="flex justify-content-between" >
+                        <label for="login-email">Password</label>
+                        <span class="inp-error">{{error.email}}</span>
+                    </div>
+                    <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                    <b-form-invalid-feedback :state="error_state.password">
+                        {{error.password}}
+                    </b-form-invalid-feedback>
+                </div>
+                <div class="inp-wrapper">
+                    <div class="flex justify-content-between" >
+                        <label for="login-email"></label>
+                        <span class="inp-error">{{error.email}}</span>
+                    </div>
+                    <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                    <b-form-invalid-feedback :state="error_state.password">
+                        {{error.password}}
+                    </b-form-invalid-feedback>
+                </div>
+                <b-col cols="12" lg="6" v-if="!isChangePass">
+                    <b-button class="btn-custom" variant="secondary" size="lg" @click="showNewPass">Change Password</b-button>
+                </b-col>
             </b-col>
-            <b-col cols="12" lg="6" offset-lg="1" v-if="!isChangePass">
-                <b-button class="btn-custom" variant="secondary" size="lg" @click="showNewPass">Change Password</b-button>
-            </b-col>
-            <b-col cols="12" offset-lg="1" lg="10" v-if="!isChangePass">
+
+            <b-col cols="12" lg="12" v-if="!isChangePass">
                 <hr>
             </b-col>
         </b-row>
         <b-row v-if="isChangePass">
-            <b-col cols="12" lg="5" offset-lg="1">
+            <b-col cols="12" lg="6">
                 <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
                 <b-form-invalid-feedback :state="error_state.password">
                     {{error.newPassword}}
                 </b-form-invalid-feedback>
             </b-col>
-            <b-col cols="12" lg="6" offset-lg="1">
+            <b-col cols="12" lg="6">
                 <b-button class="btn-save-change" variant="primary" size="lg" @click="savePassword">Save Changes</b-button>
                 <b-button class="btn-cancel" variant="secondary" size="lg" @click="cancelPass">Cancel</b-button>
             </b-col>
             </b-col>
-            <b-col cols="12" offset-lg="1" lg="10">
+            <b-col cols="12" lg="12">
                 <hr>
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="12">
                 <h3>Plan & Billing</h3>
             </b-col>
         </b-row>
         <b-row align-v="center">
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="12">
                 <b-row class="bg-custom" align-v="center">
                     <b-col cols="12" lg="6">
                         <p class="p1 mb-lg-0 prop-plan">Search by Mortgage Payment — <strong>Pro Plan</strong></p>
@@ -76,13 +102,13 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="4" offset-lg="1">
+            <b-col cols="12" lg="4">
                 <p class="p3"><span class="text-heading">$15</span>per month</p>
             </b-col>
             <b-col cols="12" lg="4">
                 <p class="p3">Renews <span class="text-heading">January 23, 2020</span></p>
             </b-col>
-            <b-col cols="12" lg="10" offset-lg="1">
+            <b-col cols="12" lg="10">
                 <hr>
             </b-col>
         </b-row>
@@ -93,13 +119,13 @@
                     <div v-if="!isPropPlan" class="header">
                         <b-container class="">
                             <b-row>
-                                <b-col lg="9" cols="10" offset-lg="1">
+                                <b-col lg="9" cols="10">
                                     <h3 class="text-primary">Choose the plan for you</h3>
                                 </b-col>
                                 <b-col lg="1" cols="2"> <button type="button" aria-label="Close" class="close">×</button></b-col>
                             </b-row>
                             <b-row class="m-bottom">
-                                <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5" offset-lg="1">
+                                <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5">
                                     <h3>Free</h3>
                                     <p class="p-box-subheading p2">Limited to 5 searches per month</p>
                                     <div class="p-box-money d-flex align-items-center">
@@ -304,6 +330,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.top-title{
+    margin-top: 48px;
+    font-size: 42px;
+    margin-bottom: 48px;
+    @media screen and(max-width: 992px) {
+        font-size: 26px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+}
 .btn-custom {
     width: 179px;
     height: 48px;
