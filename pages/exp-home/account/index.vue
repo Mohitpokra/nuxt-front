@@ -351,7 +351,6 @@ export default {
     margin-bottom: 24px;
     @media screen and(max-width: 992px) {
         font-size: 26px;
-        margin-top: 24px;
         margin-bottom: 12px;
     }
 }
@@ -386,13 +385,18 @@ export default {
     align-items: center;
     padding: 24px;
     width: 100%;
-    p{
+    .pr-title{
         margin: 0px;
         font-size: 20px;
         font-weight: 400;
     }
     @media screen and (max-width: 992px) {
         font-size: 16px;
+        flex-direction: column;
+        .pr-title{
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
     }
 }
 
@@ -491,6 +495,9 @@ export default {
 }
 .plan-head{
     margin-top: 48px;
+    @media screen and (max-width: 992px) {
+        margin-top: 14px;
+    }
 }
 .prl-0 {
     @media screen and (max-width: 992px) {
@@ -500,10 +507,17 @@ export default {
 }
 .info-list{
     margin-top: 24px;
+    @media screen and (max-width: 992px) {
+     margin-top: 16px;
+    }
 }
 .il-list{
+    font-size: 14px;
     hr{
         margin: 24px 0px;
+        @media screen and (max-width: 992px) {
+           margin: 16px 0px;
+        }
     }
     p{
         margin: 0px;
@@ -511,5 +525,15 @@ export default {
     .link{
         color: #44a1bf;
     }
+    @media screen and (max-width: 992px) {
+     font-size: 12px;
+     span{
+         margin: 4px 0px;
+         display: block;
+     }
+    }
+}
+.container{
+    padding: 0px 9px;
 }
 </style>
