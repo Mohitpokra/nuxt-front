@@ -235,7 +235,11 @@ export default {
                     href: '/exp-home/client/'
                 },
                 {
-                    text: 'Pre-approval',
+                    text: 'home-design',
+                    href: '/exp-home/client/home_design'
+                },
+                {
+                    text: 'pre-approval',
                     href: '#'
                 },
             ]

@@ -1,13 +1,20 @@
 import {toastDuration} from './../constants.js'
+import {getValue, setValue} from './../utils/localstorageUtils.js'
 
-export const state = () => ({
-    client_list:[]
-});
+export const state = () => {
+    return {
+            client_list:[],
+            selectedClient:{}
+        }
+};
 
 export const mutations = {
     SET_CLIENTS(state, payload) {
       state.client_list = payload
     },
+    SET_SELECTED_CLIENT(state, payload) {
+        state.selectedClient = payload
+    }
 };
 
 export const actions = {
@@ -20,11 +27,21 @@ export const actions = {
             .catch(() =>{
                 this.$toast.error('Error fetching client', toastDuration)
             })
+    },
+    selectedClient({commit}, payload){
+        commit('SET_SELECTED_CLIENT',payload)
+        setValue('selectedClient', JSON.stringify(payload))
     }
 };
 
 export const getters = {
     getClientsList: (state) =>{
         return state.client_list
+    },
+    getSelectedClient: (state) => {
+        let data = getValue('selectedClient')
+        let selectedClientData = data ? JSON.parse(data) : {}
+        data = state.selectedClient.id ? state.selectedClient : selectedClientData
+        return  data
     }
 };

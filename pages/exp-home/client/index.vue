@@ -26,16 +26,16 @@
             </b-col>
         </b-row>
         <b-row v-else class="input-box">
-            <b-col cols="10" offset-lg="1" v-for="client in getClientsList" :key="client.id">
+            <b-col cols="10" offset-lg="1" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
                 <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+                    <h4 class="container-text"><img class="check" v-if="client.id ==  (getSelectedClient && getSelectedClient.id)" src="~/assets/icons/icon-interface-check.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
                 </div>
             </b-col>
         </b-row>
     </div>
     <div class="flex justify-between buttons">
         <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="goBack()">Back</b-btn>
-        <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
+        <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext" :disabled="isNextDisable">Next</b-btn>
     </div>
     <div>
         <!-- <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
@@ -153,6 +153,8 @@ export default {
         return {
             addclients: false,
             show: 1,
+            isSelected:null,
+            selectedUser:{},
             user: {
                 firstName: null,
                 lastName: null,
@@ -186,7 +188,12 @@ export default {
     computed: {
          ...mapGetters("clients", [
                 "getClientsList",
+                "getSelectedClient"
             ]),
+            isNextDisable(){
+               const  data = this.$store.getters && this.$store.getters['clients/getSelectedClient']
+                return data.id ? false : true
+            },
         isDisable(){
             const isValidFirstName = isRequired(this.user.firstName)
             const isValidLastName = isRequired(this.user.lastName)
@@ -200,6 +207,11 @@ export default {
         }
     },
     methods: {
+        setSelected(user){
+            // this.isSelected = true;
+            this.selectedUser = user;
+            this.$store.dispatch('clients/selectedClient', user)
+        },
         errorHandling(responseObj){
             let {message, errors = {}} = responseObj.response && responseObj.response.data
             if(Object.keys(errors).length){
@@ -296,7 +308,7 @@ export default {
 
         },
         moveToNext(){
-            this.$router.push('/exp-home/client/pre_approval')
+            this.$router.push('/exp-home/client/home_design')
         },
         goBack(){
             this.$router.back()

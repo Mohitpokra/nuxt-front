@@ -12,20 +12,31 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="6" class="filter">
+            <b-col cols="12" lg="6"  class="filter property-type-wrapper">
                 <h3 class="text-primary filter-title">Property Type<span class="p3"> (Select at least one)</span></h3>
-                <b-form-checkbox :state="null" size="lg">Single Family</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Duplex</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Triplex</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Quadplex</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Commercial</b-form-checkbox>
-                <b-form-invalid-feedback :state="null">Please select One</b-form-invalid-feedback>
+                    <b-form-group>
+                        <b-form-checkbox-group
+                            size="lg"
+                            id="propertytypes-group"
+                            v-model="selectedPropertyTypes"
+                            :options="getPropertyTypesArray"
+                            name="propertytypes"
+                        ></b-form-checkbox-group>
+                    </b-form-group>
+                <b-form-invalid-feedback :state="error_state.propertytypes">Please select One</b-form-invalid-feedback>
             </b-col>
-            <b-col class="filter" cols="12" lg="6" >
+            <b-col class="filter property-condition-wrapper" cols="12" lg="6" >
                 <h3 class="text-primary filter-title">Property Condition</h3>
-                <b-form-checkbox :state="null" size="lg">Any</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Average+ only</b-form-checkbox>
-                <b-form-checkbox :state="null" size="lg">Personal Customs Desired</b-form-checkbox>
+                <b-form-group>
+                    <b-form-checkbox-group
+                        size="lg"
+                        id="propertyconditions-group"
+                        v-model="selectedPropertyConditions"
+                        :options="getPropertyConditionsArray"
+                        name="propertyconditions"
+                    ></b-form-checkbox-group>
+                    <b-form-invalid-feedback :state="error_state.propertyconditions">Please select One</b-form-invalid-feedback>
+                </b-form-group>
             </b-col>
         </b-row>
         <b-row>
@@ -54,18 +65,22 @@
             </b-col>
             <b-col cols="12" lg="12">
                 <b-row>
-                    <b-col cols="12" lg="6">
-                        <b-form-checkbox :state="null" size="lg">Off Street Parking</b-form-checkbox>
-                        <b-form-checkbox :state="null" size="lg">Garage</b-form-checkbox>
-                        <b-form-checkbox :state="null" size="lg">Roof Deck</b-form-checkbox>
-                        <b-form-checkbox :state="null" size="lg">In-ground Pool</b-form-checkbox>
-                        <b-form-checkbox :state="null" size="lg">New Construction</b-form-checkbox>
-                        <b-form-invalid-feedback :state="null">Please select One</b-form-invalid-feedback>
+                    <b-col cols="12" lg="6" class="must-have">
+                        <b-form-group>
+                            <b-form-checkbox-group
+                                size="lg"
+                                id="mustHaves-group"
+                                v-model="selectedMustHaves"
+                                :options="getPropertyMustHavesArray"
+                                name="musthaves"
+                            ></b-form-checkbox-group>
+                            <b-form-invalid-feedback :state="error_state.musthaves">Please select One</b-form-invalid-feedback>
+                        </b-form-group>
                     </b-col>
                     <b-col class="h-100" cols="12" lg="6">
-                        <b-form-checkbox :state="null" size="lg">Other</b-form-checkbox>
+                        <b-form-checkbox :state="error_state.errortextrea" size="lg">Other</b-form-checkbox>
                         <div class="extra-text">
-                            <b-form-textarea id="textarea-state" v-model="text" :state="null" placeholder="Please Specify" rows="3"></b-form-textarea>
+                            <b-form-textarea id="textarea-state" v-model="text" :state="error_state.errortextrea" placeholder="Please Specify" rows="3"></b-form-textarea>
                         </div>
                     </b-col>
                 </b-row>
@@ -139,12 +154,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
     middleware: 'auth',
     data() {
         return {
             text: '',
             selected: null,
+            selectedPropertyTypes:[],
+            selectedPropertyConditions:[],
+            selectedMustHaves:[],
             options: [{
                     value: null,
                     text: 'Please select an option'
@@ -166,7 +185,11 @@ export default {
             ],
             search: null,
             error_state: {
-                search: null
+                search: null,
+                errortextrea:null,
+                propertytypes:null,
+                propertyconditions:null,
+                musthaves:null
             },
             items: [
                 {
@@ -180,21 +203,39 @@ export default {
                 {
                     text: 'Home Design',
                     href: '/exp-home/client/home_design'
-                },
-                {
-                    text: 'Pre-approval',
-                    href: '/exp-home/client/home_design/pre_approval/'
-                },
+                }
             ]
         }
     },
     methods:{
         moveToNext(){
-            this.$router.push('/exp-home/client/home_design/pre_approval/search_result')
+            // validate and move to next page
+            // this.$router.push('/exp-home/client/home_design/pre_approval/')
         },
         goBack(){
             this.$router.back()
         }
+    },
+    computed:{
+      ...mapGetters("searchHome", [
+                "getPropertyTypes",
+                "getPropertyConditions",
+                "getMustHaves"
+            ]),
+            getPropertyTypesArray(){
+                return this.$store.getters['searchHome/getPropertyTypes']|| []
+            },
+            getPropertyConditionsArray(){
+                return this.$store.getters['searchHome/getPropertyConditions']|| []
+            },
+            getPropertyMustHavesArray(){
+                return this.$store.getters['searchHome/getMustHaves']|| []
+            }
+    },
+    mounted(){
+        this.$store.dispatch('searchHome/propertyTypes')
+        this.$store.dispatch('searchHome/propertyConditions')
+        this.$store.dispatch('searchHome/mustHaves')
     }
 }
 </script>
@@ -292,6 +333,11 @@ export default {
         right: 15px;
         top: 5px;
         opacity: 0.4;
+    }
+}
+#propertytypes-group, #propertyconditions-group, #mustHaves-group{
+    .custom-control{
+        width: 100%;
     }
 }
 </style>
