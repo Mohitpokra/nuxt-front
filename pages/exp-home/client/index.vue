@@ -26,9 +26,9 @@
             </b-col>
         </b-row>
         <b-row v-else class="input-box">
-            <b-col cols="10" offset-lg="1" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
-                <div class="box-shadow-container">
-                    <h4 class="container-text"><img class="check" v-if="client.id ==  (getSelectedClient && getSelectedClient.id)" src="~/assets/icons/icon-interface-check.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+            <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
+                <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
+                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
                 </div>
             </b-col>
         </b-row>
@@ -508,5 +508,24 @@ export default {
         margin-left: -15px;
         margin-right: -15px;
      }
+}
+.list{
+    position: relative;
+    img{
+        position: absolute;
+        left: 18px;
+        top: 30px;
+        transition: 0.25s;
+        transform: scale(0);
+    }
+    &.selected{
+        background-color: #1f1f1f;
+        .container-text{
+            color: #fff;
+        }
+        img{
+            transform: scale(1);
+        }
+    }
 }
 </style>
