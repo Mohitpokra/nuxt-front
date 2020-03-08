@@ -801,3 +801,14 @@ select.selectpicker {
       margin-top: 12px;
   }
 }
+#choosePlan{
+  .modal-content{
+    padding: 48px;
+    @media screen and (max-width: 936px) {
+      padding: 20px;
+    }
+  }
+  .modal-body{
+    padding: 0px;
+  }
+}

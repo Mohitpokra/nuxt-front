@@ -95,7 +95,7 @@
                 <b-row class="bg-custom plan-head">
                     <div class="prop-plan">
                         <p class="pr-title">Search by Mortgage Payment — <strong>Pro Plan</strong></p>
-                        <b-button class="btn-chng-plan" variant="primary" size="lg" @click="$bvModal.show('bv-modal-example')">Change Plan</b-button>
+                        <b-button class="btn-chng-plan" variant="primary" size="lg" @click="$bvModal.show('choosePlan')">Change Plan</b-button>
                     </div>
                 </b-row>
             </b-col>
@@ -129,18 +129,14 @@
         </div>
 
         <div>
-            <b-modal size="lg" id="bv-modal-example" class="modal-full-body" centered hide-footer hide-header>
+            <b-modal size="lg" id="choosePlan" class="modal-full-body" centered hide-footer hide-header>
                 <div class="modal-temp-body">
+                    <img class="img-cross" src="~/assets/icons/icon-interface-x.svg" />
                     <div v-if="!isPropPlan" class="header">
-                        <b-container class="">
-                            <b-row>
-                                <b-col lg="9" cols="10">
-                                    <h3 class="text-primary">Choose the plan for you</h3>
-                                </b-col>
-                                <b-col lg="1" cols="2"> <button type="button" aria-label="Close" class="close">×</button></b-col>
-                            </b-row>
-                            <b-row class="m-bottom">
-                                <b-col class="box-shadow-low p-box m-box-right" cols="12" lg="5">
+                        <div class="choose-plan-container">
+                            <h3 class="text-primary">Choose the plan for you</h3>
+                            <div class="choose-plan-wrapper">
+                                <div class="box-shadow-low">
                                     <h3>Free</h3>
                                     <p class="p-box-subheading p2">Limited to 5 searches per month</p>
                                     <div class="p-box-money d-flex align-items-center">
@@ -152,8 +148,8 @@
                                     <div>
                                         <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
                                     </div>
-                                </b-col>
-                                <b-col class="box-shadow-low p-box m-box-left" cols="12" lg="5">
+                                </div>
+                                <div class="box-shadow-low">
                                     <h3>Pro</h3>
                                     <p class="p-box-subheading p2">Unlimited searches</p>
                                     <div class="p-box-money d-flex align-items-center">
@@ -165,57 +161,68 @@
                                     <div>
                                         <b-button block variant="primary" size="lg" @click="chooseProPlan">Choose Pro Plan</b-button>
                                     </div>
-                                </b-col>
-                            </b-row>
-                        </b-container>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div v-else>
-                        <b-row>
-                            <b-col lg="11">
-                                <h3 class="text-primary">Enter billing information</h3>
-                            </b-col>
-                            <b-col lg="1"> <button type="button" aria-label="Close" class="close" @click="$bvModal.hide('bv-modal-example')">×</button></b-col>
-                        </b-row>
-                        <b-row>
-                            <b-col>
-                                <b-form>
-                                    <label class="" for="billing-name">Name on Credit Card</label>
-                                    <b-input :class="{form_fill: billing.name}" v-model.trim="billing.name" :state="error_state_1.name" size="lg" id="billing-name" placeholder="Charlie Exampleton"></b-input>
-                                    <b-form-invalid-feedback :state="error_state_1.name">
-                                        {{error_1.name}}
-                                    </b-form-invalid-feedback>
-                                    <label class="m-field" for="billing-cardNo">Credit Card Number</label>
-                                    <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state_1.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input>
-                                    <b-form-invalid-feedback :state="error_state_1.cardNo">
-                                        {{error_1.cardNo}}
-                                    </b-form-invalid-feedback>
-                                    <b-row class="">
-                                        <b-col class="prl-0" cols="12" lg="6">
-                                            <label class="m-field" for="billing-expiryDate">Expiration Date</label>
-                                            <b-input :class="{form_fill: billing.expiryDate}" v-model="billing.expiryDate" :state="error_state_1.expiryDate" size="lg" id="billing-expiryDate" placeholder="MM/YY"></b-input>
-                                            <b-form-invalid-feedback :state="error_state_1.expiryDate">
-                                                {{error_1.expiryDate}}
-                                            </b-form-invalid-feedback>
-                                        </b-col>
-                                        <b-col class="prl-0" cols="12" lg="6">
-                                            <label class="m-field" for="billing-cvc">CVC</label>
-                                            <b-input :class="{form_fill: billing.cvc}" v-model="billing.cvc" :state="error_state_1.cvc" size="lg" id="billing-cvc" placeholder="CVC"></b-input>
-                                            <b-form-invalid-feedback :state="error_state_1.cvc">
-                                                {{error_1.cvc}}
-                                            </b-form-invalid-feedback>
-                                        </b-col>
-                                    </b-row>
-                                    <b-row align-h="between" class="divider">
-                                        <b-col cols="6">
-                                            <b-button class="mt-3" block variant="primary" :disabled="isDisable" size="lg">Pay $15/mo</b-button>
-                                        </b-col>
-                                        <b-col cols="3">
-                                            <b-button class="mt-3" block variant="secondary btn-custom_1" @click="$bvModal.hide('bv-modal-example')" size="lg">Cancel</b-button>
-                                        </b-col>
-                                    </b-row>
-                                </b-form>
-                            </b-col>
-                        </b-row>
+                        <h3 class="mod-title text-primary">Enter billing information</h3>
+                        <b-form>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Name on Credit Card</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: billing.name}" v-model.trim="billing.name" :state="error_state_1.name" size="lg" id="billing-name" placeholder="Charlie Exampleton"></b-input>
+                                <b-form-invalid-feedback :state="error_state_1.name">
+                                    {{error_1.name}}
+                                </b-form-invalid-feedback>
+                            </div>
+                            <div class="inp-wrapper">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Credit Card Number</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state_1.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input>
+                                <b-form-invalid-feedback :state="error_state_1.cardNo">
+                                    {{error_1.cardNo}}
+                                </b-form-invalid-feedback>
+                            </div>
+                            <b-row class="">
+                                <b-col class="prl-0" cols="12" lg="6">
+                                    <div class="inp-wrapper">
+                                        <div class="flex justify-content-between" >
+                                            <label for="login-email">Expiration Date</label>
+                                            <span class="inp-error">{{error.email}}</span>
+                                        </div>
+                                        <b-input :class="{form_fill: billing.expiryDate}" v-model="billing.expiryDate" :state="error_state_1.expiryDate" size="lg" id="billing-expiryDate" placeholder="MM/YY"></b-input>
+                                        <b-form-invalid-feedback :state="error_state_1.expiryDate">
+                                            {{error_1.expiryDate}}
+                                        </b-form-invalid-feedback>
+                                    </div>
+                                </b-col>
+                                <b-col class="prl-0" cols="12" lg="6">
+                                    <div class="inp-wrapper">
+                                        <div class="flex justify-content-between" >
+                                            <label for="login-email">CVC</label>
+                                            <span class="inp-error">{{error.email}}</span>
+                                        </div>
+                                        <b-input :class="{form_fill: billing.cvc}" v-model="billing.cvc" :state="error_state_1.cvc" size="lg" id="billing-cvc" placeholder="CVC"></b-input>
+                                        <b-form-invalid-feedback :state="error_state_1.cvc">
+                                            {{error_1.cvc}}
+                                        </b-form-invalid-feedback>
+                                    </div>
+                                </b-col>
+                            </b-row>
+                            <b-row align-h="between" class="btn-divider">
+                                <b-col lg="6" cols="12" class="prl-0">
+                                    <b-button class="mt-3" block variant="primary" :disabled="isDisable" size="lg">Pay $15/mo</b-button>
+                                </b-col>
+                                <b-col lg="3" cols="12" class="prl-0">
+                                    <b-button class="mt-3" block variant="secondary btn-custom_1" @click="$bvModal.hide('choosePlan')" size="lg">Cancel</b-button>
+                                </b-col>
+                            </b-row>
+                        </b-form>
                     </div>
                 </div>
             </b-modal>
@@ -534,6 +541,48 @@ export default {
     }
 }
 .container{
-    padding: 0px 9px;
+    @media screen and (max-width: 992px) {
+        padding: 0px 9px;
+    }
+}
+.modal-temp-body{
+    position: relative;
+    .img-cross{
+        position: absolute;
+        top: 10px;
+        cursor: pointer;
+        right: 0px;
+    }
+}
+.choose-plan-wrapper{
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    .box-shadow-low{
+        width: 360px;
+        padding: 48px;
+        &.selected{
+            background-color: #dff7ff;
+            box-shadow: 0 0 0 1px #dff7ff;
+            .btn{
+                background-color: #fff !important;
+                color: #44a1bf !important;
+            }
+        }
+    }
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+        .box-shadow-low{
+            width: 100%;
+            padding: 24px;
+            margin-bottom: 8px;
+        }
+    }
+}
+.mod-title{
+    margin-bottom: 24px;
+}
+.btn-divider{
+    margin-top: 28px;
 }
 </style>
