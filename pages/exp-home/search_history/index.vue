@@ -129,6 +129,9 @@ export default {
 }
 .search-table{
     margin-top: 48px;
+    .badge{
+        margin-bottom: 1rem;
+    }
 }
 .badge-success{
     background-color: #f1faf5;
