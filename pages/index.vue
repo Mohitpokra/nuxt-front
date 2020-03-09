@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="looking-for-box">
+                <!-- <div class="looking-for-box">
                     <div class="box-container" :class="{'bg-heading': selected_3}" @click="turnBg(3)">
                         <div class="flex looking-box">
                             <div class="img-container">
@@ -39,12 +39,12 @@
                             <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </b-row>
         <b-row class="d-none d-lg-flex" align-h="end">
         <b-col cols="12" class="text-right" align-self="end">
-            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
+            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Get Started</b-btn>
         </b-col>
         </b-row>
     </div>
@@ -117,10 +117,16 @@ export default {
     width: 940px;
     max-width: 940px;
     margin: auto;
-    justify-content: space-between;
+    justify-content: center;
+    &-box{
+        margin-left: 12px;
+        margin-right: 12px;
+    }
     @media screen and (max-width: 992px) {
         flex-direction: column;
         &-box{
+            margin-left: 12px;
+            margin-right: 12px;
             margin-bottom: 10px;
         }
     }
