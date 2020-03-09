@@ -1,5 +1,11 @@
 <template>
 <div id="main-wrapper">
+    <div class="upgrade-bar">
+        <div class="container">
+            <span>5 searches remaining this month. <a href="#">Upgrade Now</a></span>
+            <img src="~/assets/icons/icon-interface-circle-x-white.svg"/>
+        </div>
+    </div>
     <nav-bar></nav-bar>
     <div class="content">
     <nuxt />
