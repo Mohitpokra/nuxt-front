@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
     // middleware: 'auth',
     data(){
@@ -42,6 +43,8 @@ export default {
         },
         logout(){
             try{
+                this.$store.dispatch('clients/removeSelectedClient')
+                localStorage.removeItem('selectedClient')
                 this.$auth.logout()
                 .then((data)=>{
                     this.$router.push('/sign_in');

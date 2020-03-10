@@ -44,14 +44,14 @@
         </b-row>
         <b-row class="d-none d-lg-flex" align-h="end">
         <b-col cols="12" class="text-right" align-self="end">
-            <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Get Started</b-btn>
+            <b-btn class="btn-custom" variant="primary" size="lg" :disabled="isDisable" @click="moveToNext">Get Started</b-btn>
         </b-col>
         </b-row>
     </div>
 </b-container>
  <b-row class="d-flex d-lg-none m-btn" align-h="end">
        <b-col cols="12" class="text-right p-0" align-self="end">
-                <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext">Next</b-btn>
+                <b-btn class="btn-custom" variant="primary" size="lg" :disabled="isDisable" @click="moveToNext">Get Started</b-btn>
             </b-col>
     </b-row>
 </div>
@@ -66,6 +66,15 @@ export default {
             selected_2: false,
             selected_3: false,
             selected: null
+        }
+    },
+    computed:{
+        isDisable(){
+            if( this.selected ){
+                return false
+            }else {
+                return true
+            }
         }
     },
     methods: {
