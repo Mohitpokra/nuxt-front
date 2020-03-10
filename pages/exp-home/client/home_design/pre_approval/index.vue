@@ -121,53 +121,41 @@
                     </div>
                     <b-row align-h="between" class="modal-form-1">
                         <b-col lg="6">
-                            <div class="inp-wrapper">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.firstName == false}]">
                                 <div class="flex justify-content-between" >
                                     <label for="login-firstName">Client First Name</label>
                                     <span class="inp-error">{{error.firstName}}</span>
                                 </div>
                                 <b-input :class="{form_fill: user.firstName}" @focus="handleFocus('firstName')" @blur="handleFirstNameBlur" v-model.trim="user.firstName" :state="error_state.firstName" size="lg" id="login-firstName" placeholder="charlie"></b-input>
-                                <b-form-invalid-feedback :state="error_state.firstName">
-                                    {{error.firstName}}
-                                </b-form-invalid-feedback>
                             </div>
                         </b-col>
                         <b-col lg="6">
-                            <div class="inp-wrapper">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
                                 <div class="flex justify-content-between" >
                                     <label for="login-lastName">Client Last Name</label>
                                     <span class="inp-error">{{error.lastName}}</span>
                                 </div>
                                 <b-input :class="{form_fill: user.lastName}" @focus="handleFocus('lastName')" @blur="handleLastNameBlur" v-model.trim="user.lastName" :state="error_state.lastName" size="lg" id="login-lastName" placeholder="charlie"></b-input>
-                                <b-form-invalid-feedback :state="error_state.lastName">
-                                    {{error.lastName}}
-                                </b-form-invalid-feedback>
                             </div>
                         </b-col>
                     </b-row>
                     <b-row align-h="between">
                         <b-col lg="6">
-                            <div class="inp-wrapper">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                                 <div class="flex justify-content-between" >
                                     <label for="login-email">Email</label>
                                     <span class="inp-error">{{error.email}}</span>
                                 </div>
                                 <b-input :class="{form_fill: user.email}" v-model.trim="user.email" @focus="handleFocus('email')" @blur="handleEmailBlur" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                                <b-form-invalid-feedback :state="error_state.email">
-                                    {{error.email}}
-                                </b-form-invalid-feedback>
                             </div>
                         </b-col>
                         <b-col lg="6">
-                            <div class="inp-wrapper">
+                            <<div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
                                 <div class="flex justify-content-between" >
                                     <label for="login-mobile">Phone Number</label>
                                     <span class="inp-error">{{error.mobile}}</span>
                                 </div>
                                 <b-input :class="{form_fill: user.mobile}" v-model.trim="user.mobile" @focus="handleFocus('mobile')" @blur="handleMobileBlur" :state="error_state.mobile" size="lg" id="login-mobile" maxLength="10" placeholder="9876543212"></b-input>
-                                <b-form-invalid-feedback :state="error_state.mobile">
-                                    {{error.mobile}}
-                                </b-form-invalid-feedback>
                             </div>
                         </b-col>
                     </b-row>
@@ -249,6 +237,7 @@ export default {
                 mobile: null,
                 email: null
             },
+            showApiError: null,
             selected: 0,
             preApproved: 0,
             affordability: 0,
@@ -282,12 +271,14 @@ export default {
                     this.$toast.error(errors[error], toastDuration)
                 });
             }else{
+                    this.showApiError = message
                     this.$toast.error(message, toastDuration)
             }
         },
         handleFocus(fieldName){
             this.error[fieldName] = ''
             this.error_state[fieldName] = null
+            this.showApiError = null
         },
         handleFirstNameBlur(){
             const isValidFirstName = isRequired(this.user.firstName)
