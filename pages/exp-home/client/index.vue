@@ -14,25 +14,27 @@
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('req-apv')">New Client</b-btn>
             </b-col>
         </b-row>
-        <div v-if="getIsClientsApiCalled">
-            <b-row v-if="!getClientsList.length" align-h="center">
-                <b-col class="text-center">
-                    <div>
-                        <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
-                    </div>
-                    <div class="not-found">
-                        <h4>None found.</h4>
-                        <p class="p2">Click “New Client” button to create one.</p>
-                    </div>
-                </b-col>
-            </b-row>
-            <b-row v-else class="input-box">
-                <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
-                    <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
-                        <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
-                    </div>
-                </b-col>
-            </b-row>
+        <div class="clients-list-wrapper">
+            <div v-if="getIsClientsApiCalled">
+                <b-row v-if="!getClientsList.length" align-h="center">
+                    <b-col class="text-center">
+                        <div>
+                            <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
+                        </div>
+                        <div class="not-found">
+                            <h4>None found.</h4>
+                            <p class="p2">Click “New Client” button to create one.</p>
+                        </div>
+                    </b-col>
+                </b-row>
+                <b-row v-else class="input-box">
+                    <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
+                        <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
+                            <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+                        </div>
+                    </b-col>
+                </b-row>
+            </div>
         </div>
     </div>
     <div class="flex justify-between buttons">
@@ -509,4 +511,5 @@ export default {
         }
     }
 }
+.clients-list-wrapper{min-height: 300px;}
 </style>
