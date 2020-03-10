@@ -131,7 +131,7 @@
                         </b-col>
                         <b-col lg="6">
                             <div  :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
-                                <div class="flex justify-content-between" >
+                                <div class="flex justify-content-between">
                                     <label for="login-lastName">Client Last Name</label>
                                     <span class="inp-error">{{error.lastName}}</span>
                                 </div>
@@ -150,7 +150,7 @@
                             </div>
                         </b-col>
                         <b-col lg="6">
-                            <<div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
                                 <div class="flex justify-content-between" >
                                     <label for="login-mobile">Phone Number</label>
                                     <span class="inp-error">{{error.mobile}}</span>
