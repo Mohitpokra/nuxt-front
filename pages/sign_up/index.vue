@@ -54,7 +54,7 @@ export default {
     // auth: false,
     transition: {
         name: "custom-classes-transition",
-        enterActiveClass: "animated bounceInDown"
+        enterActiveClass: "animated fadeIn"
     },
     async asyncData({
         $axios
