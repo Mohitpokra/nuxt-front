@@ -4,13 +4,15 @@ import {getValue, setValue} from './../utils/localstorageUtils.js'
 export const state = () => {
     return {
             client_list:[],
-            selectedClient:{}
+            selectedClient:{},
+            getClientsApiCalled: false
         }
 };
 
 export const mutations = {
     SET_CLIENTS(state, payload) {
       state.client_list = payload
+      state.getClientsApiCalled = true
     },
     SET_SELECTED_CLIENT(state, payload) {
         state.selectedClient = payload
@@ -40,6 +42,9 @@ export const actions = {
 export const getters = {
     getClientsList: (state) =>{
         return state.client_list
+    },
+    getIsClientsApiCalled: (state) => {
+        return state.getClientsApiCalled
     },
     getSelectedClient: (state) => {
         let data = getValue('selectedClient')

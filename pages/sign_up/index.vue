@@ -83,7 +83,8 @@ export default {
                 email: null,
                 password: null,
                 confirm_password: null
-            }
+            },
+            showApiError: null
         }
     },
     computed: {
@@ -193,7 +194,7 @@ export default {
                             .catch((responseObj)=>{
                                 this.errorHandling(responseObj)
                                 return
-                            })  
+                            })
                         })
                         .catch((responseObj)=>{
                             this.errorHandling(responseObj)

@@ -14,49 +14,32 @@
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('req-apv')">New Client</b-btn>
             </b-col>
         </b-row>
-        <b-row v-if="!getClientsList.length" align-h="center">
-            <b-col class="text-center">
-                <div>
-                    <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
-                </div>
-                <div class="not-found">
-                    <h4>None found.</h4>
-                    <p class="p2">Click “New Client” button to create one.</p>
-                </div>
-            </b-col>
-        </b-row>
-        <b-row v-else class="input-box">
-            <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
-                <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
-                    <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
-                </div>
-            </b-col>
-        </b-row>
+        <div v-if="getIsClientsApiCalled">
+            <b-row v-if="!getClientsList.length" align-h="center">
+                <b-col class="text-center">
+                    <div>
+                        <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
+                    </div>
+                    <div class="not-found">
+                        <h4>None found.</h4>
+                        <p class="p2">Click “New Client” button to create one.</p>
+                    </div>
+                </b-col>
+            </b-row>
+            <b-row v-else class="input-box">
+                <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
+                    <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
+                        <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+                    </div>
+                </b-col>
+            </b-row>
+        </div>
     </div>
     <div class="flex justify-between buttons">
         <b-btn class="btn-custom btn-back" variant="secondary" size="lg" @click="goBack()">Back</b-btn>
         <b-btn class="btn-custom" variant="primary" size="lg" @click="moveToNext" :disabled="isNextDisable">Next</b-btn>
     </div>
     <div>
-        <!-- <b-modal id="add-new-client"  class="modal-full-body" centered hide-footer hide-header>
-            <div class="modal-temp-body ">
-                <div class="header">
-                    <h3 class="text-primary">New Client</h3>
-                </div>
-                <div>
-                    <p class="p2">It can be whatever you fits your needs — full name, first name, etc but enter a name you’ll recognize since you’ll need to find it in the search history.</p>
-                </div>
-                <b-form class="modal-form">
-                    <label class="" for="login-name">Client Name</label>
-                    <b-input :class="{form_fill: user.name}" @blur="handleNameBlur"  @focus="handleFocus('name')"  v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
-                    <b-form-invalid-feedback :state="error_state.name">
-                        {{error.name}}
-                    </b-form-invalid-feedback>
-                </b-form>
-                <b-button class="mt-3 btn-1" block variant="primary" size="lg" @click="createUser()">Create</b-button>
-                <b-button class="mt-3 btn-2 bottom-20" block variant="secondary btn-custom_1" @click="$bvModal.hide('add-new-client')" size="lg">Cancel</b-button>
-            </div>
-        </b-modal> -->
         <b-modal id="req-apv" class="req-approval" centered hide-footer hide-header>
             <div v-if="!addclients" class="modal-body-1">
                 <div class="header">
@@ -173,6 +156,7 @@ export default {
                 mobile: null,
                 email: null
             },
+            apiCalled: false,
             items: [
                 {
                     text: 'Home',
@@ -188,7 +172,8 @@ export default {
     computed: {
          ...mapGetters("clients", [
                 "getClientsList",
-                "getSelectedClient"
+                "getSelectedClient",
+                "getIsClientsApiCalled"
             ]),
             isNextDisable(){
                const  data = this.$store.getters && this.$store.getters['clients/getSelectedClient']
