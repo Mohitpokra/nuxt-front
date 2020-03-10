@@ -31,6 +31,9 @@ export const actions = {
     selectedClient({commit}, payload){
         commit('SET_SELECTED_CLIENT',payload)
         setValue('selectedClient', JSON.stringify(payload))
+    },
+    removeSelectedClient({commit}, payload){
+        commit('SET_SELECTED_CLIENT',{})
     }
 };
 

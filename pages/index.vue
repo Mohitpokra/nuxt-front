@@ -70,7 +70,6 @@ export default {
     },
     computed:{
         isDisable(){
-            debugger
             if( this.selected ){
                 return false
             }else {
@@ -83,7 +82,6 @@ export default {
             this.$router.push('/exp-home/client')
         },
         turnBg(elem) {
-            debugger
             this.selected_1 = false;
             this.selected_2 = false;
             this.selected_3 = false;
