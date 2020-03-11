@@ -17,7 +17,9 @@
                         <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                             <div class="flex justify-content-between" >
                                 <label class="" for="login-email">Email</label>
-                                <span class="inp-error">{{error.email}}</span>
+                                <!-- <span class="inp-error">{{error.email}}</span> -->
+                                <span class="inp-error" v-if="!showApiError && error.email">{{error.email}}</span>
+                                <span class="inp-error" v-if="!!showApiError && !error.email">{{showApiError}}</span>
                             </div>
                             <b-input :class="{form_fill: user.email}" @blur="handleEmailBlur" @focus="handleFocus('email')" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         </div>
@@ -111,6 +113,7 @@ export default {
         handleFocus(fieldName){
             this.error[fieldName] = ''
             this.error_state[fieldName] = null
+            this.showApiError = null
         },
         handleNameBlur(){
             const isValidName = isRequired(this.user.name)
@@ -158,10 +161,14 @@ export default {
             let {message, errors = {}} = responseObj.response && responseObj.response.data
             if(Object.keys(errors).length){
                 Object.keys(errors).map((error)=>{
-                    this.$toast.error(errors[error], toastDuration)
+                    // this.$toast.error(errors[error], toastDuration)
+                    this.showApiError = errors[error]
+                    this.error_state.email = false
                 });
             }else{
-                    this.$toast.error(message, toastDuration)
+                    // this.$toast.error(message, toastDuration)
+                this.showApiError = message
+                this.error_state.email = false
             }
         },
         register() {
@@ -188,7 +195,7 @@ export default {
                                 },
                             })
                             .then((data)=>{
-                                this.$toast.success('Successfully LoggedIn', toastDuration)
+                                // this.$toast.success('Successfully LoggedIn', toastDuration)
                                 this.$router.push('/')
                             })
                             .catch((responseObj)=>{
@@ -201,7 +208,7 @@ export default {
                             return false
                         });
                     } catch (e) {
-                        this.$toast.error('Please try again later !', toastDuration)
+                        // this.$toast.error('Please try again later !', toastDuration)
                     }
             }
         }

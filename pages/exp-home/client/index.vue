@@ -201,10 +201,10 @@ export default {
             let {message, errors = {}} = responseObj.response && responseObj.response.data
             if(Object.keys(errors).length){
                 Object.keys(errors).map((error)=>{
-                    this.$toast.error(errors[error], toastDuration)
+                    // this.$toast.error(errors[error], toastDuration)
                 });
             }else{
-                    this.$toast.error(message, toastDuration)
+                    // this.$toast.error(message, toastDuration)
             }
         },
         handleFocus(fieldName){
@@ -258,7 +258,7 @@ export default {
                  try{
                     this.$axios.post('api/client/create', obj)
                         .then((data)=>{
-                            this.$toast.success('Client Created Successfully !', toastDuration)
+                            // this.$toast.success('Client Created Successfully !', toastDuration)
                             this.$store.dispatch('clients/getClients')
                                 .then(()=>{
                                     this.$bvModal.hide('req-apv')
@@ -269,11 +269,11 @@ export default {
                             return false
                         });
                     } catch (e) {
-                        this.$toast.error('Please try again later !', toastDuration)
+                        // this.$toast.error('Please try again later !', toastDuration)
                     }
                 }
                 catch(e){
-                    this.$toast.error('Something went wrong, Try Again later', toastDuration)
+                    // this.$toast.error('Something went wrong, Try Again later', toastDuration)
                 }
             }
         },

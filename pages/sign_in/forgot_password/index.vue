@@ -67,10 +67,10 @@ export default {
                     email: this.user.email
                 })
                 .then(data=>{
-                    this.$toast.success("Email Sent Successfully", toastDuration)
+                    // this.$toast.success("Email Sent Successfully", toastDuration)
                 })
                 .catch((e)=>{
-                    this.$toast.error("Try Again Later !!!", toastDuration)
+                    // this.$toast.error("Try Again Later !!!", toastDuration)
                 })
             }
         },

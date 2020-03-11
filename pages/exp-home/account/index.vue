@@ -331,10 +331,10 @@ export default {
                     password_confirmation: this.user.newPassword,
                 })
                 .then(response => {
-                    this.$toast.success('Password Changed ',toastDuration)
+                    // this.$toast.success('Password Changed ',toastDuration)
                 })
                 .catch(e => {
-                    this.$toast.error('Try Again Later',toastDuration)
+                    // this.$toast.error('Try Again Later',toastDuration)
                 })
             }
         }
