@@ -263,6 +263,8 @@ label {
 }
 
 .form-control{
+  font-size: 16px;
+  height: 48px;
   background-image: none !important;
   &.is-valid{
     border: 2px solid #1f1f1f;
@@ -856,6 +858,7 @@ select.selectpicker {
   font-size: 16px;
   a{
     color: #fff !important;
+    text-decoration: underline;
   }
   img{
     float: right;

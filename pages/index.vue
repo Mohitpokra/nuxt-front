@@ -24,7 +24,7 @@
                             <div class="img-container">
                                 <img class="icon-option-new-search" src="~/assets/icons/icon-option-previous-search.svg" />
                             </div>
-                            <h3 class="m-text" :class="{'text-white': selected_2}">Start a new home search</h3>
+                            <h3 class="m-text" :class="{'text-white': selected_2}">Revisit a previous search</h3>
                             <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                         </div>
                     </div>

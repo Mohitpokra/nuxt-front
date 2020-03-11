@@ -14,25 +14,27 @@
                 <b-btn variant="primary" size="sm" @click="$bvModal.show('req-apv')">New Client</b-btn>
             </b-col>
         </b-row>
-        <div v-if="getIsClientsApiCalled">
-            <b-row v-if="!getClientsList.length" align-h="center">
-                <b-col class="text-center">
-                    <div>
-                        <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
-                    </div>
-                    <div class="not-found">
-                        <h4>None found.</h4>
-                        <p class="p2">Click “New Client” button to create one.</p>
-                    </div>
-                </b-col>
-            </b-row>
-            <b-row v-else class="input-box">
-                <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
-                    <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
-                        <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
-                    </div>
-                </b-col>
-            </b-row>
+        <div class="clients-list-wrapper">
+            <div v-if="getIsClientsApiCalled">
+                <b-row v-if="!getClientsList.length" align-h="center">
+                    <b-col class="text-center">
+                        <div>
+                            <img class="img-container" src="~/assets/images/illustration-empty-clients.svg" />
+                        </div>
+                        <div class="not-found">
+                            <h4>None found.</h4>
+                            <p class="p2">Click “New Client” button to create one.</p>
+                        </div>
+                    </b-col>
+                </b-row>
+                <b-row v-else class="input-box">
+                    <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
+                        <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
+                            <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+                        </div>
+                    </b-col>
+                </b-row>
+            </div>
         </div>
     </div>
     <div class="flex justify-between buttons">
@@ -47,53 +49,41 @@
                 </div>
                 <b-row align-h="between" class="modal-form-1">
                     <b-col lg="6">
-                        <div class="inp-wrapper">
+                        <div  :class="['inp-wrapper',{'has-error':error_state.firstName == false}]">
                             <div class="flex justify-content-between" >
                                 <label for="login-firstName">Client First Name</label>
                                 <span class="inp-error">{{error.firstName}}</span>
                             </div>
                             <b-input :class="{form_fill: user.firstName}" @focus="handleFocus('firstName')" @blur="handleFirstNameBlur" v-model.trim="user.firstName" :state="error_state.firstName" size="lg" id="login-firstName" placeholder="charlie"></b-input>
-                            <b-form-invalid-feedback :state="error_state.firstName">
-                                {{error.firstName}}
-                            </b-form-invalid-feedback>
                         </div>
                     </b-col>
                     <b-col lg="6">
-                        <div class="inp-wrapper">
+                        <div  :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
                             <div class="flex justify-content-between" >
                                 <label for="login-lastName">Client Last Name</label>
                                 <span class="inp-error">{{error.lastName}}</span>
                             </div>
                             <b-input :class="{form_fill: user.lastName}" @focus="handleFocus('lastName')" @blur="handleLastNameBlur" v-model.trim="user.lastName" :state="error_state.lastName" size="lg" id="login-lastName" placeholder="puth"></b-input>
-                            <b-form-invalid-feedback :state="error_state.lastName">
-                                {{error.lastName}}
-                            </b-form-invalid-feedback>
                         </div>
                     </b-col>
                 </b-row>
                 <b-row align-h="between">
                     <b-col lg="6">
-                        <div class="inp-wrapper">
+                        <div  :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                             <div class="flex justify-content-between" >
                                 <label for="login-email">Email</label>
                                 <span class="inp-error">{{error.email}}</span>
                             </div>
                             <b-input :class="{form_fill: user.email}" @focus="handleFocus('email')" @blur="handleEmailBlur" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                            <b-form-invalid-feedback :state="error_state.email">
-                                {{error.email}}
-                            </b-form-invalid-feedback>
                         </div>
                     </b-col>
                     <b-col lg="6">
-                        <div class="inp-wrapper">
+                        <div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
                             <div class="flex justify-content-between" >
                                 <label for="login-mobile">Phone Number</label>
                                 <span class="inp-error">{{error.mobile}}</span>
                             </div>
                             <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="9876543219" maxLength="10"></b-input>
-                            <b-form-invalid-feedback :state="error_state.mobile">
-                                {{error.mobile}}
-                            </b-form-invalid-feedback>
                         </div>
                     </b-col>
                 </b-row>
@@ -509,4 +499,5 @@ export default {
         }
     }
 }
+.clients-list-wrapper{min-height: 300px;}
 </style>

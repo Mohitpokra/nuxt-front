@@ -49,9 +49,16 @@
                         {{error.password}}
                     </b-form-invalid-feedback>
                 </div>
+                <div class="sub-btn">
+                    <b-button class="mt-4" variant="" size="lg">Change Password</b-button>
+                </div>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col cols="12" lg="6">
                 <div class="inp-wrapper">
                     <div class="flex justify-content-between" >
-                        <label for="login-email"></label>
+                        <label for="login-email">Password</label>
                         <span class="inp-error">{{error.email}}</span>
                     </div>
                     <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
@@ -59,30 +66,25 @@
                         {{error.password}}
                     </b-form-invalid-feedback>
                 </div>
-                <div class="sub-btn" v-if="!isChangePass">
-                    <b-button class="mt-4 save-btn" variant="primary" size="lg" @click="showNewPass">Save Changes</b-button>
-                    <b-button class="btn-custom mt-4 cancel-btn" variant="secondary" size="lg">Cancel</b-button>
+                <div class="inp-wrapper">
+                    <div class="flex justify-content-between" >
+                        <label for="login-email"></label>
+                        <span class="inp-error">{{error.email}}</span>
+                    </div>
+                    <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
+                    <b-form-invalid-feedback :state="error_state.password">
+                        {{error.newPassword}}
+                    </b-form-invalid-feedback>
                 </div>
             </b-col>
-
-            <b-col cols="12" lg="12" v-if="!isChangePass">
-                <hr class="divider">
+            <b-col cols="12" lg="12">
+                <b-button class="btn-save-change mt-4 save-btn" variant="primary" size="lg" @click="savePassword">Save Changes</b-button>
+                <b-button class="cancel-btn mt-4" variant="secondary" size="lg" @click="cancelPass">Cancel</b-button>
             </b-col>
         </b-row>
-        <b-row v-if="isChangePass">
-            <b-col cols="12" lg="6">
-                <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
-                <b-form-invalid-feedback :state="error_state.password">
-                    {{error.newPassword}}
-                </b-form-invalid-feedback>
-            </b-col>
-            <b-col cols="12" lg="6">
-                <b-button class="btn-save-change" variant="primary" size="lg" @click="savePassword">Save Changes</b-button>
-                <b-button class="btn-cancel" variant="secondary" size="lg" @click="cancelPass">Cancel</b-button>
-            </b-col>
-            </b-col>
+        <b-row>
             <b-col cols="12" lg="12">
-                <hr>
+                <hr class="divider">
             </b-col>
         </b-row>
         <b-row>
@@ -411,6 +413,10 @@ export default {
     width: 152px;
     height: 48px;
     border-radius: 2px;
+}
+
+button{
+    font-size: 16px !important;
 }
 
 .btn-cancel {
