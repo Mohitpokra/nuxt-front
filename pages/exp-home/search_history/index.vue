@@ -6,7 +6,7 @@
                 <b-breadcrumb :items="items"></b-breadcrumb>
             </b-col>
         </b-row>
-        <div v-if="!search_count" style="display: none">
+        <div v-if="!search_count">
             <b-row align-h="start">
                 <b-col cols="12" lg="12">
                     <h2 class="top-title">Search history</h2>
@@ -22,7 +22,7 @@
                 </b-col>
             </b-row>
         </div>
-        <div >
+        <div v-else>
             <b-row align-h="start">
                 <b-col cols="12" lg="12">
                     <h2 class="top-title">Search history</h2>
