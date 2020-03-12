@@ -56,25 +56,21 @@
         </b-row>
         <b-row v-if="isChangePass">
             <b-col cols="12" lg="6">
-                <div class="inp-wrapper">
+                <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                     <div class="flex justify-content-between" >
                         <label for="login-email">Password</label>
-                        <span class="inp-error">{{error.password}}</span>
+                        <span class="inp-error" v-if="!showApiError && error.password">{{error.password}}</span>
+                        <span class="inp-error" v-if="!!showApiError && !!showApiError['password'] && !error.password">{{showApiError['password']}}</span>
                     </div>
                     <b-input :class="{form_fill: user.password}"  @focus="handleFocus('password')" v-model="user.password" @blur="handlePasswordBlur" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                    <b-form-invalid-feedback :state="error_state.password">
-                        {{error.password}}
-                    </b-form-invalid-feedback>
                 </div>
-                <div class="inp-wrapper">
+                <div :class="['inp-wrapper',{'has-error':error_state.newPassword == false}]">
                     <div class="flex justify-content-between" >
-                        <label for="login-email"></label>
-                        <span class="inp-error">{{error.email}}</span>
+                        <label for="login-newPassword"></label>
+                        <span class="inp-error" v-if="!showApiError && error.newPassword">{{error.newPassword}}</span>
+                        <span class="inp-error" v-if="!!showApiError && !!showApiError['newPassword'] && !error.newPassword">{{showApiError['newPassword']}}</span>
                     </div>
                     <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" @focus="handleFocus('newPassword')" @blur="handleCPasswordBlur" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
-                    <b-form-invalid-feedback :state="error_state.password">
-                        {{error.newPassword}}
-                    </b-form-invalid-feedback>
                 </div>
             </b-col>
             <b-col cols="12" lg="12">
@@ -235,11 +231,12 @@
 
 <script>
 import { toastDuration } from '../../../constants';
-import {isRequired} from './../../../utils/validations.js';
+import {isRequired, isEmail} from './../../../utils/validations.js';
 import { mapGetters, mapState } from "vuex";
 export default {
     data() {
         return {
+            showApiError:{},
             user: {
                 name: null,
                 email: null,
@@ -294,6 +291,7 @@ export default {
         handleFocus(fieldName){
             this.error[fieldName] = ''
             this.error_state[fieldName] = null
+            this.showApiError[fieldName] = null
         },
         showNewPass() {
             this.isChangePass = !this.isChangePass
@@ -343,6 +341,18 @@ export default {
                 this.error_state.newPassword = true
             }
         },
+        errorHandling(responseObj){
+            let {message, errors = {}} = responseObj.response && responseObj.response.data
+            if(Object.keys(errors).length){
+                Object.keys(errors).map((error)=>{
+                    this.showApiError[error] = errors[error] && errors[error][0]
+                    this.error_state[error] = false
+                });
+            }else{
+                this.showApiError = message
+                this.error_state.email = false
+            }
+        },
         savePassword(){
             this.handleNameBlur();
             this.handleEmailBlur();
@@ -350,17 +360,16 @@ export default {
             this.handleCPasswordBlur()
             const isValid = this.error_state.password || this.error_state.newPassword
             if(isValid){
-                    this.$axios.$post('/api/reset-password',{
-                    email:this.email,
-                    token: '',
-                    password: this.user.password,
-                    password_confirmation: this.user.newPassword,
+                    this.$axios.$post('/api/account/update-password',{
+                    currentPassword: this.user.password,
+                    newPassword: this.user.newPassword,
                 })
                 .then(response => {
-                    this.$toast.success('Password Changed ',toastDuration)
+                    this.isChangePass = 0
                 })
-                .catch(e => {
-                    this.$toast.error('Try Again Later',toastDuration)
+                .catch(responseObj => {
+                    this.isChangePass = 1
+                    this.errorHandling(responseObj)
                 })
             }
         }
