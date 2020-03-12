@@ -65,7 +65,8 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
   // router: {
   //   middleware: ['auth']

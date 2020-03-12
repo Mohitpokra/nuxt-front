@@ -1,9 +1,9 @@
 <template>
 <div id="main-wrapper">
-    <div class="upgrade-bar" v-if="$auth.user.agent_detail.subscription_plan_id == 1">
+    <div class="upgrade-bar" v-if="$auth.user && $auth.user.agent_detail && $auth.user.agent_detail.subscription_plan_id == 1 && showBanner">
         <div class="container">
             <span>5 searches remaining this month. <a href="#">Upgrade Now</a></span>
-            <img src="~/assets/icons/icon-interface-circle-x-white.svg"/>
+            <img src="~/assets/icons/icon-interface-circle-x-white.svg" @click="removeBanner"/>
         </div>
     </div>
     <nav-bar></nav-bar>
@@ -22,6 +22,22 @@ export default {
     components: {
         NavBar,
         FooterElem
+    },
+    data(){
+        return {
+            showBanner: true
+        }
+    },
+    methods:{
+        removeBanner(){
+            this.$cookiz.set('showBanner',true);
+            this.showBanner = false
+        }
+    },
+    mounted(){
+        if(this.$cookiz.get('showBanner')){
+            this.showBanner = false
+        }
     }
 }
 </script>

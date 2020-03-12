@@ -79,7 +79,7 @@ export default {
             let {message, errors = {}} = responseObj.response && responseObj.response.data
             if(Object.keys(errors).length){
                 Object.keys(errors).map((error)=>{
-                    this.$toast.error(errors[error], toastDuration)
+                    // this.$toast.error(errors[error], toastDuration)
                 });
             }else{
                     // this.$toast.error(message, toastDuration)
@@ -100,7 +100,7 @@ export default {
                         }
                     })
                     .then((data)=>{
-                        this.$toast.success('Successfully LoggedIn', toastDuration)
+                        // this.$toast.success('Successfully LoggedIn', toastDuration)
                         this.$router.push('/')
                     })
                     .catch((responseObj)=>{

@@ -45,13 +45,14 @@ export default {
             try{
                 this.$store.dispatch('clients/removeSelectedClient')
                 localStorage.removeItem('selectedClient')
+                this.$cookiz.remove('showBanner')
                 this.$auth.logout()
                 .then((data)=>{
                     this.$router.push('/sign_in');
                     this.toggleSideBar()
                 })
             }catch(e){
-                this.$toast.error('Something went wrong !!!')
+                // this.$toast.error('Something went wrong !!!')
             }
         }
     }

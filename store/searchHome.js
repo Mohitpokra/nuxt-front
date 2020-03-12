@@ -23,10 +23,10 @@ export const actions = {
             .then((data)=>{
                 console.log(data)
                 // tbd : where to redirect on success
-                this.$toast.success('Added Financial Inputs', toastDuration)
+                // this.$toast.success('Added Financial Inputs', toastDuration)
             })
             .catch(() =>{
-                this.$toast.error('Error Adding Financial Inputs', toastDuration)
+                // this.$toast.error('Error Adding Financial Inputs', toastDuration)
             })
     },
     propertyTypes({commit}){
@@ -43,7 +43,7 @@ export const actions = {
                 commit('SET_PROPERTY_TYPES', response)
             })
             .catch(() =>{
-                this.$toast.error('Error fetching propertyTypes', toastDuration)
+                // this.$toast.error('Error fetching propertyTypes', toastDuration)
             })
     },
     propertyConditions({commit}){
@@ -60,7 +60,7 @@ export const actions = {
                 commit('SET_PROPERTY_CONDITIONS', response)
             })
             .catch(() =>{
-                this.$toast.error('Error fetching property conditions', toastDuration)
+                // this.$toast.error('Error fetching property conditions', toastDuration)
             })
     },
     mustHaves({commit}){
@@ -77,7 +77,7 @@ export const actions = {
                 commit('SET_MUST_HAVES', response)
             })
             .catch(() =>{
-                this.$toast.error('Error fetching mustHaves', toastDuration)
+                // this.$toast.error('Error fetching mustHaves', toastDuration)
             })
     },
     homeDesign({commit}, payload){
@@ -85,10 +85,10 @@ export const actions = {
             .then((data)=>{
                 console.log(data)
                 this.$router.push('/exp-home/client/home_design/pre_approval/');
-                this.$toast.success('Added HomeDesign', toastDuration) 
+                // this.$toast.success('Added HomeDesign', toastDuration) 
             })
             .catch(() =>{
-                this.$toast.error('Error Adding HomeDesign', toastDuration)
+                // this.$toast.error('Error Adding HomeDesign', toastDuration)
             })
     }
 };

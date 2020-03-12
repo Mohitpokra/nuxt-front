@@ -27,7 +27,7 @@ export const actions = {
                 commit('SET_CLIENTS', response)
             })
             .catch(() =>{
-                this.$toast.error('Error fetching client', toastDuration)
+                // this.$toast.error('Error fetching client', toastDuration)
             })
     },
     selectedClient({commit}, payload){
