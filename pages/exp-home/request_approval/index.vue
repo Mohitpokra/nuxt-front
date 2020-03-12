@@ -7,74 +7,80 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" lg="12">
-                <h3 class="top-title">Request pre-appoval</h3>
-            </b-col>
-        </b-row>
             <div v-if="!addclients" class="req-approval">
-                <b-row align-h="between" class="modal-form-1">
-                    <b-col lg="6">
-                        <div  :class="['inp-wrapper',{'has-error':error_state.firstName == false}]">
-                            <div class="flex justify-content-between" >
-                                <label for="login-firstName">Client First Name</label>
-                                <span class="inp-error">{{error.firstName}}</span>
-                            </div>
-                            <b-input :class="{form_fill: user.firstName}" @focus="handleFocus('firstName')" @blur="handleFirstNameBlur" v-model.trim="user.firstName" :state="error_state.firstName" size="lg" id="login-firstName" placeholder="charlie"></b-input>
-                        </div>
-                    </b-col>
-                    <b-col lg="6">
-                        <div  :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
-                            <div class="flex justify-content-between" >
-                                <label for="login-lastName">Client Last Name</label>
-                                <span class="inp-error">{{error.lastName}}</span>
-                            </div>
-                            <b-input :class="{form_fill: user.lastName}" @focus="handleFocus('lastName')" @blur="handleLastNameBlur" v-model.trim="user.lastName" :state="error_state.lastName" size="lg" id="login-lastName" placeholder="puth"></b-input>
-                        </div>
-                    </b-col>
-                </b-row>
-                <b-row align-h="between">
-                    <b-col lg="6">
-                        <div  :class="['inp-wrapper',{'has-error':error_state.email == false}]">
-                            <div class="flex justify-content-between" >
-                                <label for="login-email">Email</label>
-                                <span class="inp-error">{{error.email}}</span>
-                            </div>
-                            <b-input :class="{form_fill: user.email}" @focus="handleFocus('email')" @blur="handleEmailBlur" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                        </div>
-                    </b-col>
-                    <b-col lg="6">
-                        <div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
-                            <div class="flex justify-content-between" >
-                                <label for="login-mobile">Phone Number</label>
-                                <span class="inp-error">{{error.mobile}}</span>
-                            </div>
-                            <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="9876543219" maxLength="10"></b-input>
-                        </div>
-                    </b-col>
-                </b-row>
-                <b-row class="body-banner inp-textarea">
+                <b-row align-h="start">
                     <b-col>
-                        <div class="inp-wrapper">
-                            <textarea class="form-control" v-model="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
-                        </div>
+                        <h3 class="top-title">Request pre-appoval</h3>
                     </b-col>
                 </b-row>
-                <div class="divider req-apv-btns text-right">
-                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg" @click="createUser()">Send Request</b-button>
+                    <b-row align-h="between" class="modal-form-1">
+                        <b-col lg="6">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.firstName == false}]">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-firstName">Client First Name</label>
+                                    <span class="inp-error">{{error.firstName}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.firstName}" @focus="handleFocus('firstName')" @blur="handleFirstNameBlur" v-model.trim="user.firstName" :state="error_state.firstName" size="lg" id="login-firstName" placeholder="charlie"></b-input>
+                            </div>
+                        </b-col>
+                        <b-col lg="6">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-lastName">Client Last Name</label>
+                                    <span class="inp-error">{{error.lastName}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.lastName}" @focus="handleFocus('lastName')" @blur="handleLastNameBlur" v-model.trim="user.lastName" :state="error_state.lastName" size="lg" id="login-lastName" placeholder="puth"></b-input>
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="between">
+                        <b-col lg="6">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-email">Email</label>
+                                    <span class="inp-error">{{error.email}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.email}" @focus="handleFocus('email')" @blur="handleEmailBlur" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                            </div>
+                        </b-col>
+                        <b-col lg="6">
+                            <div  :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
+                                <div class="flex justify-content-between" >
+                                    <label for="login-mobile">Phone Number</label>
+                                    <span class="inp-error">{{error.mobile}}</span>
+                                </div>
+                                <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="9876543219" maxLength="10"></b-input>
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <b-row class="body-banner inp-textarea">
+                        <b-col>
+                            <div class="inp-wrapper">
+                                <textarea class="form-control" v-model="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <b-row class="body-banner inp-textarea">
+                        <b-col>
+                            <div class="divider req-apv-btns text-right">
+                                <b-button class="req" block variant="primary" :disabled="isDisable" size="lg" @click="createUser()">Send Request</b-button>
+                            </div>
+                        </b-col>
+                    </b-row>
                 </div>
-            </div>
-            <div v-else>
-                <b-row class="h-100" align-v="center" align-h="center">
-                    <b-col class="text-center" cols="auto">
-                        <div>
-                            <img src="~/assets/icons/icon-decorative-send-email.svg" />
-                        </div>
-                        <h3>Request sent!</h3>
-                        <p class="p3">We’ll be in touch with you and your client to get a competitive rate.</p>
-                        <b-btn variant="primary btn-custom_2" @click="goToNext">Continue Search</b-btn>
-                    </b-col>
-                </b-row>
-            </div>
+                <div v-else class="sent-info">
+                    <b-row class="h-100" align-v="center" align-h="center">
+                        <b-col class="text-center" cols="auto">
+                            <div>
+                                <img src="~/assets/icons/icon-decorative-send-email.svg" />
+                            </div>
+                            <h3>Request sent!</h3>
+                            <p class="p3 para">We’ll be in touch with you and your client to get a competitive rate.</p>
+                            <b-btn variant="" @click="goToNext">Back to home</b-btn>
+                        </b-col>
+                    </b-row>
+                </div>
+        </b-row>
     </div>
 </b-container>
 </template>
@@ -509,5 +515,33 @@ button{
 }
 .req-apv-btns button{
     width: 149px;
+}
+.req-approval{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    @media screen and (max-width: 992px) {
+        padding: 0px;
+    }
+}
+.sent-info{
+    margin-top: 144px;
+    img{margin-bottom: 24px;}
+    .para{
+        font-size: 20px;
+        max-width: 552px;
+        line-height: 28px;
+        margin-bottom: 96px;
+    }
+    button{
+        width: 148px;
+        height: 48px;
+    }
+    @media screen and (max-width: 992px) {
+        .para{
+            font-size: 16px;
+            margin-bottom: 48px;
+        }
+    }
 }
 </style>

@@ -2,8 +2,8 @@
 <div id="main-wrapper">
     <div class="upgrade-bar" v-if="$auth.user && $auth.user.agent_detail && $auth.user.agent_detail.subscription_plan_id == 1 && showBanner">
         <div class="container">
-            <span>5 searches remaining this month. <a href="#">Upgrade Now</a></span>
-            <img src="~/assets/icons/icon-interface-circle-x-white.svg" @click="removeBanner"/>
+            <span>5 searches remaining this month. <a href="/exp-home/account">Upgrade Now</a></span>
+            <img src="~/assets/icons/icon-interface-circle-x-white.svg"  @click="removeBanner"/>
         </div>
     </div>
     <nav-bar></nav-bar>

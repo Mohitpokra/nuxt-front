@@ -864,4 +864,12 @@ select.selectpicker {
     float: right;
     cursor: pointer;
   }
+  @media screen and (max-width: 936px) {
+    padding: 12px 0px;
+    font-size: 14px;
+    span{
+      display: inline-block;
+      max-width: 220px;
+    }
+  }
 }
