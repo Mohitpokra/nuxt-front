@@ -18,7 +18,7 @@
                         <label for="login-email">Name</label>
                         <span class="inp-error">{{error.email}}</span>
                     </div>
-                    <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
+                    <b-input :class="{form_fill: name}" v-model.trim="name" @focus="handleFocus('name')" :state="error_state.name" size="lg" id="login-name" placeholder="Charlie Exampleton"></b-input>
                     <b-form-invalid-feedback :state="error_state.name">
                         {{error.name}}
                     </b-form-invalid-feedback>
@@ -30,38 +30,38 @@
                         <label for="login-email">Email</label>
                         <span class="inp-error">{{error.email}}</span>
                     </div>
-                    <b-input :class="{form_fill: user.email}" v-model.trim="user.email" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
+                    <b-input :class="{form_fill: email}" v-model.trim="email"  @focus="handleFocus('email')" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                     <b-form-invalid-feedback :state="error_state.email">
                         {{error.email}}
                     </b-form-invalid-feedback>
                 </div>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row v-if="!isChangePass">
             <b-col cols="12" lg="6">
                 <div class="inp-wrapper">
                     <div class="flex justify-content-between" >
                         <label for="login-email">Password</label>
-                        <span class="inp-error">{{error.email}}</span>
+                        <span class="inp-error">{{error.password}}</span>
                     </div>
-                    <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                    <b-input :class="{form_fill: user.password}" @focus="handleFocus('password')" @blur="handlePasswordBlur" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
                     <b-form-invalid-feedback :state="error_state.password">
                         {{error.password}}
                     </b-form-invalid-feedback>
                 </div>
                 <div class="sub-btn">
-                    <b-button class="mt-4" variant="" size="lg">Change Password</b-button>
+                    <b-button class="mt-4" variant="" size="lg" @click="showNewPass">Change Password</b-button>
                 </div>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row v-if="isChangePass">
             <b-col cols="12" lg="6">
                 <div class="inp-wrapper">
                     <div class="flex justify-content-between" >
                         <label for="login-email">Password</label>
-                        <span class="inp-error">{{error.email}}</span>
+                        <span class="inp-error">{{error.password}}</span>
                     </div>
-                    <b-input :class="{form_fill: user.password}" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
+                    <b-input :class="{form_fill: user.password}"  @focus="handleFocus('password')" v-model="user.password" @blur="handlePasswordBlur" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
                     <b-form-invalid-feedback :state="error_state.password">
                         {{error.password}}
                     </b-form-invalid-feedback>
@@ -71,7 +71,7 @@
                         <label for="login-email"></label>
                         <span class="inp-error">{{error.email}}</span>
                     </div>
-                    <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
+                    <b-input :class="{form_fill: user.newPassword}" v-model="user.newPassword" @focus="handleFocus('newPassword')" @blur="handleCPasswordBlur" :state="error_state.newPassword" size="lg" id="login-password" type="password" placeholder="New Password"></b-input>
                     <b-form-invalid-feedback :state="error_state.password">
                         {{error.newPassword}}
                     </b-form-invalid-feedback>
@@ -79,7 +79,7 @@
             </b-col>
             <b-col cols="12" lg="12">
                 <b-button class="btn-save-change mt-4 save-btn" variant="primary" size="lg" @click="savePassword">Save Changes</b-button>
-                <b-button class="cancel-btn mt-4" variant="secondary" size="lg" @click="cancelPass">Cancel</b-button>
+                <b-button class="cancel-btn mt-4" variant="secondary" size="lg" @click="showNewPass">Cancel</b-button>
             </b-col>
         </b-row>
         <b-row>
@@ -133,7 +133,7 @@
         <div>
             <b-modal size="lg" id="choosePlan" class="modal-full-body" centered hide-footer hide-header>
                 <div class="modal-temp-body">
-                    <img class="img-cross" src="~/assets/icons/icon-interface-x.svg" />
+                    <img class="img-cross" src="~/assets/icons/icon-interface-x.svg" @click="$bvModal.hide('choosePlan')"/>
                     <div v-if="!isPropPlan" class="header">
                         <div class="choose-plan-container">
                             <h3 class="text-primary">Choose the plan for you</h3>
@@ -236,6 +236,7 @@
 <script>
 import { toastDuration } from '../../../constants';
 import {isRequired} from './../../../utils/validations.js';
+import { mapGetters, mapState } from "vuex";
 export default {
     data() {
         return {
@@ -290,14 +291,35 @@ export default {
         }
     },
     methods: {
-        showNewPass() {
-            this.isChangePass = 1
+        handleFocus(fieldName){
+            this.error[fieldName] = ''
+            this.error_state[fieldName] = null
         },
-        cancelPass() {
-            this.isChangePass = 0;
+        showNewPass() {
+            this.isChangePass = !this.isChangePass
         },
         chooseProPlan() {
             this.isPropPlan = 1;
+        },
+        handleNameBlur(){
+            const isValidName = isRequired(this.name)
+            if(!isValidName){
+                this.error.name = ' Name is Required. '
+                this.error_state.name = false
+            }else{
+                this.error.name = ''
+                this.error_state.name = true
+            }
+        },
+        handleEmailBlur(){
+            const isValidEmail = isRequired(this.email) && isEmail(this.email)
+            if(!isValidEmail){
+                this.error.email = ' Email is Required. '
+                this.error_state.email = false
+            }else{
+                this.error.email = ''
+                this.error_state.email = true
+            }
         },
         handlePasswordBlur(){
             const isValidPassword = isRequired(this.user.password)
@@ -322,21 +344,23 @@ export default {
             }
         },
         savePassword(){
+            this.handleNameBlur();
+            this.handleEmailBlur();
             this.handlePasswordBlur();
             this.handleCPasswordBlur()
             const isValid = this.error_state.password || this.error_state.newPassword
             if(isValid){
                     this.$axios.$post('/api/reset-password',{
-                    email:this.user.email,
+                    email:this.email,
                     token: '',
                     password: this.user.password,
                     password_confirmation: this.user.newPassword,
                 })
                 .then(response => {
-                    // this.$toast.success('Password Changed ',toastDuration)
+                    this.$toast.success('Password Changed ',toastDuration)
                 })
                 .catch(e => {
-                    // this.$toast.error('Try Again Later',toastDuration)
+                    this.$toast.error('Try Again Later',toastDuration)
                 })
             }
         }
@@ -347,6 +371,22 @@ export default {
                 return false;
             } else {
                 return true;
+            }
+        },
+        email: {
+            get () {
+                return this.$store.state.auth.user.email
+            },
+            set(value){
+                this.$store.commit('updateEmail', value)
+            }
+        },
+        name: {
+            get () {
+                return this.$store.state.auth.user.name
+            },
+            set(value){
+                this.$store.commit('updateName', value)
             }
         }
     }
