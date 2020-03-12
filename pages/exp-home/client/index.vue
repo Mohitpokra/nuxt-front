@@ -29,8 +29,8 @@
                 </b-row>
                 <b-row v-else class="input-box">
                     <b-col cols="12" v-for="client in getClientsList" :key="client.id" @click="setSelected(client)">
-                        <div class="box-shadow-container list" :class="{'selected': client.id ==  (getSelectedClient && getSelectedClient.id)}">
-                            <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
+                        <div class="box-shadow-container list" :class="{'selected': isSelected && (client.id ==  (getSelectedClient && getSelectedClient.id))}">
+                           <h4 class="container-text"><img class="check" src="~/assets/icons/icon-interface-check-white.svg" /> {{client.first_name +' ' + client.last_name}}</h4>
                         </div>
                     </b-col>
                 </b-row>
@@ -126,7 +126,7 @@ export default {
         return {
             addclients: false,
             show: 1,
-            isSelected:null,
+            isSelected:false,
             selectedUser:{},
             user: {
                 firstName: null,
@@ -167,7 +167,7 @@ export default {
             ]),
             isNextDisable(){
                const  data = this.$store.getters && this.$store.getters['clients/getSelectedClient']
-                return data.id ? false : true
+                return data.id && this.isSelected ? false : true
             },
         isDisable(){
             const isValidFirstName = isRequired(this.user.firstName)
@@ -183,7 +183,7 @@ export default {
     },
     methods: {
         setSelected(user){
-            // this.isSelected = true;
+            this.isSelected = true;
             this.selectedUser = user;
             this.$store.dispatch('clients/selectedClient', user)
         },
