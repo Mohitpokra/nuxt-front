@@ -106,10 +106,10 @@
             </b-row>
             <b-row class="il-list">
                 <b-col cols="12" lg="3">
-                    <span><strong>$15</strong> per month</span>
+                    <span>Visa ending in <strong>1212</strong></span>
                 </b-col>
                 <b-col cols="12" lg="4">
-                    <span>Renews <strong>January 23, 2020</strong></span>
+                    <span>Expires <strong>01/2022</strong></span>
                 </b-col>
                 <b-col cols="12" lg="5" class="text-right">
                     <span class="pointer link">Update Card</span>
@@ -459,6 +459,7 @@ export default {
 
 button{
     font-size: 16px !important;
+    height: 48px;
 }
 
 .btn-cancel {
