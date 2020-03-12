@@ -52,9 +52,15 @@
                         </div>
                     </b-col>
                 </b-row>
-                <div class="divider req-apv-btns">
-                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg" @click="createUser()">Create</b-button>
-                    <b-button class="can" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
+                <b-row class="body-banner inp-textarea">
+                    <b-col>
+                        <div class="inp-wrapper">
+                            <textarea class="form-control" v-model="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
+                        </div>
+                    </b-col>
+                </b-row>
+                <div class="divider req-apv-btns text-right">
+                    <b-button class="req" block variant="primary" :disabled="isDisable" size="lg" @click="createUser()">Send Request</b-button>
                 </div>
             </div>
             <div v-else>
@@ -491,5 +497,17 @@ button{
 }
 .btn-divider{
     margin-top: 28px;
+}
+.inp-textarea .form-control{
+    margin-top: 48px;
+    resize: none;
+    min-height: 120px !important;
+}
+.req-apv-btns{
+    display: flex;
+    justify-content: flex-end;
+}
+.req-apv-btns button{
+    width: 149px;
 }
 </style>
