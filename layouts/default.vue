@@ -1,6 +1,6 @@
 <template>
 <div id="main-wrapper">
-    <div class="upgrade-bar">
+    <div class="upgrade-bar" v-if="$auth.user.agent_detail.subscription_plan_id == 1">
         <div class="container">
             <span>5 searches remaining this month. <a href="#">Upgrade Now</a></span>
             <img src="~/assets/icons/icon-interface-circle-x-white.svg"/>
