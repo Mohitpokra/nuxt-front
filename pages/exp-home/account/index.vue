@@ -349,7 +349,7 @@ export default {
                 });
             }else{
                 this.showApiError = message
-                this.error_state.email = false
+                this.error_state.password = false
             }
         },
         savePassword(){
