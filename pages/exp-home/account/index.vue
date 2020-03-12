@@ -25,29 +25,23 @@
                 </div>
             </b-col>
             <b-col cols="12" lg="6">
-                <div class="inp-wrapper">
+                <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                     <div class="flex justify-content-between" >
                         <label for="login-email">Email</label>
                         <span class="inp-error">{{error.email}}</span>
                     </div>
                     <b-input :class="{form_fill: email}" v-model.trim="email"  @focus="handleFocus('email')" :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
-                    <b-form-invalid-feedback :state="error_state.email">
-                        {{error.email}}
-                    </b-form-invalid-feedback>
                 </div>
             </b-col>
         </b-row>
         <b-row v-if="!isChangePass">
             <b-col cols="12" lg="6">
-                <div class="inp-wrapper">
+                <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                     <div class="flex justify-content-between" >
                         <label for="login-email">Password</label>
                         <span class="inp-error">{{error.password}}</span>
                     </div>
                     <b-input :class="{form_fill: user.password}" @focus="handleFocus('password')" @blur="handlePasswordBlur" v-model="user.password" :state="error_state.password" size="lg" id="login-password" type="password" placeholder="••••••••"></b-input>
-                    <b-form-invalid-feedback :state="error_state.password">
-                        {{error.password}}
-                    </b-form-invalid-feedback>
                 </div>
                 <div class="sub-btn">
                     <b-button class="mt-4" variant="" size="lg" @click="showNewPass">Change Password</b-button>
