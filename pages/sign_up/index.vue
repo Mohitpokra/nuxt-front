@@ -17,7 +17,6 @@
                         <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                             <div class="flex justify-content-between" >
                                 <label class="" for="login-email">Email</label>
-                                <!-- <span class="inp-error">{{error.email}}</span> -->
                                 <span class="inp-error" v-if="!showApiError && error.email">{{error.email}}</span>
                                 <span class="inp-error" v-if="!!showApiError && !error.email">{{showApiError}}</span>
                             </div>

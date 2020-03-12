@@ -331,10 +331,9 @@ export default {
         },
         handleCPasswordBlur(){
             const emptyPassword = isRequired(this.user.newPassword)
-            const passwordMatch = (this.user.password ==  this.user.newPassword)
-            const confirmPassword = emptyPassword && passwordMatch
+            const confirmPassword = emptyPassword
             if(!confirmPassword){
-                this.error.newPassword = !emptyPassword ? 'New Password is Required ' : " Password Didn't Match. "
+                this.error.newPassword =  'New Password is Required '
                 this.error_state.newPassword = false
             }else{
                 this.error.newPassword = ''
