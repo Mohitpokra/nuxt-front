@@ -18,9 +18,9 @@
         <img @click="toggleSideBar" class="cross" src="~/assets/icons/icon-interface-x.svg" />
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/">Start a new home search</a></li>
-            <li><a href="/">Revisit a previous search</a></li>
-            <li><a href="/exp-home/client/pre_approval">Request a pre-approval</a></li>
+            <li><a href="/exp-home/client">Start a new home search</a></li>
+            <li><a href="/exp-home/search_history">Revisit a previous search</a></li>
+            <li><a href="/exp-home/request_approval">Request a pre-approval</a></li>
             <li><a href="/exp-home/account">My Account</a></li>
         </ul>
         <div class="logout"><a @click="logout()">Sign Out</a></div>
