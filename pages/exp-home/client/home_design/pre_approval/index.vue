@@ -25,7 +25,7 @@
                 </div>
             </b-col>
         </b-row>
-        <b-row v-if="preApproved || affordability" class="divider">
+        <b-row v-if="preApproved || affordability" class="divider ishowtab">
             <b-col cols="12" lg="12">
                 <hr class="padd-0">
             </b-col>
@@ -65,19 +65,19 @@
             </b-col>
             <b-col v-if="affordability" cols="12" lg="12" class="form-body-2 estimated-affordability">
                 <div>
-                    <h3 class="text-primary title-head">Search by Estimated Affordability</h3>
-                    <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
+                    <h3 class="text-primary">Search by Estimated Affordability</h3>
+                    <h4 class="form-1 title-head">What is the maximum monthly payment your client can afford?</h4>
                     <b-form class="divider name-text">
                         <label class="" for="tmp-name">Max Total Monthly Payment</label>
                         <b-input :class="{form_fill: user.tmp}" v-model.trim="user.tmp" :state="error_state.tmp" size="lg" id="tmp-name" placeholder="Enter Amount per Month"></b-input>
                         <b-form-invalid-feedback :state="error_state.tmp">
                             {{error.tmp}}
                         </b-form-invalid-feedback>
-                        <label class="" for="tmp-text">Including loan payment, property taxes, insurance, etc.</label>
+                        <label class="" for="tmp-text bottom-text">Including loan payment, property taxes, insurance, etc.</label>
                     </b-form>
                     <h4 class="body-banner title-head">What funds does you client have available to purchase?</h4>
                     <b-form-group class="custom-radio">
-                        <b-form-radio class="m-radio" size="lg" v-model="fundsAvailable" name="some-radios" value="FHA">Minimum Down Payment</b-form-radio>
+                        <b-form-radio class="m-radio" size="lg" v-model="fundsAvailable" name="some-radios" value="FHA">Minimum Down</b-form-radio>
                         <div class="d-flex align-items-center purchase-text">
                             <b-form-radio class="" size="lg" v-model="fundsAvailable" name="some-radios" value="VA">
                             </b-form-radio>
@@ -494,11 +494,6 @@ export default {
     width: 312px;
 }
 
-
-.top-title{
-    margin-top: 38px;
-}
-
 .body-content{
     margin-top: 36px;
 }
@@ -537,13 +532,14 @@ export default {
         max-width: 456px;
     }
     .title-head{
-        margin-bottom: 12px;
+        margin-bottom: 24px;
+        line-height: 1.33;
     }
     .house-payment, .purchase-text{
         max-width: 200px;
     }
     .text-check{
-        max-width: 456px;
+        max-width: 580px;
     }
 }
 .req-apv-btns{
@@ -551,9 +547,11 @@ export default {
     justify-content: space-between;
     .req{
         width: 360px;
+        height: 48px;
     }
     .can{
         width: 136px;
+        height: 48px;
     }
     @media screen and (max-width: 992px) {
         flex-direction: column;
@@ -565,8 +563,8 @@ export default {
     }
 }
 .steps-btn{
-    margin-top: 188px;
-    margin-bottom: 30px;
+    margin-top: 48px;
+    margin-bottom: 128px;
     button{
         min-width: 154px;
         border: none;
@@ -592,5 +590,11 @@ export default {
 }
 .padd-0{
     padding: 0px;
+}
+.ishowtab{
+    margin: 35px -15px;
+}
+.bottom-text{
+    margin-top: 8px;
 }
 </style>

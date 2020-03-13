@@ -354,9 +354,11 @@ export default {
     margin-top: 48px;
     .req{
         width: 360px;
+        height: 48px;
     }
     .can{
         width: 136px;
+        height: 48px;
     }
     @media screen and (max-width: 992px) {
         flex-direction: column;

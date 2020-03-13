@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="looking-for-box">
+                <div class="looking-for-box">
                     <div class="box-container" :class="{'bg-heading': selected_3}" @click="turnBg(3)">
                         <div class="flex looking-box">
                             <div class="img-container">
@@ -39,7 +39,7 @@
                             <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </b-row>
         <b-row class="d-none d-lg-flex" align-h="end">
@@ -145,7 +145,7 @@ export default {
 .btn-custom {
     width: 156px;
     margin-top: 148px;
-
+    margin-bottom: 72px;
     @media screen and (max-width: 992px) {
         width: 100%;
         margin-top: 100px;

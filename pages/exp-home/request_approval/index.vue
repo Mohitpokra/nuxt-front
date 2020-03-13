@@ -515,6 +515,7 @@ button{
 }
 .req-apv-btns button{
     width: 149px;
+    height: 48px;
 }
 .req-approval{
     width: 100%;
