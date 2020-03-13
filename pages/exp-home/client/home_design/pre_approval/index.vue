@@ -27,7 +27,7 @@
         </b-row>
         <b-row v-if="preApproved || affordability" class="divider">
             <b-col cols="12" lg="12">
-                <hr>
+                <hr class="padd-0">
             </b-col>
         </b-row>
         <b-row class="body-banner">
@@ -37,7 +37,7 @@
                     <h4 class="body-content title-head">What was the purchase pre-approval amount?</h4>
                     <b-form class="form-1 name-text">
                         <label class="" for="price">Purchase Price</label>
-                        <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="price" placeholder="1000"></b-input>
+                        <b-input :class="{form_fill: user.name}" v-model.trim="user.name" :state="error_state.name" size="lg" id="price" placeholder="Enter Total Purchase Price"></b-input>
                         <b-form-invalid-feedback :state="error_state.name">
                             {{error.name}}
                         </b-form-invalid-feedback>
@@ -69,20 +69,24 @@
                     <h4 class="form-1">What is the maximum monthly payment your client can afford?</h4>
                     <b-form class="divider name-text">
                         <label class="" for="tmp-name">Max Total Monthly Payment</label>
-                        <b-input :class="{form_fill: user.tmp}" v-model.trim="user.tmp" :state="error_state.tmp" size="lg" id="tmp-name" placeholder="1000"></b-input>
+                        <b-input :class="{form_fill: user.tmp}" v-model.trim="user.tmp" :state="error_state.tmp" size="lg" id="tmp-name" placeholder="Enter Amount per Month"></b-input>
                         <b-form-invalid-feedback :state="error_state.tmp">
                             {{error.tmp}}
                         </b-form-invalid-feedback>
+                        <label class="" for="tmp-text">Including loan payment, property taxes, insurance, etc.</label>
                     </b-form>
                     <h4 class="body-banner title-head">What funds does you client have available to purchase?</h4>
-                    <div class="d-flex align-items-center purchase-text">
-                        <b-form-radio class="" size="lg" v-model="fundsAvailable" name="some-radios" value="VA">
-                        </b-form-radio>
-                        <b-input :class="{form_fill: user.fpercentage}" v-model="user.fpercentage" :state="error_state.fpercentage" size="lg" type="text" placeholder="Percentage Down"></b-input>
-                        <b-form-invalid-feedback :state="error_state.fpercentage">
-                            {{error.fpercentage}}
-                        </b-form-invalid-feedback>
-                    </div>
+                    <b-form-group class="custom-radio">
+                        <b-form-radio class="m-radio" size="lg" v-model="fundsAvailable" name="some-radios" value="FHA">Minimum Down Payment</b-form-radio>
+                        <div class="d-flex align-items-center purchase-text">
+                            <b-form-radio class="" size="lg" v-model="fundsAvailable" name="some-radios" value="VA">
+                            </b-form-radio>
+                            <b-input :class="{form_fill: user.fpercentage}" v-model="user.fpercentage" :state="error_state.fpercentage" size="lg" type="text" placeholder="Percentage Down"></b-input>
+                            <b-form-invalid-feedback :state="error_state.fpercentage">
+                                {{error.fpercentage}}
+                            </b-form-invalid-feedback>
+                        </div>
+                    </b-form-group>
                     <h4 class="body-banner title-head">What’s your client’s estimated credit score?</h4>
                     <b-form-group class="custom-radio">
                         <b-form-radio class="m-radio" size="lg" v-model="creditscore" name="credit-radios" value="Excellent">Excellent (720+)</b-form-radio>
@@ -108,7 +112,7 @@
                     <h4 class="text-center">Would you like to obtain a competitive loan offer?</h4>
                     <p class="p2 text-center">We give you the option to request a loan offer and it’s a simple as filing out some basic information for us to get in contact with your client.</p>
                     <div class="text-center">
-                        <b-btn class="btn-custom" size="sm" @click="request_sent=0;$bvModal.show('req-apv')">Request Pre-approval</b-btn>
+                        <b-btn class="btn-custom preapproval-text" size="sm" @click="request_sent=0;$bvModal.show('req-apv')">Request Pre-approval</b-btn>
                     </div>
                 </div>
             </b-col>
@@ -155,17 +159,17 @@
                                     <label for="login-mobile">Phone Number</label>
                                     <span class="inp-error">{{error.mobile}}</span>
                                 </div>
-                                <b-input :class="{form_fill: user.mobile}" v-model.trim="user.mobile" @focus="handleFocus('mobile')" @blur="handleMobileBlur" :state="error_state.mobile" size="lg" id="login-mobile" maxLength="10" placeholder="9876543212"></b-input>
+                                <b-input :class="{form_fill: user.mobile}" v-model.trim="user.mobile" @focus="handleFocus('mobile')" @blur="handleMobileBlur" :state="error_state.mobile" size="lg" id="login-mobile" maxLength="10" placeholder="(555) 555-5555"></b-input>
                             </div>
                         </b-col>
                     </b-row>
                     <b-row class="body-banner">
                         <b-col>
-                            <textarea class="form-control" v-model="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
+                            <textarea class="form-control" v-model="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes..."></textarea>
                         </b-col>
                     </b-row>
                     <div class="divider req-apv-btns">
-                        <b-button class="mt-3 req" block variant="primary" :disabled="isDisable" @click="createUser()" size="lg">Create</b-button>
+                        <b-button class="mt-3 req" block variant="primary" :disabled="isDisable" @click="createUser()" size="lg">Send Request</b-button>
                         <b-button class="mt-3 can" block variant="secondary btn-custom_1" @click="$bvModal.hide('req-apv')" size="lg">Cancel</b-button>
                     </div>
                 </div>
@@ -582,5 +586,11 @@ export default {
             min-width: 167px;
         }
      }
+}
+.preapproval-text{
+    color: #44a1bf;
+}
+.padd-0{
+    padding: 0px;
 }
 </style>

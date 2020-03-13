@@ -83,7 +83,7 @@
                                 <label for="login-mobile">Phone Number</label>
                                 <span class="inp-error">{{error.mobile}}</span>
                             </div>
-                            <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="9876543219" maxLength="10"></b-input>
+                            <b-input :class="{form_fill: user.mobile}" @focus="handleFocus('mobile')" @blur="handleMobileBlur" v-model.trim="user.mobile" :state="error_state.mobile" size="lg" id="login-mobile" placeholder="(555) 555-5555" maxLength="10"></b-input>
                         </div>
                     </b-col>
                 </b-row>

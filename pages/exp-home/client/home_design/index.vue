@@ -108,9 +108,11 @@
                         </b-form-group>
                     </b-col>
                     <b-col class="h-100" cols="12" lg="6">
-                        <b-form-checkbox :state="error_state.errortextrea" size="lg">Other</b-form-checkbox>
+                        <b-form-checkbox :state="error_state.errortextrea" v-model='othercheckbox' size="lg">Other</b-form-checkbox>
                         <div class="extra-text">
-                            <b-form-textarea id="textarea-state" v-model="text" :state="error_state.errortextrea" placeholder="Please Specify" rows="3"></b-form-textarea>
+                            <b-form-textarea id="textarea-state" :class="[{
+                                'selectedother': othercheckbox
+                            }]" :disabled="!othercheckbox" v-model="text" :state="error_state.errortextrea" placeholder="Please Specify" rows="3"></b-form-textarea>
                         </div>
                     </b-col>
                 </b-row>
@@ -121,26 +123,26 @@
                 <hr class="divider">
             </b-col>
         </b-row>
-        <b-row>
+        <b-row >
             <b-col cols="12" lg="12">
                 <h2>Location</h2>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row >
             <b-col cols="12" lg="12">
                 <p class="p3 filter">Search Area</p>
                 <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Subdivision, City, Zip, County, State..."></b-input>
             </b-col>
         </b-row>
-        <div class="poi-block">
+        <div class="poi-block" v-if="search">
             <b-row>
                 <b-col cols="12" lg="12">
                     <img src="~/assets/icons/icon-interface-trash.svg" class="poi-del pointer" />
-                    <h3 class="text-primary">Home Design</h3>
+                    <h3 class="text-primary">Point Of Interest</h3>
                     <span class="lable-title">Address</span>
                     <b-input :class="{form_fill: search}" v-model.trim="search" :state="error_state.search" size="lg" id="search" placeholder="Enter Address"></b-input>
                 </b-col>
-                <b-col cols="12" lg="12"><span class="lable-title">Search Area</span></b-col>
+                <b-col cols="12" lg="12"><span class="lable-title">Search Radius</span></b-col>
                 <b-col cols="12" lg="6">
                     <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
                 </b-col>
@@ -152,7 +154,9 @@
         <b-row>
             <b-col cols="12">
                 <div class="text-center filter">
-                    <span class="pointer p3 text-primary">Add Point of Interest</span>
+                    <span :class="['pointer p3 text-primary',{
+                        'blur': !search
+                    }]">Add Point of Interest</span>
                 </div>
             </b-col>
             <b-col cols="12" lg="10">
@@ -161,7 +165,7 @@
     </div>
     <div class="flex justify-between steps-btn">
         <b-button class="mt-3 back" variant="secondary" size="lg" @click="goBack()">Back</b-button>
-        <b-button class="mt-3 next" variant="primary" size="lg" @click="moveToNext()">Next</b-button>
+        <b-button class="mt-3 next" variant="primary" size="lg" @click="moveToNext()">Get Result</b-button>
     </div>
     <!-- Delete popup -->
     <b-modal id="sure-delete"  class="modal-full-body" centered hide-footer hide-header>
@@ -201,6 +205,7 @@ export default {
             selectedPropertyTypes:[],
             selectedPropertyConditions:[],
             selectedMustHaves:[],
+            othercheckbox: null,
             options: [{
                     value: null,
                     text: 'Please select an option'
@@ -407,6 +412,11 @@ export default {
             padding: 12px;
             min-height: 145px;
         }
+
+        .selectedother{
+            background: white;
+            border: 1px solid;
+        }
     }
 }
 .divider{
@@ -435,6 +445,9 @@ export default {
         }
      }
 }
+.blur{
+    opacity: 0.5;
+}
 .poi-block{
     border: 2px solid #44a1bf;
     border-radius: 2px;
@@ -460,4 +473,5 @@ export default {
         width: 100%;
     }
 }
+
 </style>

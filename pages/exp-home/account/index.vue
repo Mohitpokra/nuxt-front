@@ -86,7 +86,7 @@
             <b-col cols="12" lg="12">
                 <b-row class="bg-custom plan-head">
                     <div class="prop-plan">
-                        <p class="pr-title">Search by Mortgage Payment — <strong>Pro Plan</strong></p>
+                        <p class="pr-title">Search by Mortgage Payment — <strong>{{ getPlanType == 1 ? 'Free Plan' : 'Pro Plan' }}</strong></p>
                         <b-button class="btn-chng-plan" variant="primary" size="lg" @click="$bvModal.show('choosePlan')">Change Plan</b-button>
                     </div>
                 </b-row>
@@ -128,7 +128,9 @@
                         <div class="choose-plan-container">
                             <h3 class="text-primary">Choose the plan for you</h3>
                             <div class="choose-plan-wrapper">
-                                <div class="box-shadow-low">
+                                <div :class="['box-shadow-low', {
+                                    'selected' : getPlanType == 1
+                                }]" >
                                     <h3>Free</h3>
                                     <p class="p-box-subheading p2">Limited to 5 searches per month</p>
                                     <div class="p-box-money d-flex align-items-center">
@@ -141,7 +143,9 @@
                                         <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
                                     </div>
                                 </div>
-                                <div class="box-shadow-low">
+                                <div :class="['box-shadow-low',{
+                                    'selected' : getPlanType == 2
+                                }]">
                                     <h3>Pro</h3>
                                     <p class="p-box-subheading p2">Unlimited searches</p>
                                     <div class="p-box-money d-flex align-items-center">
@@ -368,6 +372,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters([
+                "getPlanType",
+            ]),
         isDisable() {
             if (this.billing.name && this.billing.cardNo && this.billing.expiryDate && this.billing.cvc) {
                 return false;

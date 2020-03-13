@@ -13,7 +13,9 @@ export const mutations = {
 
 
 export const getters = {
-
+   getPlanType(state){
+      return state.auth.user.agent_detail.subscription_plan_id
+   }
 }
 
 export const actions = {
