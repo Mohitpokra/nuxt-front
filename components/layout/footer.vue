@@ -1,5 +1,5 @@
 <template>
-<div class="footer">
+<div class="footer" v-if="(!$auth.loggedIn)">
     <b-container :class="(!$auth.loggedIn)? 'm-container before-login': 'm-container'">
         <b-row align-v="center">
             <b-col cols="12" md="4">
