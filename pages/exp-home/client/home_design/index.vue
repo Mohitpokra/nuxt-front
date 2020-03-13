@@ -424,7 +424,7 @@ export default {
 }
 .steps-btn{
     margin-top: 188px;
-    margin-bottom: 30px;
+    margin-bottom: 72px;
     button{
         min-width: 156px;
         border: none;

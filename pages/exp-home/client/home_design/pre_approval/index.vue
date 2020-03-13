@@ -175,12 +175,12 @@
                 </div>
                 <div v-else>
                     <b-row class="h-100" align-v="center" align-h="center">
-                        <b-col class="text-center" cols="auto">
+                        <b-col class="text-center" cols="auto sent-req">
                             <div>
                                 <img src="~/assets/icons/icon-decorative-send-email.svg" />
                             </div>
                             <h3>Request sent!</h3>
-                            <p class="p3">We’ll be in touch with you and your client to get a competitive rate.</p>
+                            <p class="p3 para">We’ll be in touch with you and your client to get a competitive rate.</p>
                             <b-btn variant="primary btn-custom_2" @click="goToNext">Continue Search</b-btn>
                         </b-col>
                     </b-row>
@@ -596,5 +596,21 @@ export default {
 }
 .bottom-text{
     margin-top: 8px;
+}
+.sent-req{
+    max-height: 621px;
+    img{
+        margin-top: 144px;
+        margin-bottom: 24px;
+    }
+    .para{
+        max-width: 552px;
+        font-size: 20px;
+        margin-top: 24px;
+        margin-bottom: 104px;
+    }
+    button{
+        height: 48px;
+    }
 }
 </style>
