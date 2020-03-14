@@ -304,7 +304,7 @@ export default {
   mounted() {
     const query = this.$router.query;
     const uuid =
-      query && query.uuid ? query.uuid : "9cd1422c-5e06-11ea-affb-2dcc75e7270e";
+      query && query.uuid;
     const path = "/api/user/" + uuid;
     if (uuid) {
       this.isFromEmail = true;
