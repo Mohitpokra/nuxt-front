@@ -245,7 +245,7 @@ export default {
   },
   data() {
     return {
-      getEnabled: false,
+      getEnabled: true,
       text: "",
       selected: null,
       selectedFullBath: "",
@@ -301,17 +301,6 @@ export default {
   },
   methods: {
     moveToNext() {
-      if (
-        this.selectedPropertyTypes == 0 ||
-        this.selectedPropertyConditions == 0 ||
-        this.selectedMustHaves == 0 ||
-        this.selectedMinBed == "" ||
-        this.selectedHalfBath == "" ||
-        this.selectedFullBath == "" ||
-        (this.othercheckbox ? this.text == "" : true)
-      ) {
-        return false;
-      }
       const obj = {
         clientId: this.$store.getters["clients/getSelectedClient"].id,
         agentId: this.$store.$auth.user.id,
