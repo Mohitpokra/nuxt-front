@@ -95,7 +95,7 @@
         <div class="info-list">
             <b-row class="il-list">
                 <b-col cols="12" lg="3">
-                    <span><strong>$15</strong> per month</span>
+                    <span><strong>$0</strong> per month</span>
                 </b-col>
                 <b-col cols="12" lg="4">
                     <span>Renews <strong>January 23, 2020</strong></span>
@@ -104,7 +104,7 @@
                     <hr>
                 </b-col>
             </b-row>
-            <b-row class="il-list">
+            <!-- <b-row class="il-list">
                 <b-col cols="12" lg="3">
                     <span>Visa ending in <strong>1212</strong></span>
                 </b-col>
@@ -117,7 +117,7 @@
                 <b-col cols="12" lg="12">
                     <hr>
                 </b-col>
-            </b-row>
+            </b-row> -->
         </div>
 
         <div>
