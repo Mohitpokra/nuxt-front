@@ -302,7 +302,7 @@ export default {
     }
   },
   mounted() {
-    const query = this.$router.query;
+    const query = this.$route.query;
     const uuid =
       query && query.uuid;
     const path = "/api/user/" + uuid;
