@@ -99,7 +99,6 @@ export default {
 .m-header {
     margin-top: 96px;
     margin-bottom: 48px;
-    text-align: center;
     @media screen and (max-width: 936px) {
         margin-top: 48px;
     }
