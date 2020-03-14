@@ -199,7 +199,6 @@
       </b-row>
     </div>
     <div class="flex justify-between steps-btn">
-      {{getEnabled}}
       <b-button class="mt-3 back" variant="secondary" size="lg" @click="goBack()">Back</b-button>
       <b-button
         class="mt-3 next"
