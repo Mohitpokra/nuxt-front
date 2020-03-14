@@ -199,8 +199,15 @@
       </b-row>
     </div>
     <div class="flex justify-between steps-btn">
+      {{getEnabled}}
       <b-button class="mt-3 back" variant="secondary" size="lg" @click="goBack()">Back</b-button>
-      <b-button class="mt-3 next" variant="primary" size="lg" @click="moveToNext()">Get Result</b-button>
+      <b-button
+        class="mt-3 next"
+        variant="primary"
+        size="lg"
+        @click="moveToNext()"
+        :disabled="getEnabled"
+      >Get Result</b-button>
     </div>
     <!-- Delete popup -->
     <b-modal id="sure-delete" class="modal-full-body" centered hide-footer hide-header>
@@ -239,6 +246,7 @@ export default {
   },
   data() {
     return {
+      getEnabled: false,
       text: "",
       selected: null,
       selectedFullBath: "",
@@ -247,7 +255,7 @@ export default {
       selectedPropertyTypes: [],
       selectedPropertyConditions: [],
       selectedMustHaves: [],
-      othercheckbox: null,
+      othercheckbox: "",
       options: [
         {
           value: null,
@@ -430,6 +438,96 @@ export default {
     this.$store.dispatch("searchHome/propertyTypes");
     this.$store.dispatch("searchHome/propertyConditions");
     this.$store.dispatch("searchHome/mustHaves");
+  },
+  watch: {
+    selectedPropertyTypes: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    selectedPropertyConditions: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    selectedMustHaves: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    selectedMinBed: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    selectedHalfBath: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    selectedFullBath: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    othercheckbox: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    },
+    text: function() {
+      const value =
+        this.selectedPropertyTypes.length > 0 &&
+        this.selectedPropertyConditions.length > 0 &&
+        this.selectedMustHaves.length > 0 &&
+        (this.selectedMinBed && this.selectedMinBed.trim()) != "" &&
+        (this.selectedHalfBath && this.selectedHalfBath.trim()) != "" &&
+        (this.selectedFullBath && this.selectedFullBath.trim()) != "" &&
+        (this.othercheckbox ? this.text.trim() != "" : true);
+      this.getEnabled = !value;
+    }
   }
 };
 </script>
