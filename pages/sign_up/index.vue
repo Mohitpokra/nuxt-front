@@ -27,6 +27,7 @@
                   size="lg"
                   id="login-name"
                   placeholder="Charlie Exampleton"
+                  :disabled="isFromEmail"
                 ></b-input>
               </div>
               <div
@@ -55,6 +56,7 @@
                   size="lg"
                   id="login-email"
                   placeholder="charlie@email.com"
+                  :disabled="isFromEmail"
                 ></b-input>
               </div>
               <div
@@ -135,14 +137,15 @@ export default {
     name: "custom-classes-transition",
     enterActiveClass: "animated fadeIn"
   },
-  async asyncData({ $axios }) {
-    const ip = await $axios.$post("http://icanhazip.com");
-    return {
-      ip
-    };
-  },
+  // async asyncData({ $axios }) {
+  //   const ip = await $axios.$post("http://icanhazip.com");
+  //   return {
+  //     ip
+  //   };
+  // },
   data() {
     return {
+      isFromEmail: false,
       user: {
         name: "",
         email: "",
@@ -296,6 +299,19 @@ export default {
           // this.$toast.error('Please try again later !', toastDuration)
         }
       }
+    }
+  },
+  mounted() {
+    const query = this.$router.query;
+    const uuid =
+      query && query.uuid ? query.uuid : "9cd1422c-5e06-11ea-affb-2dcc75e7270e";
+    const path = "/api/user/" + uuid;
+    if (uuid) {
+      this.isFromEmail = true;
+      this.$axios.get(path).then(data => {
+        this.user.email = data.data.user.email;
+        this.user.name = data.data.user.name;
+      });
     }
   }
 };
