@@ -116,6 +116,7 @@ export default {
 }
 .no-found{
     margin-top: 24px;
+    margin-bottom: 168px;
     img{
         max-width: 100%;
     }
