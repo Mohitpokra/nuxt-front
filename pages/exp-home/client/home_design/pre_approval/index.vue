@@ -305,10 +305,7 @@
               <b-btn
                 class="btn-custom preapproval-text"
                 size="sm"
-                @click="
-                  request_sent = 0;
-                  $bvModal.show('req-apv');
-                "
+                @click="prepopulate()"
                 >Request Pre-approval</b-btn
               >
             </div>
@@ -564,6 +561,20 @@ export default {
     };
   },
   methods: {
+    prepopulate() {
+      this.request_sent = 0;
+      this.$bvModal.show("req-apv");
+      this.user.firstName = this.$store.getters[
+        "clients/getSelectedClient"
+      ].first_name;
+      this.user.lastName = this.$store.getters[
+        "clients/getSelectedClient"
+      ].last_name;
+      this.user.mobile = this.$store.getters[
+        "clients/getSelectedClient"
+      ].mobile;
+      this.user.email = this.$store.getters["clients/getSelectedClient"].email;
+    },
     errorHandling(responseObj) {
       let { message, errors = {} } =
         responseObj.response && responseObj.response.data;
