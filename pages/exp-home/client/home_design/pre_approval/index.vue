@@ -8,14 +8,14 @@
         </b-row>
         <b-row class="top-title">
             <b-col cols="12" lg="11">
-                <h2>Pre-Approval Details</h2>
+                <h2>Pre-approval Details</h2>
             </b-col>
         </b-row>
         <b-row align-h="start" class="body-content">
             <b-col cols="12" lg="6">
                 <div  class="box-shadow-container" :class="{'bg-heading': preApproved}" @click="showPreApproved">
                     <div class="right-icon-container"><img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" /></div>
-                    <h4 :class="{'text-white': preApproved}" class="container-text">Pre-approved</h4>
+                    <h4 :class="{'text-white': preApproved}" class="container-text">Already Pre-approved</h4>
                 </div>
             </b-col>
             <b-col  cols="12" lg="6">
