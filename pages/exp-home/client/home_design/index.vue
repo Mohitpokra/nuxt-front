@@ -349,7 +349,7 @@ export default {
         propertyType: JSON.stringify(this.selectedPropertyTypes),
         propertyCondition: JSON.stringify(this.selectedPropertyConditions),
         minBeds: this.selectedMinBed,
-        minFullBath: this.selectedHalfBath,
+        minFullBath: this.selectedFullBath,
         minHalfBath: this.selectedHalfBath,
         mustHaves: JSON.stringify(this.selectedMustHaves),
         other: this.text,

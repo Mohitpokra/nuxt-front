@@ -15,28 +15,35 @@
         <b-col cols="12" lg="6">
           <div
             class="box-shadow-container"
-            :class="{'bg-heading': preApproved}"
+            :class="{ 'bg-heading': preApproved }"
             @click="showPreApproved"
           >
             <div class="right-icon-container">
-              <img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" />
+              <img
+                class="icon-interface-check"
+                src="~/assets/icons/icon-interface-check-white.svg"
+              />
             </div>
-            <h4 :class="{'text-white': preApproved}" class="container-text">Already Pre-approved</h4>
+            <h4 :class="{ 'text-white': preApproved }" class="container-text">
+              Already Pre-approved
+            </h4>
           </div>
         </b-col>
         <b-col cols="12" lg="6">
           <div
             class="box-shadow-container"
-            :class="{'bg-heading': affordability}"
+            :class="{ 'bg-heading': affordability }"
             @click="showAffordability"
           >
             <div class="right-icon-container">
-              <img class="icon-interface-check" src="~/assets/icons/icon-interface-check-white.svg" />
+              <img
+                class="icon-interface-check"
+                src="~/assets/icons/icon-interface-check-white.svg"
+              />
             </div>
-            <h4
-              :class="{'text-white': affordability}"
-              class="container-text"
-            >Estimated Affordability</h4>
+            <h4 :class="{ 'text-white': affordability }" class="container-text">
+              Estimated Affordability
+            </h4>
           </div>
         </b-col>
       </b-row>
@@ -46,21 +53,30 @@
         </b-col>
       </b-row>
       <b-row class="body-banner">
-        <b-col v-if="preApproved" cols="12" lg="12" class="form-body-1 searchby-approval">
+        <b-col
+          v-if="preApproved"
+          cols="12"
+          lg="12"
+          class="form-body-1 searchby-approval"
+        >
           <div>
             <h3 class="text-primary">Search by Pre-approval</h3>
-            <h4 class="body-content title-head">What was the purchase pre-approval amount?</h4>
+            <h4 class="body-content title-head">
+              What was the purchase pre-approval amount?
+            </h4>
             <b-form class="form-1 name-text">
               <label class for="price">Purchase Price</label>
               <b-input
-                :class="{form_fill: user.name}"
+                :class="{ form_fill: user.name }"
                 v-model.trim="user.name"
                 :state="error_state.name"
                 size="lg"
                 id="price"
                 placeholder="Enter Total Purchase Price"
               ></b-input>
-              <b-form-invalid-feedback :state="error_state.name">{{error.name}}</b-form-invalid-feedback>
+              <b-form-invalid-feedback :state="error_state.name">{{
+                error.name
+              }}</b-form-invalid-feedback>
             </b-form>
             <h4 class="form-1 title-head">Which type of loan program?</h4>
             <b-form-group class="custom-radio">
@@ -70,30 +86,36 @@
                 v-model="loan"
                 name="loan-radios"
                 value="FHA"
-              >FHA</b-form-radio>
+                >FHA</b-form-radio
+              >
               <b-form-radio
                 class="m-radio"
                 size="lg"
                 v-model="loan"
                 name="loan-radios"
                 value="VA"
-              >VA</b-form-radio>
+                >VA</b-form-radio
+              >
               <b-form-radio
                 class="m-radio"
                 size="lg"
                 v-model="loan"
                 name="loan-radios"
                 value="USDA"
-              >USDA</b-form-radio>
+                >USDA</b-form-radio
+              >
               <b-form-radio
                 class="m-radio"
                 size="lg"
                 v-model="loan"
                 name="loan-radios"
                 value="Coventional"
-              >Coventional</b-form-radio>
+                >Coventional</b-form-radio
+              >
             </b-form-group>
-            <h4 class="title-head">What’s the qualified total housing payment?</h4>
+            <h4 class="title-head">
+              What’s the qualified total housing payment?
+            </h4>
             <b-form-group class="custom-radio">
               <b-form-radio
                 class="m-radio"
@@ -101,7 +123,8 @@
                 v-model="downpayment"
                 name="downpayment-radios"
                 value="FHA"
-              >Minimum Down Payment</b-form-radio>
+                >Minimum Down Payment</b-form-radio
+              >
               <div class="d-flex align-items-center house-payment">
                 <b-form-radio
                   class
@@ -111,43 +134,51 @@
                   value="VA"
                 ></b-form-radio>
                 <b-input
-                  :class="{form_fill: user.percentage}"
+                  :class="{ form_fill: user.percentage }"
                   v-model="user.percentage"
                   :state="error_state.percentage"
                   size="lg"
                   type="text"
                   placeholder="Percentage Down"
                 ></b-input>
-                <b-form-invalid-feedback :state="error_state.percentage">{{error.percentage}}</b-form-invalid-feedback>
+                <b-form-invalid-feedback :state="error_state.percentage">{{
+                  error.percentage
+                }}</b-form-invalid-feedback>
               </div>
             </b-form-group>
           </div>
         </b-col>
-        <b-col v-if="affordability" cols="12" lg="12" class="form-body-2 estimated-affordability">
+        <b-col
+          v-if="affordability"
+          cols="12"
+          lg="12"
+          class="form-body-2 estimated-affordability"
+        >
           <div>
             <h3 class="text-primary">Search by Estimated Affordability</h3>
-            <h4
-              class="form-1 title-head"
-            >What is the maximum monthly payment your client can afford?</h4>
+            <h4 class="form-1 title-head">
+              What is the maximum monthly payment your client can afford?
+            </h4>
             <b-form class="divider name-text">
               <label class for="tmp-name">Max Total Monthly Payment</label>
               <b-input
-                :class="{form_fill: user.tmp}"
+                :class="{ form_fill: user.tmp }"
                 v-model.trim="user.tmp"
                 :state="error_state.tmp"
                 size="lg"
                 id="tmp-name"
                 placeholder="Enter Amount per Month"
               ></b-input>
-              <b-form-invalid-feedback :state="error_state.tmp">{{error.tmp}}</b-form-invalid-feedback>
-              <label
-                class
-                for="tmp-text bottom-text"
-              >Including loan payment, property taxes, insurance, etc.</label>
+              <b-form-invalid-feedback :state="error_state.tmp">{{
+                error.tmp
+              }}</b-form-invalid-feedback>
+              <label class for="tmp-text bottom-text"
+                >Including loan payment, property taxes, insurance, etc.</label
+              >
             </b-form>
-            <h4
-              class="body-banner title-head"
-            >What funds does you client have available to purchase?</h4>
+            <h4 class="body-banner title-head">
+              What funds does you client have available to purchase?
+            </h4>
             <b-form-group class="custom-radio">
               <b-form-radio
                 class="m-radio"
@@ -155,7 +186,8 @@
                 v-model="fundsAvailable"
                 name="some-radios"
                 value="FHA"
-              >Minimum Down</b-form-radio>
+                >Minimum Down</b-form-radio
+              >
               <div class="d-flex align-items-center purchase-text">
                 <b-form-radio
                   class
@@ -165,17 +197,21 @@
                   value="VA"
                 ></b-form-radio>
                 <b-input
-                  :class="{form_fill: user.fpercentage}"
+                  :class="{ form_fill: user.fpercentage }"
                   v-model="user.fpercentage"
                   :state="error_state.fpercentage"
                   size="lg"
                   type="text"
                   placeholder="Percentage Down"
                 ></b-input>
-                <b-form-invalid-feedback :state="error_state.fpercentage">{{error.fpercentage}}</b-form-invalid-feedback>
+                <b-form-invalid-feedback :state="error_state.fpercentage">{{
+                  error.fpercentage
+                }}</b-form-invalid-feedback>
               </div>
             </b-form-group>
-            <h4 class="body-banner title-head">What’s your client’s estimated credit score?</h4>
+            <h4 class="body-banner title-head">
+              What’s your client’s estimated credit score?
+            </h4>
             <b-form-group class="custom-radio">
               <b-form-radio
                 class="m-radio"
@@ -183,21 +219,24 @@
                 v-model="creditscore"
                 name="credit-radios"
                 value="Excellent"
-              >Excellent (720+)</b-form-radio>
+                >Excellent (720+)</b-form-radio
+              >
               <b-form-radio
                 class="m-radio"
                 size="lg"
                 v-model="creditscore"
                 name="credit-radios"
                 value="Average"
-              >Average (680-719)</b-form-radio>
+                >Average (680-719)</b-form-radio
+              >
               <b-form-radio
                 class="m-radio"
                 size="lg"
                 v-model="creditscore"
                 name="credit-radios"
                 value="Below Average"
-              >Below Average (620-679)</b-form-radio>
+                >Below Average (620-679)</b-form-radio
+              >
             </b-form-group>
             <h4 class="title-head">Is your client a first time homebuyer?</h4>
             <b-form-radio
@@ -206,14 +245,16 @@
               v-model="firstTimeBuyer"
               name="firsttime-radios"
               value="1"
-            >Yes</b-form-radio>
+              >Yes</b-form-radio
+            >
             <b-form-radio
               class="m-radio"
               size="lg"
               v-model="firstTimeBuyer"
               name="firsttime-radios"
               value="0"
-            >No</b-form-radio>
+              >No</b-form-radio
+            >
             <h4 class="divider title-head">Is your client a veteran?</h4>
             <div class="d-flex justify-content-between text-check">
               <b-form-radio
@@ -222,13 +263,15 @@
                 v-model="Veteran"
                 name="veteran-radios"
                 value="1"
-              >Yes</b-form-radio>
+                >Yes</b-form-radio
+              >
               <b-form-checkbox
                 class="visible-lg"
                 :disabled="Veteran == 0 || !Veteran"
                 size="lg"
                 v-model="isDisabledVeteran"
-              >Disabled veteran - no property tax</b-form-checkbox>
+                >Disabled veteran - no property tax</b-form-checkbox
+              >
             </div>
             <b-form-radio
               class="m-radio"
@@ -236,28 +279,38 @@
               v-model="Veteran"
               name="veteran-radios"
               value="0"
-            >No</b-form-radio>
+              >No</b-form-radio
+            >
             <b-form-checkbox
               class="visible-xs"
               :disabled="Veteran == 0 || !Veteran"
               size="lg"
-            >Disabled veteran - no property tax</b-form-checkbox>
+              >Disabled veteran - no property tax</b-form-checkbox
+            >
           </div>
         </b-col>
       </b-row>
       <b-row>
         <b-col cols="12" lg="12">
           <div class="bg-container">
-            <h4 class="text-center">Would you like to obtain a competitive loan offer?</h4>
-            <p
-              class="p2 text-center"
-            >We give you the option to request a loan offer and it’s a simple as filing out some basic information for us to get in contact with your client.</p>
+            <h4 class="text-center">
+              Would you like to obtain a competitive loan offer?
+            </h4>
+            <p class="p2 text-center">
+              We give you the option to request a loan offer and it’s a simple
+              as filing out some basic information for us to get in contact with
+              your client.
+            </p>
             <div class="text-center">
               <b-btn
                 class="btn-custom preapproval-text"
                 size="sm"
-                @click="request_sent=0;$bvModal.show('req-apv')"
-              >Request Pre-approval</b-btn>
+                @click="
+                  request_sent = 0;
+                  $bvModal.show('req-apv');
+                "
+                >Request Pre-approval</b-btn
+              >
             </div>
           </div>
         </b-col>
@@ -277,13 +330,18 @@
             </div>
             <b-row align-h="between" class="modal-form-1">
               <b-col lg="6">
-                <div :class="['inp-wrapper',{'has-error':error_state.firstName == false}]">
+                <div
+                  :class="[
+                    'inp-wrapper',
+                    { 'has-error': error_state.firstName == false }
+                  ]"
+                >
                   <div class="flex justify-content-between">
                     <label for="login-firstName">Client First Name</label>
-                    <span class="inp-error">{{error.firstName}}</span>
+                    <span class="inp-error">{{ error.firstName }}</span>
                   </div>
                   <b-input
-                    :class="{form_fill: user.firstName}"
+                    :class="{ form_fill: user.firstName }"
                     @focus="handleFocus('firstName')"
                     @blur="handleFirstNameBlur"
                     v-model.trim="user.firstName"
@@ -295,13 +353,18 @@
                 </div>
               </b-col>
               <b-col lg="6">
-                <div :class="['inp-wrapper',{'has-error':error_state.lastName == false}]">
+                <div
+                  :class="[
+                    'inp-wrapper',
+                    { 'has-error': error_state.lastName == false }
+                  ]"
+                >
                   <div class="flex justify-content-between">
                     <label for="login-lastName">Client Last Name</label>
-                    <span class="inp-error">{{error.lastName}}</span>
+                    <span class="inp-error">{{ error.lastName }}</span>
                   </div>
                   <b-input
-                    :class="{form_fill: user.lastName}"
+                    :class="{ form_fill: user.lastName }"
                     @focus="handleFocus('lastName')"
                     @blur="handleLastNameBlur"
                     v-model.trim="user.lastName"
@@ -315,13 +378,18 @@
             </b-row>
             <b-row align-h="between">
               <b-col lg="6">
-                <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                <div
+                  :class="[
+                    'inp-wrapper',
+                    { 'has-error': error_state.email == false }
+                  ]"
+                >
                   <div class="flex justify-content-between">
                     <label for="login-email">Email</label>
-                    <span class="inp-error">{{error.email}}</span>
+                    <span class="inp-error">{{ error.email }}</span>
                   </div>
                   <b-input
-                    :class="{form_fill: user.email}"
+                    :class="{ form_fill: user.email }"
                     v-model.trim="user.email"
                     @focus="handleFocus('email')"
                     @blur="handleEmailBlur"
@@ -333,13 +401,18 @@
                 </div>
               </b-col>
               <b-col lg="6">
-                <div :class="['inp-wrapper',{'has-error':error_state.mobile == false}]">
+                <div
+                  :class="[
+                    'inp-wrapper',
+                    { 'has-error': error_state.mobile == false }
+                  ]"
+                >
                   <div class="flex justify-content-between">
                     <label for="login-mobile">Phone Number</label>
-                    <span class="inp-error">{{error.mobile}}</span>
+                    <span class="inp-error">{{ error.mobile }}</span>
                   </div>
                   <b-input
-                    :class="{form_fill: user.mobile}"
+                    :class="{ form_fill: user.mobile }"
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
                     @blur="handleMobileBlur"
@@ -371,14 +444,16 @@
                 :disabled="isDisable"
                 @click="createUser()"
                 size="lg"
-              >Send Request</b-button>
+                >Send Request</b-button
+              >
               <b-button
                 class="mt-3 can"
                 block
                 variant="secondary btn-custom_1"
                 @click="$bvModal.hide('req-apv')"
                 size="lg"
-              >Cancel</b-button>
+                >Cancel</b-button
+              >
             </div>
           </div>
           <div v-else>
@@ -388,10 +463,13 @@
                   <img src="~/assets/icons/icon-decorative-send-email.svg" />
                 </div>
                 <h3>Request sent!</h3>
-                <p
-                  class="p3 para"
-                >We’ll be in touch with you and your client to get a competitive rate.</p>
-                <a variant="primary" class="continue-btn" href="/">Continue Search</a>
+                <p class="p3 para">
+                  We’ll be in touch with you and your client to get a
+                  competitive rate.
+                </p>
+                <a variant="primary" class="continue-btn" href="/"
+                  >Continue Search</a
+                >
               </b-col>
             </b-row>
           </div>
@@ -399,8 +477,12 @@
       </div>
     </div>
     <div class="flex justify-between steps-btn">
-      <b-button class="mt-3 back" variant size="lg" @click="goBack()">Back</b-button>
-      <b-button class="mt-3 next" variant="primary" size="lg" @click="goToNext">Next</b-button>
+      <b-button class="mt-3 back" variant size="lg" @click="goBack()"
+        >Back</b-button
+      >
+      <b-button class="mt-3 next" variant="primary" size="lg" @click="goToNext"
+        >Next</b-button
+      >
       <!-- @click="$bvModal.show('req-apv')" -->
     </div>
   </b-container>

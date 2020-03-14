@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import { getValue, setValue } from "./../utils/localstorageUtils.js";
 export default {
   middleware: "auth",
   data() {
@@ -136,7 +137,11 @@ export default {
   methods: {
     moveToNext() {
       if (this.selected_1) {
-        this.$router.push("/exp-home/client");
+        this.$axios.post("/api/search/init").then(data => {
+          const searchId = data.data.search.id;
+          setValue("searchId", searchId);
+          this.$router.push("/exp-home/client");
+        });
       } else if (this.selected_2) {
         this.$router.push("/exp-home/search_history");
       } else {

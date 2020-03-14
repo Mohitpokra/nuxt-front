@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: "SBMP",
     meta: [{
         charset: "utf-8"
       },
@@ -73,9 +73,9 @@ export default {
       alias: "cookiz"
     }]
   ],
-  // router: {
-  //   middleware: ['auth']
-  // },
+  router: {
+    middleware: ['test']
+  },
   bootstrapVue: {
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`

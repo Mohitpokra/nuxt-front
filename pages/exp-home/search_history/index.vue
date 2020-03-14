@@ -43,26 +43,30 @@
           v-for="history in getSearchHistory"
           :key="history.id"
         >
-          <b-col lg="12">
+          <b-col lg="12" class="wrapper">
             <b-row align-h="between">
               <b-col lg="2">
-                <p class="p3">
+                <p class="p3" align-h="center" align-v="center">
                   {{
                     $dateFns.format(new Date(history.created_at), "MM/dd/yyyy")
                   }}
                 </p>
               </b-col>
-              <b-col lg="2">
-                <p class="p3 text-heading">
+              <b-col lg="2" align-h="center" align-v="center">
+                <b class=" text-heading">
                   {{
                     history.client.first_name + " " + history.client.last_name
                   }}
-                </p>
+                </b>
               </b-col>
-              <b-col lg="4">
-                <p class="p3">
-                  Single Family • Average+ • 3+ Bed • 2+ Bath Long Branch, NJ
-                </p>
+              <b-col lg="4" align-h="center" align-v="center">
+                <div
+                  class="p3 align-fields"
+                  v-for="field in getData(history.home_design)"
+                  :key="field"
+                >
+                  {{ field }}
+                </div>
               </b-col>
               <b-col lg="3">
                 <b-badge pill variant="success" class="p3"
@@ -111,6 +115,16 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    getData(data) {
+      return [
+        data.min_beds,
+        data.min_full_baths,
+        data.min_half_baths,
+        data.location
+      ];
+    }
   },
   computed: {
     ...mapGetters("searchHome", ["getSearchHistory", "getSearchFetched"])
@@ -161,5 +175,9 @@ export default {
 }
 .text-heading {
   text-transform: capitalize;
+}
+.align-fields {
+  display: flex;
+  // flex-wrap: wrap;
 }
 </style>
