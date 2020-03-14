@@ -156,6 +156,7 @@ export default {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
     width: 296px;
     position: relative;
+    cursor: pointer;
     height: 392px;
     transition: 0.45s;
     @media screen and (max-width: 992px) {
