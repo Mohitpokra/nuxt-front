@@ -181,7 +181,7 @@
                             </div>
                             <h3>Request sent!</h3>
                             <p class="p3 para">We’ll be in touch with you and your client to get a competitive rate.</p>
-                            <b-btn variant="primary btn-custom_2" @click="goToNext">Continue Search</b-btn>
+                            <a variant="primary" class="continue-btn" href="/">Continue Search</a>
                         </b-col>
                     </b-row>
                 </div>
@@ -612,5 +612,15 @@ export default {
     button{
         height: 48px;
     }
+}
+.continue-btn{
+    width: 360px;
+  height: 48px;
+  border-radius: 2px;
+  background-color: #44a1bf;
+  color: #fff !important;
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
 }
 </style>
