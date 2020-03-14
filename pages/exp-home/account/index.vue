@@ -302,7 +302,7 @@
                         @click="chooseProPlan"
                       >
                         {{
-                          getPlanType == 1 ? "Current Plan" : "Choose Pro Plan"
+                          getPlanType == 2 ? "Current Plan" : "Choose Pro Plan"
                         }}
                       </b-button>
                     </div>
