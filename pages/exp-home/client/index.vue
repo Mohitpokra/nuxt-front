@@ -639,6 +639,16 @@ export default {
       transform: scale(1);
     }
   }
+  @media screen and (max-width: 992px){
+      img{
+            left: 8px;
+            width: 11px;
+            top: 18px;
+      }
+      .container-text {
+        font-size: 16px;
+    }
+  }
 }
 .clients-list-wrapper {
   min-height: 300px;
