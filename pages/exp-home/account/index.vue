@@ -742,7 +742,7 @@ button {
   margin-left: 24px;
 }
 .month {
-  font-family: CerebriSans;
+  font-family: 'cerebri-sans', Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: normal;
   font-stretch: normal;

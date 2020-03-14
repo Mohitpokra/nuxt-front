@@ -873,3 +873,10 @@ select.selectpicker {
     }
   }
 }
+.hm-dropdown{
+  .drop-down{
+    @media screen and (max-width: 936px){
+      margin-bottom: 24px;
+    }
+  }
+}

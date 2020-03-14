@@ -53,7 +53,7 @@
       </b-row>
       <b-row>
         <b-col cols="12" lg="12">
-          <b-row>
+          <b-row class="hm-dropdown">
             <b-col cols="12" lg="4">
               <newDropDown
                 labelKey="id"
