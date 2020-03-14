@@ -26,7 +26,9 @@
               name="propertytypes"
             ></b-form-checkbox-group>
           </b-form-group>
-          <b-form-invalid-feedback :state="error_state.propertytypes">Please select One</b-form-invalid-feedback>
+          <b-form-invalid-feedback :state="error_state.propertytypes"
+            >Please select One</b-form-invalid-feedback
+          >
         </b-col>
         <b-col class="filter property-condition-wrapper" cols="12" lg="6">
           <h3 class="text-primary filter-title">Property Condition</h3>
@@ -38,7 +40,9 @@
               :options="getPropertyConditionsArray"
               name="propertyconditions"
             ></b-form-checkbox-group>
-            <b-form-invalid-feedback :state="error_state.propertyconditions">Please select One</b-form-invalid-feedback>
+            <b-form-invalid-feedback :state="error_state.propertyconditions"
+              >Please select One</b-form-invalid-feedback
+            >
           </b-form-group>
         </b-col>
       </b-row>
@@ -110,7 +114,9 @@
                   :options="getPropertyMustHavesArray"
                   name="musthaves"
                 ></b-form-checkbox-group>
-                <b-form-invalid-feedback :state="error_state.musthaves">Please select One</b-form-invalid-feedback>
+                <b-form-invalid-feedback :state="error_state.musthaves"
+                  >Please select One</b-form-invalid-feedback
+                >
               </b-form-group>
             </b-col>
             <b-col class="h-100" cols="12" lg="6">
@@ -118,13 +124,16 @@
                 :state="error_state.errortextrea"
                 v-model="othercheckbox"
                 size="lg"
-              >Other</b-form-checkbox>
+                >Other</b-form-checkbox
+              >
               <div class="extra-text">
                 <b-form-textarea
                   id="textarea-state"
-                  :class="[{
-                                'selectedother': othercheckbox
-                            }]"
+                  :class="[
+                    {
+                      selectedother: othercheckbox
+                    }
+                  ]"
                   :disabled="!othercheckbox"
                   v-model="text"
                   :state="error_state.errortextrea"
@@ -150,7 +159,7 @@
         <b-col cols="12" lg="12">
           <p class="p3 filter">Search Area</p>
           <b-input
-            :class="{form_fill: search}"
+            :class="{ form_fill: search }"
             v-model.trim="search"
             :state="error_state.search"
             size="lg"
@@ -162,11 +171,14 @@
       <div class="poi-block" v-if="search">
         <b-row>
           <b-col cols="12" lg="12">
-            <img src="~/assets/icons/icon-interface-trash.svg" class="poi-del pointer" />
+            <img
+              src="~/assets/icons/icon-interface-trash.svg"
+              class="poi-del pointer"
+            />
             <h3 class="text-primary">Point Of Interest</h3>
             <span class="lable-title">Address</span>
             <b-input
-              :class="{form_fill: search}"
+              :class="{ form_fill: search }"
               v-model.trim="search"
               :state="error_state.search"
               size="lg"
@@ -178,10 +190,18 @@
             <span class="lable-title">Search Radius</span>
           </b-col>
           <b-col cols="12" lg="6">
-            <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
+            <b-form-select
+              v-model="selected"
+              :options="options"
+              size="lg"
+            ></b-form-select>
           </b-col>
           <b-col cols="12" lg="6">
-            <b-form-select v-model="selected" :options="options" size="lg"></b-form-select>
+            <b-form-select
+              v-model="selected"
+              :options="options"
+              size="lg"
+            ></b-form-select>
           </b-col>
         </b-row>
       </div>
@@ -189,46 +209,68 @@
         <b-col cols="12">
           <div class="text-center filter">
             <span
-              :class="['pointer p3 text-primary',{
-                        'blur': !search
-                    }]"
-            >Add Point of Interest</span>
+              :class="[
+                'pointer p3 text-primary',
+                {
+                  blur: !search
+                }
+              ]"
+              >Add Point of Interest</span
+            >
           </div>
         </b-col>
         <b-col cols="12" lg="10"></b-col>
       </b-row>
     </div>
     <div class="flex justify-between steps-btn">
-      <b-button class="mt-3 back" variant="secondary" size="lg" @click="goBack()">Back</b-button>
+      <b-button
+        class="mt-3 back"
+        variant="secondary"
+        size="lg"
+        @click="goBack()"
+        >Back</b-button
+      >
       <b-button
         class="mt-3 next"
         variant="primary"
         size="lg"
         @click="moveToNext()"
         :disabled="getEnabled"
-      >Get Result</b-button>
+        >Get Result</b-button
+      >
     </div>
     <!-- Delete popup -->
-    <b-modal id="sure-delete" class="modal-full-body" centered hide-footer hide-header>
+    <b-modal
+      id="sure-delete"
+      class="modal-full-body"
+      centered
+      hide-footer
+      hide-header
+    >
       <div class="modal-temp-body">
         <div class="header">
           <h3 class="text-primary">New Client</h3>
         </div>
         <div>
-          <p
-            class="p2"
-          >It can be whatever you fits your needs — full name, first name, etc but enter a name you’ll recognize since you’ll need to find it in the search history.</p>
+          <p class="p2">
+            It can be whatever you fits your needs — full name, first name, etc
+            but enter a name you’ll recognize since you’ll need to find it in
+            the search history.
+          </p>
         </div>
         <b-form class="modal-form">
           <label class for="login-name">Client Name</label>
         </b-form>
-        <b-button class="mt-3 btn-1" block variant="primary" size="lg">Create</b-button>
+        <b-button class="mt-3 btn-1" block variant="primary" size="lg"
+          >Create</b-button
+        >
         <b-button
           class="mt-3 btn-2 bottom-20"
           block
           variant="secondary btn-custom_1"
           size="lg"
-        >Cancel</b-button>
+          >Cancel</b-button
+        >
       </div>
     </b-modal>
     <!-- Delete popup -->
@@ -304,12 +346,12 @@ export default {
       const obj = {
         clientId: this.$store.getters["clients/getSelectedClient"].id,
         agentId: this.$store.$auth.user.id,
-        propertyType: this.selectedPropertyTypes,
-        propertyCondition: this.selectedPropertyConditions,
+        propertyType: JSON.stringify(this.selectedPropertyTypes),
+        propertyCondition: JSON.stringify(this.selectedPropertyConditions),
         minBeds: this.selectedMinBed,
         minFullBath: this.selectedHalfBath,
         minHalfBath: this.selectedHalfBath,
-        mustHaves: this.selectedMustHaves,
+        mustHaves: JSON.stringify(this.selectedMustHaves),
         other: this.text,
         location: "Islamabad",
         pointOfInterests: [

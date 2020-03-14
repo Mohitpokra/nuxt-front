@@ -18,10 +18,12 @@
     "bootstrap-vue": "^2.0.0",
     "cookie-universal-nuxt": "^2.1.2",
     "nuxt": "^2.0.0",
+    "v-click-outside": "^3.0.1",
     "vue-burger-menu": "^2.0.3",
     "vue-property-decorator": "^8.4.0"
   },
   "devDependencies": {
+    "@nuxtjs/date-fns": "^1.2.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2"
   }

@@ -570,7 +570,7 @@ export default {
           disabledVeteran: this.isDisabledVeteran
         };
       }
-      this.$store.dispatch("searchHom/financialInputs", obj);
+      this.$store.dispatch("searchHome/financialInputs", obj);
     },
     goBack() {
       this.$router.back();
