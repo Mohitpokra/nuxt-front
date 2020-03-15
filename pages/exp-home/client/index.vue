@@ -222,9 +222,7 @@
                 We’ll be in touch with you and your client to get a competitive
                 rate.
               </p>
-              <b-btn variant="primary btn-custom_2" @click="goToNext"
-                >Continue Search</b-btn
-              >
+              <a variant="primary" class="continue-btn" href="/">Back to home</a>
             </b-col>
           </b-row>
         </div>

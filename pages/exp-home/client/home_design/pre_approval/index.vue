@@ -464,9 +464,7 @@
                   We’ll be in touch with you and your client to get a
                   competitive rate.
                 </p>
-                <a variant="primary" class="continue-btn" href="/"
-                  >Continue Search</a
-                >
+                <a variant="primary" class="continue-btn" href="/">Back to home</a>
               </b-col>
             </b-row>
           </div>
@@ -478,7 +476,7 @@
         >Back</b-button
       >
       <b-button class="mt-3 next" variant="primary" size="lg" @click="goToNext"
-        >Next</b-button
+        >Get Result</b-button
       >
       <!-- @click="$bvModal.show('req-apv')" -->
     </div>
