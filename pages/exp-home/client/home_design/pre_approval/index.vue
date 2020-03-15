@@ -478,7 +478,7 @@
         >Back</b-button
       >
       <b-button class="mt-3 next" variant="primary" size="lg" @click="goToNext"
-        >Next</b-button
+        >Get Results</b-button
       >
       <!-- @click="$bvModal.show('req-apv')" -->
     </div>
