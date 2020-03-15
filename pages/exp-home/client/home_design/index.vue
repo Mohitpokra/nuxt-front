@@ -236,7 +236,7 @@
         size="lg"
         @click="moveToNext()"
         :disabled="getEnabled"
-        >Go to pre approval</b-button
+        >Go To PreApproval</b-button
       >
     </div>
     <!-- Delete popup -->
