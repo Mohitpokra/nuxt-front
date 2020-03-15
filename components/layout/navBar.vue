@@ -34,7 +34,7 @@
         </div>
       </b-navbar-nav>
     </b-navbar>
-    <div :class="['sidebar-menu', { reveal: open }]">
+    <div :class="['sidebar-menu', { reveal: open }]" v-if="$auth.loggedIn">
       <img
         @click="toggleSideBar"
         class="cross"

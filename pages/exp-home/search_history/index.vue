@@ -119,10 +119,10 @@ export default {
   methods: {
     getData(data) {
       return [
-        data.min_beds,
-        data.min_full_baths,
-        data.min_half_baths,
-        data.location
+        data && data.min_beds,
+        data && data.min_full_baths,
+        data && data.half_baths,
+        data && data.location
       ];
     }
   },

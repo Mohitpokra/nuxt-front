@@ -51,7 +51,9 @@ export const actions = {
             searchId: getValue('searchId'),
             financialInputId: data.data.financialInputId
           })
-          .then((data) => {})
+          .then((data) => {
+            this.$router.push('/exp-home/client/home_design/search_result/');
+          })
         // tbd : where to redirect on success
         // this.$toast.success('Added Financial Inputs', toastDuration)
       })
