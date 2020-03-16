@@ -304,7 +304,8 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            mobile: this.user.mobile
+            mobile: this.user.mobile,
+            description: this.desc
           };
           try {
             this.$axios
@@ -313,6 +314,7 @@ export default {
                 // this.$toast.success('Client Created Successfully !', toastDuration)
                 this.$store.dispatch("clients/getClients").then(() => {
                   this.$bvModal.hide("req-apv");
+                  this.addclients = true
                 });
               })
               .catch(responseObj => {
@@ -346,6 +348,9 @@ export default {
     },
     hide() {
       this.show = 0;
+    },
+    goToNext(){
+      this.$router.push('/')
     }
   },
   mounted() {
@@ -612,7 +617,7 @@ button {
   }
 }
 .sent-info {
-  margin-top: 144px;
+  margin: 144px auto;
   img {
     margin-bottom: 24px;
   }

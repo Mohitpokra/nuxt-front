@@ -52,7 +52,7 @@
                     class="check"
                     src="~/assets/icons/icon-interface-check-white.svg"
                   />
-                  {{ client.first_name + " " + client.last_name }}
+                  {{ client && (client.first_name + " " + client.last_name) }}
                 </h4>
               </div>
             </b-col>
@@ -87,7 +87,7 @@
       >
         <div v-if="!addclients" class="modal-body-1">
           <div class="header">
-            <h3 class="text-primary">Request pre-appoval</h3>
+            <h3 class="text-primary">New Client</h3>
           </div>
           <b-row align-h="between" class="modal-form-1">
             <b-col lg="6">
@@ -186,11 +186,17 @@
               </div>
             </b-col>
           </b-row>
-          <!-- <b-row class="body-banner">
-                    <b-col>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter any notes"></textarea>
-                    </b-col>
-                </b-row> -->
+          <b-row class="body-banner">
+              <b-col>
+                  <textarea
+                  class="form-control"
+                  v-model="desc"
+                  id="exampleFormControlTextarea1" 
+                  rows="3"
+                  placeholder="Enter any notes">
+                  </textarea>
+              </b-col>
+          </b-row>
           <div class="divider req-apv-btns">
             <b-button
               class="req"
@@ -249,6 +255,7 @@ export default {
       show: 1,
       isSelected: false,
       selectedUser: {},
+      desc: null,
       user: {
         firstName: null,
         lastName: null,
@@ -376,7 +383,8 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            mobile: this.user.mobile
+            mobile: this.user.mobile,
+            description: this.desc
           };
           try {
             this.$axios

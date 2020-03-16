@@ -55,7 +55,7 @@
               <b-col lg="2" align-h="center" align-v="center">
                 <b class=" text-heading">
                   {{
-                    history.client.first_name + " " + history.client.last_name
+                    history && history.client && (history.client.first_name + " " + history.client.last_name)
                   }}
                 </b>
               </b-col>
