@@ -880,3 +880,30 @@ select.selectpicker {
     }
   }
 }
+.pagin{
+  margin-bottom: 154px;
+  .page-item{
+    span, a{
+      font-size: 14px;
+      padding: 0px !important;
+      border-radius: 16px !important;
+    }
+    &.prev, &.next{
+      width: 88px;
+      img{
+        width: 12px;
+        opacity: 0.7;
+      }
+    }
+    &.prev{
+      img{
+        margin-right: 5px;
+      }
+    }
+    &.next{
+      img{
+        margin-left: 5px;
+      }
+    }
+  }
+}

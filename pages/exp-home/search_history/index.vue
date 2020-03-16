@@ -84,12 +84,34 @@
         <b-row align-h="center">
           <b-col cols="auto" lg="auto">
             <div class="sh-page">
-              <b-pagination
+              <!-- <b-pagination
                 v-model="currentPage"
                 pills
                 :total-rows="getSearchHistory.length"
                 size="sm"
-              ></b-pagination>
+              ></b-pagination> -->
+              <div class="pagin">
+                  <ul class="pagination">
+                      <li class="page-item prev disabled">
+                          <span class="page-link"><img src="~/assets/icons/icon-interface-arrow-left.svg"/>Prev</span>
+                      </li>
+                      <li class="page-item active">
+                          <a target="_self" href="#" class="page-link">1</a>
+                      </li>
+                      <li class="page-item">
+                          <a target="_self" href="#" class="page-link">2</a>
+                      </li>
+                      <li class="page-item">
+                          <a target="_self" href="#" class="page-link">3</a>
+                      </li>
+                      <li class="page-item">
+                          <a target="_self" href="#" class="page-link">4</a>
+                      </li>
+                      <li class="page-item next disabled">
+                          <span class="page-link">Next<img src="~/assets/icons/icon-interface-arrow-right.svg"/></span>
+                      </li>
+                  </ul>
+              </div>
             </div>
           </b-col>
         </b-row>
@@ -206,5 +228,8 @@ export default {
         }
     }
 }
-
+.wrapper{
+    max-height: 560px;
+    overflow-y: auto;
+}
 </style>
