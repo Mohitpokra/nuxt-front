@@ -60,12 +60,14 @@
                 </b>
               </b-col>
               <b-col lg="4" align-h="center" align-v="center">
-                <div
-                  class="p3 align-fields"
-                  v-for="field in getData(history.home_design)"
-                  :key="field"
-                >
-                  {{ field }}
+                <div class="area-tag">
+                    <span
+                        class="p3 align-fields"
+                        v-for="field in getData(history.home_design)"
+                        :key="field"
+                        >
+                        {{ field }}
+                        </span>
                 </div>
               </b-col>
               <b-col lg="3">
@@ -175,9 +177,34 @@ export default {
 }
 .text-heading {
   text-transform: capitalize;
+  font-size: 14px;
 }
 .align-fields {
   display: flex;
   // flex-wrap: wrap;
 }
+.area-tag{
+    display: flex;
+    .align-fields{
+        margin-left: 15px;
+        position: relative;
+        &:after{
+            position: absolute;
+            left: -8px;
+            content: '';
+            width: 4px;
+            height: 4px;
+            top: 8px;
+            background-color: #3d3d3d;
+            border-radius: 100%;
+        }
+        &:first-child{
+            &:after{
+                display: none;
+                padding: 0px;
+            }
+        }
+    }
+}
+
 </style>
