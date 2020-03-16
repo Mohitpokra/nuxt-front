@@ -74,7 +74,7 @@
         size="lg"
         @click="moveToNext"
         :disabled="isNextDisable"
-        >Next</b-btn
+        >{{ moveToNextText }}</b-btn
       >
     </div>
     <div>
@@ -251,6 +251,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      moveToNextText: getValue('searchId') == 'pre_approval' ? 'Pre Approval' : 'Next',
       addclients: false,
       show: 1,
       isSelected: false,
@@ -420,7 +421,8 @@ export default {
     },
     moveToNext() {
       const searchId = getValue("searchId");
-      this.$axios
+      if(searchId != 'pre_approval'){
+        this.$axios
         .post("/api/search/add-client", {
           searchId: searchId,
           clientId: this.selectedUser.id
@@ -428,6 +430,16 @@ export default {
         .then(data => {
           this.$router.push("/exp-home/client/home_design");
         });
+      }else{
+        this.$axios
+        .post("/api/util/request-pre-approval", {
+          notes: this.desc || this.selectedUser.notes,
+          clientId: this.selectedUser.id
+        })
+        .then(data => {
+          this.$router.push('/exp-home/request_approval')
+        });
+      }
     },
     goBack() {
       this.$router.back();

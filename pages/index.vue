@@ -137,9 +137,7 @@ export default {
   methods: {
     moveToNext() {
       if (this.selected_1) {
-        debugger
         this.$axios.post("/api/search/init").then(data => {
-          debugger
           const searchId = data.data.search.id;
           setValue("searchId", searchId);
           this.$router.push("/exp-home/client");
@@ -147,7 +145,8 @@ export default {
       } else if (this.selected_2) {
         this.$router.push("/exp-home/search_history");
       } else {
-        this.$router.push("/exp-home/request_approval");
+        setValue("searchId", "pre_approval");
+        this.$router.push("/exp-home/client");
       }
     },
     turnBg(elem) {
@@ -159,7 +158,6 @@ export default {
     }
   },
   mounted() {
-    debugger
   }
 };
 </script>
