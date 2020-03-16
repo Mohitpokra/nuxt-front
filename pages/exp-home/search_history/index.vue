@@ -44,7 +44,7 @@
           :key="history.id"
         >
           <b-col lg="12" class="wrapper">
-            <b-row align-h="between">
+            <b-row align-h="between" class="search-rows">
               <b-col lg="2">
                 <p class="p3" align-h="center" align-v="center">
                   {{
@@ -70,7 +70,7 @@
                         </span>
                 </div>
               </b-col>
-              <b-col lg="3">
+              <b-col lg="3" class="text-right">
                 <b-badge pill variant="success" class="p3"
                   >Pre-approval Requested</b-badge
                 >
@@ -195,7 +195,8 @@ export default {
   padding: 0px 10px;
 }
 .hr-divider {
-  margin-top: 0px;
+    margin-top: 6px;
+    margin-bottom: 0px;
 }
 .text-heading {
   text-transform: capitalize;
@@ -231,5 +232,8 @@ export default {
 .wrapper{
     max-height: 560px;
     overflow-y: auto;
+}
+.search-rows{
+    padding-top: 24px;
 }
 </style>
