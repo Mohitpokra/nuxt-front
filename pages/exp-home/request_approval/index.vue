@@ -311,11 +311,16 @@ export default {
             this.$axios
               .post("api/client/create", obj)
               .then(data => {
-                // this.$toast.success('Client Created Successfully !', toastDuration)
-                this.$store.dispatch("clients/getClients").then(() => {
-                  this.$bvModal.hide("req-apv");
-                  this.addclients = true
-                });
+                this.$axios.post('api/util/request-pre-approval', {
+                  clientId: data.data.id,
+                  notes: this.desc
+                }).then(()=>{
+                  this.$store.dispatch("clients/getClients").then(() => {
+                    this.$bvModal.hide("req-apv");
+                    this.addclients = true
+                  });
+                })
+                
               })
               .catch(responseObj => {
                 this.errorHandling(responseObj);
