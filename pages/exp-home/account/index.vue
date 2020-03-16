@@ -766,6 +766,7 @@ button {
 }
 .info-list {
   margin-top: 24px;
+  margin-bottom: 120px;
   @media screen and (max-width: 992px) {
     margin-top: 16px;
   }
