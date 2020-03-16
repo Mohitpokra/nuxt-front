@@ -167,13 +167,14 @@ import {
 } from "./../../../utils/validations.js";
 import { toastDuration } from "../../../constants";
 import { mapGetters } from "vuex";
+import { getValue } from '../../../utils/localstorageUtils';
 
 export default {
   middleware: "auth",
   data() {
     return {
       desc: "",
-      addclients: false,
+      addclients: getValue('searchId') == 'pre_approval' ? true : false,
       show: 1,
       isSelected: false,
       selectedUser: {},

@@ -74,7 +74,7 @@
         size="lg"
         @click="moveToNext"
         :disabled="isNextDisable"
-        >Next</b-btn
+        >{{ moveToNextText }}</b-btn
       >
     </div>
     <div>
@@ -251,6 +251,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      moveToNextText: getValue('searchId') == 'pre_approval' ? 'Pre Approval' : 'Next',
       addclients: false,
       show: 1,
       isSelected: false,
@@ -436,7 +437,7 @@ export default {
           clientId: this.selectedUser.id
         })
         .then(data => {
-          this.addclients = true
+          this.$router.push('/exp-home/request_approval')
         });
       }
     },
