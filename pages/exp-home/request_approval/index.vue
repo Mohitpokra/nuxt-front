@@ -305,8 +305,8 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            mobile: this.user.mobile,
-            description: this.desc
+            phone: this.user.mobile,
+            notes: this.desc
           };
           try {
             this.$axios
@@ -333,7 +333,7 @@ export default {
       const isValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
       if (!isValidEmail) {
-        this.error.email = " Email is Required. ";
+        this.error.email = (this.user.email && this.user.email.trim()) == '' ? "Email is Required." : " Email is Invalid. ";;
         this.error_state.email = false;
       } else {
         this.error.email = "";

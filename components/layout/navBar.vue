@@ -46,7 +46,7 @@
         <li>
           <a href="/exp-home/search_history">Revisit a previous search</a>
         </li>
-        <li><a href="/exp-home/request_approval">Request a pre-approval</a></li>
+        <li><a href="#" @click="moveToPreApproval">Request a pre-approval</a></li>
         <li><a href="/exp-home/account">My Account</a></li>
       </ul>
       <div class="logout"><a @click="logout()">Sign Out</a></div>
@@ -76,6 +76,11 @@ export default {
     },
     toggleSideBar() {
       this.open = !this.open;
+    },
+    moveToPreApproval(){
+      localStorage.removeItem("searchId");
+      this.$router.push('/exp-home/request_approval');
+      this.toggleSideBar()
     },
     logout() {
       try {
