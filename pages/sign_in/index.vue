@@ -121,7 +121,7 @@ export default {
         handleEmailBlur(){
             const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)
             if(!isValidEmail){
-                this.error.email = ' Email is Required. '
+                this.error.email = (this.user.email && this.user.email.trim()) == '' ? "Email is Required." : " Email is Invalid. ";
                 this.error_state.email = false
             }else{
                 this.error.email = ''

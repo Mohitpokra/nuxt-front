@@ -503,7 +503,7 @@ export default {
     handleEmailBlur() {
       const isValidEmail = isRequired(this.email) && isEmail(this.email);
       if (!isValidEmail) {
-        this.error.email = " Email is Required. ";
+        this.error.email = (this.email && this.email.trim()) == '' ? "Email is Required." : " Email is Invalid. ";
         this.error_state.email = false;
       } else {
         this.error.email = "";
