@@ -24,6 +24,7 @@
                         <div class="">
                             <b-button class="m-btn" :disabled="isDisable" block variant="primary" size="lg" @click="submit">Reset Password</b-button>
                         </div>
+                        
                     </b-form>
                 </b-col>
                 <b-col></b-col>
