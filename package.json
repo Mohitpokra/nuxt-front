@@ -20,7 +20,8 @@
     "nuxt": "^2.0.0",
     "v-click-outside": "^3.0.1",
     "vue-burger-menu": "^2.0.3",
-    "vue-property-decorator": "^8.4.0"
+    "vue-property-decorator": "^8.4.0",
+    "vue-the-mask": "^0.11.1"
   },
   "devDependencies": {
     "@nuxtjs/date-fns": "^1.2.0",

@@ -422,6 +422,7 @@ export default {
     },
     moveToNext() {
       const searchId = getValue("searchId");
+      debugger
       if(searchId != 'pre_approval'){
         this.$axios
         .post("/api/search/add-client", {
@@ -438,7 +439,7 @@ export default {
           clientId: this.selectedUser.id
         })
         .then(data => {
-          this.$router.push('/exp-home/request_approval')
+          this.$router.push('/exp-home/request_approval?showSuccess=1')
         });
       }
     },

@@ -174,7 +174,7 @@ export default {
   data() {
     return {
       desc: "",
-      addclients: getValue('searchId') == 'pre_approval' ? true : false,
+      addclients: false,
       show: 1,
       isSelected: false,
       selectedUser: {},
@@ -350,11 +350,16 @@ export default {
       this.show = 0;
     },
     goToNext(){
+      localStorage.removeItem('searchId')
       this.$router.push('/')
     }
   },
   mounted() {
     this.$store.dispatch("clients/getClients");
+    const query = this.$route.query;
+    if(query && query['showSuccess'] == 1){
+      this.addclients = true;
+    }
   }
 };
 </script>

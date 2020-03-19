@@ -23,13 +23,14 @@
         >
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto" v-else>
-        <b-nav-text v-if="!$auth.loggedIn" class="p3"
+        
+        <b-nav-text v-if="!$auth.loggedIn && $route.name !== 'resetpassword'" class="p3"
           >Already have an account?</b-nav-text
         >
-        <b-nav-item v-if="!$auth.loggedIn" class="p3 text-primary" to="/sign_in"
+        <b-nav-item v-if="!$auth.loggedIn && $route.name !== 'resetpassword'" class="p3 text-primary" to="/sign_in"
           ><span class="text-primary">Sign In</span></b-nav-item
         >
-        <div class="sidebar-icon" @click="toggleSideBar" v-if="$auth.loggedIn">
+        <div class="sidebar-icon" @click="toggleSideBar" v-if="$auth.loggedIn && $route.name !== 'resetpassword'">
           <img class="logo" src="~/assets/icons/icon-interface-menu.svg" />
         </div>
       </b-navbar-nav>
@@ -46,7 +47,7 @@
         <li>
           <a href="/exp-home/search_history">Revisit a previous search</a>
         </li>
-        <li><a href="#" @click="moveToPreApproval">Request a pre-approval</a></li>
+        <li><a @click="moveToPreApproval">Request a pre-approval</a></li>
         <li><a href="/exp-home/account">My Account</a></li>
       </ul>
       <div class="logout"><a @click="logout()">Sign Out</a></div>
@@ -57,6 +58,7 @@
 <script>
 import Vue from "vue";
 import vClickOutside from "v-click-outside";
+import {setValue} from './../../utils/localstorageUtils';
 
 export default {
   // middleware: 'auth',
@@ -78,8 +80,8 @@ export default {
       this.open = !this.open;
     },
     moveToPreApproval(){
-      localStorage.removeItem("searchId");
-      this.$router.push('/exp-home/request_approval');
+      setValue("searchId", "pre_approval");
+      this.$router.push('/exp-home/client');
       this.toggleSideBar()
     },
     logout() {
