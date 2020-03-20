@@ -84,30 +84,19 @@
         <b-row align-h="center">
           <b-col cols="auto" lg="auto">
             <div class="sh-page">
-              <!-- <b-pagination
-                v-model="currentPage"
-                pills
-                :total-rows="getSearchHistory.length"
-                size="sm"
-              ></b-pagination> -->
               <div class="pagin">
                   <ul class="pagination">
-                      <li class="page-item prev disabled">
-                          <span class="page-link"><img src="~/assets/icons/icon-interface-arrow-left.svg"/>Prev</span>
+                      <li :class="['page-item prev', {
+                        'disabled': (getCurrentPage - 1 <=0)
+                      }]">
+                          <span class="page-link" @click="getPrev"><img src="~/assets/icons/icon-interface-arrow-left.svg"/>Prev</span>
                       </li>
-                      <li class="page-item active">
-                          <a target="_self" href="#" class="page-link">1</a>
-                      </li>
-                      <li class="page-item">
-                          <a target="_self" href="#" class="page-link">2</a>
-                      </li>
-                      <li class="page-item">
-                          <a target="_self" href="#" class="page-link">3</a>
-                      </li>
-                      <li class="page-item">
-                          <a target="_self" href="#" class="page-link">4</a>
-                      </li>
-                      <li class="page-item next disabled">
+                        <li :class="['page-item ',{'active': index == getCurrentPage}]" v-for="index in getLastPage" :key="index" @click="fetchHistoryApi(index)">
+                          <a class="page-link">{{index}}</a>
+                        </li>
+                      <li :class="['page-item next',{
+                        'disabled': (getCurrentPage + 1 > getLastPage)
+                      }]" @click="getNext">
                           <span class="page-link">Next<img src="~/assets/icons/icon-interface-arrow-right.svg"/></span>
                       </li>
                   </ul>
@@ -148,13 +137,41 @@ export default {
         data && data.half_baths,
         data && data.location
       ];
+    },
+    fetchHistoryApi(index){
+      this.$store.dispatch("searchHome/fetchSearchHistory",{page:index});
+      this.updateUrlParams(index)
+    },
+    getPrev(){
+      if (this.getCurrentPage - 1 <=0) return
+      this.$store.dispatch("searchHome/fetchSearchHistory",{page: this.getCurrentPage - 1 });
+      this.updateUrlParams(this.getCurrentPage - 1 )
+    },
+    getNext(){
+      if(this.getCurrentPage + 1 > this.getLastPage) return
+      this.$store.dispatch("searchHome/fetchSearchHistory",{page: this.getCurrentPage + 1 });
+      this.updateUrlParams(this.getCurrentPage + 1 )
+    },
+    updateUrlParams(index){
+      debugger
+      if(index){
+        this.$router.push({
+          query: { ...this.$router.currentRoute.query, ...{page: index} },
+        })
+      }
     }
   },
   computed: {
-    ...mapGetters("searchHome", ["getSearchHistory", "getSearchFetched"])
+    ...mapGetters("searchHome", ["getSearchHistory", "getSearchFetched","getLastPage","getCurrentPage"])
   },
   mounted() {
-    this.$store.dispatch("searchHome/fetchSearchHistory");
+    debugger
+    const query = this.$route.query
+    const pageIndex = query.page || 1
+    this.updateUrlParams(pageIndex)
+    this.$store.dispatch("searchHome/fetchSearchHistory",{
+      page: pageIndex
+    });
   }
 };
 </script>

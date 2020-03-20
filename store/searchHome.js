@@ -6,7 +6,7 @@ export const state = () => ({
   propertyTypes: [],
   propertyConditions: [],
   mustHaves: [],
-  searchHistory: [],
+  searchHistory: {},
   setSearchFetched: false
 });
 
@@ -32,9 +32,10 @@ export const actions = {
   fetchSearchHistory({
     commit,
     $axios
-  }) {
+  }, payload) {
     commit('SET_SEARCH_FETCHED', false)
-    this.$axios.get('/api/search/history')
+    const index = payload.page || 1
+    this.$axios.get('/api/search/history?page='+index)
       .then((data) => {
         const temp = data.data
         commit('SET_HISTORY', temp.history)
@@ -140,7 +141,13 @@ export const actions = {
 
 export const getters = {
   getSearchHistory(state) {
-    return state.searchHistory
+    return state.searchHistory.data
+  },
+  getLastPage(state){
+    return state.searchHistory.last_page || 1
+  },
+  getCurrentPage(state){
+    return state.searchHistory.current_page || 1
   },
   getPropertyTypes(state) {
     return state.propertyTypes

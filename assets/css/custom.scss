@@ -817,9 +817,11 @@ select.selectpicker {
 .sh-page{
   .pagination{
     margin-top: 48px;
+    
     li{
       min-width: 32px;
       min-height: 32px;
+      text-align:center;
       span{
         min-width: 32px;
         min-height: 32px;
@@ -883,6 +885,7 @@ select.selectpicker {
 .pagin{
   margin-bottom: 154px;
   .page-item{
+    cursor: pointer;
     span, a{
       font-size: 14px;
       padding: 0px !important;
