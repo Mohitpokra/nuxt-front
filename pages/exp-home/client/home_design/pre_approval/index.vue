@@ -408,7 +408,8 @@
                     <label for="login-mobile">Phone Number</label>
                     <span class="inp-error">{{ error.mobile }}</span>
                   </div>
-                  <b-input
+                  <VuePhoneNumberInput :no-country-selector='true' v-model.trim="user.mobile" @phone-number-focused	="handleFocus('mobile')" @phone-number-blur ="handleMobileBlur" default-country-code="US"  @update='handleMobileVueInputBlur' />
+                  <!-- <b-input
                     :class="{ form_fill: user.mobile }"
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
@@ -418,7 +419,7 @@
                     id="login-mobile"
                     maxlength="10"
                     placeholder="(555) 555-5555"
-                  ></b-input>
+                  ></b-input> -->
                 </div>
               </b-col>
             </b-row>
@@ -495,6 +496,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      inputMobileDetails:null,
       downpayment: null,
       fundsAvailable: null,
       firstTimeBuyer: null,
@@ -559,6 +561,9 @@ export default {
     };
   },
   methods: {
+    handleMobileVueInputBlur(data){
+      this.inputMobileDetails = data
+    },
     prepopulate() {
       this.request_sent = 0;
       this.$bvModal.show("req-apv");
@@ -612,7 +617,7 @@ export default {
     },
     handleMobileBlur() {
       const isValidMobile =
-        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
+        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
       if (!isValidMobile) {
         this.error.mobile =
           this.user.mobile == ""
@@ -723,7 +728,7 @@ export default {
       const ValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
       const ValidMobile =
-        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
+        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
       if (isValidFirstName && isValidLastName && ValidEmail && ValidMobile) {
         return false;
       } else {

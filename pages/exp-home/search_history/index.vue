@@ -153,7 +153,6 @@ export default {
       this.updateUrlParams(this.getCurrentPage + 1 )
     },
     updateUrlParams(index){
-      debugger
       if(index){
         this.$router.push({
           query: { ...this.$router.currentRoute.query, ...{page: index} },
@@ -165,7 +164,6 @@ export default {
     ...mapGetters("searchHome", ["getSearchHistory", "getSearchFetched","getLastPage","getCurrentPage"])
   },
   mounted() {
-    debugger
     const query = this.$route.query
     const pageIndex = query.page || 1
     this.updateUrlParams(pageIndex)

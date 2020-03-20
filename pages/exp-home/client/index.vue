@@ -172,17 +172,7 @@
                   <label for="login-mobile">Phone Number</label>
                   <span class="inp-error">{{ error.mobile }}</span>
                 </div>
-                <b-input
-                  :class="{ form_fill: user.mobile }"
-                  @focus="handleFocus('mobile')"
-                  @blur="handleMobileBlur"
-                  v-model.trim="user.mobile"
-                  :state="error_state.mobile"
-                  size="lg"
-                  id="login-mobile"
-                  placeholder="(555) 555-5555"
-                  maxLength="10"
-                ></b-input>
+                <VuePhoneNumberInput :no-country-selector='true' v-model.trim="user.mobile" @phone-number-focused	="handleFocus('mobile')" @phone-number-blur ="handleMobileBlur" default-country-code="US"  @update='handleMobileVueInputBlur' />
               </div>
             </b-col>
           </b-row>
@@ -246,13 +236,18 @@ import {
 import { toastDuration } from "../../../constants";
 import { mapGetters } from "vuex";
 import { getValue } from "../../../utils/localstorageUtils";
+import VuePhoneNumberInput from 'vue-phone-number-input';
 
 export default {
   middleware: "auth",
+  components:{
+    VuePhoneNumberInput
+  },
   data() {
     return {
       moveToNextText: getValue('searchId') == 'pre_approval' ? 'Pre Approval' : 'Next',
       addclients: false,
+      inputMobileDetails: null,
       show: 1,
       isSelected: false,
       selectedUser: {},
@@ -305,7 +300,7 @@ export default {
       const ValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
       const ValidMobile =
-        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
+        isRequired(this.user.mobile) && (this.inputMobileDetails && this.inputMobileDetails.isValid);
       if (isValidFirstName && isValidLastName && ValidEmail && ValidMobile) {
         return false;
       } else {
@@ -314,6 +309,9 @@ export default {
     }
   },
   methods: {
+    handleMobileVueInputBlur(data){
+      this.inputMobileDetails = data
+    },
     setSelected(user) {
       this.isSelected = true;
       this.selectedUser = user;
@@ -356,7 +354,7 @@ export default {
     },
     handleMobileBlur() {
       const isValidMobile =
-        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
+        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid)
       if (!isValidMobile) {
         this.error.mobile =
           this.user.mobile == ""
@@ -384,7 +382,7 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            phone: this.user.mobile,
+            phone: this.inputMobileDetails.nationalNumber,
             notes: this.desc
           };
           try {
@@ -411,7 +409,6 @@ export default {
     handleEmailBlur() {
       const isValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
-        debugger
       if (!isValidEmail) {
         this.error.email = (this.user.email && this.user.email.trim()) == '' ? "Email is Required." : " Email is Invalid. ";;
         this.error_state.email = false;
@@ -422,7 +419,6 @@ export default {
     },
     moveToNext() {
       const searchId = getValue("searchId");
-      debugger
       if(searchId != 'pre_approval'){
         this.$axios
         .post("/api/search/add-client", {
