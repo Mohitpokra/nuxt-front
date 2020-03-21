@@ -701,7 +701,6 @@ export default {
             phone: this.inputMobileDetails.nationalNumber,
             notes: this.desc
           };
-          debugger
           try {
             this.$axios
               .post("api/client/create", obj)
