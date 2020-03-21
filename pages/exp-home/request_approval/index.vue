@@ -169,9 +169,13 @@ import {
 import { toastDuration } from "../../../constants";
 import { mapGetters } from "vuex";
 import { getValue } from '../../../utils/localstorageUtils';
+import VuePhoneNumberInput from 'vue-phone-number-input';
 
 export default {
   middleware: "auth",
+  components:{
+    VuePhoneNumberInput
+  },
   data() {
     return {
       inputMobileDetails:null,

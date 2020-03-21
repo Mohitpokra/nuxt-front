@@ -85,7 +85,7 @@
         hide-footer
         hide-header
       >
-        <div v-if="!addclients" class="modal-body-1">
+        <div v-if="!addclients" class="modal-body-1 client-add-screen">
           <div class="header">
             <h3 class="text-primary">New Client</h3>
           </div>
@@ -452,6 +452,35 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.client-add-screen{ 
+  .input-tel__label{
+    display: none;
+  }
+  .input-tel.has-value{
+    input{
+      padding-top: 0px !important;
+    }
+  }
+  .input-tel.is-focused{
+      border-color: black !important;
+      box-shadow: none !important;
+      input{
+        border-color: black !important;
+        box-shadow: none !important;
+        caret-color: black !important;
+      }
+    }
+  .input-tel{
+    input{
+      border-radius: 0px !important;
+      border-color: black !important;
+      box-shadow: none !important;
+      caret-color: black !important;
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 .btn-sm {
   width: 104px;
@@ -669,4 +698,5 @@ export default {
 .clients-list-wrapper {
   min-height: 300px;
 }
+
 </style>

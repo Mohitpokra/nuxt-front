@@ -319,7 +319,7 @@
           centered
           hide-footer
           hide-header
-          no-close-on-backdrop="false"
+          :no-close-on-backdrop="false"
         >
           <div v-if="!request_sent" class="modal-body-1">
             <div class="header">
@@ -491,9 +491,12 @@ import {
   isMobileNumber
 } from "./../../../../../utils/validations.js";
 import { toastDuration } from "./../../../../../constants";
-
+import VuePhoneNumberInput from 'vue-phone-number-input';
 export default {
   middleware: "auth",
+  components:{
+    VuePhoneNumberInput
+  },
   data() {
     return {
       inputMobileDetails:null,
@@ -695,9 +698,10 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            phone: this.user.mobile,
+            phone: this.inputMobileDetails.nationalNumber,
             notes: this.desc
           };
+          debugger
           try {
             this.$axios
               .post("api/client/create", obj)
