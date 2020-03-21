@@ -28,7 +28,8 @@ export const isMobileNumber = (mobile) => {
 	if (typeof mobile == 'string' && mobile === '') {
 		return true
 	}
-	return MOBILE_REGEX.test(mobile)
+	mobile = mobile.replace(/[- )(]/g,'');
+	return new RegExp(/^[2-9][\d]{9}$/).test(mobile)
 }
 
 function required(value) {

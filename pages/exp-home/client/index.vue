@@ -178,6 +178,7 @@
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
                     @blur="handleMobileBlur"
+					@input="formatNumber"
                     :state="error_state.mobile"
                     size="lg"
                     id="login-mobile"
@@ -316,6 +317,10 @@ export default {
     }
   },
   methods: {
+	formatNumber() {
+    	let x = this.user.mobile.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+		this.user.mobile = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    },
     setSelected(user) {
       this.isSelected = true;
       this.selectedUser = user;
@@ -386,7 +391,7 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            phone: this.user.mobile,
+            phone: this.user.mobile.replace(/[- )(]/g,''),
             notes: this.desc
           };
           try {
