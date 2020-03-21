@@ -96,8 +96,7 @@
                   <label for="login-mobile">Phone Number</label>
                   <span class="inp-error">{{ error.mobile }}</span>
                 </div>
-                <VuePhoneNumberInput :no-country-selector='true' v-model.trim="user.mobile" @phone-number-focused	="handleFocus('mobile')" @phone-number-blur ="handleMobileBlur" default-country-code="US"  @update='handleMobileVueInputBlur' />
-                <!-- <b-input
+                <b-input
                   :class="{ form_fill: user.mobile }"
                   @focus="handleFocus('mobile')"
                   @blur="handleMobileBlur"
@@ -107,7 +106,7 @@
                   id="login-mobile"
                   placeholder="(555) 555-5555"
                   maxLength="10"
-                ></b-input> -->
+                ></b-input>
               </div>
             </b-col>
           </b-row>
@@ -169,16 +168,13 @@ import {
 import { toastDuration } from "../../../constants";
 import { mapGetters } from "vuex";
 import { getValue } from '../../../utils/localstorageUtils';
-import VuePhoneNumberInput from 'vue-phone-number-input';
 
 export default {
   middleware: "auth",
   components:{
-    VuePhoneNumberInput
   },
   data() {
     return {
-      inputMobileDetails:null,
       desc: "",
       addclients: false,
       show: 1,
@@ -232,7 +228,7 @@ export default {
       const ValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
       const ValidMobile =
-        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
+        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
       if (isValidFirstName && isValidLastName && ValidEmail && ValidMobile) {
         return false;
       } else {
@@ -241,9 +237,6 @@ export default {
     }
   },
   methods: {
-    handleMobileVueInputBlur(data){
-      this.inputMobileDetails = data
-    },
     setSelected(user) {
       this.isSelected = true;
       this.selectedUser = user;
@@ -286,7 +279,7 @@ export default {
     },
     handleMobileBlur() {
       const isValidMobile =
-        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
+        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
       if (!isValidMobile) {
         this.error.mobile =
           this.user.mobile == ""

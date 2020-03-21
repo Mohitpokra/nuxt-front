@@ -408,8 +408,7 @@
                     <label for="login-mobile">Phone Number</label>
                     <span class="inp-error">{{ error.mobile }}</span>
                   </div>
-                  <VuePhoneNumberInput :no-country-selector='true' v-model.trim="user.mobile" @phone-number-focused	="handleFocus('mobile')" @phone-number-blur ="handleMobileBlur" default-country-code="US"  @update='handleMobileVueInputBlur' />
-                  <!-- <b-input
+                  <b-input
                     :class="{ form_fill: user.mobile }"
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
@@ -419,7 +418,7 @@
                     id="login-mobile"
                     maxlength="10"
                     placeholder="(555) 555-5555"
-                  ></b-input> -->
+                  ></b-input>
                 </div>
               </b-col>
             </b-row>
@@ -491,15 +490,12 @@ import {
   isMobileNumber
 } from "./../../../../../utils/validations.js";
 import { toastDuration } from "./../../../../../constants";
-import VuePhoneNumberInput from 'vue-phone-number-input';
 export default {
   middleware: "auth",
   components:{
-    VuePhoneNumberInput
   },
   data() {
     return {
-      inputMobileDetails:null,
       downpayment: null,
       fundsAvailable: null,
       firstTimeBuyer: null,
@@ -564,9 +560,6 @@ export default {
     };
   },
   methods: {
-    handleMobileVueInputBlur(data){
-      this.inputMobileDetails = data
-    },
     prepopulate() {
       this.request_sent = 0;
       this.$bvModal.show("req-apv");
@@ -578,7 +571,7 @@ export default {
       ].last_name;
       this.user.mobile = this.$store.getters[
         "clients/getSelectedClient"
-      ].mobile;
+      ].phone;
       this.user.email = this.$store.getters["clients/getSelectedClient"].email;
     },
     errorHandling(responseObj) {
@@ -620,7 +613,7 @@ export default {
     },
     handleMobileBlur() {
       const isValidMobile =
-        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
+        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
       if (!isValidMobile) {
         this.error.mobile =
           this.user.mobile == ""
@@ -698,7 +691,7 @@ export default {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
-            phone: this.inputMobileDetails.nationalNumber,
+            phone: this.user.mobile,
             notes: this.desc
           };
           try {
@@ -731,7 +724,7 @@ export default {
       const ValidEmail =
         isRequired(this.user.email) && isEmail(this.user.email);
       const ValidMobile =
-        isRequired(this.user.mobile) && ( this.inputMobileDetails && this.inputMobileDetails.isValid);
+        isRequired(this.user.mobile) && isMobileNumber(this.user.mobile);
       if (isValidFirstName && isValidLastName && ValidEmail && ValidMobile) {
         return false;
       } else {
