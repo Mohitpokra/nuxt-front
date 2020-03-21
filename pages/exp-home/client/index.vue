@@ -56,9 +56,46 @@
                 </h4>
               </div>
             </b-col>
+            <div class="contrl">
+                  <div class="contrl-edit">
+                    <img
+                    src="~/assets/icons/icon-interface-edit.svg"
+                  />
+                  </div>
+                  <div class="contrl-trash">
+                    <img
+                    src="~/assets/icons/icon-interface-trash-blue.svg"
+                  />
+                  </div>
+                </div>
           </b-row>
         </div>
       </div>
+      <b-row align-h="center">
+        <b-col cols="auto" lg="auto">
+          <div class="sh-page">
+            <div class="pagin client">
+                <ul class="pagination">
+                    <li class="page-item disabled prev">
+                        <span class="page-link"><img src="~/assets/icons/icon-interface-arrow-left.svg"/>Prev</span>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link">3</a>
+                    </li>
+                    <li class="page-item next disabled">
+                        <span class="page-link">Next<img src="~/assets/icons/icon-interface-arrow-right.svg"/></span>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
     </div>
     <div class="flex justify-between buttons">
       <b-btn
@@ -536,7 +573,7 @@ export default {
     padding-bottom: 25px;
     padding-left: 24px;
     margin-top: 16px;
-    width: 327px;
+    width: 100%;
     height: 48px;
   }
 }
@@ -646,6 +683,7 @@ export default {
 }
 .input-box {
   margin-top: 28px;
+  position: relative;
 }
 .buttons {
   margin-top: 100px;
@@ -677,7 +715,7 @@ export default {
 }
 .list {
   position: relative;
-  img {
+  .check {
     position: absolute;
     left: 18px;
     top: 30px;
@@ -689,12 +727,12 @@ export default {
     .container-text {
       color: #fff;
     }
-    img {
+    .check {
       transform: scale(1);
     }
   }
   @media screen and (max-width: 992px){
-      img{
+      .check{
             left: 8px;
             width: 11px;
             top: 18px;
@@ -707,5 +745,35 @@ export default {
 .clients-list-wrapper {
   min-height: 300px;
 }
-
+.contrl{
+  position: absolute;
+  right: 30px;
+  top: 28px;
+  width: 90px;
+  height: 30px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  &-edit, &-trash{
+    width: 30px;
+    height: 30px;
+    img{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  @media screen and (max-width: 992px){
+        right: 23px;
+    top: 27px;
+    width: 70px;
+    &-edit, &-trash{
+    width: 20px;
+    height: 20px;
+    img{
+      width: 20px;
+      height: 20px;
+    }
+  }
+  }
+}
 </style>
