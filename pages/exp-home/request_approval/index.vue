@@ -100,12 +100,13 @@
                   :class="{ form_fill: user.mobile }"
                   @focus="handleFocus('mobile')"
                   @blur="handleMobileBlur"
+                  @input="formatNumber"
                   v-model.trim="user.mobile"
                   :state="error_state.mobile"
                   size="lg"
                   id="login-mobile"
                   placeholder="(555) 555-5555"
-                  maxLength="10"
+                  maxLength="14"
                 ></b-input>
               </div>
             </b-col>
@@ -237,6 +238,10 @@ export default {
     }
   },
   methods: {
+    formatNumber() {
+    	let x = this.user.mobile.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+		this.user.mobile = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    },
     setSelected(user) {
       this.isSelected = true;
       this.selectedUser = user;

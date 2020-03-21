@@ -413,10 +413,11 @@
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
                     @blur="handleMobileBlur"
+                    @input="formatNumber"
                     :state="error_state.mobile"
                     size="lg"
                     id="login-mobile"
-                    maxlength="10"
+                    maxlength="14"
                     placeholder="(555) 555-5555"
                   ></b-input>
                 </div>
@@ -560,6 +561,10 @@ export default {
     };
   },
   methods: {
+    formatNumber() {
+    	let x = this.user.mobile.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+		this.user.mobile = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    },
     prepopulate() {
       this.request_sent = 0;
       this.$bvModal.show("req-apv");
@@ -573,6 +578,7 @@ export default {
         "clients/getSelectedClient"
       ].phone;
       this.user.email = this.$store.getters["clients/getSelectedClient"].email;
+      this.desc = this.$store.getters["clients/getSelectedClient"].notes;
     },
     errorHandling(responseObj) {
       let { message, errors = {} } =
@@ -694,6 +700,7 @@ export default {
             phone: this.user.mobile,
             notes: this.desc
           };
+          debugger
           try {
             this.$axios
               .post("api/client/create", obj)

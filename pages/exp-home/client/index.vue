@@ -178,11 +178,11 @@
                     v-model.trim="user.mobile"
                     @focus="handleFocus('mobile')"
                     @blur="handleMobileBlur"
-					@input="formatNumber"
+					          @input="formatNumber"
                     :state="error_state.mobile"
                     size="lg"
                     id="login-mobile"
-                    maxlength="10"
+                    maxlength="14"
                     placeholder="(555) 555-5555"
                   ></b-input>
               </div>
