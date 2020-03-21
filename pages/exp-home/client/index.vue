@@ -54,9 +54,7 @@
                   />
                   {{ client && (client.first_name + " " + client.last_name) }}
                 </h4>
-              </div>
-            </b-col>
-            <div class="contrl">
+                <div class="contrl">
                   <div class="contrl-edit">
                     <img
                     src="~/assets/icons/icon-interface-edit.svg"
@@ -68,6 +66,8 @@
                   />
                   </div>
                 </div>
+              </div>
+            </b-col>
           </b-row>
         </div>
       </div>
@@ -746,9 +746,11 @@ export default {
   min-height: 300px;
 }
 .contrl{
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
-  right: 30px;
-  top: 28px;
+  right: 20px;
+  top: 22px;
   width: 90px;
   height: 30px;
   z-index: 1;
@@ -757,23 +759,42 @@ export default {
   &-edit, &-trash{
     width: 30px;
     height: 30px;
+    opacity: 0;
+    transition: 0.25s;
     img{
       width: 30px;
       height: 30px;
     }
   }
   @media screen and (max-width: 992px){
-        right: 23px;
-    top: 27px;
-    width: 70px;
-    &-edit, &-trash{
-    width: 20px;
-    height: 20px;
-    img{
-      width: 20px;
-      height: 20px;
+    right: 15px;
+    top: 12px;
+    opacity: 1;
+    pointer-events: all;
+    width: 60px;
+      &-edit, &-trash{
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+      img{
+        width: 20px;
+        height: 20px;
+      }
     }
   }
+}
+.box-shadow-container:hover{
+  .contrl{
+    opacity: 1;
+    pointer-events: all;
+    &-edit{
+      opacity: 1;
+    }
+    &-trash{
+      opacity: 1;
+      transition-delay: 0.1s;
+    }
   }
 }
 </style>
+
