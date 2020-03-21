@@ -53,9 +53,6 @@ export default {
     {
       src: "@/plugins/vClickOutside",
       ssr: false
-    },
-    {
-      src:"@/plugins/VuePhoneNumberInput"
     }
   ],
   /*

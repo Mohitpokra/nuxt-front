@@ -700,7 +700,6 @@ export default {
             phone: this.user.mobile,
             notes: this.desc
           };
-          debugger
           try {
             this.$axios
               .post("api/client/create", obj)
