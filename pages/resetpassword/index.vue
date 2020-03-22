@@ -7,19 +7,19 @@
                 <b-col></b-col>
                 <b-col lg="10" cols="12">
                     <b-form class="forgor-form">
-                        <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                        <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                             <div class="flex justify-content-between" >
-                                <label class="" for="login-email">Password</label>
+                                <label class="" for="login-password">New Password</label>
                                 <span class="inp-error">Email address not found</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="password"></b-input>
+                            <b-input :class="{form_fill: user.password}" v-model="user.password"  @blur="handlePasswordBlur"  @focus="handleFocus('password')"  :state="error_state.password" size="lg" id="login-password" type="password" placeholder="new password"></b-input>
                         </div>
-                        <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                        <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                             <div class="flex justify-content-between" >
-                                <label class="" for="login-email">New Password</label>
+                                <label class="" for="login-confirm_password">Confirm New Password</label>
                                 <span class="inp-error">Email address not found</span>
                             </div>
-                            <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="new password"></b-input>
+                            <b-input :class="{form_fill: user.confirm_password}" v-model="user.confirm_password"  @blur="handlePasswordBlur"  @focus="handleFocus('confirm_password')"  :state="error_state.confirm_password" size="lg" id="login-confirm_password" type="password" placeholder="confirm new password"></b-input>
                         </div>
                         <div class="">
                             <b-button class="m-btn" :disabled="isDisable" block variant="primary" size="lg" @click="submit">Reset Password</b-button>

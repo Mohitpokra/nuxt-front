@@ -576,7 +576,7 @@ export default {
       ].last_name;
       this.user.mobile = this.$store.getters[
         "clients/getSelectedClient"
-      ].phone;
+      ].phone.match(/\d+/g).join("").replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'($1) $2-$3');
       this.user.email = this.$store.getters["clients/getSelectedClient"].email;
       this.desc = this.$store.getters["clients/getSelectedClient"].notes;
     },
