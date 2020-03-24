@@ -10,7 +10,7 @@
                         <div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
                             <div class="flex justify-content-between" >
                                 <label class="" for="login-email">Email</label>
-                                <span class="inp-error">Email address not found</span>
+                                <span class="inp-error" v-if="!!showApiError && !error.email">{{showApiError}}</span>
                             </div>
                             <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com"></b-input>
                         </div>
@@ -43,7 +43,8 @@ export default {
             },
             error_state: {
                 email: null
-            }
+            },
+			showApiError: null
         }
     },
     computed: {
@@ -67,16 +68,20 @@ export default {
                     email: this.user.email
                 })
                 .then(data=>{
-                    // this.$toast.success("Email Sent Successfully", toastDuration)
+					this.$router.push('/sign_in/forgot_password/success/');
+                    //this.$toast.success("Email Sent Successfully", toastDuration)
                 })
                 .catch((e)=>{
-                    // this.$toast.error("Try Again Later !!!", toastDuration)
+					this.showApiError = 'Email address not found'
+                    this.error_state.email = false
+                   //this.$toast.error("Try Again Later !!!", toastDuration)
                 })
             }
         },
         handleFocus(fieldName){
             this.error[fieldName] = ''
             this.error_state[fieldName] = null
+			this.showApiError = null
         },
         handleEmailBlur(){
             const isValidEmail = isRequired(this.user.email) && isEmail(this.user.email)

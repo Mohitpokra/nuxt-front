@@ -81,8 +81,7 @@ export default {
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
   axios: {
-    // baseURL: 'http://ec2-18-212-38-13.compute-1.amazonaws.com/backend/public/api'
-    baseURL: "http://ec2-54-172-247-207.compute-1.amazonaws.com/"
+    baseURL: "http://api.homesearchbymortgage.com/"
   },
   auth: {
     // Options
