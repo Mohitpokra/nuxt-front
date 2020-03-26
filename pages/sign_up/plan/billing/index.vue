@@ -78,9 +78,14 @@
 </template>
 
 <script>
+import {loadStripe} from '@stripe/stripe-js';
+
 export default {
+
     data() {
         return {
+            stripDetails: null,
+            isStripeLoaded: false,
             billing: {
                 name: null,
                 cardNo: null,
@@ -109,6 +114,13 @@ export default {
                 return true;
             }
         }
+    },
+    mounted(){
+        const stripe = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx')
+        stripe.then((data)=>{
+            this.isStripeLoaded = true
+            this.stripDetails = data
+        })
     }
 
 }
