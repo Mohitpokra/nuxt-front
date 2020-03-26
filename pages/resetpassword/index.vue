@@ -166,7 +166,7 @@ export default {
 					  }
 					})
 					.then(data => {
-					  this.$router.push("/");
+					  this.$router.push("/exp-home");
 					})
 					.catch(responseObj => {
 					  this.errorHandling(responseObj);

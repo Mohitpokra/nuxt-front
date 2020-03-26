@@ -465,7 +465,7 @@
                   We’ll be in touch with you and your client to get a
                   competitive rate.
                 </p>
-                <a variant="primary" class="continue-btn" href="/">Back to home</a>
+                <a variant="primary" class="continue-btn" href="/exp-home">Back to home</a>
               </b-col>
             </b-row>
           </div>
@@ -543,7 +543,7 @@ export default {
       items: [
         {
           text: "Home",
-          href: "/"
+          href: "/exp-home"
         },
         {
           text: "Client",
