@@ -7,6 +7,20 @@
                 <b-col></b-col>
                 <b-col lg="10" cols="12">
                     <b-form class="forgor-form">
+						<div :class="['inp-wrapper',{'has-error':error_state.email == false}]">
+                            <div class="flex justify-content-between" >
+                                <label class="" for="login-email">Email</label>
+                                <span class="inp-error" v-if="!showApiError && error.email">{{
+									error.email
+								  }}</span>
+								  <span
+									class="inp-error"
+									v-if="!!showApiError && !error.email"
+									>{{ showApiError }}</span
+								  >
+                            </div>
+                            <b-input :class="{form_fill: user.email}" v-model="user.email"  @blur="handleEmailBlur"  @focus="handleFocus('email')"  :state="error_state.email" size="lg" id="login-email" placeholder="charlie@email.com" :disabled="isFromEmail"></b-input>
+                        </div>
                         <div :class="['inp-wrapper',{'has-error':error_state.password == false}]">
                             <div class="flex justify-content-between" >
                                 <label class="" for="login-password">New Password</label>
@@ -35,36 +49,42 @@
 </template>
 
 <script>
-import {isRequired} from './../../utils/validations.js'
+import {isRequired, isEmail} from './../../utils/validations.js'
 import {toastDuration} from './../../constants.js'
 export default {
     data() {
         return {
+		  isFromEmail: true,
             user: {
+			email: "",
 			password: "",
 			confirm_password: ""
 		  },
 		  error: {
+			email: "",
 			password: "",
 			confirm_password: ""
 		  },
 		  error_state: {
+			email: null,
 			password: null,
 			confirm_password: null
 		  },
-		  token : null
+		  token : null,
+		  showApiError : null
         }
     },
     computed: {
     },
     computed:{
         isDisable() {
+			const ValidEmail = isRequired(this.user.email) && isEmail(this.user.email);
 			const ValidPassword = isRequired(this.user.password);
 			const emptyPassword = isRequired(this.user.confirm_password);
 			const passwordMatch = this.user.password == this.user.confirm_password;
 			const confirmPassword = emptyPassword && passwordMatch;
 
-			if (confirmPassword) {
+			if (ValidEmail && ValidPassword && confirmPassword) {
 				return false;
 			} else {
 				return true;
@@ -73,9 +93,21 @@ export default {
     },
     methods:{
         handleFocus(fieldName){
-            this.error[fieldName] = ''
-            this.error_state[fieldName] = null
+            this.error[fieldName] = '';
+            this.error_state[fieldName] = null;
+			this.showApiError = null;
         },
+		handleEmailBlur() {
+		  const isValidEmail =
+			isRequired(this.user.email) && isEmail(this.user.email);
+		  if (!isValidEmail) {
+			this.error.email = (this.user.email && this.user.email.trim()) == '' ? "Email is Required." : " Email is Invalid. ";
+			this.error_state.email = false;
+		  } else {
+			this.error.email = "";
+			this.error_state.email = true;
+		  }
+		},
 		handlePasswordBlur() {
 			const isValidPassword = isRequired(this.user.password);
 			if (!isValidPassword) {
@@ -100,23 +132,50 @@ export default {
 				this.error_state.confirm_password = true;
 			}
 		},
+		errorHandling(responseObj) {
+		  let { message, errors = {} } =
+			responseObj.response && responseObj.response.data;
+		  if (Object.keys(errors).length) {
+			Object.keys(errors).map(error => {
+			  this.showApiError = errors[error];
+			  this.error_state.email = false;
+			});
+		  } else {
+			this.showApiError = message;
+			this.error_state.email = false;
+		  }
+		},
 		resetpassword(){
 			this.handlePasswordBlur();
 			this.handleCPasswordBlur();
+			this.handleEmailBlur();
             const isValid =  this.error_state.password
             if(isValid){
                 this.$axios.$post('api/reset-password', {
                     password: this.user.password,
 					password_confirmation: this.user.confirm_password,
 					token: this.token,
-					email: "namanbansal45@gmail.com"
+					email: this.user.email
                 })
                 .then(data=>{
-					this.$router.push('/resetpassword/success/')
-                })
+				  this.$auth
+					.loginWith("local", {
+					  data: {
+						email: this.user.email,
+						password: this.user.password
+					  }
+					})
+					.then(data => {
+					  this.$router.push("/");
+					})
+					.catch(responseObj => {
+					  this.errorHandling(responseObj);
+					  return;
+					});
+				})
                 .catch((e)=>{
 					this.showApiError = 'Error while resetting password!'
-                    this.error_state.password = false
+                    //this.error_state.password = false
                 })                
             }
         },
@@ -125,7 +184,24 @@ export default {
 	mounted() {
 		const query = this.$route.query;
 		const token = query && query.token;
-		this.token = token;
+		this.token = token;	
+		const obj = {
+          token: this.token,
+        };
+		
+		if (token) {
+		  this.isFromEmail = true;
+		  this.$axios
+		  .post("api/get-email-by-token",obj)
+		  .then(data => {
+			this.user.email = data.data.email;
+			if(data.data.error){
+				this.showApiError = data.data.error;
+				this.error.email = "";
+				this.error_state.email = false;
+			}
+		  })
+		}
 	}
 
 }

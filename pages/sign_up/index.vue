@@ -284,7 +284,7 @@ export default {
                 })
                 .then(data => {
                   // this.$toast.success('Successfully LoggedIn', toastDuration)
-                  this.$router.push("/sign_up/plan");
+                  this.$router.push("/");
                 })
                 .catch(responseObj => {
                   this.errorHandling(responseObj);
