@@ -536,7 +536,7 @@ export default {
     padding-bottom: 25px;
     padding-left: 24px;
     margin-top: 16px;
-    width: 327px;
+    width: 100%;
     height: 48px;
   }
 }
@@ -594,7 +594,8 @@ export default {
   width: 156px;
 
   @media screen and(max-width: 992px) {
-    width: 175px;
+    width: 48%;
+    max-width: 175px;
   }
 }
 
@@ -673,6 +674,7 @@ export default {
   @media screen and (max-width: 992px) {
     margin-left: -15px;
     margin-right: -15px;
+    margin-bottom: 8px;
   }
 }
 .list {

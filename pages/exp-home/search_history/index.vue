@@ -70,7 +70,7 @@
                         </span>
                 </div>
               </b-col>
-              <b-col lg="3" class="text-right">
+              <b-col lg="3" class="text-right budge-wrapper">
                 <b-badge pill variant="success" class="p3"
                   >Pre-approval Requested</b-badge
                 >
@@ -204,6 +204,11 @@ export default {
     margin-bottom: 1rem;
   }
 }
+@media screen and(max-width: 992px) {
+  .search-table{
+    margin-top: 0px;
+  }
+}
 .badge-success {
   background-color: #f1faf5;
   font-size: 12px;
@@ -237,12 +242,14 @@ export default {
             border-radius: 100%;
         }
         &:first-child{
+          margin-left: 0px;
             &:after{
                 display: none;
                 padding: 0px;
             }
         }
     }
+    @media screen and(max-width: 992px){margin-bottom: 24px;}
 }
 .wrapper{
     max-height: 560px;
@@ -250,5 +257,12 @@ export default {
 }
 .search-rows{
     padding-top: 24px;
+    position: relative;
+}
+@media screen and(max-width: 992px){
+  .budge-wrapper{
+    position: absolute;
+    right: 0px;
+  }
 }
 </style>
