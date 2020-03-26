@@ -35,7 +35,6 @@ export default {
 <style lang="scss" scoped>
 .btn-custom {
     width: 156px;
-
     @media screen and(max-width: 992px) {
         width: 175px;
     }
@@ -46,6 +45,9 @@ export default {
     margin-top: 96px;
     background-color: #f5f5f5;
     color: #1f1f1f;
+    @media screen and(max-width: 992px) {
+       margin-top: 48px;
+    }
 }
 .search-deliver{
     img{
@@ -55,6 +57,11 @@ export default {
     .para-info{
         margin-top: 24px;
         margin-bottom: 24px;
+    }
+    @media screen and(max-width: 992px) {
+        img{
+            margin-top: 100px;
+        }
     }
 }
 </style>
