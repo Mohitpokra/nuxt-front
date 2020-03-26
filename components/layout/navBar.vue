@@ -4,7 +4,7 @@
     v-click-outside="externalClick"
   >
     <b-navbar type="primary" variant>
-      <b-navbar-brand to="/"
+      <b-navbar-brand to="/exp-home"
         ><img class="logo" src="~/assets/icons/icon-interface-home.svg"
       /></b-navbar-brand>
       <b-navbar-nav

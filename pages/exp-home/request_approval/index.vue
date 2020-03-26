@@ -203,7 +203,7 @@ export default {
       items: [
         {
           text: "Home",
-          href: "/"
+          href: "/exp-home"
         },
         {
           text: "Request Pre-approval",
@@ -358,7 +358,7 @@ export default {
     },
     goToNext(){
       localStorage.removeItem('searchId')
-      this.$router.push('/')
+      this.$router.push('/exp-home')
     }
   },
   mounted() {

@@ -469,7 +469,7 @@ export default {
       items: [
         {
           text: "Home",
-          href: "/"
+          href: "/exp-home"
         },
         {
           text: "My Account",
