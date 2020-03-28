@@ -196,9 +196,10 @@ export default {
 		  .then(data => {
 			this.user.email = data.data.email;
 			if(data.data.error){
-				this.showApiError = data.data.error;
-				this.error.email = "";
-				this.error_state.email = false;
+				this.$router.push("/sign_in");
+				//this.showApiError = data.data.error; //populate email
+				//this.error.email = "";
+				//this.error_state.email = false;
 			}
 		  })
 		}
