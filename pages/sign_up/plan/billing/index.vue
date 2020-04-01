@@ -209,6 +209,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .m-heading-text {
     margin-top: 88px;
     margin-bottom: 8px;
@@ -283,5 +284,26 @@ p {
         width: 616px;
         max-width: 100%;
     }
+}
+
+</style>
+<style>
+#cardNumber, #cardExpiry, #cardCvc {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1f1f1f;
+    border: 1px solid #b8b8b8;
+}
+#cardNumber.StripeElement--focus, #cardNumber.StripeElement--complete, #cardExpiry.StripeElement--focus, #cardExpiry.StripeElement--complete, #cardCvc.StripeElement--focus, #cardCvc.StripeElement--complete {
+    border-color: #1f1f1f;
+    border-width: 2px;
+}
+.ElementsApp input{
+    font-size: 16px !important;
 }
 </style>
