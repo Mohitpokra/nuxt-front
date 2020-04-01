@@ -128,6 +128,7 @@ export default {
     },
     computed: {
         isDisable() {
+            return false
             const isValidName = isRequired(this.billing.name);
             const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
             if (isValid) {
@@ -154,13 +155,21 @@ export default {
             }
         },
         submit(){
-            this.stripDetails.createToken(this.cardNumber)
+            const clientSecret = this.stripeIntent.client_secret
+            debugger
+            this.stripDetails.confirmCardSetup( clientSecret, {
+            payment_method: {
+                card: this.cardElement,
+                billing_details: { name: 'asasdasasds' }
+            }
+        })
                 .then((response)=>{
                     const data = { token: response.token, plan:this.plans[1].stripe_id}
-                    this.$axios.post('/api/subscription/subscribe', data)
-                        .then((response) => {
-                            this.$router.push("/exp-home");
-                        })
+                    debugger
+                    // this.$axios.post('/api/subscription/subscribe', data)
+                    //     .then((response) => {
+                    //         this.$router.push("/exp-home");
+                    //     })
                 })
                 .catch(e=>{
                     console.log(e)
@@ -208,13 +217,15 @@ export default {
             this.isStripeLoaded = true
             this.stripDetails = data
             const elements = this.stripDetails.elements();
-            this.cardNumber = elements.create('cardNumber');
-            this.cardNumber.mount('#cardNumber');
-            this.cardExpiry = elements.create('cardExpiry');
-            this.cardExpiry.mount('#cardExpiry');
-            this.cardCvc = elements.create('cardCvc');
-            this.cardCvc.mount('#cardCvc');
-            this.setUpListeners()
+            this.cardElement = elements.create('card');
+            this.cardElement.mount('#card-element');
+            // this.cardNumber = elements.create('cardNumber');
+            // this.cardNumber.mount('#cardNumber');
+            // this.cardExpiry = elements.create('cardExpiry');
+            // this.cardExpiry.mount('#cardExpiry');
+            // this.cardCvc = elements.create('cardCvc');
+            // this.cardCvc.mount('#cardCvc');
+            // this.setUpListeners()
         })
 
         this.$axios.get('/api/plans')
@@ -327,5 +338,9 @@ p {
 }
 .ElementsApp input{
     font-size: 16px !important;
+}
+.StripeElement{
+    width: 400px !important;
+    display: block;
 }
 </style>
