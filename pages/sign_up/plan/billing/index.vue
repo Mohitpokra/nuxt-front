@@ -172,13 +172,13 @@ export default {
                         .then((response)=>{
                             this.stripeIntent = response.data
                             const clientSecret = response.data.client_secret
-                            this.stripDetails.createToken(this.cardNumber)
-                            .then((response)=>{
-                                const token = response.data.id
-                            })
-                            .catch(e=>{
-                                console.log(e)
-                            })
+                            // this.stripDetails.createToken(this.cardNumber)
+                            // .then((response)=>{
+                            //     const token = response.data.id
+                            // })
+                            // .catch(e=>{
+                            //     console.log(e)
+                            // })
                         })
                 })
         }
