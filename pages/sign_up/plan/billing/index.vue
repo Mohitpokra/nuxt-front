@@ -303,6 +303,10 @@ p {
     border-color: #1f1f1f;
     border-width: 2px;
 }
+#cardNumber.StripeElement--invalid, #cardExpiry.StripeElement--invalid, #cardCvc.StripeElement--invalid{
+    border-color: #d93934;
+    border-width: 2px;
+}
 .ElementsApp input{
     font-size: 16px !important;
 }
