@@ -81,7 +81,7 @@ export default {
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
   axios: {
-    baseURL: "http://api.homesearchbymortgage.com/"
+    baseURL: "https://api.homesearchbymortgage.com/"
   },
   auth: {
     // Options

@@ -7,6 +7,7 @@
                 <p class="m-subheading-text">Review your plan and enter your payment details</p>
             </b-col>
         </b-row>
+        <b-row id="card-element"></b-row>
         <b-row class="billing" :no-gutters="true">
             <b-col class="d-none d-lg-block billing-left-block">
                 <p class="p1 m-search-text ">Search by Mortgage <br> Payment Pro Plan</p>
@@ -36,7 +37,8 @@
                             <label class="inp-title" for="billing-cardNo">Credit Card Number</label>
                             <span class="inp-error">Invalid</span>
                         </div>
-                        <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input>
+                        <!-- <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input> -->
+                        <div id='cardNumber' ></div>
                         <b-form-invalid-feedback :state="error_state.cardNo">
                             {{error.cardNo}}
                         </b-form-invalid-feedback>
@@ -48,7 +50,8 @@
                                     <label class="inp-title" for="billing-expiryDate">Expiration Date</label>
                                     <span class="inp-error">Invalid</span>
                                 </div>
-                                <b-input :class="{form_fill: billing.expiryDate}" v-model="billing.expiryDate" :state="error_state.expiryDate" size="lg" id="billing-expiryDate" placeholder="MM/YY"></b-input>
+                                <!-- <b-input :class="{form_fill: billing.expiryDate}" v-model="billing.expiryDate" :state="error_state.expiryDate" id="billing-expiryDate" placeholder="MM/YY"></b-input> -->
+                                <div id='cardExpiry'></div>
                                 <b-form-invalid-feedback :state="error_state.expiryDate">
                                     {{error.expiryDate}}
                                 </b-form-invalid-feedback>
@@ -60,7 +63,8 @@
                                     <label class="inp-title" for="billing-cvc">CVC</label>
                                     <span class="inp-error">Invalid</span>
                                 </div>
-                                <b-input :class="{form_fill: billing.cvc}" v-model="billing.cvc" :state="error_state.cvc" size="lg" id="billing-cvc" placeholder="CVC"></b-input>
+                                <!-- <b-input :class="{form_fill: billing.cvc}" v-model="billing.cvc" :state="error_state.cvc" size="lg" id="billing-cvc" placeholder="CVC"></b-input> -->
+                                <div id='cardCvc' class='form-control form-control-lg' size="lg"></div>
                                 <b-form-invalid-feedback :state="error_state.cvc">
                                     {{error.cvc}}
                                 </b-form-invalid-feedback>
@@ -68,7 +72,7 @@
                         </b-col>
                     </b-row>
                     <div class="m-pay-btn">
-                        <b-button block variant="primary" :disabled="isDisable" size="lg">Pay $15/mo</b-button>
+                        <b-button block variant="primary" @click="test" size="lg">Pay $15/mo</b-button>
                     </div>
                 </b-form>
             </b-col>
@@ -79,11 +83,55 @@
 
 <script>
 import {loadStripe} from '@stripe/stripe-js';
+import { mapGetters } from "vuex";
+
+const  elementStyles = {
+    base: {
+      color: '#fff',
+      fontWeight: 600,
+      fontFamily: 'Quicksand, Open Sans, Segoe UI, sans-serif',
+      fontSize: '16px',
+      fontSmoothing: 'antialiased',
+
+      ':focus': {
+        color: '#424770',
+      },
+
+      '::placeholder': {
+        color: '#9BACC8',
+      },
+
+      ':focus::placeholder': {
+        color: '#CFD7DF',
+      },
+    },
+    invalid: {
+      color: '#fff',
+      ':focus': {
+        color: '#FA755A',
+      },
+      '::placeholder': {
+        color: '#FFCCA5',
+      },
+    },
+  };
+
+  const elementClasses = {
+    focus: 'focus',
+    empty: 'empty',
+    invalid: 'invalid',
+  };
 
 export default {
 
     data() {
         return {
+            cardNumber: null,
+            cardExpiry: null,
+            cardCvc: null,
+            stripe:null,
+            stripeCustomer:null,
+            cardElement: null,
             stripDetails: null,
             isStripeLoaded: false,
             billing: {
@@ -115,11 +163,39 @@ export default {
             }
         }
     },
+    methods:{
+        test(){
+            this.$axios.post('/api/subscription/create-stripe-customer')
+                .then((data)=>{
+                    this.stripeCustomer = data.data
+                    this.$axios.get('/api/subscription/intent')
+                        .then((response)=>{
+                            this.stripeIntent = response.data
+                            const clientSecret = response.data.client_secret
+                            this.stripDetails.createToken(this.cardNumber)
+                            .then((response)=>{
+                                const token = response.data.id
+                            })
+                            .catch(e=>{
+                                console.log(e)
+                            })
+                        })
+                })
+        }
+    },
     mounted(){
         const stripe = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx')
+        this.stripe = stripe
         stripe.then((data)=>{
             this.isStripeLoaded = true
             this.stripDetails = data
+            const elements = this.stripDetails.elements();
+            this.cardNumber = elements.create('cardNumber');
+            this.cardNumber.mount('#cardNumber');
+            this.cardExpiry = elements.create('cardExpiry');
+            this.cardExpiry.mount('#cardExpiry');
+            this.cardCvc = elements.create('cardCvc');
+            this.cardCvc.mount('#cardCvc');
         })
     }
 
