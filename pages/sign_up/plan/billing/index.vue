@@ -27,7 +27,10 @@
                             <label class="inp-title" for="billing-name">Name on Credit Card</label>
                             <span class="inp-error">Invalid</span>
                         </div>
-                        <b-input :class="{form_fill: billing.name}" v-model.trim="billing.name" :state="error_state.name" size="lg" id="billing-name" placeholder="Charlie Exampleton"></b-input>
+                        <!-- @focus="handleFocus('name')" 
+                            @blur="handleNameBlur" -->
+                        <b-input :class="{form_fill: billing.name}"
+                            v-model.trim="billing.name" :state="error_state.name" size="lg" id="billing-name" placeholder="Charlie Exampleton"></b-input>
                         <b-form-invalid-feedback :state="error_state.name">
                             {{error.name}}
                         </b-form-invalid-feedback>
@@ -38,7 +41,7 @@
                             <span class="inp-error">Invalid</span>
                         </div>
                         <!-- <b-input :class="{form_fill: billing.cardNo}" v-model="billing.cardNo" :state="error_state.cardNo" size="lg" id="billing-cardNo" placeholder="1234 5678 9012 3456"></b-input> -->
-                        <div id='cardNumber' ></div>
+                        <div id='cardNumber' :class="{form_fill: billing.cardNo}" :state="error_state.cardNo"></div>
                         <b-form-invalid-feedback :state="error_state.cardNo">
                             {{error.cardNo}}
                         </b-form-invalid-feedback>
@@ -72,7 +75,7 @@
                         </b-col>
                     </b-row>
                     <div class="m-pay-btn">
-                        <b-button block variant="primary" @click="test" size="lg">Pay $15/mo</b-button>
+                        <b-button block variant="primary" @click="setUpIntent" size="lg" :disabled="isDisable">Pay $15/mo</b-button>
                     </div>
                 </b-form>
             </b-col>
@@ -84,56 +87,25 @@
 <script>
 import {loadStripe} from '@stripe/stripe-js';
 import { mapGetters } from "vuex";
-
-const  elementStyles = {
-    base: {
-      color: '#fff',
-      fontWeight: 600,
-      fontFamily: 'Quicksand, Open Sans, Segoe UI, sans-serif',
-      fontSize: '16px',
-      fontSmoothing: 'antialiased',
-
-      ':focus': {
-        color: '#424770',
-      },
-
-      '::placeholder': {
-        color: '#9BACC8',
-      },
-
-      ':focus::placeholder': {
-        color: '#CFD7DF',
-      },
-    },
-    invalid: {
-      color: '#fff',
-      ':focus': {
-        color: '#FA755A',
-      },
-      '::placeholder': {
-        color: '#FFCCA5',
-      },
-    },
-  };
-
-  const elementClasses = {
-    focus: 'focus',
-    empty: 'empty',
-    invalid: 'invalid',
-  };
+import { isRequired } from "./../../../../utils/validations";
 
 export default {
 
     data() {
         return {
+            plans:null,
             cardNumber: null,
             cardExpiry: null,
             cardCvc: null,
+            cardNumberDetails: false,
+            cardExpiryDetails: false,
+            cardCvcDetails: false,
             stripe:null,
             stripeCustomer:null,
             cardElement: null,
             stripDetails: null,
             isStripeLoaded: false,
+            showApiError:null,
             billing: {
                 name: null,
                 cardNo: null,
@@ -156,7 +128,9 @@ export default {
     },
     computed: {
         isDisable() {
-            if (this.billing.name && this.billing.cardNo && this.billing.expiryDate && this.billing.cvc) {
+            const isValidName = isRequired(this.billing.name);
+            const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
+            if (isValid) {
                 return false;
             } else {
                 return true;
@@ -164,23 +138,67 @@ export default {
         }
     },
     methods:{
-        test(){
+        handleFocus(fieldName) {
+            this.error[fieldName] = "";
+            this.error_state[fieldName] = null;
+            this.showApiError = null;
+        },
+        handleNameBlur() {
+            const isValidName = isRequired(this.billing.name);
+            if (!isValidName) {
+                this.error.name = " Name is Required. ";
+                this.error_state.name = false;
+            } else {
+                this.error.name = "";
+                this.error_state.name = true;
+            }
+        },
+        submit(){
+            this.stripDetails.createToken(this.cardNumber)
+                .then((response)=>{
+                    const data = { token: response.token, plan:this.plans[1].stripe_id}
+                    this.$axios.post('/api/subscription/subscribe', data)
+                        .then((response) => {
+                            this.$router.push("/exp-home");
+                        })
+                })
+                .catch(e=>{
+                    console.log(e)
+                })
+        },
+        setUpListeners(){
+            this.cardCvc.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardCvcDetails = true
+                } else if (event.error) {
+                    this.cardCvcDetails = false
+                }
+            })
+            this.cardExpiry.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardExpiryDetails = true
+                } else if (event.error) {
+                    this.cardExpiryDetails = false
+                }
+            })
+            this.cardNumber.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardNumberDetails = true
+                    } else if (event.error) {
+                       this.cardNumberDetails = false
+                    }
+            })
+        },
+        setUpIntent(){
             this.$axios.post('/api/subscription/create-stripe-customer')
                 .then((data)=>{
                     this.stripeCustomer = data.data
                     this.$axios.get('/api/subscription/intent')
                         .then((response)=>{
                             this.stripeIntent = response.data
-                            const clientSecret = response.data.client_secret
-                            // this.stripDetails.createToken(this.cardNumber)
-                            // .then((response)=>{
-                            //     const token = response.data.id
-                            // })
-                            // .catch(e=>{
-                            //     console.log(e)
-                            // })
+                            this.submit()
                         })
-                })
+                    })
         }
     },
     mounted(){
@@ -196,13 +214,13 @@ export default {
             this.cardExpiry.mount('#cardExpiry');
             this.cardCvc = elements.create('cardCvc');
             this.cardCvc.mount('#cardCvc');
-            this.cardCvc.on('change',(event)=>{
-            })
-            this.cardExpiry.on('change',(event)=>{
-            })
-            this.cardNumber.on('change',(event)=>{
-            })
+            this.setUpListeners()
         })
+
+        this.$axios.get('/api/plans')
+            .then((response)=>{
+                this.plans = response.data
+            })
     }
 
 }

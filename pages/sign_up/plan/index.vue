@@ -18,7 +18,7 @@
                         <h2 class="month">/ month</h2>
                     </div>
                     <div>
-                        <b-button block variant="primary" size="lg">Choose Free Plan</b-button>
+                        <b-button block variant="primary" size="lg" @click="handleFreeRoute">Choose Free Plan</b-button>
                     </div>
                 </b>
                 <b class="box-shadow-low plan-box">
@@ -31,7 +31,7 @@
                         <h2 class="month">/ month</h2>
                     </div>
                     <div>
-                        <b-button block variant="primary" size="lg">Choose Pro Plan</b-button>
+                        <b-button block variant="primary" size="lg" @click="handleProRoute">Choose Pro Plan</b-button>
                     </div>
                 </b>
             </div>
@@ -41,7 +41,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return {}
+    },
+    methods: {
+        handleProRoute(){
+            this.$router.push('/sign_up/plan/billing')
+        },
+        handleFreeRoute(){
+            this.$router.push('/exp-home')
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
