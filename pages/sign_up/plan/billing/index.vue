@@ -160,7 +160,7 @@ export default {
                     this.stripDetails.confirmCardSetup(clientSecret, {
                             payment_method: {card: {token: response.token.id,},},})
                         .then((data)=>{
-                            const subObj = { payment_method: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
+                            const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
                             this.$axios.post('/api/subscription/subscribe', subObj)
                                 .then((response) => {
                                     this.$router.push("/exp-home");
