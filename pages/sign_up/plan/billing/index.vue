@@ -128,7 +128,6 @@ export default {
     },
     computed: {
         isDisable() {
-            return false
             const isValidName = isRequired(this.billing.name);
             const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
             if (isValid) {
@@ -156,24 +155,34 @@ export default {
         },
         submit(){
             const clientSecret = this.stripeIntent.client_secret
-            debugger
-            this.stripDetails.confirmCardSetup( clientSecret, {
-            payment_method: {
-                card: this.cardElement,
-                billing_details: { name: 'asasdasasds' }
-            }
-        })
+            this.stripDetails.createToken(this.cardNumber)
                 .then((response)=>{
-                    const data = { token: response.token, plan:this.plans[1].stripe_id}
-                    debugger
-                    // this.$axios.post('/api/subscription/subscribe', data)
-                    //     .then((response) => {
-                    //         this.$router.push("/exp-home");
-                    //     })
+                    this.stripDetails.confirmCardSetup(clientSecret, {
+                            payment_method: {card: {token: response.token.id,},},})
+                        .then((data)=>{
+                            const subObj = { payment_method: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
+                            this.$axios.post('/api/subscription/subscribe', subObj)
+                                .then((response) => {
+                                    this.$router.push("/exp-home");
+                                })
+                        })
                 })
-                .catch(e=>{
-                    console.log(e)
-                })
+            // this.stripDetails.confirmCardSetup( clientSecret, {
+            //     payment_method: {
+            //             card: this.cardElement,
+            //             billing_details: { name: this.stripeCustomer.email }
+            //         }
+            //     })
+            //     .then((response)=>{
+            //         const data = { token: response.token, plan:this.plans[1].stripe_id}
+            //         // this.$axios.post('/api/subscription/subscribe', data)
+            //         //     .then((response) => {
+            //         //         this.$router.push("/exp-home");
+            //         //     })
+            //     })
+            //     .catch(e=>{
+            //         console.log(e)
+            //     })
         },
         setUpListeners(){
             this.cardCvc.on('change',(event)=>{
@@ -211,21 +220,21 @@ export default {
         }
     },
     mounted(){
-        const stripe = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx')
+        const stripe = loadStripe('pk_test_EhFqsqBMFIFmoe4EIWwnHVva007Wjtz8cz')
         this.stripe = stripe
         stripe.then((data)=>{
             this.isStripeLoaded = true
             this.stripDetails = data
             const elements = this.stripDetails.elements();
-            this.cardElement = elements.create('card');
-            this.cardElement.mount('#card-element');
-            // this.cardNumber = elements.create('cardNumber');
-            // this.cardNumber.mount('#cardNumber');
-            // this.cardExpiry = elements.create('cardExpiry');
-            // this.cardExpiry.mount('#cardExpiry');
-            // this.cardCvc = elements.create('cardCvc');
-            // this.cardCvc.mount('#cardCvc');
-            // this.setUpListeners()
+            // this.cardElement = elements.create('card');
+            // this.cardElement.mount('#card-element');
+            this.cardNumber = elements.create('cardNumber');
+            this.cardNumber.mount('#cardNumber');
+            this.cardExpiry = elements.create('cardExpiry');
+            this.cardExpiry.mount('#cardExpiry');
+            this.cardCvc = elements.create('cardCvc');
+            this.cardCvc.mount('#cardCvc');
+            this.setUpListeners()
         })
 
         this.$axios.get('/api/plans')
@@ -339,8 +348,8 @@ p {
 .ElementsApp input{
     font-size: 16px !important;
 }
-.StripeElement{
+/* .StripeElement{
     width: 400px !important;
     display: block;
-}
+} */
 </style>
