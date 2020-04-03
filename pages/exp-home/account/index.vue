@@ -624,7 +624,10 @@ export default {
                             const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
                             this.$axios.post('/api/subscription/subscribe', subObj)
                                 .then((response) => {
-                                    this.$router.push("/exp-home");
+                                    this.$axios.post('api/full-user-info')
+                                    .then((data)=>{
+                                        this.$router.push("/exp-home");
+                                    })
                                 })
                         })
                 })
@@ -669,7 +672,6 @@ export default {
     isDisable() {
       const isValidName = isRequired(this.billing.name);
         const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
-        debugger
         if (isValid) {
             return false;
         } else {
