@@ -271,7 +271,7 @@
                       <h2 class="month">/ month</h2>
                     </div>
                     <div>
-                      <b-button block variant="primary" size="lg">
+                      <b-button :class="{'disabled pointer-none' : getPlanType == 1 }" block variant="primary" size="lg" @click="chooseFreePlan">
                         {{
                           getPlanType == 1 ? "Current Plan" : "Choose Free Plan"
                         }}
@@ -296,6 +296,7 @@
                     </div>
                     <div>
                       <b-button
+                        :class="{'disabled pointer-none' : getPlanType == 2 }"
                         block
                         variant="primary"
                         size="lg"
@@ -335,14 +336,15 @@
                     <label for="login-email">Credit Card Number</label>
                     <span class="inp-error">{{ error.email }}</span>
                   </div>
-                  <b-input
+                  <!-- <b-input
                     :class="{ form_fill: billing.cardNo }"
                     v-model="billing.cardNo"
                     :state="error_state_1.cardNo"
                     size="lg"
                     id="billing-cardNo"
                     placeholder="1234 5678 9012 3456"
-                  ></b-input>
+                  ></b-input> -->
+                  <div id='cardNumber' :class="{form_fill: billing.cardNo}" :state="error_state.cardNo"></div>
                   <b-form-invalid-feedback :state="error_state_1.cardNo">
                     {{ error_1.cardNo }}
                   </b-form-invalid-feedback>
@@ -354,14 +356,15 @@
                         <label for="login-email">Expiration Date</label>
                         <span class="inp-error">{{ error.email }}</span>
                       </div>
-                      <b-input
+                      <!-- <b-input
                         :class="{ form_fill: billing.expiryDate }"
                         v-model="billing.expiryDate"
                         :state="error_state_1.expiryDate"
                         size="lg"
                         id="billing-expiryDate"
                         placeholder="MM/YY"
-                      ></b-input>
+                      ></b-input> -->
+                      <div id='cardExpiry'></div>
                       <b-form-invalid-feedback
                         :state="error_state_1.expiryDate"
                       >
@@ -375,14 +378,15 @@
                         <label for="login-email">CVC</label>
                         <span class="inp-error">{{ error.email }}</span>
                       </div>
-                      <b-input
+                      <div id='cardCvc' class='form-control form-control-lg' size="lg"></div>
+                      <!-- <b-input
                         :class="{ form_fill: billing.cvc }"
                         v-model="billing.cvc"
                         :state="error_state_1.cvc"
                         size="lg"
                         id="billing-cvc"
                         placeholder="CVC"
-                      ></b-input>
+                      ></b-input> -->
                       <b-form-invalid-feedback :state="error_state_1.cvc">
                         {{ error_1.cvc }}
                       </b-form-invalid-feedback>
@@ -397,6 +401,7 @@
                       variant="primary"
                       :disabled="isDisable"
                       size="lg"
+                      @click="setUpIntent"
                       >Pay $15/mo</b-button
                     >
                   </b-col>
@@ -405,7 +410,7 @@
                       class="mt-3"
                       block
                       variant="secondary btn-custom_1"
-                      @click="$bvModal.hide('choosePlan')"
+                      @click="$bvModal.hide('choosePlan');isPropPlan=0"
                       size="lg"
                       >Cancel</b-button
                     >
@@ -424,10 +429,24 @@
 import { toastDuration } from "../../../constants";
 import { isRequired, isEmail } from "./../../../utils/validations.js";
 import { mapGetters, mapState } from "vuex";
+import {loadStripe} from '@stripe/stripe-js';
+
 export default {
   data() {
     return {
       showApiError: {},
+      plans:null,
+      cardNumber: null,
+      cardExpiry: null,
+      cardCvc: null,
+      cardNumberDetails: false,
+      cardExpiryDetails: false,
+      cardCvcDetails: false,
+      stripe:null,
+      stripeCustomer:null,
+      cardElement: null,
+      stripDetails: null,
+      isStripeLoaded: false,
       user: {
         name: null,
         email: null,
@@ -479,6 +498,14 @@ export default {
     };
   },
   methods: {
+    chooseFreePlan(){
+      if (this.getPlanType == 2 ){
+        this.$axios.post('/api/subscription/swap-plan')
+          .then((response)=>{
+            this.$router.push("/exp-home");
+          })
+      }
+    },
     handleFocus(fieldName) {
       this.error[fieldName] = "";
       this.error_state[fieldName] = null;
@@ -489,6 +516,28 @@ export default {
     },
     chooseProPlan() {
       this.isPropPlan = 1;
+      const stripe = loadStripe('pk_test_EhFqsqBMFIFmoe4EIWwnHVva007Wjtz8cz')
+      this.stripe = stripe
+      // if(!this.isStripeLoaded){
+        setTimeout(()=>{
+        this.stripe.then((data)=>{
+            this.isStripeLoaded = true
+            this.stripDetails = data
+            const elements = this.stripDetails.elements();
+            // this.cardElement = elements.create('card');
+            // this.cardElement.mount('#card-element');
+            this.cardNumber = elements.create('cardNumber');
+            this.cardNumber.mount('#cardNumber');
+            this.cardExpiry = elements.create('cardExpiry');
+            this.cardExpiry.mount('#cardExpiry');
+            this.cardCvc = elements.create('cardCvc');
+            this.cardCvc.mount('#cardCvc');
+            this.setUpListeners()
+        })
+      },0)
+      // }
+      
+      
     },
     handleNameBlur() {
       const isValidName = isRequired(this.name);
@@ -564,21 +613,68 @@ export default {
             this.errorHandling(responseObj);
           });
       }
-    }
+    },
+    submit(){
+            const clientSecret = this.stripeIntent.client_secret
+            this.stripDetails.createToken(this.cardNumber)
+                .then((response)=>{
+                    this.stripDetails.confirmCardSetup(clientSecret, {
+                            payment_method: {card: {token: response.token.id,},},})
+                        .then((data)=>{
+                            const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
+                            this.$axios.post('/api/subscription/subscribe', subObj)
+                                .then((response) => {
+                                    this.$router.push("/exp-home");
+                                })
+                        })
+                })
+        },
+        setUpListeners(){
+            this.cardCvc.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardCvcDetails = true
+                } else if (event.error) {
+                    this.cardCvcDetails = false
+                }
+            })
+            this.cardExpiry.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardExpiryDetails = true
+                } else if (event.error) {
+                    this.cardExpiryDetails = false
+                }
+            })
+            this.cardNumber.on('change',(event)=>{
+                if (event.complete) {
+                    this.cardNumberDetails = true
+                    } else if (event.error) {
+                       this.cardNumberDetails = false
+                    }
+            })
+        },
+        setUpIntent(){
+            this.$axios.post('/api/subscription/create-stripe-customer')
+                .then((data)=>{
+                    this.stripeCustomer = data.data
+                    this.$axios.get('/api/subscription/intent')
+                        .then((response)=>{
+                            this.stripeIntent = response.data
+                            this.submit()
+                        })
+                    })
+        }
   },
   computed: {
     ...mapGetters(["getPlanType"]),
     isDisable() {
-      if (
-        this.billing.name &&
-        this.billing.cardNo &&
-        this.billing.expiryDate &&
-        this.billing.cvc
-      ) {
-        return false;
-      } else {
-        return true;
-      }
+      const isValidName = isRequired(this.billing.name);
+        const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
+        debugger
+        if (isValid) {
+            return false;
+        } else {
+            return true;
+        }
     },
     email: {
       get() {
@@ -596,6 +692,12 @@ export default {
         this.$store.commit("updateName", value);
       }
     }
+  },
+  mounted(){
+        this.$axios.get('/api/plans')
+            .then((response)=>{
+                this.plans = response.data
+            })
   }
 };
 </script>
@@ -837,5 +939,34 @@ button {
 }
 .btn-divider {
   margin-top: 28px;
+}
+</style>
+
+<style>
+#cardNumber, #cardExpiry, #cardCvc {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1f1f1f;
+    border: 1px solid #b8b8b8;
+}
+#cardNumber.StripeElement--focus, #cardNumber.StripeElement--complete, #cardExpiry.StripeElement--focus, #cardExpiry.StripeElement--complete, #cardCvc.StripeElement--focus, #cardCvc.StripeElement--complete {
+    border-color: #1f1f1f;
+    border-width: 2px;
+}
+#cardNumber.StripeElement--invalid, #cardExpiry.StripeElement--invalid, #cardCvc.StripeElement--invalid{
+    border-color: #d93934;
+    border-width: 2px;
+}
+.ElementsApp input{
+    font-size: 16px !important;
+}
+.pointer-none{
+  pointer-events: none;
+  cursor: disable;
 }
 </style>

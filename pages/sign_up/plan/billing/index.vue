@@ -226,8 +226,6 @@ export default {
             this.isStripeLoaded = true
             this.stripDetails = data
             const elements = this.stripDetails.elements();
-            // this.cardElement = elements.create('card');
-            // this.cardElement.mount('#card-element');
             this.cardNumber = elements.create('cardNumber');
             this.cardNumber.mount('#cardNumber');
             this.cardExpiry = elements.create('cardExpiry');
