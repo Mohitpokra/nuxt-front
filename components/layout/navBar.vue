@@ -23,7 +23,6 @@
         >
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto" v-else>
-        
         <b-nav-text v-if="!$auth.loggedIn && $route.name !== 'resetpassword'" class="p3"
           >Already have an account?</b-nav-text
         >
@@ -176,11 +175,11 @@ ul {
         font-size: 18px;
         font-weight: 600;
         line-height: 1.33;
-        color: #44a1bf;
         margin-bottom: 24px;
         cursor: pointer;
         a {
           text-decoration: none;
+          color: #44a1bf !important;
         }
       }
     }
