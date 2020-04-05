@@ -1011,6 +1011,7 @@ button {
         background-color: #fff !important;
         color: #44a1bf !important;
         cursor: not-allowed;
+        opacity: 1;
       }
     }
   }
