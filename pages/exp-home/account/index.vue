@@ -191,7 +191,7 @@
               <p class="pr-title">
                 Search by Mortgage Payment —
                 <strong>{{
-                  getPlanType == 1 ? "Free Plan" : "Pro Plan"
+                  planSubscription == 1 ? "Free Plan" : "Pro Plan"
                 }}</strong>
               </p>
               <b-button
@@ -206,22 +206,33 @@
         </b-col>
       </b-row>
       <div class="info-list">
-        <b-row class="il-list">
+        <b-row class="il-list" v-if="planSubscription && planSubscription == 1">
           <b-col cols="12" lg="3">
             <span><strong>$0</strong> per month</span>
           </b-col>
           <b-col cols="12" lg="4">
-            <span>Renews <strong>January 23, 2020</strong></span>
+            <!-- <span>Renews <strong>{{this.subscriptionData && this.subscriptionData.renewalDate}}</strong></span> -->
           </b-col>
           <b-col cols="12" lg="12">
             <hr />
           </b-col>
         </b-row>
-        <!-- <b-row class="il-list">
+        <b-row class="il-list" v-if="planSubscription && planSubscription == 2">
+          <b-col cols="12" lg="3">
+            <span><strong>$15</strong> per month</span>
+          </b-col>
+          <b-col cols="12" lg="4">
+            <span>Renews <strong>{{this.subscriptionData && this.subscriptionData.renewalDate}}</strong></span>
+          </b-col>
+          <b-col cols="12" lg="12">
+            <hr />
+          </b-col>
+        </b-row>
+        <b-row class="il-list" v-if="planSubscription && planSubscription == 2">
                 <b-col cols="12" lg="3">
-                    <span>Visa ending in <strong>1212</strong></span>
+                    <span>Visa ending in <strong>{{this.subscriptionData && this.subscriptionData.lastFourDigits}}</strong></span>
                 </b-col>
-                <b-col cols="12" lg="4">
+                <b-col cols="12" lg="4" style="opacity:0">
                     <span>Expires <strong>01/2022</strong></span>
                 </b-col>
                 <b-col cols="12" lg="5" class="text-right">
@@ -230,7 +241,7 @@
                 <b-col cols="12" lg="12">
                     <hr>
                 </b-col>
-            </b-row> -->
+            </b-row>
       </div>
 
       <div>
@@ -256,7 +267,7 @@
                     :class="[
                       'box-shadow-low',
                       {
-                        selected: getPlanType == 1
+                        selected: planSubscription == 1
                       }
                     ]"
                   >
@@ -271,9 +282,9 @@
                       <h2 class="month">/ month</h2>
                     </div>
                     <div>
-                      <b-button :class="{'disabled pointer-none' : getPlanType == 1 }" block variant="primary" size="lg" @click="chooseFreePlan">
+                      <b-button :class="{'disabled pointer-none' : planSubscription == 1 }" block variant="primary" size="lg" @click="chooseFreePlan">
                         {{
-                          getPlanType == 1 ? "Current Plan" : "Choose Free Plan"
+                          planSubscription == 1 ? "Current Plan" : "Choose Free Plan"
                         }}
                       </b-button>
                     </div>
@@ -282,7 +293,7 @@
                     :class="[
                       'box-shadow-low',
                       {
-                        selected: getPlanType == 2
+                        selected: planSubscription == 2
                       }
                     ]"
                   >
@@ -296,14 +307,14 @@
                     </div>
                     <div>
                       <b-button
-                        :class="{'disabled pointer-none' : getPlanType == 2 }"
+                        :class="{'disabled pointer-none' : planSubscription == 2 }"
                         block
                         variant="primary"
                         size="lg"
                         @click="chooseProPlan"
                       >
                         {{
-                          getPlanType == 2 ? "Current Plan" : "Choose Pro Plan"
+                          planSubscription == 2 ? "Current Plan" : "Choose Pro Plan"
                         }}
                       </b-button>
                     </div>
@@ -465,6 +476,7 @@ export default {
         password: null,
         newPassword: null
       },
+      subscriptionData: {},
       isChangePass: 0,
       isPropPlan: 0,
       billing: {
@@ -499,7 +511,7 @@ export default {
   },
   methods: {
     chooseFreePlan(){
-      if (this.getPlanType == 2 ){
+      if (this.planSubscription == 2 ){
         this.$axios.post('/api/subscription/swap-plan')
           .then((response)=>{
             this.$router.push("/exp-home");
@@ -518,14 +530,11 @@ export default {
       this.isPropPlan = 1;
       const stripe = loadStripe('pk_test_EhFqsqBMFIFmoe4EIWwnHVva007Wjtz8cz')
       this.stripe = stripe
-      // if(!this.isStripeLoaded){
         setTimeout(()=>{
         this.stripe.then((data)=>{
             this.isStripeLoaded = true
             this.stripDetails = data
             const elements = this.stripDetails.elements();
-            // this.cardElement = elements.create('card');
-            // this.cardElement.mount('#card-element');
             this.cardNumber = elements.create('cardNumber');
             this.cardNumber.mount('#cardNumber');
             this.cardExpiry = elements.create('cardExpiry');
@@ -535,9 +544,6 @@ export default {
             this.setUpListeners()
         })
       },0)
-      // }
-      
-      
     },
     handleNameBlur() {
       const isValidName = isRequired(this.name);
@@ -668,7 +674,10 @@ export default {
         }
   },
   computed: {
-    ...mapGetters(["getPlanType"]),
+    ...mapGetters([]),
+    planSubscription(){
+      return (this.subscriptionData && this.subscriptionData.plan) == 'Pro' ? 2  : 1
+    },
     isDisable() {
       const isValidName = isRequired(this.billing.name);
         const isValid = isValidName && this.cardNumberDetails && this.cardExpiryDetails && this.cardCvcDetails
@@ -696,10 +705,16 @@ export default {
     }
   },
   mounted(){
-        this.$axios.get('/api/plans')
-            .then((response)=>{
-                this.plans = response.data
-            })
+
+    this.$axios.get('/api/subscription/info')
+      .then(data =>{
+        this.subscriptionData = data.data
+      })
+
+    this.$axios.get('/api/plans')
+      .then((response)=>{
+          this.plans = response.data
+      })
   }
 };
 </script>
