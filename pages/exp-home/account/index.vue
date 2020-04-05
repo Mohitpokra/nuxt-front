@@ -670,9 +670,11 @@ export default {
                             const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
                             this.$axios.post('/api/subscription/subscribe', subObj)
                                 .then((response) => {
-                                    this.$axios.post('api/full-user-info')
+                                    this.$axios.get('/api/subscription/info')
                                     .then((data)=>{
-                                        this.$router.push("/exp-home");
+										this.subscriptionData = data.data
+										this.$bvModal.hide('choosePlan');
+                                        this.$router.push("/exp-home/account");
                                     })
                                 })
                         })
