@@ -265,7 +265,7 @@
                       <b-button block variant="danger" size="lg" @click="submitFreePlan">
                         Yes, I want the free plan
                       </b-button>
-                      <b-button block variant="primary" size="lg" @click="$bvModal.hide('sureFreeplan')">
+                      <b-button block variant="" class="free-cancel" size="lg" @click="$bvModal.hide('sureFreeplan')">
                         Cancel
                       </b-button>
                     </div>
@@ -967,12 +967,17 @@ button {
   }
 }
 .choose-free-plan-container{
-  margin-top: 48px;
+  margin: 125px 0px;
+   @media screen and (max-width: 992px) {
+     margin: 42px 0px;
+   }
 }
 .choose-free-plan-wrapper{
   max-width: 360px;
   margin: auto;
-  padding: 25px;
+  .free-cancel{
+    margin-top: 24px;
+  }
 }
 .choose-plan-wrapper {
   margin-top: 48px;
