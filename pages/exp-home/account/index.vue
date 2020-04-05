@@ -257,9 +257,9 @@
               <div class="choose-free-plan-container">
                 <div class="choose-free-plan-wrapper">
                   <div>
-                    <h3 class="text-primary">Are you sure you want to switch to the free plan?</h3>
+                    <h3 class="head-text text-primary">Are you sure you want to switch to the free plan?</h3>
                     <p class="p-box-subheading p2">
-                     You’ll be limited to only 5 searches per month and lose access to all your search history.
+                     You’ll be limited to only 5 searches per month <br/> and lose access to all your search history.
                     </p>
                     <div>
                       <b-button block variant="danger" size="lg" @click="submitFreePlan">
@@ -670,10 +670,9 @@ export default {
                             const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
                             this.$axios.post('/api/subscription/subscribe', subObj)
                                 .then((response) => {
-                                    this.$axios.get('/api/subscription/info')
+                                    this.$axios.post('api/full-user-info')
                                     .then((data)=>{
-										this.subscriptionData = data.data
-										this.$bvModal.hide('choosePlan');
+                                        this.$router.push("/exp-home");
                                     })
                                 })
                         })
@@ -968,16 +967,34 @@ button {
   }
 }
 .choose-free-plan-container{
-  margin: 125px 0px;
+  margin: 116px 0px;
    @media screen and (max-width: 992px) {
-     margin: 42px 0px;
+     margin: 80px 0px;
    }
 }
 .choose-free-plan-wrapper{
   max-width: 360px;
   margin: auto;
+  .head-text{
+    padding-right: 10px;
+  }
   .free-cancel{
     margin-top: 24px;
+    padding: 0px;
+    font-size: 14px;
+    height: 32px;
+  }
+  @media screen and (max-width: 992px) {
+    .free-cancel{
+      padding: 0.7rem 1rem;
+      font-size: 16px;
+      height: 48px;
+      margin-top: 8px;
+    }
+    .head-text{
+      padding-right: 20px;
+      font-size: 18px;
+    }
   }
 }
 .choose-plan-wrapper {
