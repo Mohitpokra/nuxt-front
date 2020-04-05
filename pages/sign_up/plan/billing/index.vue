@@ -220,7 +220,7 @@ export default {
         }
     },
     mounted(){
-        const stripe = loadStripe('pk_test_EhFqsqBMFIFmoe4EIWwnHVva007Wjtz8cz')
+        const stripe = loadStripe(process.env.stripeKey)
         this.stripe = stripe
         stripe.then((data)=>{
             this.isStripeLoaded = true

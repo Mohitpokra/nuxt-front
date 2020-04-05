@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@nuxtjs/date-fns": "^1.2.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2"
   }

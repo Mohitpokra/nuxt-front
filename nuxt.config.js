@@ -58,7 +58,9 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxtjs/date-fns"],
+  buildModules: ["@nuxtjs/date-fns",[
+    "@nuxtjs/dotenv", {only: ['stripeKey']}
+  ]],
   /*
    ** Nuxt.js modules
    */
