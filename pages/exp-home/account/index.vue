@@ -674,7 +674,6 @@ export default {
                                     .then((data)=>{
 										this.subscriptionData = data.data
 										this.$bvModal.hide('choosePlan');
-                                        this.$router.push("/exp-home/account");
                                     })
                                 })
                         })
