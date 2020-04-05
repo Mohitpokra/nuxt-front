@@ -243,7 +243,39 @@
                 </b-col>
             </b-row>
       </div>
-
+      <div>
+        <b-modal
+          size="lg"
+          id="sureFreeplan"
+          class="modal-full-body"
+          centered
+          hide-footer
+          hide-header
+        >
+          <div class="modal-temp-body">
+            <div class="header">
+              <div class="choose-free-plan-container">
+                <div class="choose-free-plan-wrapper">
+                  <div>
+                    <h3 class="text-primary">Are you sure you want to switch to the free plan?</h3>
+                    <p class="p-box-subheading p2">
+                     You’ll be limited to only 5 searches per month and lose access to all your search history.
+                    </p>
+                    <div>
+                      <b-button block variant="danger" size="lg" @click="submitFreePlan">
+                        Yes, I want the free plan
+                      </b-button>
+                      <b-button block variant="primary" size="lg" @click="$bvModal.hide('sureFreeplan')">
+                        Cancel
+                      </b-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b-modal>
+      </div>
       <div>
         <b-modal
           size="lg"
@@ -510,12 +542,20 @@ export default {
     };
   },
   methods: {
+    submitFreePlan(){
+      this.$axios.post('/api/subscription/swap-plan')
+          .then((response)=>{
+             this.$axios.get('/api/subscription/info')
+              .then(data =>{
+                this.subscriptionData = data.data
+                this.$bvModal.hide('sureFreeplan');
+              })
+          })
+    },
     chooseFreePlan(){
       if (this.planSubscription == 2 ){
-        this.$axios.post('/api/subscription/swap-plan')
-          .then((response)=>{
-            this.$router.push("/exp-home");
-          })
+        this.$bvModal.hide('choosePlan')
+        this.$bvModal.show('sureFreeplan');
       }
     },
     handleFocus(fieldName) {
@@ -925,6 +965,14 @@ button {
     cursor: pointer;
     right: 0px;
   }
+}
+.choose-free-plan-container{
+  margin-top: 48px;
+}
+.choose-free-plan-wrapper{
+  max-width: 360px;
+  margin: auto;
+  padding: 25px;
 }
 .choose-plan-wrapper {
   margin-top: 48px;
