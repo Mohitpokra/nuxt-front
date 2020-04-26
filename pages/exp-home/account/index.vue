@@ -198,7 +198,7 @@
                 class="btn-chng-plan"
                 variant="primary"
                 size="lg"
-                @click="$bvModal.show('choosePlan')"
+                @click="$bvModal.show('choosePlan');updateCard = 0;isPropPlan=0"
                 >Change Plan</b-button
               >
             </div>
@@ -235,7 +235,7 @@
                 <b-col cols="12" lg="4" style="opacity:0">
                     <span>Expires <strong>01/2022</strong></span>
                 </b-col>
-                <b-col cols="12" lg="5" class="text-right">
+                <b-col cols="12" lg="5" class="text-right" @click="updatePayment()">
                     <span class="pointer link">Update Card</span>
                 </b-col>
                 <b-col cols="12" lg="12">
@@ -355,23 +355,25 @@
               </div>
             </div>
             <div v-else>
-              <h3 class="mod-title text-primary">Enter billing information</h3>
+              <h3 class="mod-title text-primary">{{!updateCard ? 'Enter' : 'Update'}} billing information</h3>
               <b-form>
                 <div class="inp-wrapper">
                   <div class="flex justify-content-between">
                     <label for="login-email">Name on Credit Card</label>
-                    <span class="inp-error">{{ error.email }}</span>
+                    <span class="inp-error">{{ error.name }}</span>
                   </div>
                   <b-input
-                    :class="{ form_fill: billing.name }"
-                    v-model.trim="billing.name"
-                    :state="error_state_1.name"
+                    :class="{ form_fill: name }"
+                    v-model.trim="name"
+                    :state="error_state.name"
                     size="lg"
                     id="billing-name"
                     placeholder="Charlie Exampleton"
+                    @blur="handleNameBlur"
+                    @focus="handleFocus('name')"
                   ></b-input>
-                  <b-form-invalid-feedback :state="error_state_1.name">
-                    {{ error_1.name }}
+                  <b-form-invalid-feedback :state="error_state.name">
+                    {{ error.name }}
                   </b-form-invalid-feedback>
                 </div>
                 <div class="inp-wrapper">
@@ -445,7 +447,7 @@
                       :disabled="isDisable"
                       size="lg"
                       @click="setUpIntent"
-                      >Pay $15/mo</b-button
+                      >{{ !updateCard ? 'Pay $15/mo' : 'Update Credit Card'}}</b-button
                     >
                   </b-col>
                   <b-col lg="3" cols="12" class="prl-0">
@@ -453,7 +455,7 @@
                       class="mt-3"
                       block
                       variant="secondary btn-custom_1"
-                      @click="$bvModal.hide('choosePlan');isPropPlan=0"
+                      @click="cancelBillingModal()"
                       size="lg"
                       >Cancel</b-button
                     >
@@ -542,6 +544,16 @@ export default {
     };
   },
   methods: {
+    cancelBillingModal(){
+      this.$bvModal.hide('choosePlan');
+      this.isPropPlan = 0;
+      this.updateCard = 0;
+    },
+    updatePayment(){
+      this.$bvModal.show('choosePlan');
+      this.updateCard = 1
+      this.chooseProPlan()
+    },
     submitFreePlan(){
       this.$axios.post('/api/subscription/swap-plan')
           .then((response)=>{
@@ -583,7 +595,7 @@ export default {
             this.cardCvc.mount('#cardCvc');
             this.setUpListeners()
         })
-      },0)
+      },1000)
     },
     handleNameBlur() {
       const isValidName = isRequired(this.name);
@@ -668,16 +680,29 @@ export default {
                             payment_method: {card: {token: response.token.id,},},})
                         .then((data)=>{
                             const subObj = { paymentMethod: data.setupIntent.payment_method, plan:this.plans[1].stripe_id}
-                            this.$axios.post('/api/subscription/subscribe', subObj)
+                            if(this.updateCard){
+                              this.$axios.post('/api/subscription/update-payment-details', {
+                                paymentMethod: data.setupIntent.payment_method
+                              }).then((response)=>{
+                                this.$axios.get('/api/subscription/info')
+                                      .then((data)=>{
+                                        this.subscriptionData = data.data
+                                        // this.$bvModal.hide('choosePlan');
+                                        // this.updateCard = 0;
+                                        // this.isPropPlan = 0;
+                                        this.cancelBillingModal()
+                                      })
+                              });
+                            }else{
+                              this.$axios.post('/api/subscription/subscribe', subObj)
                                 .then((response) => {
-                                    //this.$axios.post('api/full-user-info')
-									this.$axios.get('/api/subscription/info')
-                                    .then((data)=>{
-                                        //this.$router.push("/exp-home");
-										this.subscriptionData = data.data
-										this.$bvModal.hide('choosePlan');
-                                    })
+					                  				this.$axios.get('/api/subscription/info')
+                                      .then((data)=>{
+                                        this.subscriptionData = data.data
+                                        this.$bvModal.hide('choosePlan');
+                                      })
                                 })
+                            }
                         })
                 })
         },
