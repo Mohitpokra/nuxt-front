@@ -479,6 +479,7 @@ import {loadStripe} from '@stripe/stripe-js';
 export default {
   data() {
     return {
+      updateCard: 0,
       showApiError: {},
       plans:null,
       cardNumber: null,
@@ -687,9 +688,6 @@ export default {
                                 this.$axios.get('/api/subscription/info')
                                       .then((data)=>{
                                         this.subscriptionData = data.data
-                                        // this.$bvModal.hide('choosePlan');
-                                        // this.updateCard = 0;
-                                        // this.isPropPlan = 0;
                                         this.cancelBillingModal()
                                       })
                               });
