@@ -581,7 +581,7 @@ export default {
     },
     chooseProPlan() {
       this.isPropPlan = 1;
-      const stripe = loadStripe('pk_test_EhFqsqBMFIFmoe4EIWwnHVva007Wjtz8cz')
+      const stripe = loadStripe(process.env.stripeKey)
       this.stripe = stripe
         setTimeout(()=>{
         this.stripe.then((data)=>{
